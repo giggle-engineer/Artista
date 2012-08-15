@@ -20,6 +20,11 @@
 		3795C7E415DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7EC15DB5DD70058023F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3795C7EA15DB5DD70058023F /* InfoPlist.strings */; };
 		3795C7EF15DB5DD70058023F /* Music_InfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7EE15DB5DD70058023F /* Music_InfoTests.m */; };
+		3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7F915DB5E400058023F /* LastFMArtistInfo.m */; };
+		3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */; };
+		3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FF15DB62460058023F /* LFMRecentTracks.m */; };
+		3795C80315DB63610058023F /* LFMTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80215DB63610058023F /* LFMTrack.m */; };
+		3795C80615DB73D40058023F /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80515DB73D40058023F /* AccountViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +57,16 @@
 		3795C7EB15DB5DD70058023F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3795C7ED15DB5DD70058023F /* Music_InfoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Music_InfoTests.h; sourceTree = "<group>"; };
 		3795C7EE15DB5DD70058023F /* Music_InfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_InfoTests.m; sourceTree = "<group>"; };
+		3795C7F815DB5E400058023F /* LastFMArtistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFMArtistInfo.h; sourceTree = "<group>"; };
+		3795C7F915DB5E400058023F /* LastFMArtistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFMArtistInfo.m; sourceTree = "<group>"; };
+		3795C7FB15DB5E540058023F /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		3795C7FE15DB62460058023F /* LFMRecentTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMRecentTracks.h; sourceTree = "<group>"; };
+		3795C7FF15DB62460058023F /* LFMRecentTracks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMRecentTracks.m; sourceTree = "<group>"; };
+		3795C80115DB63610058023F /* LFMTrack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrack.h; sourceTree = "<group>"; };
+		3795C80215DB63610058023F /* LFMTrack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrack.m; sourceTree = "<group>"; };
+		3795C80415DB73D30058023F /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
+		3795C80515DB73D40058023F /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,8 +129,18 @@
 				3795C7D215DB5DD70058023F /* AppDelegate.h */,
 				3795C7D315DB5DD70058023F /* AppDelegate.m */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
+				3795C7F815DB5E400058023F /* LastFMArtistInfo.h */,
+				3795C7F915DB5E400058023F /* LastFMArtistInfo.m */,
+				3795C7FE15DB62460058023F /* LFMRecentTracks.h */,
+				3795C7FF15DB62460058023F /* LFMRecentTracks.m */,
+				3795C80115DB63610058023F /* LFMTrack.h */,
+				3795C80215DB63610058023F /* LFMTrack.m */,
+				3795C7FB15DB5E540058023F /* NSString+URLEncoding.h */,
+				3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */,
 				3795C7D815DB5DD70058023F /* ViewController.h */,
 				3795C7D915DB5DD70058023F /* ViewController.m */,
+				3795C80415DB73D30058023F /* AccountViewController.h */,
+				3795C80515DB73D40058023F /* AccountViewController.m */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
 			path = "Music Info";
@@ -261,6 +286,11 @@
 				3795C7D015DB5DD70058023F /* main.m in Sources */,
 				3795C7D415DB5DD70058023F /* AppDelegate.m in Sources */,
 				3795C7DA15DB5DD70058023F /* ViewController.m in Sources */,
+				3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */,
+				3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */,
+				3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */,
+				3795C80315DB63610058023F /* LFMTrack.m in Sources */,
+				3795C80615DB73D40058023F /* AccountViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

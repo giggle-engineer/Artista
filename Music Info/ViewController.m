@@ -7,6 +7,10 @@
 //
 
 #import "ViewController.h"
+#import "LastFMArtistInfo.h"
+#import "LFMRecentTracks.h"
+#import "LFMTrack.h"
+#import "AccountViewController.h"
 
 @interface ViewController ()
 
@@ -18,6 +22,11 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    // ![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]
+    if (YES) {
+        [self performSegueWithIdentifier: @"Account"
+                                  sender: nil];
+    }
 }
 
 - (void)viewDidUnload
