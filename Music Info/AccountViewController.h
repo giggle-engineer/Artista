@@ -8,8 +8,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AccountViewController : UIViewController <UITableViewDataSource> {
+@protocol AccountViewControllerDelegate <NSObject>
+@required
+- (void) didReceiveReceiveUsername;
+- (void) didFailToReceiveUsername: (NSError *)error;
+@end
+
+@interface AccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    id <AccountViewControllerDelegate> delegate;
+    
     UITextField *userNameTextField;
 }
+
+@property (strong) id delegate;
 
 @end

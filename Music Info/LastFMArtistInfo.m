@@ -14,7 +14,7 @@
 
 @synthesize delegate;
 
-- (void)requestInfo:(NSString*)artist
+- (void)requestInfoWithArtist:(NSString*)artist
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=%@&api_key=%@", 
                                   [artist URLEncodedString], kLastFMKey];
@@ -29,6 +29,36 @@
     NSError *error = [[NSError alloc] init];
     NSData *returnedData = [[NSData alloc] init];
     returnedData = [NSURLConnection sendSynchronousRequest:request 
+                                         returningResponse:&response error:&error];
+    
+    if (returnedData == nil) {
+        //[pool release];
+        //return -1;
+    }
+    else {
+        if ([self parseData:returnedData] != nil) {
+            //[pool release];
+            //return -1;
+        }
+        //[pool release];
+        //return 0;
+    }
+}
+
+- (void)requestInfoWithMusicBrainzID:(NSString*)mbid {
+    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=%@&api_key=%@",
+                                  [mbid URLEncodedString], kLastFMKey];
+    NSLog(@"LastFMArtistInfo mbid requested: %@", mbid);
+    NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
+    // Initialization code here.
+    NSURLRequest *request = [NSURLRequest requestWithURL:
+                             [NSURL URLWithString:
+                              urlRequestString]
+                                             cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
+    NSURLResponse *response = [[NSURLResponse alloc] init];
+    NSError *error = [[NSError alloc] init];
+    NSData *returnedData = [[NSData alloc] init];
+    returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
     
     if (returnedData == nil) {
@@ -114,7 +144,7 @@ foundCharacters:(NSString *)string{
 	} else if ([currentElement isEqualToString:@"content"]) {
         if (artistDetails == nil) {
             artistDetails = string;
-            NSLog(@"LastFMArtistInfo Details: %@", artistDetails);
+            //NSLog(@"LastFMArtistInfo Details: %@", artistDetails);
         }
     }
 } 

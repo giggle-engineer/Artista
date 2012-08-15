@@ -92,10 +92,9 @@ didStartElement:(NSString *)elementName
         }
 	}
     if ([elementName isEqualToString:@"artist"]) {
-        musicBrainzID = [attributeDict valueForKey:@"mbid"];
         // make sure we don't read this twice
-        if (!artist) {
-            artist = nil;
+        if (!musicBrainzID) {
+            musicBrainzID = [attributeDict valueForKey:@"mbid"];
         }
     }
 }
@@ -132,8 +131,16 @@ foundCharacters:(NSString *)string{
     [mostRecentTrack setArtist:artist];
     [mostRecentTrack setMusicBrainzID:musicBrainzID];
     [mostRecentTrack setTrack:track];
+    // reset variables
+    currentElement = nil;
+    currentAttribute = nil;
+    artist = nil;
+    track = nil;
+    musicBrainzID = nil;
+    nowPlaying = NO;
 	// Success let controller know we have data
     [[self delegate] didReceiveRecentTracks:mostRecentTrack];
+    
 }
 
 @end

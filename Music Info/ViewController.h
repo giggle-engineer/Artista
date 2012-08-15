@@ -7,12 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AccountViewController.h"
+#import "LFMRecentTracks.h"
+#import "LastFMArtistInfo.h"
 
-@interface ViewController : UIViewController {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UILabel *yearsActive;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
+    LFMRecentTracks *recentTracks;
+    LastFMArtistInfo *artistInfo;
 }
 
 @end

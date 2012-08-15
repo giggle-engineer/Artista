@@ -27,7 +27,8 @@
 
 @property (strong) id delegate;
 
-- (void)requestInfo:(NSString*)artist;
+- (void)requestInfoWithArtist:(NSString*)artist;
+- (void)requestInfoWithMusicBrainzID:(NSString*)mbid;
 -(NSError *)parseData:(NSData *)info;
 
 @end

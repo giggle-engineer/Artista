@@ -117,6 +117,7 @@
             // save user name and dissmiss
             [[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
             [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+            [[self delegate] didReceiveReceiveUsername];
             [self dismissModalViewControllerAnimated:YES];
         }
     }
