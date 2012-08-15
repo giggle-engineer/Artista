@@ -27,6 +27,9 @@
 		3795C80615DB73D40058023F /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80515DB73D40058023F /* AccountViewController.m */; };
 		3795C80F15DC23670058023F /* UIImage+DSP.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80E15DC23670058023F /* UIImage+DSP.m */; };
 		3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C81115DC23B50058023F /* Accelerate.framework */; };
+		37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37970C9315DC37B700E5CD0D /* QuartzCore.framework */; };
+		37970C9A15DC40B000E5CD0D /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 37970C9715DC40B000E5CD0D /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 37970C9915DC40B000E5CD0D /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +75,11 @@
 		3795C80D15DC23670058023F /* UIImage+DSP.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DSP.h"; sourceTree = "<group>"; };
 		3795C80E15DC23670058023F /* UIImage+DSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSP.m"; sourceTree = "<group>"; };
 		3795C81115DC23B50058023F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		37970C9315DC37B700E5CD0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		37970C9615DC40B000E5CD0D /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
+		37970C9715DC40B000E5CD0D /* GTMNSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "GTMNSString+HTML.m"; sourceTree = "<group>"; };
+		37970C9815DC40B000E5CD0D /* NSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+HTML.h"; sourceTree = "<group>"; };
+		37970C9915DC40B000E5CD0D /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
 				3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */,
 				3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */,
 				3795C7C615DB5DD70058023F /* Foundation.framework in Frameworks */,
@@ -121,6 +130,7 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
 				3795C81115DC23B50058023F /* Accelerate.framework */,
 				3795C7C315DB5DD70058023F /* UIKit.framework */,
 				3795C7C515DB5DD70058023F /* Foundation.framework */,
@@ -177,6 +187,10 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				37970C9615DC40B000E5CD0D /* GTMNSString+HTML.h */,
+				37970C9715DC40B000E5CD0D /* GTMNSString+HTML.m */,
+				37970C9815DC40B000E5CD0D /* NSString+HTML.h */,
+				37970C9915DC40B000E5CD0D /* NSString+HTML.m */,
 				3795C80D15DC23670058023F /* UIImage+DSP.h */,
 				3795C80E15DC23670058023F /* UIImage+DSP.m */,
 				3795C7FB15DB5E540058023F /* NSString+URLEncoding.h */,
@@ -325,6 +339,8 @@
 				3795C80315DB63610058023F /* LFMTrack.m in Sources */,
 				3795C80615DB73D40058023F /* AccountViewController.m in Sources */,
 				3795C80F15DC23670058023F /* UIImage+DSP.m in Sources */,
+				37970C9A15DC40B000E5CD0D /* GTMNSString+HTML.m in Sources */,
+				37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -498,6 +514,7 @@
 				3795C7F415DB5DD70058023F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		3795C7F515DB5DD70058023F /* Build configuration list for PBXNativeTarget "Music InfoTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +523,7 @@
 				3795C7F715DB5DD70058023F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

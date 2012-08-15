@@ -111,16 +111,16 @@ didStartElement:(NSString *)elementName
 	if ([elementName isEqualToString:@"image"]) { 
         currentAttribute = [attributeDict valueForKey:@"size"];
         // make sure we don't read this twice
-        if (!artistImage) {
+        /*if (!artistImage) {
             artistImage = nil;
-        }
+        }*/
 	}
-    if ([elementName isEqualToString:@"content"]) {
+    /*if ([elementName isEqualToString:@"content"]) {
         // make sure we don't read this twice
         if (!artistDetails) {
             artistDetails = nil;
         }
-    }
+    }*/
 } 
 - (void)parser:(NSXMLParser *)parser
  didEndElement:(NSString *)elementName
@@ -155,6 +155,9 @@ foundCharacters:(NSString *)string{
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	// Success let controller know we have data
     [[self delegate] didReceiveArtistDetails:artistDetails withImage:artistImage];
+    // reset variables
+    artistImage = nil;
+    artistDetails = nil;
 }
 
 

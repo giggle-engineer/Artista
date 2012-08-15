@@ -6,11 +6,13 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 #import "LastFMArtistInfo.h"
 #import "LFMRecentTracks.h"
 #import "LFMTrack.h"
 #import "UIImage+DSP.h"
+#import "NSString+HTML.h"
 
 @interface ViewController ()
 
@@ -25,6 +27,18 @@
     /*if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
         [self load];
     }*/
+    artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    artist.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    artist.layer.shadowOpacity = 1.0f;
+    artist.layer.shadowRadius = 0.5f;
+    yearsActive.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    yearsActive.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    yearsActive.layer.shadowOpacity = 1.0f;
+    yearsActive.layer.shadowRadius = 0.5f;
+    bioTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
+    bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    bioTextView.layer.shadowOpacity = 1.0f;
+    bioTextView.layer.shadowRadius = 0.5f;
 }
 
 - (void)viewDidUnload
@@ -83,7 +97,7 @@
 
 - (void)didReceiveArtistDetails:(NSString *)artistDetails withImage:(UIImage *)artistImage {
     UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
-    [bioTextView setText:artistDetails];
+    [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
     [artistImageView setImage:blurredImage];
 }
 
