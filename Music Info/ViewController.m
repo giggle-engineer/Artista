@@ -82,6 +82,9 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
+		[self load];
+	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -89,9 +92,6 @@
     if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
         [self performSegueWithIdentifier: @"Account"
                                   sender: nil];
-    }
-    else {
-        [self load];
     }
 }
 
