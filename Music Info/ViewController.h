@@ -13,9 +13,12 @@
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, UITextViewDelegate> {
     IBOutlet UILabel *artist;
-    IBOutlet UILabel *yearsActive;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
+	IBOutlet UIProgressView *playTimeProgressView;
+	IBOutlet UILabel *album;
+	IBOutlet UILabel *track;
+	IBOutlet UIImageView *albumArtView;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
 }

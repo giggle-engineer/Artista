@@ -26,7 +26,7 @@
                                 <rect key="frame" x="8" y="6" width="304" height="31"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.098039224743843079" green="0.098039224743843079" blue="0.098039224743843079" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
@@ -65,6 +65,32 @@
                                             <action selector="reloadRecentTracks:" destination="2" eventType="touchUpInside" id="E4N-2c-Iiu"/>
                                         </connections>
                                     </button>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="gby-lg-UyI">
+                                        <rect key="frame" x="10.5" y="14.5" width="30" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ne9-dw-zqw">
+                                        <rect key="frame" x="48" y="11" width="30" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WKr-pg-2nu">
+                                        <rect key="frame" x="48" y="23" width="30" height="15"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="heart.png" id="uvy-CB-Nqf">
+                                        <rect key="frame" x="289" y="22" width="17" height="16"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                    </imageView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" progress="0.5" id="RLh-eF-fMK">
+                                        <rect key="frame" x="48" y="39" width="150" height="9"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </progressView>
                                 </subviews>
                             </view>
                         </subviews>
@@ -72,9 +98,13 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
+                        <outlet property="album" destination="ne9-dw-zqw" id="ehh-y9-ppO"/>
+                        <outlet property="albumArtView" destination="gby-lg-UyI" id="dei-ZN-qYk"/>
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
                         <outlet property="artistImageView" destination="6tI-Ha-oD5" id="daJ-Sa-k1D"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
+                        <outlet property="playTimeProgressView" destination="RLh-eF-fMK" id="8rq-YW-H9E"/>
+                        <outlet property="track" destination="WKr-pg-2nu" id="18F-uZ-UO1"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
                     </connections>
                 </viewController>
@@ -111,6 +141,7 @@
     <resources>
         <image name="bgtransparent.png" width="320" height="480"/>
         <image name="bottombar.png" width="320" height="58"/>
+        <image name="heart.png" width="17" height="16"/>
     </resources>
     <classes>
         <class className="AccountViewController" superclassName="UIViewController">
@@ -120,9 +151,13 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
                 <relationship kind="action" name="reloadRecentTracks:"/>
+                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="yearsActive" candidateClass="UILabel"/>
             </relationships>
         </class>

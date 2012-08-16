@@ -24,17 +24,10 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    /*if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
-        [self load];
-    }*/
-    /*artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    artist.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    artist.layer.shadowOpacity = 1.0f;
-    artist.layer.shadowRadius = 0.5f;
-    yearsActive.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    yearsActive.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
-    yearsActive.layer.shadowOpacity = 1.0f;
-    yearsActive.layer.shadowRadius = 0.5f;*/
+	[playTimeProgressView setProgressImage:[UIImage imageNamed:@"progressbarfill.png"]];
+	[playTimeProgressView setTrackImage:[UIImage imageNamed:@"progressbar.png"]];
+	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
+	
     bioTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
