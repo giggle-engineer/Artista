@@ -50,21 +50,6 @@
                                         <rect key="frame" x="0.0" y="-3" width="320" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7d-F7-eyd">
-                                        <rect key="frame" x="119" y="7" width="72" height="37"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="reloadRecentTracks:" destination="2" eventType="touchUpInside" id="E4N-2c-Iiu"/>
-                                        </connections>
-                                    </button>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="gby-lg-UyI">
                                         <rect key="frame" x="10.5" y="14.5" width="30" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -91,6 +76,21 @@
                                         <rect key="frame" x="48" y="39" width="233" height="9"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </progressView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7d-F7-eyd">
+                                        <rect key="frame" x="119" y="7" width="72" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="reloadRecentTracks:" destination="2" eventType="touchUpInside" id="E4N-2c-Iiu"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                             </view>
                         </subviews>
@@ -135,7 +135,7 @@
                     <nil key="simulatedStatusBarMetrics"/>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="590" y="39"/>
+            <point key="canvasLocation" x="590" y="31"/>
         </scene>
     </scenes>
     <resources>
@@ -150,7 +150,6 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="reloadRecentTracks:"/>
                 <relationship kind="outlet" name="album" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>

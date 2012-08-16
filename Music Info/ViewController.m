@@ -118,7 +118,6 @@
     dispatch_async(queue,^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [artist setText:[_track artist]];
-			NSLog(@"track: %@", [_track track]);
 			[track setText:[_track track]];
         });
         if (artistInfo==nil) {

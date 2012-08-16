@@ -112,8 +112,7 @@ foundCharacters:(NSString *)string{
 	// save the characters for the current item...
 	if ([currentElement isEqualToString:@"name"]) {
         if (track == nil) {
-            NSLog(@"LastFMArtistInfo image Url: %@", string);
-			NSLog(@"Track: %@", string);
+            NSLog(@"LastFMArtistInfo track name: %@", string);
             track = string;
         }
 	} else if ([currentElement isEqualToString:@"artist"]) {
