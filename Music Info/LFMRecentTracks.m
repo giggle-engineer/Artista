@@ -110,9 +110,10 @@ didStartElement:(NSString *)elementName
 foundCharacters:(NSString *)string{
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"track"]) {
+	if ([currentElement isEqualToString:@"name"]) {
         if (track == nil) {
             NSLog(@"LastFMArtistInfo image Url: %@", string);
+			NSLog(@"Track: %@", string);
             track = string;
         }
 	} else if ([currentElement isEqualToString:@"artist"]) {

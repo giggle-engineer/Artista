@@ -113,21 +113,23 @@
 
 #pragma mark - LFMRecentTracks Delegate
 
-- (void)didReceiveRecentTracks:(LFMTrack *)track {
+- (void)didReceiveRecentTracks:(LFMTrack *)_track {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue,^{
         dispatch_async(dispatch_get_main_queue(), ^{
-            [artist setText:[track artist]];
+            [artist setText:[_track artist]];
+			NSLog(@"track: %@", [_track track]);
+			[track setText:[_track track]];
         });
         if (artistInfo==nil) {
             artistInfo = [[LastFMArtistInfo alloc] init];
             [artistInfo setDelegate:self];
         }
-        if (![[track musicBrainzID] isEqualToString:@""]) {
-            [artistInfo requestInfoWithMusicBrainzID:[track musicBrainzID]];
+        if (![[_track musicBrainzID] isEqualToString:@""]) {
+            [artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
         }
         else {
-            [artistInfo requestInfoWithArtist:[track artist]];
+            [artistInfo requestInfoWithArtist:[_track artist]];
         }
     });
 }
