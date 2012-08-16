@@ -131,6 +131,7 @@ foundCharacters:(NSString *)string{
     [mostRecentTrack setArtist:artist];
     [mostRecentTrack setMusicBrainzID:musicBrainzID];
     [mostRecentTrack setTrack:track];
+	
     // reset variables
     currentElement = nil;
     currentAttribute = nil;
