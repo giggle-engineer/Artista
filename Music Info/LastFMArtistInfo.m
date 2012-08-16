@@ -144,7 +144,7 @@ foundCharacters:(NSString *)string{
 	} else if ([currentElement isEqualToString:@"content"]) {
         if (artistDetails == nil) {
             artistDetails = string;
-            //NSLog(@"LastFMArtistInfo Details: %@", artistDetails);
+            NSLog(@"LastFMArtistInfo Details: %u", [artistDetails length]);
         }
     }
 } 

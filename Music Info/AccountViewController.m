@@ -40,6 +40,26 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)saveAndDismiss {
+	// save user name and dissmiss
+	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+	[[self delegate] didReceiveReceiveUsername];
+	[self dismissModalViewControllerAnimated:YES];
+}
+
+#pragma mark - Text Field Delegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
+	
+	[textField resignFirstResponder];
+	
+	[self saveAndDismiss];
+	
+	return YES;
+	
+}
+
 #pragma mark - Data Source Delegate
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -63,8 +83,9 @@
         if (indexPath.row==0) {
             UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
             userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(19, 12, tableView.bounds.size.width-80, 30)];
+			[userNameTextField setDelegate:self];
             [userNameTextField setAdjustsFontSizeToFitWidth:YES];
-            [userNameTextField setReturnKeyType:UIReturnKeyNext];
+            [userNameTextField setReturnKeyType:UIReturnKeyDone];
             [userNameTextField setKeyboardType:UIKeyboardTypeURL];
             [userNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [userNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
@@ -114,11 +135,7 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section==0) {
         if (indexPath.row==1) {
-            // save user name and dissmiss
-            [[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
-            [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
-            [[self delegate] didReceiveReceiveUsername];
-            [self dismissModalViewControllerAnimated:YES];
+            [self saveAndDismiss];
         }
     }
 }
