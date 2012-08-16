@@ -11,7 +11,7 @@
 #import "LFMRecentTracks.h"
 #import "LastFMArtistInfo.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, UITextViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UILabel *yearsActive;
     IBOutlet UITextView *bioTextView;

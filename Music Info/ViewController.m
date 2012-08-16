@@ -27,24 +27,61 @@
     /*if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
         [self load];
     }*/
-    artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    /*artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
     artist.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     artist.layer.shadowOpacity = 1.0f;
     artist.layer.shadowRadius = 0.5f;
     yearsActive.layer.shadowColor = [[UIColor whiteColor] CGColor];
     yearsActive.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     yearsActive.layer.shadowOpacity = 1.0f;
-    yearsActive.layer.shadowRadius = 0.5f;
+    yearsActive.layer.shadowRadius = 0.5f;*/
     bioTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
+    
+	CAGradientLayer *mask = [CAGradientLayer layer];
+    mask.locations = [NSArray arrayWithObjects:
+                      [NSNumber numberWithFloat:0.0],
+                      [NSNumber numberWithFloat:0.1],
+                      [NSNumber numberWithFloat:0.9],
+                      [NSNumber numberWithFloat:1.0],
+                      nil];
+	
+    mask.colors = [NSArray arrayWithObjects:
+                   (__bridge id)[UIColor clearColor].CGColor,
+                   (__bridge id)[UIColor whiteColor].CGColor,
+                   (__bridge id)[UIColor whiteColor].CGColor,
+                   (__bridge id)[UIColor clearColor].CGColor,
+                   nil];
+	
+    mask.frame = bioTextView.bounds;
+    // vertical direction
+    mask.startPoint = CGPointMake(0, 0);
+    mask.endPoint = CGPointMake(0, 1);
+	
+    bioTextView.layer.mask = mask;
+	
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(load)
+                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+	[CATransaction begin];
+	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+	CGRect layerMaskFrame = bioTextView.layer.mask.frame;
+    layerMaskFrame.origin = [self.view convertPoint:bioTextView.bounds.origin toView:self.view];
+	
+    bioTextView.layer.mask.frame = layerMaskFrame;
+	[CATransaction commit];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -67,11 +104,14 @@
 }
 
 - (void)load {
-    if (recentTracks==nil) {
-        recentTracks = [[LFMRecentTracks alloc] init];
-        [recentTracks setDelegate:self];
-    }
-    [recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+    dispatch_async(queue,^{
+        if (recentTracks==nil) {
+            recentTracks = [[LFMRecentTracks alloc] init];
+            [recentTracks setDelegate:self];
+        }
+        [recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
+    });
 }
 
 - (IBAction)reloadRecentTracks:(id)sender {
@@ -81,12 +121,22 @@
 #pragma mark - LFMRecentTracks Delegate
 
 - (void)didReceiveRecentTracks:(LFMTrack *)track {
-    [artist setText:[track artist]];
-    if (artistInfo==nil) {
-        artistInfo = [[LastFMArtistInfo alloc] init];
-        [artistInfo setDelegate:self];
-    }
-    [artistInfo requestInfoWithMusicBrainzID:[track musicBrainzID]];
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+    dispatch_async(queue,^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [artist setText:[track artist]];
+        });
+        if (artistInfo==nil) {
+            artistInfo = [[LastFMArtistInfo alloc] init];
+            [artistInfo setDelegate:self];
+        }
+        if (![[track musicBrainzID] isEqualToString:@""]) {
+            [artistInfo requestInfoWithMusicBrainzID:[track musicBrainzID]];
+        }
+        else {
+            [artistInfo requestInfoWithArtist:[track artist]];
+        }
+    });
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
@@ -96,9 +146,15 @@
 #pragma mark - LastFMArtistInfo Delegate
 
 - (void)didReceiveArtistDetails:(NSString *)artistDetails withImage:(UIImage *)artistImage {
-    UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
-    [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
-    [artistImageView setImage:blurredImage];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
+        [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
+        [artistImageView setImage:blurredImage];
+    });
+}
+
+- (void)didFailToReceiveArtistDetails:(NSError *)error {
+    NSLog(@"Failed to receive track with error:%@", [error description]);
 }
 
 #pragma mark  - Account View Controller Delegate
