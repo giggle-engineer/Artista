@@ -103,6 +103,7 @@
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
                         <outlet property="artistImageView" destination="6tI-Ha-oD5" id="daJ-Sa-k1D"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
+                        <outlet property="bottomBarView" destination="Kd0-ZJ-FTJ" id="Tni-3W-FUW"/>
                         <outlet property="playTimeProgressView" destination="RLh-eF-fMK" id="8rq-YW-H9E"/>
                         <outlet property="track" destination="WKr-pg-2nu" id="18F-uZ-UO1"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
@@ -156,6 +157,7 @@
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="track" candidateClass="UILabel"/>
             </relationships>

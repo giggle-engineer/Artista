@@ -10,6 +10,7 @@
 #import "AccountViewController.h"
 #import "LFMRecentTracks.h"
 #import "LastFMArtistInfo.h"
+#import "ODRefreshControl.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, UITextViewDelegate> {
     IBOutlet UILabel *artist;
@@ -19,8 +20,12 @@
 	IBOutlet UILabel *album;
 	IBOutlet UILabel *track;
 	IBOutlet UIImageView *albumArtView;
+	IBOutlet UIView *bottomBarView;
     LFMRecentTracks *recentTracks;
-    LastFMArtistInfo *artistInfo; 
+    LastFMArtistInfo *artistInfo;
+	MPMusicPlayerController *iPodController;
+	NSTimer *playbackTimer;
+	ODRefreshControl *refreshControl;
 }
 
 @end

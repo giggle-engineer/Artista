@@ -25,48 +25,79 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	playbackTimer = nil;
+	
+	// round the corners of the album art view
 	albumArtView.layer.cornerRadius = 5.0;
 	albumArtView.layer.masksToBounds = YES;
 	
+	// skin the playback time progress view
 	[playTimeProgressView setProgressImage:[UIImage imageNamed:@"progressbarfill.png"]];
 	[playTimeProgressView setTrackImage:[UIImage imageNamed:@"progressbar.png"]];
 	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
 	
+	// give shadow to bio text
     bioTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
+	
+	// setup refreshing
+	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
+	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+	
+	// push in bio scroll view content up past the bottom bar
+	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
+	bioTextView.contentInset = contentInsets;
+	bioTextView.scrollIndicatorInsets = contentInsets;
     
-	CAGradientLayer *mask = [CAGradientLayer layer];
-    mask.locations = [NSArray arrayWithObjects:
-                      [NSNumber numberWithFloat:0.0],
-                      [NSNumber numberWithFloat:0.1],
-                      [NSNumber numberWithFloat:0.9],
-                      [NSNumber numberWithFloat:1.0],
-                      nil];
-	
-    mask.colors = [NSArray arrayWithObjects:
-                   (__bridge id)[UIColor clearColor].CGColor,
-                   (__bridge id)[UIColor whiteColor].CGColor,
-                   (__bridge id)[UIColor whiteColor].CGColor,
-                   (__bridge id)[UIColor clearColor].CGColor,
-                   nil];
-	
-    mask.frame = bioTextView.bounds;
-    // vertical direction
-    mask.startPoint = CGPointMake(0, 0);
-    mask.endPoint = CGPointMake(0, 1);
-	
-    bioTextView.layer.mask = mask;
-	
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(load)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
 }
 
+- (void)dropViewDidBeginRefreshing:(id)sender {
+	[self load];
+}
+
+- (void)makeMask {
+	// fade out text when scrolling
+	CAGradientLayer *mask = [CAGradientLayer layer];
+	mask.locations = [NSArray arrayWithObjects:
+					  [NSNumber numberWithFloat:0.0],
+					  [NSNumber numberWithFloat:0.1],
+					  [NSNumber numberWithFloat:0.9],
+					  [NSNumber numberWithFloat:1.0],
+					  nil];
+	
+	mask.colors = [NSArray arrayWithObjects:
+				   (id)[UIColor clearColor].CGColor,
+				   (id)[UIColor whiteColor].CGColor,
+				   (id)[UIColor whiteColor].CGColor,
+				   (id)[UIColor clearColor].CGColor,
+				   nil];
+	
+	mask.frame = bioTextView.bounds;
+	// vertical direction
+	mask.startPoint = CGPointMake(0, 0);
+	mask.endPoint = CGPointMake(0, 1);
+	
+	bioTextView.layer.mask = mask;
+}
+
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+	float offset = scrollView.contentOffset.y;
+	if (offset<=0) {
+		// add shadow to navigation top bar
+		NSLog(@"bioTextView scroll at top");
+		bioTextView.layer.mask = nil;
+	}
+	else {
+		[self makeMask];
+	}
+	
 	CGRect layerMaskFrame = bioTextView.layer.mask.frame;
     layerMaskFrame.origin = [self.view convertPoint:bioTextView.bounds.origin toView:self.view];
 	
@@ -100,8 +131,16 @@
     }
 }
 
+- (void)updatePlaybackProgress {
+	NSTimeInterval currentTime = [iPodController currentPlaybackTime];
+	NSNumber *playbackDuration = [[iPodController nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
+	float progress = currentTime/playbackDuration.intValue;
+	[playTimeProgressView setProgress:progress];
+	// TODO: End updating playback progress and reset if end of currently playing song is reached
+}
+
 - (void)load {
-	MPMusicPlayerController *iPodController = [MPMusicPlayerController iPodMusicPlayer];
+	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
 		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
 		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
@@ -115,8 +154,14 @@
 		artistInfo = [[LastFMArtistInfo alloc] init];
 		[artistInfo setDelegate:self];
 		[artistInfo requestInfoWithArtist:artistName];
+		[refreshControl endRefreshing];
+		if (playbackTimer!=nil)
+			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 	}
 	else {
+		// remove playback timer updating if the iPod is no longer playing
+		if ([playbackTimer isValid])
+			[playbackTimer invalidate];
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
 			if (recentTracks==nil) {
@@ -165,6 +210,7 @@
         UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
         [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
         [artistImageView setImage:blurredImage];
+		[refreshControl endRefreshing];
     });
 }
 

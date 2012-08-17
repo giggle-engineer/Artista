@@ -45,6 +45,7 @@
 		37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 37970C9915DC40B000E5CD0D /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
+		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,8 @@
 		37970C9915DC40B000E5CD0D /* NSString+HTML.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+HTML.m"; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
+		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
+		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -180,6 +183,7 @@
 				3795C81415DC246B0058023F /* Last.fm */,
 				3795C81315DC245D0058023F /* View Controllers */,
 				3795C81015DC23700058023F /* Categories */,
+				37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
 			name = Artista;
@@ -269,6 +273,15 @@
 				3795C80215DB63610058023F /* LFMTrack.m */,
 			);
 			name = Last.fm;
+			sourceTree = "<group>";
+		};
+		37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */ = {
+			isa = PBXGroup;
+			children = (
+				37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */,
+				37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */,
+			);
+			path = ODRefreshControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -403,6 +416,7 @@
 				3795C80F15DC23670058023F /* UIImage+DSP.m in Sources */,
 				37970C9A15DC40B000E5CD0D /* GTMNSString+HTML.m in Sources */,
 				37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */,
+				37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
