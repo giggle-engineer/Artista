@@ -70,7 +70,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (section==0) {
-        return 2;
+        return 3;
     }
     else {
         return 0;
@@ -101,6 +101,7 @@
 		if (indexPath.row==2) {
 			UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
 			cell.textLabel.text = @"Skip";
+			return cell;
 		}
     }
     // shuts up the warning about reaching end of void function

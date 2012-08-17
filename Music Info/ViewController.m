@@ -6,6 +6,7 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
+#import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 #import "LastFMArtistInfo.h"
@@ -24,6 +25,9 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	albumArtView.layer.cornerRadius = 5.0;
+	albumArtView.layer.masksToBounds = YES;
+	
 	[playTimeProgressView setProgressImage:[UIImage imageNamed:@"progressbarfill.png"]];
 	[playTimeProgressView setTrackImage:[UIImage imageNamed:@"progressbar.png"]];
 	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
@@ -97,14 +101,31 @@
 }
 
 - (void)load {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-    dispatch_async(queue,^{
-        if (recentTracks==nil) {
-            recentTracks = [[LFMRecentTracks alloc] init];
-            [recentTracks setDelegate:self];
-        }
-        [recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
-    });
+	MPMusicPlayerController *iPodController = [MPMusicPlayerController iPodMusicPlayer];
+	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
+		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+		[artist setText:artistName];
+		[album setText:albumName];
+		[track setText:trackName];
+		artistInfo = [[LastFMArtistInfo alloc] init];
+		[artistInfo setDelegate:self];
+		[artistInfo requestInfoWithArtist:artistName];
+	}
+	else {
+		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+		dispatch_async(queue,^{
+			if (recentTracks==nil) {
+				recentTracks = [[LFMRecentTracks alloc] init];
+				[recentTracks setDelegate:self];
+			}
+			[recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
+		});
+	}
 }
 
 - (IBAction)reloadRecentTracks:(id)sender {
