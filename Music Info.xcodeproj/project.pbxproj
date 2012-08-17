@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */; };
 		377C6F5515DCBB2E00B1CA34 /* bottombar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */; };
 		377C6F5B15DCBDEB00B1CA34 /* progressbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5715DCBDEB00B1CA34 /* progressbar.png */; };
 		377C6F5C15DCBDEB00B1CA34 /* progressbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */; };
@@ -55,6 +56,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombar@2x.png"; sourceTree = "<group>"; };
 		377C6F5715DCBDEB00B1CA34 /* progressbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbar.png; sourceTree = "<group>"; };
 		377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressbar@2x.png"; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
 				3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */,
 				3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */,
@@ -154,6 +157,7 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
 				3795C81115DC23B50058023F /* Accelerate.framework */,
 				3795C7C315DB5DD70058023F /* UIKit.framework */,

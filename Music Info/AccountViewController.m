@@ -98,6 +98,10 @@
             cell.textLabel.text = @"Done";
             return cell;
         }
+		if (indexPath.row==2) {
+			UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
+			cell.textLabel.text = @"Skip";
+		}
     }
     // shuts up the warning about reaching end of void function
     return nil;
@@ -137,6 +141,9 @@
         if (indexPath.row==1) {
             [self saveAndDismiss];
         }
+		if (indexPath.row==2) {
+			[self dismissModalViewControllerAnimated:YES];
+		}
     }
 }
 

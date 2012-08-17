@@ -20,7 +20,7 @@
 	IBOutlet UILabel *track;
 	IBOutlet UIImageView *albumArtView;
     LFMRecentTracks *recentTracks;
-    LastFMArtistInfo *artistInfo;
+    LastFMArtistInfo *artistInfo; 
 }
 
 @end
