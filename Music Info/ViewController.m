@@ -158,10 +158,10 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[refreshControl endRefreshing];
+				
+				if (playbackTimer == nil)
+					playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 			});
-			
-			if (playbackTimer!=nil)
-				playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 		});
 	}
 	else {
@@ -201,7 +201,6 @@
 		[trackInfo setDelegate:self];
         if (![[_track musicBrainzID] isEqualToString:@""]) {
             [artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
-			LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
 			[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
         }
         else {
