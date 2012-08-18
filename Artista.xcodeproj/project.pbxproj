@@ -46,6 +46,7 @@
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
+		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,6 +114,8 @@
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
+		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -269,6 +272,8 @@
 				3795C7F915DB5E400058023F /* LastFMArtistInfo.m */,
 				3795C7FE15DB62460058023F /* LFMRecentTracks.h */,
 				3795C7FF15DB62460058023F /* LFMRecentTracks.m */,
+				37F5CE4215DF351200167C42 /* LFMTrackInfo.h */,
+				37F5CE4315DF351200167C42 /* LFMTrackInfo.m */,
 				3795C80115DB63610058023F /* LFMTrack.h */,
 				3795C80215DB63610058023F /* LFMTrack.m */,
 			);
@@ -417,6 +422,7 @@
 				37970C9A15DC40B000E5CD0D /* GTMNSString+HTML.m in Sources */,
 				37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */,
 				37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */,
+				37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

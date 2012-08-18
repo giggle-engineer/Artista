@@ -9,8 +9,6 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
-#import "LastFMArtistInfo.h"
-#import "LFMRecentTracks.h"
 #import "LFMTrack.h"
 #import "UIImage+DSP.h"
 #import "NSString+HTML.h"
@@ -37,8 +35,8 @@
 	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
 	
 	// give shadow to bio text
-    bioTextView.layer.shadowColor = [[UIColor blackColor] CGColor];
-    bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 0.0f);
+    bioTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
 	
@@ -46,7 +44,7 @@
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 	
-	// push in bio scroll view content up past the bottom bar
+	// push in bio scroll view content up past the bottom bar... this is nullified by ODRefreshControl 😢
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
@@ -91,7 +89,7 @@
 	float offset = scrollView.contentOffset.y;
 	if (offset<=0) {
 		// add shadow to navigation top bar
-		NSLog(@"bioTextView scroll at top");
+		//NSLog(@"bioTextView scroll at top");
 		bioTextView.layer.mask = nil;
 	}
 	else {
@@ -140,30 +138,38 @@
 }
 
 - (void)load {
+	[refreshControl beginRefreshing];
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
-		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
-		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
-		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
-		[artist setText:artistName];
-		[album setText:albumName];
-		[track setText:trackName];
-		artistInfo = [[LastFMArtistInfo alloc] init];
-		[artistInfo setDelegate:self];
-		[artistInfo requestInfoWithArtist:artistName];
-		[refreshControl endRefreshing];
-		if (playbackTimer!=nil)
-			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
-	}
-	else {
-		// remove playback timer updating if the iPod is no longer playing
-		if ([playbackTimer isValid])
-			[playbackTimer invalidate];
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
+			MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+			NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+			NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+			NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+			MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+			[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+			[artist setText:artistName];
+			[album setText:albumName];
+			[track setText:trackName];
+			artistInfo = [[LastFMArtistInfo alloc] init];
+			[artistInfo setDelegate:self];
+			[artistInfo requestInfoWithArtist:artistName];
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[refreshControl endRefreshing];
+			});
+			
+			if (playbackTimer!=nil)
+				playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
+		});
+	}
+	else {
+		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+		dispatch_async(queue,^{
+			// remove playback timer updating if the iPod is no longer playing
+			if ([playbackTimer isValid])
+				[playbackTimer invalidate];
 			if (recentTracks==nil) {
 				recentTracks = [[LFMRecentTracks alloc] init];
 				[recentTracks setDelegate:self];
@@ -182,6 +188,7 @@
 - (void)didReceiveRecentTracks:(LFMTrack *)_track {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue,^{
+		currentTrack = _track;
         dispatch_async(dispatch_get_main_queue(), ^{
             [artist setText:[_track artist]];
 			[track setText:[_track track]];
@@ -210,12 +217,28 @@
         UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
         [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
         [artistImageView setImage:blurredImage];
-		[refreshControl endRefreshing];
     });
+	LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
+	[trackInfo setDelegate:self];
+	[trackInfo requestInfo:[currentTrack artist] withTrack:[currentTrack track]];
 }
 
 - (void)didFailToReceiveArtistDetails:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
+}
+
+#pragma mark - LFMTrackInfo Delegate
+
+- (void)didReceiveTrackInfo:(LFMTrack *)_track {
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[album setText:[_track album]];
+		[albumArtView setImage:[_track artwork]];
+		[refreshControl endRefreshing];
+	});
+}
+
+- (void)didFailToReceiveTrackInfo:(NSError *)error {
+	NSLog(@"Failed to receive track info with error:%@", [error description]);
 }
 
 #pragma mark  - Account View Controller Delegate

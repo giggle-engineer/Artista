@@ -1,25 +1,26 @@
 //
-//  LFMRecentTracks.m
-//  Music Info
+//  LFMTrackInfo.m
+//  Artista
 //
-//  Created by Chloe Stars on 8/14/12.
+//  Created by Chloe Stars on 8/17/12.
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import "LFMRecentTracks.h"
+#import "LFMTrackInfo.h"
+#import "NSString+URLEncoding.h"
 
 #define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
 
-@implementation LFMRecentTracks
+@implementation LFMTrackInfo
 
-// http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=CodinGuru&api_key=b25b959554ed76058ac220b7b2e0a026
+// http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=b25b959554ed76058ac220b7b2e0a026&artist=Moe%20Aly&track=The%20Myth
 
-- (void)requestInfo:(NSString*)user
+- (void)requestInfo:(NSString*)artist withTrack:(NSString*)track
 {
-    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=%@&api_key=%@",
-                                  [user URLEncodedString], kLastFMKey];
-    NSLog(@"LFMRecentTracks user requested: %@", user);
-    NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
+    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=%@&track=%@&api_key=%@",
+                                  [artist URLEncodedString], [track URLEncodedString], kLastFMKey];
+    NSLog(@"LFMTrackInfo artist requested: %@ with track:%@", artist, track);
+    NSLog(@"LFMTrackInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
     NSURLRequest *request = [NSURLRequest requestWithURL:
                              [NSURL URLWithString:
@@ -31,7 +32,7 @@
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
     
     if (returnedData == nil) {
         //[pool release];
@@ -69,7 +70,7 @@
 
 - (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
     // Parsing failed
-	[[self delegate] didFailToReceiveRecentTracks:parseError];
+	[[self delegate] didFailToReceiveTrackInfo:parseError];
 }
 
 - (void)parser:(NSXMLParser *)parser
@@ -80,25 +81,9 @@ didStartElement:(NSString *)elementName
 	//NSLog(@"found this element: %@", elementName);
 	currentElement = [elementName copy];
     
-    if ([elementName isEqualToString:@"track"]) {
-        currentAttribute = [attributeDict valueForKey:@"nowplaying"];
-        // make sure we don't read this twice
-        if (!nowPlaying) {
-            nowPlaying = NO;
-        }
+    if ([elementName isEqualToString:@"image"]) {
+        currentAttribute = [attributeDict valueForKey:@"size"];
 	}
-	if ([elementName isEqualToString:@"name"]) {
-        // make sure we don't read this twice
-        if (!track) {
-            track = nil;
-        }
-	}
-    if ([elementName isEqualToString:@"artist"]) {
-        // make sure we don't read this twice
-        if (musicBrainzID == nil) {
-            musicBrainzID = [attributeDict valueForKey:@"mbid"];
-        }
-    }
 }
 - (void)parser:(NSXMLParser *)parser
  didEndElement:(NSString *)elementName
@@ -112,16 +97,18 @@ didStartElement:(NSString *)elementName
 foundCharacters:(NSString *)string{
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"name"]) {
-        if (track == nil) {
-            NSLog(@"LastFMArtistInfo track name: %@", string);
-            track = string;
+	if ([currentElement isEqualToString:@"title"]) {
+        if (album == nil) {
+            NSLog(@"LastFMArtistInfo album name: %@", string);
+            album = string;
         }
-	} else if ([currentElement isEqualToString:@"artist"]) {
-        if (artist == nil) {
-            artist = string;
-            NSLog(@"LFMRecentTracks Details: %@", artist);
-        }
+	} else if ([currentElement isEqualToString:@"image"]) {
+		if ([currentAttribute isEqualToString:@"small"]) {
+			if (artwork == nil) {
+				artwork = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
+				NSLog(@"LFMRecentTracks image URL: %@", string);
+			}
+		}
     }
 }
 
@@ -130,21 +117,17 @@ foundCharacters:(NSString *)string{
  */
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
     mostRecentTrack = [[LFMTrack alloc] init];
-    [mostRecentTrack setArtist:artist];
-    [mostRecentTrack setMusicBrainzID:musicBrainzID];
-    [mostRecentTrack setTrack:track];
+    [mostRecentTrack setAlbum:album];
+    [mostRecentTrack setArtwork:artwork];
 	
 	// Success let controller know we have data
-    [[self delegate] didReceiveRecentTracks:mostRecentTrack];
+    [[self delegate] didReceiveTrackInfo:mostRecentTrack];
 	
     // reset variables
     currentElement = nil;
     currentAttribute = nil;
-    artist = nil;
-    track = nil;
-    musicBrainzID = nil;
-    nowPlaying = NO;
-    
+    album = nil;
+	artwork = nil;
 }
 
 @end

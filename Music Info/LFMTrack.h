@@ -12,6 +12,8 @@
 
 @property NSString *artist;
 @property NSString *track;
+@property NSString *album;
+@property UIImage *artwork;
 @property NSString *musicBrainzID;
 @property BOOL nowPlaying;
 

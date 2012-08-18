@@ -32,4 +32,6 @@
 // Tells the control the refresh operation has ended
 - (void)endRefreshing;
 
+- (void)endRefreshingWithBlock:(void (^)())block;
+
 @end

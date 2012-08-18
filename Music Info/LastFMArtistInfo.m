@@ -155,6 +155,7 @@ foundCharacters:(NSString *)string{
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	// Success let controller know we have data
     [[self delegate] didReceiveArtistDetails:artistDetails withImage:artistImage];
+	
     // reset variables
     artistImage = nil;
     artistDetails = nil;
