@@ -12,7 +12,6 @@
 #import "LFMTrackInfo.h"
 #import "LastFMArtistInfo.h"
 #import "ODRefreshControl.h"
-#import "LFMTrack.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate> {
     IBOutlet UILabel *artist;
@@ -28,7 +27,6 @@
 	MPMusicPlayerController *iPodController;
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
-	LFMTrack *currentTrack;
 }
 
 @end

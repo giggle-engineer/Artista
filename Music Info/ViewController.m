@@ -188,7 +188,6 @@
 - (void)didReceiveRecentTracks:(LFMTrack *)_track {
     dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
     dispatch_async(queue,^{
-		currentTrack = _track;
         dispatch_async(dispatch_get_main_queue(), ^{
             [artist setText:[_track artist]];
 			[track setText:[_track track]];
@@ -197,11 +196,17 @@
             artistInfo = [[LastFMArtistInfo alloc] init];
             [artistInfo setDelegate:self];
         }
+		// setup get track info.. maybe make this an instance variable?
+		LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
+		[trackInfo setDelegate:self];
         if (![[_track musicBrainzID] isEqualToString:@""]) {
             [artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
+			LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
+			[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
         }
         else {
             [artistInfo requestInfoWithArtist:[_track artist]];
+			[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
         }
     });
 }
@@ -218,9 +223,6 @@
         [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
         [artistImageView setImage:blurredImage];
     });
-	LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
-	[trackInfo setDelegate:self];
-	[trackInfo requestInfo:[currentTrack artist] withTrack:[currentTrack track]];
 }
 
 - (void)didFailToReceiveArtistDetails:(NSError *)error {
