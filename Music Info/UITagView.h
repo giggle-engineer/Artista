@@ -9,7 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UITag.h"
 
-@interface UITagView : UIScrollView
+@interface UITagView : UIScrollView {
+	NSMutableArray *tagArray;
+}
 
 - (void)setTags:(NSArray*)tags;
 

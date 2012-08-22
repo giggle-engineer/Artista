@@ -20,8 +20,14 @@
     return self;
 }
 
+- (void)awakeFromNib {
+	tagArray = [NSMutableArray new];
+}
+
 - (void)setTags:(NSArray*)tags {
-	int pushedX;
+	[tagArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
+	[tagArray removeAllObjects];
+	int pushedX = 0;
     for (int i = 0; i < tags.count; i++) {
 		CGPoint point;
 		// add padding to tags after the first tag
@@ -39,8 +45,8 @@
 		pushedX += tag.frame.size.width + kPadding;
         
         [self addSubview:tag];
+		[tagArray addObject:tag];
     }
-	
 	self.contentSize = CGSizeMake(pushedX, self.frame.size.height);
 }
 
