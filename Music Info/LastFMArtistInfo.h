@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LFMArtist.h"
 #import "NSString+URLEncoding.h"
 
 @protocol LastFMArtistInfoDelegate <NSObject>
 @required
 - (void) didReceiveArtistDetails: (NSString *)artistDetails withImage: (UIImage *)artistImage;
+- (void) didReceiveArtistInfo: (LFMArtist *)artist;
 - (void) didFailToReceiveArtistDetails: (NSError *)error;
 @end
 
@@ -23,6 +25,8 @@
     NSString *currentAttribute;
     UIImage *artistImage;
     NSString *artistDetails;
+	BOOL isInsideTagsTag;
+	NSMutableArray *tagsArray;
 }
 
 @property (strong) id delegate;

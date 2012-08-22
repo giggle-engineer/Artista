@@ -30,6 +30,8 @@
     NSData *returnedData = [[NSData alloc] init];
     returnedData = [NSURLConnection sendSynchronousRequest:request 
                                          returningResponse:&response error:&error];
+	
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
     
     if (returnedData == nil) {
         //[pool release];
@@ -60,6 +62,8 @@
     NSData *returnedData = [[NSData alloc] init];
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
+	
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
     
     if (returnedData == nil) {
         //[pool release];
@@ -103,8 +107,9 @@
 - (void)parser:(NSXMLParser *)parser 
 didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI 
- qualifiedName:(NSString *)qName 
-	attributes:(NSDictionary *)attributeDict{ 
+ qualifiedName:(NSString *)qName
+	attributes:(NSDictionary *)attributeDict{
+	// element tag began
 	//NSLog(@"found this element: %@", elementName); 
 	currentElement = [elementName copy];
     
@@ -114,6 +119,11 @@ didStartElement:(NSString *)elementName
         /*if (!artistImage) {
             artistImage = nil;
         }*/
+	}
+	if ([elementName isEqualToString:@"tags"]) {
+		isInsideTagsTag = YES;
+		// food for thought... by doing this we circumvent the need to reset the variable
+		tagsArray = [NSMutableArray new];
 	}
     /*if ([elementName isEqualToString:@"content"]) {
         // make sure we don't read this twice
@@ -126,7 +136,11 @@ didStartElement:(NSString *)elementName
  didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName{
-	// do nothing element tag ended
+	// element tag ended
+	currentElement = nil;
+	if ([elementName isEqualToString:@"tags"]) {
+		isInsideTagsTag = NO;
+	}
 }
 
 // the stuff inside the tags
@@ -147,6 +161,14 @@ foundCharacters:(NSString *)string{
             NSLog(@"LastFMArtistInfo Details: %u", [artistDetails length]);
         }
     }
+	if (isInsideTagsTag) {
+		// if we're inside the tags tag and we're on name tag then add to the array the actual tag
+		NSLog(@"baba:%@ string:%@", currentElement, string);
+		if ([currentElement isEqualToString:@"name"]) {
+			if (![string isEqualToString:@" "])
+				[tagsArray addObject:string];
+		}
+	}
 } 
 
 /**
@@ -154,7 +176,14 @@ foundCharacters:(NSString *)string{
  */
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	// Success let controller know we have data
-    [[self delegate] didReceiveArtistDetails:artistDetails withImage:artistImage];
+	LFMArtist *artist = [LFMArtist new];
+	[artist setBio:artistDetails];
+	[artist setImage:artistImage];
+	NSLog(@"tagging:%u", [tagsArray count]);
+	[artist setTags:(NSArray*)tagsArray];
+	
+	[[self delegate] didReceiveArtistInfo:artist];
+    //[[self delegate] didReceiveArtistDetails:artistDetails withImage:artistImage];
 	
     // reset variables
     artistImage = nil;

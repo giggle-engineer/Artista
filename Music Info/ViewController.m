@@ -12,6 +12,8 @@
 #import "LFMTrack.h"
 #import "UIImage+DSP.h"
 #import "NSString+HTML.h"
+#import "NSArray+StringWithDelimeter.h"
+#import "UITag.h"
 
 @interface ViewController ()
 
@@ -23,6 +25,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	//tagView.textColor = [UIColor blackColor];
+	//tagView.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:17];
+	//[tagView setTags:@[@"electro", @"house", @"dubstep", @"jazz", @"classical", @"pop"]];
+	
+	/*UITag *tag = [[UITag alloc] initWithString:@"electro house" withFont:[UIFont fontWithName:@"Helvetica" size:17] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor blackColor] withPoint:CGPointMake(160, 48)];
+	[[self view] addSubview:tag];
+	[tag setAlpha:0.5];*/
+	
 	playbackTimer = nil;
 	
 	// round the corners of the album art view
@@ -216,11 +226,14 @@
 
 #pragma mark - LastFMArtistInfo Delegate
 
-- (void)didReceiveArtistDetails:(NSString *)artistDetails withImage:(UIImage *)artistImage {
+- (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
+	//NSLog(@"tags:%u", [[_artist tags] count]);
+	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIImage *blurredImage = [artistImage imageByApplyingGaussianBlur5x5];
-        [bioTextView setText:[artistDetails stringByConvertingHTMLToPlainText]];
+        UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
+        [bioTextView setText:[[_artist bio] stringByConvertingHTMLToPlainText]];
         [artistImageView setImage:blurredImage];
+		[tagView setTags:[_artist tags]];
     });
 }
 

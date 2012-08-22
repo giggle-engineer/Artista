@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */; };
+		3741CE7515E49E000086294E /* UITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7415E49E000086294E /* UITag.m */; };
+		3741CE7A15E49EA40086294E /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7915E49EA40086294E /* UITagView.m */; };
+		3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3741CE7B15E4B1AD0086294E /* CoreText.framework */; };
+		3770AE0915E4820800B0144C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7D915DB5DD70058023F /* ViewController.m */; };
+		3770AE0C15E4884300B0144C /* LFMArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0B15E4884300B0144C /* LFMArtist.m */; };
+		3770AE0F15E48A8F00B0144C /* NSArray+StringWithDelimeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */; };
 		377C6F5515DCBB2E00B1CA34 /* bottombar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */; };
 		377C6F5B15DCBDEB00B1CA34 /* progressbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5715DCBDEB00B1CA34 /* progressbar.png */; };
 		377C6F5C15DCBDEB00B1CA34 /* progressbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */; };
@@ -27,12 +33,11 @@
 		3795C7D015DB5DD70058023F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7CF15DB5DD70058023F /* main.m */; };
 		3795C7D415DB5DD70058023F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7D315DB5DD70058023F /* AppDelegate.m */; };
 		3795C7D715DB5DD70058023F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */; };
-		3795C7DA15DB5DD70058023F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7D915DB5DD70058023F /* ViewController.m */; };
 		3795C7E215DB5DD70058023F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7E115DB5DD70058023F /* SenTestingKit.framework */; };
 		3795C7E315DB5DD70058023F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C315DB5DD70058023F /* UIKit.framework */; };
 		3795C7E415DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7EC15DB5DD70058023F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3795C7EA15DB5DD70058023F /* InfoPlist.strings */; };
-		3795C7EF15DB5DD70058023F /* Music_InfoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7EE15DB5DD70058023F /* Music_InfoTests.m */; };
+		3795C7EF15DB5DD70058023F /* ArtistaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7EE15DB5DD70058023F /* ArtistaTests.m */; };
 		3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7F915DB5E400058023F /* LastFMArtistInfo.m */; };
 		3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */; };
 		3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FF15DB62460058023F /* LFMRecentTracks.m */; };
@@ -61,6 +66,15 @@
 
 /* Begin PBXFileReference section */
 		3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		3741CE7315E49E000086294E /* UITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITag.h; sourceTree = "<group>"; };
+		3741CE7415E49E000086294E /* UITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITag.m; sourceTree = "<group>"; };
+		3741CE7815E49EA40086294E /* UITagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITagView.h; sourceTree = "<group>"; };
+		3741CE7915E49EA40086294E /* UITagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITagView.m; sourceTree = "<group>"; };
+		3741CE7B15E4B1AD0086294E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		3770AE0A15E4884300B0144C /* LFMArtist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtist.h; sourceTree = "<group>"; };
+		3770AE0B15E4884300B0144C /* LFMArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtist.m; sourceTree = "<group>"; };
+		3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+StringWithDelimeter.h"; sourceTree = "<group>"; };
+		3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+StringWithDelimeter.m"; sourceTree = "<group>"; };
 		377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombar@2x.png"; sourceTree = "<group>"; };
 		377C6F5715DCBDEB00B1CA34 /* progressbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbar.png; sourceTree = "<group>"; };
 		377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressbar@2x.png"; sourceTree = "<group>"; };
@@ -90,8 +104,8 @@
 		3795C7E115DB5DD70058023F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		3795C7E915DB5DD70058023F /* ArtistaTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ArtistaTests-Info.plist"; sourceTree = "<group>"; };
 		3795C7EB15DB5DD70058023F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		3795C7ED15DB5DD70058023F /* Music_InfoTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Music_InfoTests.h; sourceTree = "<group>"; };
-		3795C7EE15DB5DD70058023F /* Music_InfoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Music_InfoTests.m; sourceTree = "<group>"; };
+		3795C7ED15DB5DD70058023F /* ArtistaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtistaTests.h; sourceTree = "<group>"; };
+		3795C7EE15DB5DD70058023F /* ArtistaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistaTests.m; sourceTree = "<group>"; };
 		3795C7F815DB5E400058023F /* LastFMArtistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFMArtistInfo.h; sourceTree = "<group>"; };
 		3795C7F915DB5E400058023F /* LastFMArtistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFMArtistInfo.m; sourceTree = "<group>"; };
 		3795C7FB15DB5E540058023F /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
@@ -123,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
 				3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */,
@@ -145,6 +160,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3741CE7715E49E710086294E /* UITagView */ = {
+			isa = PBXGroup;
+			children = (
+				3741CE7315E49E000086294E /* UITag.h */,
+				3741CE7415E49E000086294E /* UITag.m */,
+				3741CE7815E49EA40086294E /* UITagView.h */,
+				3741CE7915E49EA40086294E /* UITagView.m */,
+			);
+			name = UITagView;
+			sourceTree = "<group>";
+		};
 		3795C7B415DB5DD70058023F = {
 			isa = PBXGroup;
 			children = (
@@ -167,6 +193,7 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
 				3795C81115DC23B50058023F /* Accelerate.framework */,
@@ -183,6 +210,7 @@
 			children = (
 				3795C7D215DB5DD70058023F /* AppDelegate.h */,
 				3795C7D315DB5DD70058023F /* AppDelegate.m */,
+				3741CE7715E49E710086294E /* UITagView */,
 				3795C81415DC246B0058023F /* Last.fm */,
 				3795C81315DC245D0058023F /* View Controllers */,
 				3795C81015DC23700058023F /* Categories */,
@@ -222,8 +250,8 @@
 		3795C7E715DB5DD70058023F /* ArtistaTests */ = {
 			isa = PBXGroup;
 			children = (
-				3795C7ED15DB5DD70058023F /* Music_InfoTests.h */,
-				3795C7EE15DB5DD70058023F /* Music_InfoTests.m */,
+				3795C7ED15DB5DD70058023F /* ArtistaTests.h */,
+				3795C7EE15DB5DD70058023F /* ArtistaTests.m */,
 				3795C7E815DB5DD70058023F /* Supporting Files */,
 			);
 			name = ArtistaTests;
@@ -242,6 +270,8 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */,
+				3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */,
 				37970C9615DC40B000E5CD0D /* GTMNSString+HTML.h */,
 				37970C9715DC40B000E5CD0D /* GTMNSString+HTML.m */,
 				37970C9815DC40B000E5CD0D /* NSString+HTML.h */,
@@ -276,6 +306,8 @@
 				37F5CE4315DF351200167C42 /* LFMTrackInfo.m */,
 				3795C80115DB63610058023F /* LFMTrack.h */,
 				3795C80215DB63610058023F /* LFMTrack.m */,
+				3770AE0A15E4884300B0144C /* LFMArtist.h */,
+				3770AE0B15E4884300B0144C /* LFMArtist.m */,
 			);
 			name = Last.fm;
 			sourceTree = "<group>";
@@ -412,7 +444,7 @@
 			files = (
 				3795C7D015DB5DD70058023F /* main.m in Sources */,
 				3795C7D415DB5DD70058023F /* AppDelegate.m in Sources */,
-				3795C7DA15DB5DD70058023F /* ViewController.m in Sources */,
+				3770AE0915E4820800B0144C /* ViewController.m in Sources */,
 				3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */,
 				3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */,
 				3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */,
@@ -423,6 +455,10 @@
 				37970C9B15DC40B000E5CD0D /* NSString+HTML.m in Sources */,
 				37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */,
 				37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */,
+				3770AE0C15E4884300B0144C /* LFMArtist.m in Sources */,
+				3770AE0F15E48A8F00B0144C /* NSArray+StringWithDelimeter.m in Sources */,
+				3741CE7515E49E000086294E /* UITag.m in Sources */,
+				3741CE7A15E49EA40086294E /* UITagView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3795C7EF15DB5DD70058023F /* Music_InfoTests.m in Sources */,
+				3795C7EF15DB5DD70058023F /* ArtistaTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +560,7 @@
 		3795C7F315DB5DD70058023F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Music Info/Artista-Prefix.pch";
@@ -537,6 +574,7 @@
 		3795C7F415DB5DD70058023F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Music Info/Artista-Prefix.pch";
