@@ -69,28 +69,34 @@
 }
 
 - (void)makeMask {
-	// fade out text when scrolling
-	CAGradientLayer *mask = [CAGradientLayer layer];
-	mask.locations = [NSArray arrayWithObjects:
-					  [NSNumber numberWithFloat:0.0],
-					  [NSNumber numberWithFloat:0.1],
-					  [NSNumber numberWithFloat:0.9],
-					  [NSNumber numberWithFloat:1.0],
-					  nil];
-	
-	mask.colors = [NSArray arrayWithObjects:
-				   (id)[UIColor clearColor].CGColor,
-				   (id)[UIColor whiteColor].CGColor,
-				   (id)[UIColor whiteColor].CGColor,
-				   (id)[UIColor clearColor].CGColor,
-				   nil];
-	
-	mask.frame = bioTextView.bounds;
-	// vertical direction
-	mask.startPoint = CGPointMake(0, 0);
-	mask.endPoint = CGPointMake(0, 1);
-	
-	bioTextView.layer.mask = mask;
+	if (bioMask==nil) {
+		// fade out text when scrolling
+		CAGradientLayer *mask = [CAGradientLayer layer];
+		mask.locations = [NSArray arrayWithObjects:
+						  [NSNumber numberWithFloat:0.0],
+						  [NSNumber numberWithFloat:0.1],
+						  [NSNumber numberWithFloat:0.9],
+						  [NSNumber numberWithFloat:1.0],
+						  nil];
+		
+		mask.colors = [NSArray arrayWithObjects:
+					   (id)[UIColor clearColor].CGColor,
+					   (id)[UIColor whiteColor].CGColor,
+					   (id)[UIColor whiteColor].CGColor,
+					   (id)[UIColor clearColor].CGColor,
+					   nil];
+		
+		mask.frame = bioTextView.bounds;
+		// vertical direction
+		mask.startPoint = CGPointMake(0, 0);
+		mask.endPoint = CGPointMake(0, 1);
+		
+		bioTextView.layer.mask = mask;
+		bioMask = mask;
+	}
+	else {
+		bioTextView.layer.mask = bioMask;
+	}
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {

@@ -29,6 +29,7 @@
 	MPMusicPlayerController *iPodController;
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
+	CALayer *bioMask;
 }
 
 @end
