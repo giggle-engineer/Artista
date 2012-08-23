@@ -39,7 +39,7 @@
 		}
 		point.y = 0;
 		
-		UITag *tag = [[UITag alloc] initWithString:[tags objectAtIndex:i] withFont:[UIFont fontWithName:@"Helvetica" size:17] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor blackColor] withPoint:point];
+		UITag *tag = [[UITag alloc] initWithString:[tags objectAtIndex:i] withFont:[UIFont fontWithName:@"Helvetica Neue" size:17] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor blackColor] withPoint:point];
 		[tag setAlpha:0.5];
 		
 		pushedX += tag.frame.size.width + kPadding;

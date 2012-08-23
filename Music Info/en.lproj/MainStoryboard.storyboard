@@ -153,9 +153,6 @@
         <class className="AccountViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
         </class>
-        <class className="AutoScrollLabel" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AutoScrollLabel.h"/>
-        </class>
         <class className="UITagView" superclassName="UIScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UITagView.h"/>
         </class>
@@ -170,7 +167,7 @@
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="tagView" candidateClass="AutoScrollLabel"/>
+                <relationship kind="outlet" name="tagView" candidateClass="UITagView"/>
                 <relationship kind="outlet" name="track" candidateClass="UILabel"/>
             </relationships>
         </class>
