@@ -25,14 +25,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	//tagView.textColor = [UIColor blackColor];
-	//tagView.font = [UIFont fontWithName:@"Helvetica-Neue-Light" size:17];
-	//[tagView setTags:@[@"electro", @"house", @"dubstep", @"jazz", @"classical", @"pop"]];
-	
-	/*UITag *tag = [[UITag alloc] initWithString:@"electro house" withFont:[UIFont fontWithName:@"Helvetica" size:17] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor blackColor] withPoint:CGPointMake(160, 48)];
-	[[self view] addSubview:tag];
-	[tag setAlpha:0.5];*/
-	
 	playbackTimer = nil;
 	
 	// round the corners of the album art view
@@ -49,6 +41,28 @@
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
+	
+	// fade out text when scrolling
+	CAGradientLayer *mask = [CAGradientLayer layer];
+	mask.locations = [NSArray arrayWithObjects:
+					  [NSNumber numberWithFloat:0.0],
+					  [NSNumber numberWithFloat:0.1],
+					  [NSNumber numberWithFloat:0.9],
+					  [NSNumber numberWithFloat:1.0],
+					  nil];
+	
+	mask.colors = [NSArray arrayWithObjects:
+				   (id)[UIColor clearColor].CGColor,
+				   (id)[UIColor whiteColor].CGColor,
+				   (id)[UIColor whiteColor].CGColor,
+				   (id)[UIColor clearColor].CGColor,
+				   nil];
+	
+	mask.frame = tagView.bounds;
+	// vertical direction
+	mask.startPoint = CGPointMake(0, 0);
+	mask.endPoint = CGPointMake(1, 0);
+	tagView.layer.mask = mask;
 	
 	// setup refreshing
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
@@ -68,37 +82,6 @@
 	[self load];
 }
 
-- (void)makeMask {
-	if (bioMask==nil) {
-		// fade out text when scrolling
-		CAGradientLayer *mask = [CAGradientLayer layer];
-		mask.locations = [NSArray arrayWithObjects:
-						  [NSNumber numberWithFloat:0.0],
-						  [NSNumber numberWithFloat:0.1],
-						  [NSNumber numberWithFloat:0.9],
-						  [NSNumber numberWithFloat:1.0],
-						  nil];
-		
-		mask.colors = [NSArray arrayWithObjects:
-					   (id)[UIColor clearColor].CGColor,
-					   (id)[UIColor whiteColor].CGColor,
-					   (id)[UIColor whiteColor].CGColor,
-					   (id)[UIColor clearColor].CGColor,
-					   nil];
-		
-		mask.frame = bioTextView.bounds;
-		// vertical direction
-		mask.startPoint = CGPointMake(0, 0);
-		mask.endPoint = CGPointMake(0, 1);
-		
-		bioTextView.layer.mask = mask;
-		bioMask = mask;
-	}
-	else {
-		bioTextView.layer.mask = bioMask;
-	}
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	[CATransaction begin];
 	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
@@ -109,7 +92,31 @@
 		bioTextView.layer.mask = nil;
 	}
 	else {
-		[self makeMask];
+		if (bioMask==nil) {
+			// fade out text when scrolling
+			CAGradientLayer *mask = [CAGradientLayer layer];
+			mask.locations = [NSArray arrayWithObjects:
+							  [NSNumber numberWithFloat:0.0],
+							  [NSNumber numberWithFloat:0.1],
+							  [NSNumber numberWithFloat:0.9],
+							  [NSNumber numberWithFloat:1.0],
+							  nil];
+			
+			mask.colors = [NSArray arrayWithObjects:
+						   (id)[UIColor clearColor].CGColor,
+						   (id)[UIColor whiteColor].CGColor,
+						   (id)[UIColor whiteColor].CGColor,
+						   (id)[UIColor clearColor].CGColor,
+						   nil];
+			
+			mask.frame = bioTextView.bounds;
+			// vertical direction
+			mask.startPoint = CGPointMake(0, 0);
+			mask.endPoint = CGPointMake(0, 1);
+			
+			bioMask = mask;
+		}
+		bioTextView.layer.mask = bioMask;
 	}
 	
 	CGRect layerMaskFrame = bioTextView.layer.mask.frame;

@@ -12,7 +12,6 @@
 
 @protocol LastFMArtistInfoDelegate <NSObject>
 @required
-- (void) didReceiveArtistDetails: (NSString *)artistDetails withImage: (UIImage *)artistImage;
 - (void) didReceiveArtistInfo: (LFMArtist *)artist;
 - (void) didFailToReceiveArtistDetails: (NSError *)error;
 @end
