@@ -34,25 +34,31 @@
 	// remove old tags from both array and the superview
 	[tagArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	[tagArray removeAllObjects];
+	// keep x position to add new tags at
 	int pushedX = 0;
     for (int i = 0; i < tags.count; i++) {
 		CGPoint point;
 		// add padding to tags after the first tag
-		if (i!=0) {
+		if (i!=0)
 			point.x = pushedX + kPadding;
-		}
-		else {
+		else
 			point.x = 0;
-		}
 		point.y = 0;
 		
+		// create the tag
 		UITag *tag = [[UITag alloc] initWithString:[tags objectAtIndex:i] withFont:font withTextColor:textColor withBackgroundColor:backgroundColor withPoint:point];
 		
-		pushedX += tag.frame.size.width + kPadding;
+		// add the same padding to the total width only after the first tag
+		if (i!=0)
+			pushedX += tag.frame.size.width + kPadding;
+		else
+			pushedX += tag.frame.size.width;
         
+		// add the current tag to the view and array
         [self addSubview:tag];
 		[tagArray addObject:tag];
     }
+	// adjust the content size for the tags
 	self.contentSize = CGSizeMake(pushedX, self.frame.size.height);
 }
 
