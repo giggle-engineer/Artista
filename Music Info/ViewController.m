@@ -42,28 +42,6 @@
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
 	
-	// fade out text when scrolling
-	CAGradientLayer *mask = [CAGradientLayer layer];
-	mask.locations = [NSArray arrayWithObjects:
-					  [NSNumber numberWithFloat:0.0],
-					  [NSNumber numberWithFloat:0.1],
-					  [NSNumber numberWithFloat:0.9],
-					  [NSNumber numberWithFloat:1.0],
-					  nil];
-	
-	mask.colors = [NSArray arrayWithObjects:
-				   (id)[UIColor clearColor].CGColor,
-				   (id)[UIColor whiteColor].CGColor,
-				   (id)[UIColor whiteColor].CGColor,
-				   (id)[UIColor clearColor].CGColor,
-				   nil];
-	
-	mask.frame = tagView.bounds;
-	// vertical direction
-	mask.startPoint = CGPointMake(0, 0);
-	mask.endPoint = CGPointMake(1, 0);
-	tagView.layer.mask = mask;
-	
 	// setup refreshing
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
@@ -83,47 +61,141 @@
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	[CATransaction begin];
-	[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-	float offset = scrollView.contentOffset.y;
-	if (offset<=0) {
-		// add shadow to navigation top bar
-		//NSLog(@"bioTextView scroll at top");
-		bioTextView.layer.mask = nil;
-	}
-	else {
-		if (bioMask==nil) {
-			// fade out text when scrolling
-			CAGradientLayer *mask = [CAGradientLayer layer];
-			mask.locations = [NSArray arrayWithObjects:
-							  [NSNumber numberWithFloat:0.0],
-							  [NSNumber numberWithFloat:0.1],
-							  [NSNumber numberWithFloat:0.9],
-							  [NSNumber numberWithFloat:1.0],
-							  nil];
-			
-			mask.colors = [NSArray arrayWithObjects:
-						   (id)[UIColor clearColor].CGColor,
-						   (id)[UIColor whiteColor].CGColor,
-						   (id)[UIColor whiteColor].CGColor,
-						   (id)[UIColor clearColor].CGColor,
-						   nil];
-			
-			mask.frame = bioTextView.bounds;
-			// vertical direction
-			mask.startPoint = CGPointMake(0, 0);
-			mask.endPoint = CGPointMake(0, 1);
-			
-			bioMask = mask;
+	/*if (scrollView==tagView) {
+		// TODO: Detect when there is no need to scroll and disable all fading
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		float offset = scrollView.contentOffset.x;
+		NSLog(@"offset:%i", (int)((int)tagView.contentOffset.x % (int)tagView.contentSize.width));
+		if (offset<=5) {
+			if (tagMaskLeft==nil) {
+				// fade right
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = tagView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0.9, 0);
+				mask.endPoint = CGPointMake(1, 0);
+				tagMaskLeft = mask;
+			}
+			tagView.layer.mask = tagMaskLeft;
 		}
-		bioTextView.layer.mask = bioMask;
+		if (offset>=208-5) {
+			if (tagMaskRight==nil) {
+				// fade left
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = tagView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0.2, 0);
+				mask.endPoint = CGPointMake(0.1, 0);
+				
+				tagMaskRight = mask;
+			}
+			tagView.layer.mask = tagMaskRight;
+		}
+		if (offset>0 && offset<=208-5) {
+			if (tagMaskMiddle==nil) {
+				// fade both
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.1],
+								  [NSNumber numberWithFloat:0.9],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor clearColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = tagView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0, 0);
+				mask.endPoint = CGPointMake(1, 0);
+				
+				tagMaskMiddle = mask;
+			}
+			tagView.layer.mask = tagMaskMiddle;
+		}
+		CGRect layerMaskFrame = tagView.layer.mask.frame;
+		layerMaskFrame.origin = [self.view convertPoint:tagView.bounds.origin toView:self.view];
+		
+		tagView.layer.mask.frame = layerMaskFrame;
+		[CATransaction commit];
+	}*/
+	if (scrollView==bioTextView) {
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		float offset = scrollView.contentOffset.y;
+		if (offset<=0) {
+			// remove fade mask
+			//NSLog(@"bioTextView scroll at top");
+			bioTextView.layer.mask = nil;
+		}
+		else {
+			if (bioMask==nil) {
+				// fade out text when scrolling
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.1],
+								  [NSNumber numberWithFloat:0.9],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor clearColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = bioTextView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0, 0);
+				mask.endPoint = CGPointMake(0, 1);
+				
+				bioMask = mask;
+			}
+			bioTextView.layer.mask = bioMask;
+		}
+		
+		CGRect layerMaskFrame = bioTextView.layer.mask.frame;
+		layerMaskFrame.origin = [self.view convertPoint:bioTextView.bounds.origin toView:self.view];
+		
+		bioTextView.layer.mask.frame = layerMaskFrame;
+		[CATransaction commit];
 	}
-	
-	CGRect layerMaskFrame = bioTextView.layer.mask.frame;
-    layerMaskFrame.origin = [self.view convertPoint:bioTextView.bounds.origin toView:self.view];
-	
-    bioTextView.layer.mask.frame = layerMaskFrame;
-	[CATransaction commit];
 }
 
 - (void)viewDidUnload
@@ -160,32 +232,36 @@
 	// TODO: End updating playback progress and reset if end of currently playing song is reached
 }
 
+- (void)loadInfoFromiPod {
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
+		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+		[artist setText:artistName];
+		[album setText:albumName];
+		[track setText:trackName];
+		artistInfo = [[LastFMArtistInfo alloc] init];
+		[artistInfo setDelegate:self];
+		[artistInfo requestInfoWithArtist:artistName];
+		
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[refreshControl endRefreshing];
+			
+			if (playbackTimer == nil)
+				playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
+		});
+	});
+}
+
 - (void)load {
 	[refreshControl beginRefreshing];
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
-		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-		dispatch_async(queue,^{
-			MPMediaItem *mediaItem = [iPodController nowPlayingItem];
-			NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-			NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-			NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-			MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
-			[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
-			[artist setText:artistName];
-			[album setText:albumName];
-			[track setText:trackName];
-			artistInfo = [[LastFMArtistInfo alloc] init];
-			[artistInfo setDelegate:self];
-			[artistInfo requestInfoWithArtist:artistName];
-			
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[refreshControl endRefreshing];
-				
-				if (playbackTimer == nil)
-					playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
-			});
-		});
+		[self loadInfoFromiPod];
 	}
 	else {
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
@@ -209,28 +285,35 @@
 #pragma mark - LFMRecentTracks Delegate
 
 - (void)didReceiveRecentTracks:(LFMTrack *)_track {
-    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-    dispatch_async(queue,^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [artist setText:[_track artist]];
-			[track setText:[_track track]];
-        });
-        if (artistInfo==nil) {
-            artistInfo = [[LastFMArtistInfo alloc] init];
-            [artistInfo setDelegate:self];
-        }
-		// setup get track info.. maybe make this an instance variable?
-		LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
-		[trackInfo setDelegate:self];
-        if (![[_track musicBrainzID] isEqualToString:@""]) {
-            [artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
-			[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
-        }
-        else {
-            [artistInfo requestInfoWithArtist:[_track artist]];
-			[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
-        }
-    });
+	// only display tracks from Last.fm is we are currently playing
+	if ([_track nowPlaying]) {
+		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+		dispatch_async(queue,^{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[artist setText:[_track artist]];
+				[track setText:[_track track]];
+			});
+			if (artistInfo==nil) {
+				artistInfo = [[LastFMArtistInfo alloc] init];
+				[artistInfo setDelegate:self];
+			}
+			// setup get track info.. maybe make this an instance variable?
+			LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
+			[trackInfo setDelegate:self];
+			if (![[_track musicBrainzID] isEqualToString:@""]) {
+				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
+				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+			}
+			else {
+				[artistInfo requestInfoWithArtist:[_track artist]];
+				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+			}
+		});
+	}
+	else {
+		// reverting to iPod info even if not playing or perhaps show nothing all together
+		[self loadInfoFromiPod];
+	}
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {

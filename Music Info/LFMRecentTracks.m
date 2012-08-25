@@ -31,7 +31,7 @@
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
     
     if (returnedData == nil) {
         //[pool release];
@@ -80,12 +80,14 @@ didStartElement:(NSString *)elementName
 	//NSLog(@"found this element: %@", elementName);
 	currentElement = [elementName copy];
     
-    if ([elementName isEqualToString:@"track"]) {
-        currentAttribute = [attributeDict valueForKey:@"nowplaying"];
-        // make sure we don't read this twice
-        if (!nowPlaying) {
-            nowPlaying = NO;
-        }
+	if ([currentElement isEqualToString:@"track"]) {
+		currentAttribute = [attributeDict valueForKey:@"nowplaying"];
+		if ([currentAttribute isEqualToString:@"true"]) {
+			nowPlaying = YES;
+		}
+		else if ([currentAttribute isEqualToString:@"false"]) {
+			nowPlaying = NO;
+		}
 	}
 	if ([elementName isEqualToString:@"name"]) {
         // make sure we don't read this twice
@@ -117,7 +119,8 @@ foundCharacters:(NSString *)string{
             NSLog(@"LastFMArtistInfo track name: %@", string);
             track = string;
         }
-	} else if ([currentElement isEqualToString:@"artist"]) {
+	}
+	if ([currentElement isEqualToString:@"artist"]) {
         if (artist == nil) {
             artist = string;
             NSLog(@"LFMRecentTracks Details: %@", artist);
@@ -133,6 +136,7 @@ foundCharacters:(NSString *)string{
     [mostRecentTrack setArtist:artist];
     [mostRecentTrack setMusicBrainzID:musicBrainzID];
     [mostRecentTrack setTrack:track];
+	[mostRecentTrack setNowPlaying:nowPlaying];
 	
 	// Success let controller know we have data
     [[self delegate] didReceiveRecentTracks:mostRecentTrack];

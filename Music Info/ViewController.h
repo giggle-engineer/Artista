@@ -30,6 +30,9 @@
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
 	CALayer *bioMask;
+	CALayer *tagMaskLeft;
+	CALayer *tagMaskMiddle;
+	CALayer *tagMaskRight;
 }
 
 @end
