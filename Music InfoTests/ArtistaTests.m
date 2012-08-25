@@ -1,14 +1,14 @@
 //
-//  Music_InfoTests.m
-//  Music InfoTests
+//  ArtistaTests.m
+//  ArtistaTests
 //
 //  Created by Chloe Stars on 8/14/12.
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import "Music_InfoTests.h"
+#import "ArtistaTests.h"
 
-@implementation Music_InfoTests
+@implementation ArtistaTests
 
 - (void)setUp
 {

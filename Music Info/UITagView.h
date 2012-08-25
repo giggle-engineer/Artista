@@ -10,9 +10,14 @@
 #import "UITag.h"
 
 @interface UITagView : UIScrollView {
+	@private
 	NSMutableArray *tagArray;
 }
 
 - (void)setTags:(NSArray*)tags;
+
+@property UIFont *font;
+@property UIColor *textColor;
+@property UIColor *backgroundColor;
 
 @end

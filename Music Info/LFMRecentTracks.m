@@ -31,7 +31,7 @@
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
 	
-	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
     
     if (returnedData == nil) {
         //[pool release];

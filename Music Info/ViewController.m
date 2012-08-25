@@ -27,6 +27,9 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	playbackTimer = nil;
 	
+	// subtly dim the tag view
+	tagView.alpha = 0.5;
+	
 	// round the corners of the album art view
 	albumArtView.layer.cornerRadius = 5.0;
 	albumArtView.layer.masksToBounds = YES;
