@@ -330,7 +330,7 @@
 	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
-        [bioTextView setText:[[_artist bio] stringByConvertingHTMLToPlainText]];
+        [bioTextView setText:[[_artist bio] stringByDecodingHTMLEntities]];
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
     });
