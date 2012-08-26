@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import <MediaPlayer/MediaPlayer.h>
 #import <QuartzCore/QuartzCore.h>
 #import "ViewController.h"
 #import "LFMTrack.h"
 #import "UIImage+DSP.h"
+#import "NSString+HTML.h"
 #import "NSString_stripHtml.h"
 #import "NSArray+StringWithDelimeter.h"
 #import "UITag.h"
@@ -330,8 +330,8 @@
 	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
-        [bioTextView setText:[[_artist bio] stripHtml]];
-		NSLog(@"bio:%@", [[_artist bio] stripHtml]);
+        [bioTextView setText:[[[_artist bio] stringByDecodingHTMLEntities] stripHtml]];
+		NSLog(@"bio:%@", [[[_artist bio] stringByDecodingHTMLEntities] stripHtml]);
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
     });

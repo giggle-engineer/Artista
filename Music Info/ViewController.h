@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MediaPlayer/MediaPlayer.h>
 #import "AccountViewController.h"
 #import "LFMRecentTracks.h"
 #import "LFMTrackInfo.h"

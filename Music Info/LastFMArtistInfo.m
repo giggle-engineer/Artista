@@ -163,7 +163,7 @@ foundCharacters:(NSString *)string{
     }
 	if (isInsideTagsTag) {
 		// if we're inside the tags tag and we're on name tag then add to the array the actual tag
-		NSLog(@"baba:%@ string:%@", currentElement, string);
+		//NSLog(@"baba:%@ string:%@", currentElement, string);
 		if ([currentElement isEqualToString:@"name"]) {
 			if (![string isEqualToString:@" "])
 				[tagsArray addObject:string];
