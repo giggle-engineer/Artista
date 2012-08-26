@@ -239,6 +239,18 @@
 	float progress = currentTime/playbackDuration.intValue;
 	[playTimeProgressView setProgress:progress];
 	// TODO: End updating playback progress and reset if end of currently playing song is reached
+	//NSLog(@"progress:%f", progress);
+	if (ceil(currentTime)==ceil(playbackDuration.intValue)) {
+		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+		[artist setText:artistName];
+		[album setText:albumName];
+		[track setText:trackName];
+	}
 }
 
 - (void)loadInfoFromiPod {
