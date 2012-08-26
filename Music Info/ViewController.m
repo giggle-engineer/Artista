@@ -53,6 +53,11 @@
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
+	
+	// adjust tag view so that it doesn't default to being on the edges when overflowing
+	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
+	tagView.contentInset = moreContentInsets;
+	tagView.scrollIndicatorInsets = moreContentInsets;
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(load)
@@ -63,6 +68,7 @@
 	[self load];
 }
 
+// Technically everwhere I've found says to override layoutSubviews on UIScrollView but this works just fine.
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
 	/*if (scrollView==tagView) {
 		// TODO: Detect when there is no need to scroll and disable all fading
