@@ -14,7 +14,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.50000000000000011" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
+                            <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
                                 <rect key="frame" x="0.0" y="-4" width="320" height="488"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1Mx-zF-z7R">
-                                <rect key="frame" x="8" y="6" width="304" height="31"/>
+                                <rect key="frame" x="8" y="2" width="304" height="39"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.098039224743843079" green="0.098039224743843079" blue="0.098039224743843079" alpha="1" colorSpace="deviceRGB"/>
@@ -31,17 +31,34 @@
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" id="ToQ-pP-Rnd">
-                                <rect key="frame" x="0.0" y="52" width="320" height="428"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="xdO-Ie-EqN"/>
-                                </connections>
-                            </textView>
+                            <view contentMode="scaleToFill" id="Px4-RA-cJ1" userLabel="Biography View">
+                                <rect key="frame" x="0.0" y="91" width="320" height="389"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" id="ToQ-pP-Rnd">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="389"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                        <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="2" id="xdO-Ie-EqN"/>
+                                        </connections>
+                                    </textView>
+                                </subviews>
+                            </view>
+                            <view alpha="0.0" contentMode="scaleToFill" id="Fao-iK-pmm" userLabel="Top Albums View">
+                                <rect key="frame" x="0.0" y="91" width="320" height="342"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="cnC-wM-XZI">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="342"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </tableView>
+                                </subviews>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" id="Kd0-ZJ-FTJ" userLabel="Bottom Bar View">
                                 <rect key="frame" x="0.0" y="425" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -77,7 +94,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7d-F7-eyd">
-                                        <rect key="frame" x="119" y="7" width="72" height="37"/>
+                                        <rect key="frame" x="124" y="11" width="72" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -94,7 +111,7 @@
                                 </subviews>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="wNH-X9-WFv" customClass="UITagView">
-                                <rect key="frame" x="0.0" y="36" width="320" height="25"/>
+                                <rect key="frame" x="0.0" y="40" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="PNs-kj-18x"/>
@@ -105,15 +122,17 @@
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="album" destination="ne9-dw-zqw" id="ehh-y9-ppO"/>
+                        <outlet property="album" destination="WKr-pg-2nu" id="zBz-n5-imz"/>
                         <outlet property="albumArtView" destination="gby-lg-UyI" id="dei-ZN-qYk"/>
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
                         <outlet property="artistImageView" destination="6tI-Ha-oD5" id="daJ-Sa-k1D"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
+                        <outlet property="biographyView" destination="Px4-RA-cJ1" id="IPv-Rp-lhE"/>
                         <outlet property="bottomBarView" destination="Kd0-ZJ-FTJ" id="Tni-3W-FUW"/>
                         <outlet property="playTimeProgressView" destination="RLh-eF-fMK" id="8rq-YW-H9E"/>
                         <outlet property="tagView" destination="wNH-X9-WFv" id="0cp-nr-qtC"/>
-                        <outlet property="track" destination="WKr-pg-2nu" id="18F-uZ-UO1"/>
+                        <outlet property="topAlbumsView" destination="Fao-iK-pmm" id="wiW-RM-wci"/>
+                        <outlet property="track" destination="ne9-dw-zqw" id="q4e-ez-i6B"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
                     </connections>
                 </viewController>
@@ -152,6 +171,32 @@
         <image name="bottombar.png" width="320" height="58"/>
         <image name="heart.png" width="17" height="16"/>
     </resources>
+    <classes>
+        <class className="AccountViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
+        </class>
+        <class className="UITagView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UITagView.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="reloadRecentTracks:"/>
+                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="biographyView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="tagView" candidateClass="UITagView"/>
+                <relationship kind="outlet" name="topAlbumsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="topTracksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

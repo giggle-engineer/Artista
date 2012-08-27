@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3727D06415EB071E00C88744 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06115EB071E00C88744 /* SVSegmentedControl.m */; };
+		3727D06515EB071E00C88744 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06315EB071E00C88744 /* SVSegmentedThumb.m */; };
+		3727D06815EB535D00C88744 /* LFMArtistTopAlbums.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */; };
+		3727D06F15EB5E9800C88744 /* LFMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06E15EB5E9800C88744 /* LFMAlbum.m */; };
 		3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */; };
 		3741CE7515E49E000086294E /* UITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7415E49E000086294E /* UITag.m */; };
 		3741CE7A15E49EA40086294E /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7915E49EA40086294E /* UITagView.m */; };
@@ -66,6 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3727D06015EB071E00C88744 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
+		3727D06115EB071E00C88744 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
+		3727D06215EB071E00C88744 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
+		3727D06315EB071E00C88744 /* SVSegmentedThumb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedThumb.m; sourceTree = "<group>"; };
+		3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtistTopAlbums.h; sourceTree = "<group>"; };
+		3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtistTopAlbums.m; sourceTree = "<group>"; };
+		3727D06D15EB5E9800C88744 /* LFMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMAlbum.h; sourceTree = "<group>"; };
+		3727D06E15EB5E9800C88744 /* LFMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMAlbum.m; sourceTree = "<group>"; };
 		3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3741CE7315E49E000086294E /* UITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITag.h; sourceTree = "<group>"; };
 		3741CE7415E49E000086294E /* UITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITag.m; sourceTree = "<group>"; };
@@ -163,6 +175,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3727D05F15EB071E00C88744 /* SVSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				3727D06015EB071E00C88744 /* SVSegmentedControl.h */,
+				3727D06115EB071E00C88744 /* SVSegmentedControl.m */,
+				3727D06215EB071E00C88744 /* SVSegmentedThumb.h */,
+				3727D06315EB071E00C88744 /* SVSegmentedThumb.m */,
+			);
+			path = SVSegmentedControl;
+			sourceTree = "<group>";
+		};
 		3741CE7715E49E710086294E /* UITagView */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +241,7 @@
 				3795C81315DC245D0058023F /* View Controllers */,
 				3795C81015DC23700058023F /* Categories */,
 				37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */,
+				3727D05F15EB071E00C88744 /* SVSegmentedControl */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
 			name = Artista;
@@ -305,6 +329,8 @@
 			children = (
 				3795C7F815DB5E400058023F /* LastFMArtistInfo.h */,
 				3795C7F915DB5E400058023F /* LastFMArtistInfo.m */,
+				3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */,
+				3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */,
 				3795C7FE15DB62460058023F /* LFMRecentTracks.h */,
 				3795C7FF15DB62460058023F /* LFMRecentTracks.m */,
 				37F5CE4215DF351200167C42 /* LFMTrackInfo.h */,
@@ -313,6 +339,8 @@
 				3795C80215DB63610058023F /* LFMTrack.m */,
 				3770AE0A15E4884300B0144C /* LFMArtist.h */,
 				3770AE0B15E4884300B0144C /* LFMArtist.m */,
+				3727D06D15EB5E9800C88744 /* LFMAlbum.h */,
+				3727D06E15EB5E9800C88744 /* LFMAlbum.m */,
 			);
 			name = Last.fm;
 			sourceTree = "<group>";
@@ -465,6 +493,10 @@
 				376DDFA215E9DC5600F7F284 /* NSString_stripHtml.m in Sources */,
 				376DDFA715E9ED6A00F7F284 /* GTMNSString+HTML.m in Sources */,
 				376DDFAA15E9EE5000F7F284 /* NSString+HTML.m in Sources */,
+				3727D06415EB071E00C88744 /* SVSegmentedControl.m in Sources */,
+				3727D06515EB071E00C88744 /* SVSegmentedThumb.m in Sources */,
+				3727D06815EB535D00C88744 /* LFMArtistTopAlbums.m in Sources */,
+				3727D06F15EB5E9800C88744 /* LFMAlbum.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

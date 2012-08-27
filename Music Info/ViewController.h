@@ -14,6 +14,7 @@
 #import "LastFMArtistInfo.h"
 #import "ODRefreshControl.h"
 #import "UITagView.h"
+#import "SVSegmentedControl.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate> {
     IBOutlet UILabel *artist;
@@ -25,6 +26,9 @@
 	IBOutlet UIImageView *albumArtView;
 	IBOutlet UIView *bottomBarView;
 	IBOutlet UITagView *tagView;
+	IBOutlet UIView *biographyView;
+	IBOutlet UIView *topAlbumsView;
+	IBOutlet UIView *topTracksView;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
 	MPMusicPlayerController *iPodController;

@@ -27,6 +27,17 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	playbackTimer = nil;
 	
+	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
+	SVSegmentedControl *navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
+	navigation.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
+	navigation.alpha = 0.7f;
+	navigation.titleEdgeInsets = UIEdgeInsetsMake(-1, 16, 0, 16);
+    [navigation addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
+    
+	[self.view addSubview:navigation];
+	
+	navigation.center = CGPointMake(160, 80);
+	
 	// subtly dim the tag view
 	tagView.alpha = 0.5;
 	
@@ -62,6 +73,49 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(load)
                                                  name:UIApplicationDidBecomeActiveNotification object:nil];
+}
+
+- (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
+	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedIndex);
+	if (segmentedControl.selectedIndex==0) {
+		[UIView animateWithDuration:0.50
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 biographyView.alpha = 1.0;
+							 topAlbumsView.alpha = 0.0;
+							 topTracksView.alpha = 0.0;
+						 }
+						 completion:^(BOOL finished){
+							 
+						 }];
+	}
+	if (segmentedControl.selectedIndex==1) {
+		[UIView animateWithDuration:0.50
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 biographyView.alpha = 0.0;
+							 topAlbumsView.alpha = 1.0;
+							 topTracksView.alpha = 0.0;
+						 }
+						 completion:^(BOOL finished){
+							 
+						 }];
+	}
+	if (segmentedControl.selectedIndex==2) {
+		[UIView animateWithDuration:0.50
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 biographyView.alpha = 0.0;
+							 topAlbumsView.alpha = 0.0;
+							 topTracksView.alpha = 1.0;
+						 }
+						 completion:^(BOOL finished){
+							 
+						 }];
+	}
 }
 
 - (void)dropViewDidBeginRefreshing:(id)sender {
@@ -281,7 +335,9 @@
 }
 
 - (void)load {
-	[refreshControl beginRefreshing];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[refreshControl beginRefreshing];
+	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
 		[self loadInfoFromiPod];
@@ -350,8 +406,8 @@
 	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
-        [bioTextView setText:[[[_artist bio] stringByDecodingHTMLEntities] stripHtml]];
-		NSLog(@"bio:%@", [[[_artist bio] stringByDecodingHTMLEntities] stripHtml]);
+        [bioTextView setText:[[_artist bio] stringByDecodingHTMLEntities]];
+		NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
     });
