@@ -25,12 +25,15 @@
 		374CB86915EC6F2A009C6B70 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 374CB85D15EC6F2A009C6B70 /* NSIndexSet+AQIndexesOutsideSet.m */; };
 		374CB86A15EC6F2A009C6B70 /* NSIndexSet+AQIsSetContiguous.m in Sources */ = {isa = PBXBuildFile; fileRef = 374CB85F15EC6F2A009C6B70 /* NSIndexSet+AQIsSetContiguous.m */; };
 		374CB86B15EC6F2A009C6B70 /* UIColor+AQGridView.m in Sources */ = {isa = PBXBuildFile; fileRef = 374CB86115EC6F2A009C6B70 /* UIColor+AQGridView.m */; };
+		3764CBD015ECAE4600EB3F1D /* AlbumViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */; };
+		3764CBD115ECAE4600EB3F1D /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3764CBCF15ECAE4600EB3F1D /* AlbumViewCell.xib */; };
 		376DDFA215E9DC5600F7F284 /* NSString_stripHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA115E9DC5600F7F284 /* NSString_stripHtml.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFA715E9ED6A00F7F284 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA515E9ED6A00F7F284 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFAA15E9EE5000F7F284 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA915E9EE5000F7F284 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		3770AE0915E4820800B0144C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7D915DB5DD70058023F /* ViewController.m */; };
 		3770AE0C15E4884300B0144C /* LFMArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0B15E4884300B0144C /* LFMArtist.m */; };
 		3770AE0F15E48A8F00B0144C /* NSArray+StringWithDelimeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */; };
+		377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */; };
 		377C6F5515DCBB2E00B1CA34 /* bottombar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */; };
 		377C6F5B15DCBDEB00B1CA34 /* progressbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5715DCBDEB00B1CA34 /* progressbar.png */; };
 		377C6F5C15DCBDEB00B1CA34 /* progressbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */; };
@@ -117,6 +120,9 @@
 		374CB85F15EC6F2A009C6B70 /* NSIndexSet+AQIsSetContiguous.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSIndexSet+AQIsSetContiguous.m"; sourceTree = "<group>"; };
 		374CB86015EC6F2A009C6B70 /* UIColor+AQGridView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AQGridView.h"; sourceTree = "<group>"; };
 		374CB86115EC6F2A009C6B70 /* UIColor+AQGridView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AQGridView.m"; sourceTree = "<group>"; };
+		3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewCell.h; sourceTree = "<group>"; };
+		3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewCell.m; sourceTree = "<group>"; };
+		3764CBCF15ECAE4600EB3F1D /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
 		376DDFA015E9DC5600F7F284 /* NSString_stripHtml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_stripHtml.h; sourceTree = "<group>"; };
 		376DDFA115E9DC5600F7F284 /* NSString_stripHtml.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSString_stripHtml.m; sourceTree = "<group>"; };
 		376DDFA415E9ED6A00F7F284 /* GTMNSString+HTML.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "GTMNSString+HTML.h"; sourceTree = "<group>"; };
@@ -299,6 +305,9 @@
 			children = (
 				3795C7D215DB5DD70058023F /* AppDelegate.h */,
 				3795C7D315DB5DD70058023F /* AppDelegate.m */,
+				3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */,
+				3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */,
+				3764CBCF15ECAE4600EB3F1D /* AlbumViewCell.xib */,
 				3741CE7715E49E710086294E /* UITagView */,
 				3795C81415DC246B0058023F /* Last.fm */,
 				3795C81315DC245D0058023F /* View Controllers */,
@@ -513,6 +522,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3795C7EC15DB5DD70058023F /* InfoPlist.strings in Resources */,
+				3764CBD115ECAE4600EB3F1D /* AlbumViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -571,6 +581,7 @@
 				374CB86915EC6F2A009C6B70 /* NSIndexSet+AQIndexesOutsideSet.m in Sources */,
 				374CB86A15EC6F2A009C6B70 /* NSIndexSet+AQIsSetContiguous.m in Sources */,
 				374CB86B15EC6F2A009C6B70 /* UIColor+AQGridView.m in Sources */,
+				377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -579,6 +590,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3795C7EF15DB5DD70058023F /* ArtistaTests.m in Sources */,
+				3764CBD015ECAE4600EB3F1D /* AlbumViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

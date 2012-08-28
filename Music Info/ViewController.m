@@ -14,6 +14,7 @@
 #import "NSString_stripHtml.h"
 #import "NSArray+StringWithDelimeter.h"
 #import "UITag.h"
+#import "AlbumViewCell.h"
 
 @interface ViewController ()
 
@@ -25,6 +26,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+	
 	playbackTimer = nil;
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
@@ -128,98 +130,6 @@
 
 // Technically everwhere I've found says to override layoutSubviews on UIScrollView but this works just fine.
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-	/*if (scrollView==tagView) {
-		// TODO: Detect when there is no need to scroll and disable all fading
-		[CATransaction begin];
-		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
-		float offset = scrollView.contentOffset.x;
-		NSLog(@"offset:%i", (int)((int)tagView.contentOffset.x % (int)tagView.contentSize.width));
-		if (offset<=5) {
-			if (tagMaskLeft==nil) {
-				// fade right
-				CAGradientLayer *mask = [CAGradientLayer layer];
-				mask.locations = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:1.0],
-								  nil];
-				
-				mask.colors = [NSArray arrayWithObjects:
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor clearColor].CGColor,
-							   nil];
-				
-				mask.frame = tagView.bounds;
-				// vertical direction
-				mask.startPoint = CGPointMake(0.9, 0);
-				mask.endPoint = CGPointMake(1, 0);
-				tagMaskLeft = mask;
-			}
-			tagView.layer.mask = tagMaskLeft;
-		}
-		if (offset>=208-5) {
-			if (tagMaskRight==nil) {
-				// fade left
-				CAGradientLayer *mask = [CAGradientLayer layer];
-				mask.locations = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:1.0],
-								  nil];
-				
-				mask.colors = [NSArray arrayWithObjects:
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor clearColor].CGColor,
-							   nil];
-				
-				mask.frame = tagView.bounds;
-				// vertical direction
-				mask.startPoint = CGPointMake(0.2, 0);
-				mask.endPoint = CGPointMake(0.1, 0);
-				
-				tagMaskRight = mask;
-			}
-			tagView.layer.mask = tagMaskRight;
-		}
-		if (offset>0 && offset<=208-5) {
-			if (tagMaskMiddle==nil) {
-				// fade both
-				CAGradientLayer *mask = [CAGradientLayer layer];
-				mask.locations = [NSArray arrayWithObjects:
-								  [NSNumber numberWithFloat:0.0],
-								  [NSNumber numberWithFloat:0.1],
-								  [NSNumber numberWithFloat:0.9],
-								  [NSNumber numberWithFloat:1.0],
-								  nil];
-				
-				mask.colors = [NSArray arrayWithObjects:
-							   (id)[UIColor clearColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor whiteColor].CGColor,
-							   (id)[UIColor clearColor].CGColor,
-							   nil];
-				
-				mask.frame = tagView.bounds;
-				// vertical direction
-				mask.startPoint = CGPointMake(0, 0);
-				mask.endPoint = CGPointMake(1, 0);
-				
-				tagMaskMiddle = mask;
-			}
-			tagView.layer.mask = tagMaskMiddle;
-		}
-		CGRect layerMaskFrame = tagView.layer.mask.frame;
-		layerMaskFrame.origin = [self.view convertPoint:tagView.bounds.origin toView:self.view];
-		
-		tagView.layer.mask.frame = layerMaskFrame;
-		[CATransaction commit];
-	}*/
 	if (scrollView==bioTextView) {
 		[CATransaction begin];
 		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
@@ -291,6 +201,8 @@
     }
 }
 
+#pragma mark - iPod Change Notifications
+
 - (void)handle_NowPlayingItemChanged:(id)sender {
 	// only one copy of this thread should ever be running
 	if (![iPodReloadingThread isExecuting]) {
@@ -298,6 +210,34 @@
 		[iPodReloadingThread start];
 	}
 }
+
+#pragma mark - AQGridView DataSource
+
+- (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
+	return 1000;
+}
+
+- (AQGridViewCell*)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)index {
+	static NSString * const identifier = @"Cell";
+	AlbumViewCell *cell = (AlbumViewCell*)[gridView dequeueReusableCellWithIdentifier:identifier];
+	if (cell)
+		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
+	
+	if (!cell) {
+		CGRect cellFrame = {
+			CGPointZero,
+			gridView.gridCellSize
+		};
+		
+		cell = [AlbumViewCell cellFromNib];
+		cell.reuseIdentifier = identifier;
+		cell.frame = cellFrame;
+	}
+	
+	return cell;
+}
+
+#pragma mark -
 
 - (void)updatePlaybackProgress {
 	NSTimeInterval currentTime = [iPodController currentPlaybackTime];
@@ -354,11 +294,13 @@
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
+		#if !(TARGET_IPHONE_SIMULATOR)
 		// only one copy of this thread should ever be running
 		if (![iPodReloadingThread isExecuting]) {
 			iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
 			[iPodReloadingThread start];
 		}
+		#endif
 	}
 	else {
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
@@ -410,10 +352,12 @@
 	else {
 		// reverting to iPod info even if not playing or perhaps show nothing all together
 		// only one copy of this thread should ever be running
+		#if !(TARGET_IPHONE_SIMULATOR)
 		if (![iPodReloadingThread isExecuting]) {
 			iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
 			[iPodReloadingThread start];
 		}
+		#endif
 	}
 }
 

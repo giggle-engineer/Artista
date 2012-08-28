@@ -15,8 +15,9 @@
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"
+#import "AQGridView.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate, AQGridViewDataSource, AQGridViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
