@@ -38,6 +38,7 @@
 	CALayer *tagMaskLeft;
 	CALayer *tagMaskMiddle;
 	CALayer *tagMaskRight;
+	NSThread *iPodReloadingThread;
 }
 
 @end

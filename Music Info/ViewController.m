@@ -292,7 +292,11 @@
 }
 
 - (void)handle_NowPlayingItemChanged:(id)sender {
-	[self loadInfoFromiPod];
+	// only one copy of this thread should ever be running
+	if (![iPodReloadingThread isExecuting]) {
+		iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
+		[iPodReloadingThread start];
+	}
 }
 
 - (void)updatePlaybackProgress {
@@ -318,32 +322,29 @@
 }
 
 - (void)loadInfoFromiPod {
-	// used if the notification is called
+	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
 	});
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-	dispatch_async(queue,^{
-		[iPodController beginGeneratingPlaybackNotifications];
-		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
-		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
-		artistInfo = [[LastFMArtistInfo alloc] init];
-		[artistInfo setDelegate:self];
-		[artistInfo requestInfoWithArtist:artistName];
+	[iPodController beginGeneratingPlaybackNotifications];
+	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+	NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+	artistInfo = [[LastFMArtistInfo alloc] init];
+	[artistInfo setDelegate:self];
+	[artistInfo requestInfoWithArtist:artistName];
+	
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+		[artist setText:artistName];
+		[album setText:albumName];
+		[track setText:trackName];
+		[refreshControl endRefreshing];
 		
-		dispatch_async(dispatch_get_main_queue(), ^{
-			[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
-			[artist setText:artistName];
-			[album setText:albumName];
-			[track setText:trackName];
-			[refreshControl endRefreshing];
-			
-			if (playbackTimer == nil)
-				playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
-		});
+		if (playbackTimer == nil)
+			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 	});
 }
 
@@ -353,7 +354,11 @@
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
-		[self loadInfoFromiPod];
+		// only one copy of this thread should ever be running
+		if (![iPodReloadingThread isExecuting]) {
+			iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
+			[iPodReloadingThread start];
+		}
 	}
 	else {
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
@@ -404,7 +409,11 @@
 	}
 	else {
 		// reverting to iPod info even if not playing or perhaps show nothing all together
-		[self loadInfoFromiPod];
+		// only one copy of this thread should ever be running
+		if (![iPodReloadingThread isExecuting]) {
+			iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
+			[iPodReloadingThread start];
+		}
 	}
 }
 
