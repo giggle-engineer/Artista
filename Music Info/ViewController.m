@@ -70,9 +70,13 @@
 	tagView.contentInset = moreContentInsets;
 	tagView.scrollIndicatorInsets = moreContentInsets;
     
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(load)
-                                                 name:UIApplicationDidBecomeActiveNotification object:nil];
+	NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
+    [notificationCenter addObserver:self
+						   selector:@selector(load)
+							   name:UIApplicationDidBecomeActiveNotification object:nil];
+	[notificationCenter addObserver:self
+						   selector:@selector (handle_NowPlayingItemChanged:)
+							   name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:nil];
 }
 
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
@@ -287,6 +291,10 @@
     }
 }
 
+- (void)handle_NowPlayingItemChanged:(id)sender {
+	[self loadInfoFromiPod];
+}
+
 - (void)updatePlaybackProgress {
 	NSTimeInterval currentTime = [iPodController currentPlaybackTime];
 	NSNumber *playbackDuration = [[iPodController nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
@@ -310,8 +318,13 @@
 }
 
 - (void)loadInfoFromiPod {
+	// used if the notification is called
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[refreshControl beginRefreshing];
+	});
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 	dispatch_async(queue,^{
+		[iPodController beginGeneratingPlaybackNotifications];
 		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
 		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
 		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
