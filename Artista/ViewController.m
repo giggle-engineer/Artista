@@ -293,9 +293,14 @@
 		topAlbums = [[LFMArtistTopAlbums alloc] init];
 		[topAlbums setDelegate:self];
 	}
+	// setup top tracks
+	if (topTracks==nil) {
+		topTracks = [[LFMArtistTopTracks alloc] init];
+		[topTracks setDelegate:self];
+	}
 	[artistInfo requestInfoWithArtist:artistName];
 	[topAlbums requestTopAlbumsWithArtist:artistName];
-	
+	[topTracks requestTopTracksWithArtist:artistName];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
@@ -346,7 +351,9 @@
 
 - (void)didReceiveRecentTracks:(LFMTrack *)_track {
 	// only display tracks from Last.fm is we are currently playing
+	#if !(TARGET_IPHONE_SIMULATOR)
 	if ([_track nowPlaying]) {
+	#endif
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -369,30 +376,36 @@
 				trackInfo = [[LFMTrackInfo alloc] init];
 				[trackInfo setDelegate:self];
 			}
+			if (topTracks==nil) {
+				topTracks = [[LFMArtistTopTracks alloc] init];
+				[topTracks setDelegate:self];
+			}
 			
 			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
 				[topAlbums requestTopAlbumsWithMusicBrainzID:[_track musicBrainzID]];
+				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
 			}
 			else {
 				[artistInfo requestInfoWithArtist:[_track artist]];
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
 				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
+				[topTracks requestTopTracksWithArtist:[_track artist]];
 			}
 		});
+	#if !(TARGET_IPHONE_SIMULATOR)
 	}
 	else {
 		// reverting to iPod info even if not playing or perhaps show nothing all together
 		// only one copy of this thread should ever be running
-		#if !(TARGET_IPHONE_SIMULATOR)
 		if (![iPodReloadingThread isExecuting]) {
 			iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
 			[iPodReloadingThread start];
 		}
-		#endif
 	}
+	#endif
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
@@ -442,6 +455,36 @@
 
 - (void)didFailToReceiveTopAlbums:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
+}
+
+#pragma mark - LFMArtistTopTracks Delegate
+
+- (void)didReceiveTopTracks:(NSArray *)tracks {
+	topTracksArray = tracks;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[topTracksTableView reloadData];
+	});
+}
+
+#pragma mark - UITableView Data Source
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	return [topTracksArray count];
+}
+
+- (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	static NSString * const reuseIdentifier = @"TracksViewCell";
+	
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+	
+	if (!cell) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
+		
+		return cell;
+	}
+	
+	return cell;
 }
 
 #pragma mark  - Account View Controller Delegate

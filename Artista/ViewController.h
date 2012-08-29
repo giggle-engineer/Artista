@@ -13,12 +13,13 @@
 #import "LFMRecentTracks.h"
 #import "LFMTrackInfo.h"
 #import "LastFMArtistInfo.h"
+#import "LFMArtistTopTracks.h"
 #import "LFMArtistTopAlbums.h"
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, KKGridViewDataSource, KKGridViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
@@ -32,10 +33,12 @@
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;
 	IBOutlet KKGridView *albumGridView;
+	IBOutlet UITableView *topTracksTableView;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
 	LFMTrackInfo *trackInfo;
 	LFMArtistTopAlbums *topAlbums;
+	LFMArtistTopTracks *topTracks;
 	MPMusicPlayerController *iPodController;
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
@@ -45,6 +48,7 @@
 	CALayer *tagMaskRight;
 	NSThread *iPodReloadingThread;
 	NSArray *topAlbumsArray;
+	NSArray *topTracksArray;
 }
 
 @end

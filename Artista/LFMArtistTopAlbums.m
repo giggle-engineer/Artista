@@ -23,7 +23,7 @@
     NSLog(@"LFMArtistTopAlbums artist requested: %@", artist);
     NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
     // Initialization code here.
-	albums = [NSMutableArray new];
+	NSMutableArray *albums = [NSMutableArray new];
 	
 	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
 	
@@ -40,7 +40,7 @@
 	}];
 	NSLog(@"albums count:%d", [albums count]);
     [[self delegate] didReceiveTopAlbums:(NSArray*)[albums copy]];
-	[albums removeAllObjects];
+	//[albums removeAllObjects];
 }
 
 - (void)requestTopAlbumsWithMusicBrainzID:(NSString*)mbid
@@ -50,7 +50,7 @@
     NSLog(@"LFMArtistTopAlbums artist requested: %@", mbid);
     NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
     // Initialization code here.
-	albums = [NSMutableArray new];
+	NSMutableArray *albums = [NSMutableArray new];
 	
 	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
 	

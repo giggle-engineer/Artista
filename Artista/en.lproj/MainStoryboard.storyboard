@@ -61,6 +61,20 @@
                                     </scrollView>
                                 </subviews>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" id="202-xy-N49" userLabel="Top Tracks View">
+                                <rect key="frame" x="0.0" y="91" width="320" height="326"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wh6-CI-hfQ">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="326"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="2" id="heE-D2-SLc"/>
+                                        </connections>
+                                    </tableView>
+                                </subviews>
+                            </view>
                             <view opaque="NO" contentMode="scaleToFill" id="Kd0-ZJ-FTJ" userLabel="Bottom Bar View">
                                 <rect key="frame" x="0.0" y="425" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -135,6 +149,8 @@
                         <outlet property="playTimeProgressView" destination="RLh-eF-fMK" id="8rq-YW-H9E"/>
                         <outlet property="tagView" destination="wNH-X9-WFv" id="0cp-nr-qtC"/>
                         <outlet property="topAlbumsView" destination="Fao-iK-pmm" id="wiW-RM-wci"/>
+                        <outlet property="topTracksTableView" destination="Wh6-CI-hfQ" id="RTf-u2-w5q"/>
+                        <outlet property="topTracksView" destination="202-xy-N49" id="9Np-Xk-pap"/>
                         <outlet property="track" destination="ne9-dw-zqw" id="q4e-ez-i6B"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
                     </connections>
@@ -175,40 +191,6 @@
         <image name="bottombar.png" width="320" height="58"/>
         <image name="heart.png" width="17" height="16"/>
     </resources>
-    <classes>
-        <class className="AccountViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
-        </class>
-        <class className="KKGridView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KKGridView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dataSource"/>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="UITagView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UITagView.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="reloadRecentTracks:"/>
-                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="albumGridView" candidateClass="KKGridView"/>
-                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="biographyView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="tagView" candidateClass="UITagView"/>
-                <relationship kind="outlet" name="topAlbumsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="topTracksView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

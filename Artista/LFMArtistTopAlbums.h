@@ -20,10 +20,7 @@
 	id <LFMArtistTopAlbumsDelegate> delegate;
     
 @private
-    NSString *currentElement;
-    NSString *currentAttribute;
-	NSMutableArray *albums;
-	LFMAlbum *currentAlbum;
+	//NSMutableArray *albums;
 }
 
 @property (strong) id delegate;
