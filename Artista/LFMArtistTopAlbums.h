@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
 #import "LFMAlbum.h"
 
 @protocol LFMArtistTopAlbumsDelegate <NSObject>

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3720DED415EE2123006C6B61 /* libRaptureXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DED115EE211A006C6B61 /* libRaptureXML.a */; };
+		3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC315EE20C8006C6B61 /* libxml2.dylib */; };
+		3720DED615EE220B006C6B61 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC515EE20D1006C6B61 /* libz.dylib */; };
 		3727D06415EB071E00C88744 /* SVSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06115EB071E00C88744 /* SVSegmentedControl.m */; };
 		3727D06515EB071E00C88744 /* SVSegmentedThumb.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06315EB071E00C88744 /* SVSegmentedThumb.m */; };
 		3727D06815EB535D00C88744 /* LFMArtistTopAlbums.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */; };
@@ -65,6 +68,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		3720DED015EE211A006C6B61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0DEB8EB41467EC9B00024989;
+			remoteInfo = RaptureXML;
+		};
+		3720DED215EE211A006C6B61 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 0252B2DD142ADFC60018B75D;
+			remoteInfo = RaptureXMLTests;
+		};
 		3795C7E515DB5DD70058023F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 3795C7B615DB5DD70058023F /* Project object */;
@@ -89,6 +106,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3720DEC315EE20C8006C6B61 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		3720DEC515EE20D1006C6B61 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RaptureXML.xcodeproj; path = Artista/RaptureXML/RaptureXML.xcodeproj; sourceTree = "<group>"; };
 		3727D06015EB071E00C88744 /* SVSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedControl.h; sourceTree = "<group>"; };
 		3727D06115EB071E00C88744 /* SVSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVSegmentedControl.m; sourceTree = "<group>"; };
 		3727D06215EB071E00C88744 /* SVSegmentedThumb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVSegmentedThumb.h; sourceTree = "<group>"; };
@@ -176,6 +196,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3720DED615EE220B006C6B61 /* libz.dylib in Frameworks */,
+				3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */,
+				3720DED415EE2123006C6B61 /* libRaptureXML.a in Frameworks */,
 				379FBAFB15EDE8F100A5BBAE /* libKKGridView.a in Frameworks */,
 				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
@@ -200,6 +223,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3720DEC815EE211A006C6B61 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3720DED115EE211A006C6B61 /* libRaptureXML.a */,
+				3720DED315EE211A006C6B61 /* RaptureXMLTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		3727D05F15EB071E00C88744 /* SVSegmentedControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,7 +286,10 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */,
 				379FBAF015EDE8DE00A5BBAE /* KKGridView.xcodeproj */,
+				3720DEC515EE20D1006C6B61 /* libz.dylib */,
+				3720DEC315EE20C8006C6B61 /* libxml2.dylib */,
 				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
@@ -462,6 +497,10 @@
 					ProductGroup = 379FBAF115EDE8DE00A5BBAE /* Products */;
 					ProjectRef = 379FBAF015EDE8DE00A5BBAE /* KKGridView.xcodeproj */;
 				},
+				{
+					ProductGroup = 3720DEC815EE211A006C6B61 /* Products */;
+					ProjectRef = 3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */;
+				},
 			);
 			projectRoot = "";
 			targets = (
@@ -472,6 +511,20 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		3720DED115EE211A006C6B61 /* libRaptureXML.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libRaptureXML.a;
+			remoteRef = 3720DED015EE211A006C6B61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		3720DED315EE211A006C6B61 /* RaptureXMLTests.octest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = RaptureXMLTests.octest;
+			remoteRef = 3720DED215EE211A006C6B61 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		379FBAF815EDE8DE00A5BBAE /* libKKGridView.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
@@ -672,7 +725,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
+					"$(PROJECT_DIR)/Artista/RaptureXML/**",
+					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -691,7 +748,11 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
-				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
+					"$(PROJECT_DIR)/Artista/RaptureXML/**",
+					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",
