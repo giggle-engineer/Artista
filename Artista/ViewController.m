@@ -71,6 +71,8 @@
 	bioTextView.scrollIndicatorInsets = contentInsets;
 	albumGridView.contentInset = contentInsets;
 	albumGridView.scrollIndicatorInsets = contentInsets;
+	topTracksTableView.contentInset = contentInsets;
+	topTracksTableView.scrollIndicatorInsets = contentInsets;
 	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
 	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
@@ -228,15 +230,18 @@
 	static NSString * const identifier = @"Cell";
 	AlbumViewCell *cell = (AlbumViewCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
 	
-	if (cell)
+	if (cell) {
 		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-	
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.backgroundColor = [UIColor clearColor];
+		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+		cell.contentView.backgroundColor = [UIColor clearColor];
+	}
 	if (!cell) {
 		cell = [AlbumViewCell cellFromNib];
 		cell.reuseIdentifier = identifier;
-		if ([(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork]) {
-			cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
-		}
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
 		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -479,7 +484,10 @@
 	
 	if (!cell) {
 		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+		cell.backgroundColor = [UIColor clearColor];
 		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
+		cell.textLabel.textColor = [UIColor blackColor];
+		cell.textLabel.shadowColor = [UIColor whiteColor];
 		
 		return cell;
 	}
