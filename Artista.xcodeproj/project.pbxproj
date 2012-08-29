@@ -59,7 +59,6 @@
 		3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C81115DC23B50058023F /* Accelerate.framework */; };
 		37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37970C9315DC37B700E5CD0D /* QuartzCore.framework */; };
 		379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */; };
-		379FBA9215EDD40600A5BBAE /* abbey_road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA9115EDD40600A5BBAE /* abbey_road.jpg */; };
 		379FBAFB15EDE8F100A5BBAE /* libKKGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 379FBAF815EDE8DE00A5BBAE /* libKKGridView.a */; };
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
@@ -181,7 +180,6 @@
 		3795C81115DC23B50058023F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37970C9315DC37B700E5CD0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
-		379FBA9115EDD40600A5BBAE /* abbey_road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abbey_road.jpg; sourceTree = "<group>"; };
 		379FBAF015EDE8DE00A5BBAE /* KKGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KKGridView.xcodeproj; path = Artista/KKGridView/KKGridView.xcodeproj; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
@@ -334,7 +332,6 @@
 				377C6F6615DCBE4400B1CA34 /* heart@2x.png */,
 				377C6F6715DCBE4400B1CA34 /* heartloved.png */,
 				377C6F6815DCBE4400B1CA34 /* heartloved@2x.png */,
-				379FBA9115EDD40600A5BBAE /* abbey_road.jpg */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
@@ -556,7 +553,6 @@
 				37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */,
 				37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */,
 				379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */,
-				379FBA9215EDD40600A5BBAE /* abbey_road.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
