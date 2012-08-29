@@ -9,8 +9,10 @@
 #import "AlbumViewCell.h"
 
 @implementation AlbumViewCell
-@synthesize artworkView;
-@synthesize nameLabel;
+@dynamic contentView;
+@dynamic backgroundView;
+@dynamic selectedBackgroundView;
+@dynamic reuseIdentifier;
 
 + (id) cellFromNib {
 	
@@ -22,8 +24,8 @@
 	
 	NSArray *objects = [nib instantiateWithOwner:nil options:nil];
 	
-	for (NRGridViewCell *cell in objects)
-		if ([cell isKindOfClass:[NRGridViewCell class]])
+	for (AlbumViewCell *cell in objects)
+		if ([cell isKindOfClass:[AlbumViewCell class]])
 			return cell;
 	
 	return nil;

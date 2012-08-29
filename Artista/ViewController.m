@@ -214,17 +214,11 @@
 
 #pragma mark - NRGridView Data Source
 
-- (NSInteger)numberOfSectionsInGridView:(NRGridView *)gridView
-{
-    return 0;
+- (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
+	return 5;
 }
 
-- (NSInteger)gridView:(NRGridView *)gridView numberOfItemsInSection:(NSInteger)section
-{
-    return 5;
-}
-
-- (NRGridViewCell*)gridView:(NRGridView *)gridView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+- (AQGridViewCell *)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)index
 {
     static NSString *MyCellIdentifier = @"MyCellIdentifier";
     

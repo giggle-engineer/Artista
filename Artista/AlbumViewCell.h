@@ -7,16 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <NRGridView.h>
+#import "AQGridView.h"
 
-@interface AlbumViewCell : NRGridViewCell {
+@interface AlbumViewCell : AQGridView {
 	IBOutlet UIImageView *artworkView;
 	IBOutlet UILabel *nameLabel;
 }
 
 @property IBOutlet UIImageView *artworkView;
 @property IBOutlet UILabel *nameLabel;
-@property (nonatomic, readonly) IBOutlet UIView *contentView;
+@property (nonatomic, readonly, retain) IBOutlet UIView *contentView;
 
 + (id) cellFromNib;
 

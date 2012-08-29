@@ -55,7 +55,6 @@
 		3795C80F15DC23670058023F /* UIImage+DSP.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80E15DC23670058023F /* UIImage+DSP.m */; };
 		3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C81115DC23B50058023F /* Accelerate.framework */; };
 		37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37970C9315DC37B700E5CD0D /* QuartzCore.framework */; };
-		379FBA8015EDCB5300A5BBAE /* libNRGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */; };
 		379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */; };
 		379FBA9215EDD40600A5BBAE /* abbey_road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA9115EDD40600A5BBAE /* abbey_road.jpg */; };
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
@@ -71,20 +70,6 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3795C7BE15DB5DD70058023F;
 			remoteInfo = Artista;
-		};
-		379FBA7C15EDCB4100A5BBAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 17BF813414E1B3FB00F109BE;
-			remoteInfo = NRGridView;
-		};
-		379FBA7E15EDCB4C00A5BBAE /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 17BF813314E1B3FB00F109BE;
-			remoteInfo = NRGridView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -160,7 +145,6 @@
 		3795C80E15DC23670058023F /* UIImage+DSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSP.m"; sourceTree = "<group>"; };
 		3795C81115DC23B50058023F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37970C9315DC37B700E5CD0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NRGridView.xcodeproj; path = Artista/NRGridView/NRGridView/NRGridView.xcodeproj; sourceTree = "<group>"; };
 		379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
 		379FBA9115EDD40600A5BBAE /* abbey_road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abbey_road.jpg; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
@@ -176,7 +160,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				379FBA8015EDCB5300A5BBAE /* libNRGridView.a in Frameworks */,
 				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
@@ -244,7 +227,6 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */,
 				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
@@ -373,14 +355,6 @@
 			name = Last.fm;
 			sourceTree = "<group>";
 		};
-		379FBA7515EDCB4100A5BBAE /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -404,7 +378,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				379FBA7F15EDCB4C00A5BBAE /* PBXTargetDependency */,
 			);
 			name = Artista;
 			productName = Artista;
@@ -449,12 +422,6 @@
 			mainGroup = 3795C7B415DB5DD70058023F;
 			productRefGroup = 3795C7C015DB5DD70058023F /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 379FBA7515EDCB4100A5BBAE /* Products */;
-					ProjectRef = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				3795C7BE15DB5DD70058023F /* Artista */,
@@ -462,16 +429,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */ = {
-			isa = PBXReferenceProxy;
-			fileType = archive.ar;
-			path = libNRGridView.a;
-			remoteRef = 379FBA7C15EDCB4100A5BBAE /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3795C7BD15DB5DD70058023F /* Resources */ = {
@@ -573,11 +530,6 @@
 			target = 3795C7BE15DB5DD70058023F /* Artista */;
 			targetProxy = 3795C7E515DB5DD70058023F /* PBXContainerItemProxy */;
 		};
-		379FBA7F15EDCB4C00A5BBAE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = NRGridView;
-			targetProxy = 379FBA7E15EDCB4C00A5BBAE /* PBXContainerItemProxy */;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -664,7 +616,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
-				HEADER_SEARCH_PATHS = "Artista/NRGridView/NRGridView/NRGridView/**";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Artista/AQGridView/Classes/**";
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",
@@ -683,7 +635,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
-				HEADER_SEARCH_PATHS = "Artista/NRGridView/NRGridView/NRGridView/**";
+				HEADER_SEARCH_PATHS = "$(PROJECT_DIR)/Artista/AQGridView/Classes/**";
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				OTHER_LDFLAGS = (
 					"-all_load",

@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <NRGridView.h>
 #import "AccountViewController.h"
 #import "LFMRecentTracks.h"
 #import "LFMTrackInfo.h"
@@ -16,8 +15,9 @@
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"
+#import "AQGridView.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate, NRGridViewDataSource, NRGridViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate, AQGridViewDataSource, AQGridViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
@@ -30,7 +30,7 @@
 	IBOutlet UIView *biographyView;
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;
-	IBOutlet NRGridView *albumGridView;
+	IBOutlet AQGridView *albumGridView;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
 	MPMusicPlayerController *iPodController;
