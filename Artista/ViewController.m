@@ -490,9 +490,15 @@
 		cell.textLabel.shadowColor = [UIColor whiteColor];
 		
 		return cell;
+	} else {
+		// using dequeued cell
+		cell.backgroundColor = [UIColor clearColor];
+		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
+		cell.textLabel.textColor = [UIColor blackColor];
+		cell.textLabel.shadowColor = [UIColor whiteColor];
+		
+		return cell;
 	}
-	
-	return cell;
 }
 
 #pragma mark  - Account View Controller Delegate
