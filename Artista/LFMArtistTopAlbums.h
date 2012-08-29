@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LFMAlbum.h"
 
 @protocol LFMArtistTopAlbumsDelegate <NSObject>
 @required
@@ -21,6 +22,7 @@
     NSString *currentElement;
     NSString *currentAttribute;
 	NSMutableArray *albums;
+	LFMAlbum *currentAlbum;
 }
 
 @property (strong) id delegate;

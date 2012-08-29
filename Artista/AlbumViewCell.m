@@ -11,7 +11,6 @@
 @implementation AlbumViewCell
 @dynamic contentView;
 @dynamic backgroundView;
-@dynamic selectedBackgroundView;
 @dynamic reuseIdentifier;
 
 + (id) cellFromNib {

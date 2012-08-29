@@ -7,16 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AQGridView.h"
+#import <KKGridView/KKGridView.h>
 
-@interface AlbumViewCell : AQGridView {
+@interface AlbumViewCell : KKGridViewCell {
 	IBOutlet UIImageView *artworkView;
 	IBOutlet UILabel *nameLabel;
 }
 
 @property IBOutlet UIImageView *artworkView;
 @property IBOutlet UILabel *nameLabel;
-@property (nonatomic, readonly, retain) IBOutlet UIView *contentView;
+@property (nonatomic, strong) IBOutlet UIView *backgroundView; // Underneath contentView, use this to customize backgrounds
+@property (nonatomic, strong) IBOutlet UIView *contentView; // Where all subviews should be.
+@property (nonatomic, strong) IBOutlet UIView *selectedBackgroundView;
+@property (nonatomic, copy) NSString *reuseIdentifier;
 
 + (id) cellFromNib;
 

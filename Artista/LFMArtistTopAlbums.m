@@ -112,36 +112,18 @@ didStartElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName
 	attributes:(NSDictionary *)attributeDict{
-	//NSLog(@"found this element: %@", elementName);
+	// element tag began
 	currentElement = [elementName copy];
-    
-	/*if ([currentElement isEqualToString:@"track"]) {
-		currentAttribute = [attributeDict valueForKey:@"nowplaying"];
-		if ([currentAttribute isEqualToString:@"true"]) {
-			nowPlaying = YES;
-		}
-		else if ([currentAttribute isEqualToString:@"false"]) {
-			nowPlaying = NO;
-		}
+	
+	if ([elementName isEqualToString:@"image"]) {
+        currentAttribute = [attributeDict valueForKey:@"size"];
 	}
-	if ([elementName isEqualToString:@"name"]) {
-        // make sure we don't read this twice
-        if (!track) {
-            track = nil;
-        }
-	}
-    if ([elementName isEqualToString:@"artist"]) {
-        // make sure we don't read this twice
-        if (musicBrainzID == nil) {
-            musicBrainzID = [attributeDict valueForKey:@"mbid"];
-        }
-    }*/
 }
 - (void)parser:(NSXMLParser *)parser
  didEndElement:(NSString *)elementName
   namespaceURI:(NSString *)namespaceURI
  qualifiedName:(NSString *)qName{
-	// do nothing element tag ended
+	// element tag ended
 }
 
 // the stuff inside the tags
@@ -149,32 +131,24 @@ didStartElement:(NSString *)elementName
 foundCharacters:(NSString *)string{
 	//NSLog(@"found characters: %@", string);
 	// save the characters for the current item...
-	/*if ([currentElement isEqualToString:@"name"]) {
-        if (track == nil) {
-            NSLog(@"LastFMArtistInfo track name: %@", string);
-            track = string;
+	if ([currentElement isEqualToString:@"name"]) {
+        currentAlbum = [LFMAlbum new];
+		[currentAlbum setName:string];
+	}
+	if ([currentElement isEqualToString:@"image"]) {
+        if ([currentAttribute isEqualToString:@"extralarge"]) {
+			[currentAlbum setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]]];
+			[albums addObject:currentAlbum];
         }
 	}
-	if ([currentElement isEqualToString:@"artist"]) {
-        if (artist == nil) {
-            artist = string;
-            NSLog(@"LFMRecentTracks Details: %@", artist);
-        }
-    }*/
 }
 
 /**
  * Parsing is finished here so this is when the delegate gets called
  */
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
-    /*mostRecentTrack = [[LFMTrack alloc] init];
-    [mostRecentTrack setArtist:artist];
-    [mostRecentTrack setMusicBrainzID:musicBrainzID];
-    [mostRecentTrack setTrack:track];
-	[mostRecentTrack setNowPlaying:nowPlaying];*/
-	
 	// Success let controller know we have data
-    [[self delegate] didReceiveTopAlbums:nil];
+    [[self delegate] didReceiveTopAlbums:albums];
 	
     // reset variables
     currentElement = nil;

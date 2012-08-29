@@ -1,12 +1,6 @@
-[submodule "sstoolkit"]
-	path = sstoolkit
-	url = git://github.com/samsoffes/sstoolkit.git
-[submodule "Artista/sstoolkit"]
-	path = Artista/sstoolkit
-	url = git://github.com/samsoffes/sstoolkit.git
-[submodule "Artista/NRGridView"]
-	path = Artista/NRGridView
-	url = git://github.com/ldesroziers/NRGridView.git
-[submodule "Artista/AQGridView"]
-	path = Artista/AQGridView
-	url = git://github.com/AlanQuatermain/AQGridView.git
+[submodule "Artista/NAMenu"]
+	path = Artista/NAMenu
+	url = git://github.com/cammsaul/NAMenu.git
+[submodule "Artista/KKGridView"]
+	path = Artista/KKGridView
+	url = git://github.com/kolinkrewinkel/KKGridView.git

@@ -8,16 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <KKGridView/KKGridView.h>
 #import "AccountViewController.h"
 #import "LFMRecentTracks.h"
 #import "LFMTrackInfo.h"
 #import "LastFMArtistInfo.h"
+#import "LFMArtistTopAlbums.h"
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"
-#import "AQGridView.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, UITextViewDelegate, AQGridViewDataSource, AQGridViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, KKGridViewDataSource, KKGridViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
@@ -30,9 +31,11 @@
 	IBOutlet UIView *biographyView;
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;
-	IBOutlet AQGridView *albumGridView;
+	IBOutlet KKGridView *albumGridView;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
+	LFMTrackInfo *trackInfo;
+	LFMArtistTopAlbums *topAlbums;
 	MPMusicPlayerController *iPodController;
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
@@ -41,6 +44,7 @@
 	CALayer *tagMaskMiddle;
 	CALayer *tagMaskRight;
 	NSThread *iPodReloadingThread;
+	NSArray *topAlbumsArray;
 }
 
 @end

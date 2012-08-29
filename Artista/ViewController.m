@@ -28,6 +28,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	playbackTimer = nil;
 	
+	// setup grid view
+	albumGridView.cellSize = CGSizeMake(100.f, 100.f);
 	albumGridView.backgroundColor = [UIColor clearColor];
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
@@ -63,10 +65,12 @@
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 	
-	// push in bio scroll view content up past the bottom bar... this is nullified by ODRefreshControl 😢
+	// push scroll views content up past the bottom bar...
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
+	albumGridView.contentInset = contentInsets;
+	albumGridView.scrollIndicatorInsets = contentInsets;
 	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
 	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
@@ -212,35 +216,32 @@
 	}
 }
 
-#pragma mark - NRGridView Data Source
+#pragma mark - KKGridView Data Source
 
-- (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
-	return 5;
+- (NSUInteger)gridView:(KKGridView *)gridView numberOfItemsInSection:(NSUInteger)section
+{
+	return [topAlbumsArray count];
 }
 
-- (AQGridViewCell *)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)index
-{
-    static NSString *MyCellIdentifier = @"MyCellIdentifier";
-    
-    AlbumViewCell *cell = [gridView dequeueReusableCellWithIdentifier:MyCellIdentifier];
-    
-    if(cell == nil){
-        //cell = [[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier];
-		cell = [AlbumViewCell cellFromNib];
-		cell.artworkView.image = [UIImage imageNamed:@"abbey_road.jpg"];
-		cell.nameLabel.text = @"Abbey Road";
-		//cell.frame =
-        
-        //[[cell textLabel] setFont:[UIFont boldSystemFontOfSize:12]];
-        //[[cell detailedTextLabel] setFont:[UIFont systemFontOfSize:11.]];
-		
-    }
-    
-    //cell.imageView.image = [UIImage imageNamed:@"abbey_road.jpg"];
-    //cell.textLabel.text = @"Abbey Road";
-    //cell.detailedTextLabel.text = @"Some details";
+- (KKGridViewCell *)gridView:(KKGridView *)gridView cellForItemAtIndexPath:(KKIndexPath *)indexPath
+{	
+	static NSString * const identifier = @"Cell";
+	AlbumViewCell *cell = (AlbumViewCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
 	
-    return cell;
+	if (cell)
+		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
+	
+	if (!cell) {
+		cell = [AlbumViewCell cellFromNib];
+		cell.reuseIdentifier = identifier;
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.backgroundColor = [UIColor clearColor];
+		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+		cell.contentView.backgroundColor = [UIColor clearColor];
+	}
+	
+	return cell;
 }
 
 #pragma mark -
@@ -267,6 +268,8 @@
 	 */
 }
 
+#pragma Main Loading Methods
+
 - (void)loadInfoFromiPod {
 	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -278,9 +281,19 @@
 	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
 	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
 	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
-	artistInfo = [[LastFMArtistInfo alloc] init];
-	[artistInfo setDelegate:self];
+	// only use one instance of artistInfo
+	if (artistInfo==nil) {
+		artistInfo = [[LastFMArtistInfo alloc] init];
+		[artistInfo setDelegate:self];
+	}
+	// setup top albums
+	if (topAlbums==nil) {
+		topAlbums = [[LFMArtistTopAlbums alloc] init];
+		[topAlbums setDelegate:self];
+	}
 	[artistInfo requestInfoWithArtist:artistName];
+	[topAlbums requestTopAlbumsWithArtist:artistName];
+	
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
@@ -338,20 +351,33 @@
 				[artist setText:[_track artist]];
 				[track setText:[_track track]];
 			});
+			
+			// setup artist info
 			if (artistInfo==nil) {
 				artistInfo = [[LastFMArtistInfo alloc] init];
 				[artistInfo setDelegate:self];
 			}
-			// setup get track info.. maybe make this an instance variable?
-			LFMTrackInfo *trackInfo = [[LFMTrackInfo alloc] init];
-			[trackInfo setDelegate:self];
+			// setup top albums
+			if (topAlbums==nil) {
+				topAlbums = [[LFMArtistTopAlbums alloc] init];
+				[topAlbums setDelegate:self];
+			}
+			// setup get track info
+			if (trackInfo==nil) {
+				trackInfo = [[LFMTrackInfo alloc] init];
+				[trackInfo setDelegate:self];
+			}
+			
+			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				[topAlbums requestTopAlbumsWithMusicBrainzID:[_track musicBrainzID]];
 			}
 			else {
 				[artistInfo requestInfoWithArtist:[_track artist]];
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
 			}
 		});
 	}
@@ -400,6 +426,19 @@
 }
 
 - (void)didFailToReceiveTrackInfo:(NSError *)error {
+	NSLog(@"Failed to receive track info with error:%@", [error description]);
+}
+
+#pragma mark - LFMArtistTopAlbums Delegate
+
+- (void)didReceiveTopAlbums:(NSArray *)albums {
+	topAlbumsArray = albums;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[albumGridView reloadData];
+	});
+}
+
+- (void)didFailToReceiveTopAlbums:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
 }
 
