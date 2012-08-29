@@ -33,7 +33,8 @@
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	albums = [NSMutableArray new];
     
     if (returnedData == nil) {
         //[pool release];
@@ -66,7 +67,8 @@
     returnedData = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response error:&error];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
+	albums = [NSMutableArray new];
     
     if (returnedData == nil) {
         //[pool release];
@@ -118,6 +120,9 @@ didStartElement:(NSString *)elementName
 	if ([elementName isEqualToString:@"image"]) {
         currentAttribute = [attributeDict valueForKey:@"size"];
 	}
+	if ([elementName isEqualToString:@"album"]) {
+		currentAttribute = [attributeDict valueForKey:@"rank"];
+	}
 }
 - (void)parser:(NSXMLParser *)parser
  didEndElement:(NSString *)elementName
@@ -148,6 +153,7 @@ foundCharacters:(NSString *)string{
  */
 - (void)parserDidEndDocument:(NSXMLParser *)parser {
 	// Success let controller know we have data
+	NSLog(@"albums count:%d", [albums count]);
     [[self delegate] didReceiveTopAlbums:albums];
 	
     // reset variables
