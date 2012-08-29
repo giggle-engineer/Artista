@@ -234,7 +234,9 @@
 	if (!cell) {
 		cell = [AlbumViewCell cellFromNib];
 		cell.reuseIdentifier = identifier;
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		if ([(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork]) {
+			cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		}
 		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];

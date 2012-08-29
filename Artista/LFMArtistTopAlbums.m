@@ -39,7 +39,8 @@
 		[albums addObject:album];
 	}];
 	NSLog(@"albums count:%d", [albums count]);
-    [[self delegate] didReceiveTopAlbums:albums];
+    [[self delegate] didReceiveTopAlbums:(NSArray*)[albums copy]];
+	[albums removeAllObjects];
 }
 
 - (void)requestTopAlbumsWithMusicBrainzID:(NSString*)mbid
@@ -65,7 +66,8 @@
 		[albums addObject:album];
 	}];
 	NSLog(@"albums count:%d", [albums count]);
-    [[self delegate] didReceiveTopAlbums:albums];
+    [[self delegate] didReceiveTopAlbums:(NSArray*)[albums copy]];
+	[albums removeAllObjects];
 }
 
 @end
