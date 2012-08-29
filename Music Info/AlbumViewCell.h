@@ -6,15 +6,8 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import "AQGridView.h"
+#import <UIKit/UIKit.h>
 
-@interface AlbumViewCell : AQGridViewCell
-
-+ (id)cellFromNib;
-
-@property (nonatomic, readonly, retain) IBOutlet UIView * contentView;
-@property (nonatomic, retain) IBOutlet UIView * backgroundView;
-@property (nonatomic, retain) IBOutlet UIView * selectedBackgroundView;
-@property (nonatomic, copy) NSString *reuseIdentifier;
+@interface AlbumViewCell : UICollectionViewCell
 
 @end

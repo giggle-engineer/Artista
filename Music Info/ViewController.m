@@ -26,7 +26,6 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	
 	playbackTimer = nil;
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
@@ -211,30 +210,22 @@
 	}
 }
 
-#pragma mark - AQGridView DataSource
+#pragma mark - UICollectionView DataSource
 
-- (NSUInteger)numberOfItemsInGridView:(AQGridView *)gridView {
-	return 1000;
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+	return 100;
 }
 
-- (AQGridViewCell*)gridView:(AQGridView *)gridView cellForItemAtIndex:(NSUInteger)index {
-	static NSString * const identifier = @"Cell";
-	AlbumViewCell *cell = (AlbumViewCell*)[gridView dequeueReusableCellWithIdentifier:identifier];
-	if (cell)
-		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
 	
 	if (!cell) {
-		CGRect cellFrame = {
-			CGPointZero,
-			gridView.gridCellSize
-		};
-		
-		cell = [AlbumViewCell cellFromNib];
-		cell.reuseIdentifier = identifier;
-		cell.frame = cellFrame;
+		// set stuff here
+		return cell;
 	}
-	
-	return cell;
+	else {
+		return cell;
+	}
 }
 
 #pragma mark -
