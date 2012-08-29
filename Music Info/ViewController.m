@@ -210,23 +210,7 @@
 	}
 }
 
-#pragma mark - UICollectionView DataSource
-
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-	return 100;
-}
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-	UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"Cell" forIndexPath:indexPath];
-	
-	if (!cell) {
-		// set stuff here
-		return cell;
-	}
-	else {
-		return cell;
-	}
-}
+#pragma mark - SomeCollectionView DataSource
 
 #pragma mark -
 

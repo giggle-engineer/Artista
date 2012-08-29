@@ -1,0 +1,3 @@
+[submodule "sstoolkit"]
+	path = sstoolkit
+	url = git://github.com/samsoffes/sstoolkit.git

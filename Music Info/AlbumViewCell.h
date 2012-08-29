@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AlbumViewCell : UICollectionViewCell
+@interface AlbumViewCell : UITableViewCell
 
 @end
