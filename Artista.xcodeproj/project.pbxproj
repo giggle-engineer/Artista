@@ -67,7 +67,7 @@
 			containerPortal = 3795C7B615DB5DD70058023F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3795C7BE15DB5DD70058023F;
-			remoteInfo = "Music Info";
+			remoteInfo = "Artista";
 		};
 /* End PBXContainerItemProxy section */
 
@@ -251,7 +251,7 @@
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
 			name = Artista;
-			path = "Music Info";
+			path = "Artista";
 			sourceTree = "<group>";
 		};
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
@@ -288,7 +288,7 @@
 				3795C7E815DB5DD70058023F /* Supporting Files */,
 			);
 			name = ArtistaTests;
-			path = "Music InfoTests";
+			path = "ArtistaTests";
 			sourceTree = "<group>";
 		};
 		3795C7E815DB5DD70058023F /* Supporting Files */ = {
@@ -376,7 +376,7 @@
 			dependencies = (
 			);
 			name = Artista;
-			productName = "Music Info";
+			productName = "Artista";
 			productReference = 3795C7BF15DB5DD70058023F /* Artista.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -395,7 +395,7 @@
 				3795C7E615DB5DD70058023F /* PBXTargetDependency */,
 			);
 			name = ArtistaTests;
-			productName = "Music InfoTests";
+			productName = "ArtistaTests";
 			productReference = 3795C7E015DB5DD70058023F /* ArtistaTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -609,8 +609,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Music Info/Artista-Prefix.pch";
-				INFOPLIST_FILE = "Music Info/Artista-Info.plist";
+				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				PRODUCT_NAME = Artista;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -623,8 +623,8 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Music Info/Artista-Prefix.pch";
-				INFOPLIST_FILE = "Music Info/Artista-Info.plist";
+				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				PRODUCT_NAME = Artista;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -634,14 +634,14 @@
 		3795C7F615DB5DD70058023F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Music Info.app/Music Info";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Artista.app/Artista";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Music Info/Music Info-Prefix.pch";
-				INFOPLIST_FILE = "Music InfoTests/ArtistaTests-Info.plist";
+				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				INFOPLIST_FILE = "ArtistaTests/ArtistaTests-Info.plist";
 				PRODUCT_NAME = ArtistaTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
@@ -651,14 +651,14 @@
 		3795C7F715DB5DD70058023F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Music Info.app/Music Info";
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/Artista.app/Artista";
 				FRAMEWORK_SEARCH_PATHS = (
 					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
 					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "Music Info/Music Info-Prefix.pch";
-				INFOPLIST_FILE = "Music InfoTests/ArtistaTests-Info.plist";
+				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				INFOPLIST_FILE = "ArtistaTests/ArtistaTests-Info.plist";
 				PRODUCT_NAME = ArtistaTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
