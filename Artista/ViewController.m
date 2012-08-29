@@ -28,6 +28,8 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	playbackTimer = nil;
 	
+	albumGridView.backgroundColor = [UIColor clearColor];
+	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
 	SVSegmentedControl *navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
 	navigation.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
@@ -210,7 +212,42 @@
 	}
 }
 
-#pragma mark - SomeCollectionView DataSource
+#pragma mark - NRGridView Data Source
+
+- (NSInteger)numberOfSectionsInGridView:(NRGridView *)gridView
+{
+    return 0;
+}
+
+- (NSInteger)gridView:(NRGridView *)gridView numberOfItemsInSection:(NSInteger)section
+{
+    return 5;
+}
+
+- (NRGridViewCell*)gridView:(NRGridView *)gridView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *MyCellIdentifier = @"MyCellIdentifier";
+    
+    AlbumViewCell *cell = [gridView dequeueReusableCellWithIdentifier:MyCellIdentifier];
+    
+    if(cell == nil){
+        //cell = [[NRGridViewCell alloc] initWithReuseIdentifier:MyCellIdentifier];
+		cell = [AlbumViewCell cellFromNib];
+		cell.artworkView.image = [UIImage imageNamed:@"abbey_road.jpg"];
+		cell.nameLabel.text = @"Abbey Road";
+		//cell.frame =
+        
+        //[[cell textLabel] setFont:[UIFont boldSystemFontOfSize:12]];
+        //[[cell detailedTextLabel] setFont:[UIFont systemFontOfSize:11.]];
+		
+    }
+    
+    //cell.imageView.image = [UIImage imageNamed:@"abbey_road.jpg"];
+    //cell.textLabel.text = @"Abbey Road";
+    //cell.detailedTextLabel.text = @"Some details";
+	
+    return cell;
+}
 
 #pragma mark -
 

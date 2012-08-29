@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <NRGridView.h>
 
-@interface AlbumViewCell : UITableViewCell
+@interface AlbumViewCell : NRGridViewCell {
+	IBOutlet UIImageView *artworkView;
+	IBOutlet UILabel *nameLabel;
+}
+
+@property IBOutlet UIImageView *artworkView;
+@property IBOutlet UILabel *nameLabel;
+@property (nonatomic, readonly) IBOutlet UIView *contentView;
+
++ (id) cellFromNib;
 
 @end

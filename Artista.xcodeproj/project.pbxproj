@@ -55,6 +55,9 @@
 		3795C80F15DC23670058023F /* UIImage+DSP.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80E15DC23670058023F /* UIImage+DSP.m */; };
 		3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C81115DC23B50058023F /* Accelerate.framework */; };
 		37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37970C9315DC37B700E5CD0D /* QuartzCore.framework */; };
+		379FBA8015EDCB5300A5BBAE /* libNRGridView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */; };
+		379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */; };
+		379FBA9215EDD40600A5BBAE /* abbey_road.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 379FBA9115EDD40600A5BBAE /* abbey_road.jpg */; };
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
@@ -67,7 +70,21 @@
 			containerPortal = 3795C7B615DB5DD70058023F /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 3795C7BE15DB5DD70058023F;
-			remoteInfo = "Artista";
+			remoteInfo = Artista;
+		};
+		379FBA7C15EDCB4100A5BBAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17BF813414E1B3FB00F109BE;
+			remoteInfo = NRGridView;
+		};
+		379FBA7E15EDCB4C00A5BBAE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 17BF813314E1B3FB00F109BE;
+			remoteInfo = NRGridView;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -143,6 +160,9 @@
 		3795C80E15DC23670058023F /* UIImage+DSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSP.m"; sourceTree = "<group>"; };
 		3795C81115DC23B50058023F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37970C9315DC37B700E5CD0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NRGridView.xcodeproj; path = Artista/NRGridView/NRGridView/NRGridView.xcodeproj; sourceTree = "<group>"; };
+		379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
+		379FBA9115EDD40600A5BBAE /* abbey_road.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = abbey_road.jpg; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
@@ -156,6 +176,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				379FBA8015EDCB5300A5BBAE /* libNRGridView.a in Frameworks */,
 				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
@@ -223,6 +244,7 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */,
 				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
@@ -242,6 +264,7 @@
 				3795C7D315DB5DD70058023F /* AppDelegate.m */,
 				3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */,
 				3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */,
+				379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */,
 				3741CE7715E49E710086294E /* UITagView */,
 				3795C81415DC246B0058023F /* Last.fm */,
 				3795C81315DC245D0058023F /* View Controllers */,
@@ -250,8 +273,7 @@
 				3727D05F15EB071E00C88744 /* SVSegmentedControl */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
-			name = Artista;
-			path = "Artista";
+			path = Artista;
 			sourceTree = "<group>";
 		};
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
@@ -269,6 +291,7 @@
 				377C6F6615DCBE4400B1CA34 /* heart@2x.png */,
 				377C6F6715DCBE4400B1CA34 /* heartloved.png */,
 				377C6F6815DCBE4400B1CA34 /* heartloved@2x.png */,
+				379FBA9115EDD40600A5BBAE /* abbey_road.jpg */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
@@ -287,8 +310,7 @@
 				3795C7EE15DB5DD70058023F /* ArtistaTests.m */,
 				3795C7E815DB5DD70058023F /* Supporting Files */,
 			);
-			name = ArtistaTests;
-			path = "ArtistaTests";
+			path = ArtistaTests;
 			sourceTree = "<group>";
 		};
 		3795C7E815DB5DD70058023F /* Supporting Files */ = {
@@ -351,6 +373,14 @@
 			name = Last.fm;
 			sourceTree = "<group>";
 		};
+		379FBA7515EDCB4100A5BBAE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */ = {
 			isa = PBXGroup;
 			children = (
@@ -374,9 +404,10 @@
 			buildRules = (
 			);
 			dependencies = (
+				379FBA7F15EDCB4C00A5BBAE /* PBXTargetDependency */,
 			);
 			name = Artista;
-			productName = "Artista";
+			productName = Artista;
 			productReference = 3795C7BF15DB5DD70058023F /* Artista.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -395,7 +426,7 @@
 				3795C7E615DB5DD70058023F /* PBXTargetDependency */,
 			);
 			name = ArtistaTests;
-			productName = "ArtistaTests";
+			productName = ArtistaTests;
 			productReference = 3795C7E015DB5DD70058023F /* ArtistaTests.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
@@ -418,6 +449,12 @@
 			mainGroup = 3795C7B415DB5DD70058023F;
 			productRefGroup = 3795C7C015DB5DD70058023F /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 379FBA7515EDCB4100A5BBAE /* Products */;
+					ProjectRef = 379FBA7415EDCB4100A5BBAE /* NRGridView.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				3795C7BE15DB5DD70058023F /* Artista */,
@@ -425,6 +462,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		379FBA7D15EDCB4100A5BBAE /* libNRGridView.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNRGridView.a;
+			remoteRef = 379FBA7C15EDCB4100A5BBAE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		3795C7BD15DB5DD70058023F /* Resources */ = {
@@ -447,6 +494,8 @@
 				377C6F6C15DCBE4400B1CA34 /* heartloved@2x.png in Resources */,
 				37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */,
 				37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */,
+				379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */,
+				379FBA9215EDD40600A5BBAE /* abbey_road.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -523,6 +572,11 @@
 			isa = PBXTargetDependency;
 			target = 3795C7BE15DB5DD70058023F /* Artista */;
 			targetProxy = 3795C7E515DB5DD70058023F /* PBXContainerItemProxy */;
+		};
+		379FBA7F15EDCB4C00A5BBAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = NRGridView;
+			targetProxy = 379FBA7E15EDCB4C00A5BBAE /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -610,7 +664,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				HEADER_SEARCH_PATHS = "Artista/NRGridView/NRGridView/NRGridView/**";
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = Artista;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
@@ -624,7 +683,12 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				HEADER_SEARCH_PATHS = "Artista/NRGridView/NRGridView/NRGridView/**";
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
+				OTHER_LDFLAGS = (
+					"-all_load",
+					"-ObjC",
+				);
 				PRODUCT_NAME = Artista;
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
 				WRAPPER_EXTENSION = app;
