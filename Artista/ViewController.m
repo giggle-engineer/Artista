@@ -288,6 +288,17 @@
 	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
 	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
 	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+	// immediately setup ipod info
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
+		[artist setText:artistName];
+		[album setText:albumName];
+		[track setText:trackName];
+		
+		// setup playback progress bar timer
+		if (playbackTimer == nil)
+			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
+	});
 	// only use one instance of artistInfo
 	if (artistInfo==nil) {
 		artistInfo = [[LastFMArtistInfo alloc] init];
@@ -308,14 +319,7 @@
 	[topTracks requestTopTracksWithArtist:artistName];
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
-		[artist setText:artistName];
-		[album setText:albumName];
-		[track setText:trackName];
 		[refreshControl endRefreshing];
-		
-		if (playbackTimer == nil)
-			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 	});
 }
 
