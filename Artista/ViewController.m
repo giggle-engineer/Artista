@@ -314,9 +314,16 @@
 		topTracks = [[LFMArtistTopTracks alloc] init];
 		[topTracks setDelegate:self];
 	}
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
 	[artistInfo requestInfoWithArtist:artistName];
+	});
+	dispatch_async(queue,^{
 	[topAlbums requestTopAlbumsWithArtist:artistName];
+	});
+	dispatch_async(queue,^{
 	[topTracks requestTopTracksWithArtist:artistName];
+	});
 	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl endRefreshing];
@@ -392,16 +399,32 @@
 			
 			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
+				dispatch_async(queue,^{
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
+				});
+				dispatch_async(queue,^{
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				});
+				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithMusicBrainzID:[_track musicBrainzID]];
+				});
+				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
+				});
 			}
 			else {
+				dispatch_async(queue,^{
 				[artistInfo requestInfoWithArtist:[_track artist]];
+				});
+				dispatch_async(queue,^{
 				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				});
+				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
+				});
+				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithArtist:[_track artist]];
+				});
 			}
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
