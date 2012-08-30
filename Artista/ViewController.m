@@ -403,6 +403,10 @@
 				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 			}
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[refreshControl endRefreshing];
+			});
 		});
 	#if !(TARGET_IPHONE_SIMULATOR)
 	}
@@ -445,7 +449,6 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[album setText:[_track album]];
 		[albumArtView setImage:[_track artwork]];
-		[refreshControl endRefreshing];
 	});
 }
 
