@@ -64,4 +64,6 @@
 // DEPRECIATED - Please use NSString stringByConvertingHTMLToPlainText
 - (NSString *)stringByStrippingTags __attribute__((deprecated));
 
+-(NSString *) stringByStrippingHTML;
+
 @end

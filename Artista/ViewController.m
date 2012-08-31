@@ -435,15 +435,23 @@
     NSLog(@"Failed to receive track with error:%@", [error description]);
 }
 
+-(NSString *) stringByStrippingHTML:(NSString*)s {
+	NSRange r;
+	//NSString *s = [[self copy] autorelease];
+	while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
+		s = [s stringByReplacingCharactersInRange:r withString:@""];
+	return s; }
+
 #pragma mark - LastFMArtistInfo Delegate
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
 	//NSLog(@"tags:%u", [[_artist tags] count]);
 	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
+	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
-        [bioTextView setText:[[_artist bio] stringByDecodingHTMLEntities]];
-		NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
+        [bioTextView setText:stripped];
+		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
     });
