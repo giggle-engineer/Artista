@@ -32,7 +32,7 @@
 		[album setName:[e child:@"name"].text];
 		for (RXMLElement *image in [e children:@"image"]) {
 			if ([[image attribute:@"size"] isEqualToString:@"extralarge"]) {
-				NSLog(@"url:%@", image.text);
+				//NSLog(@"url:%@", image.text);
 				[album setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image.text]]]];
 			}
 		}
@@ -59,7 +59,7 @@
 		[album setName:[e child:@"name"].text];
 		for (RXMLElement *image in [e children:@"image"]) {
 			if ([[image attribute:@"size"] isEqualToString:@"extralarge"]) {
-				NSLog(@"url:%@", image.text);
+				//NSLog(@"url:%@", image.text);
 				[album setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image.text]]]];
 			}
 		}

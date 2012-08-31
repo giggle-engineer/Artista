@@ -298,6 +298,9 @@
 		// setup playback progress bar timer
 		if (playbackTimer == nil)
 			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
+		// otherwise check if it's been invalidated and create a new one
+		else if (![playbackTimer isValid])
+			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 	});
 	// only use one instance of artistInfo
 	if (artistInfo==nil) {
@@ -348,8 +351,10 @@
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
 			// remove playback timer updating if the iPod is no longer playing
-			if ([playbackTimer isValid])
+			if ([playbackTimer isValid]) {
 				[playbackTimer invalidate];
+				[playTimeProgressView setProgress:0];
+			}
 			if (recentTracks==nil) {
 				recentTracks = [[LFMRecentTracks alloc] init];
 				[recentTracks setDelegate:self];
