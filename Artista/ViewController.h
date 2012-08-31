@@ -42,6 +42,7 @@
 	MPMusicPlayerController *iPodController;
 	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
+	SVSegmentedControl *navigation;
 	CALayer *bioMask;
 	CALayer *tagMaskLeft;
 	CALayer *tagMaskMiddle;

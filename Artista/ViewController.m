@@ -33,7 +33,7 @@
 	albumGridView.backgroundColor = [UIColor clearColor];
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
-	SVSegmentedControl *navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
+	navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
 	navigation.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
 	navigation.alpha = 0.7f;
 	navigation.titleEdgeInsets = UIEdgeInsetsMake(-1, 16, 0, 16);
@@ -184,11 +184,11 @@
 
 - (IBAction)scrollCurrentViewToTop:(id)sender {
 	// if the view is visible scroll it to the top
-	if (bioTextView.alpha==1.0)
+	if (navigation.selectedIndex==0)
 		[bioTextView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	if (albumGridView.alpha==1.0)
+	if (navigation.selectedIndex==1)
 		[albumGridView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	if (topTracksTableView.alpha==1.0)
+	if (navigation.selectedIndex==2)
 		[topTracksTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
