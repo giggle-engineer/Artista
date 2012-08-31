@@ -339,6 +339,7 @@
 	
 }
 
+// http://stackoverflow.com/a/4886998/1000339
 -(NSString *) stringByStrippingHTML {
 	NSRange r;
 	NSString *s = [[self copy] autorelease];

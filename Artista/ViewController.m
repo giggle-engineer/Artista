@@ -182,6 +182,16 @@
 	}
 }
 
+- (IBAction)scrollCurrentViewToTop:(id)sender {
+	// if the view is visible scroll it to the top
+	if (bioTextView.alpha==1.0)
+		[bioTextView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	if (albumGridView.alpha==1.0)
+		[albumGridView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+	if (topTracksTableView.alpha==1.0)
+		[topTracksTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
