@@ -258,21 +258,6 @@
 	NSNumber *playbackDuration = [[iPodController nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
 	float progress = currentTime/playbackDuration.intValue;
 	[playTimeProgressView setProgress:progress];
-	// TODO: End updating playback progress and reset if end of currently playing song is reached
-	//NSLog(@"progress:%f", progress);
-	/*
-	if (ceil(currentTime)==ceil(playbackDuration.intValue)) {
-		MPMediaItem *mediaItem = [iPodController nowPlayingItem];
-		NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-		NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-		NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-		MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
-		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
-		[artist setText:artistName];
-		[album setText:albumName];
-		[track setText:trackName];
-	}
-	 */
 }
 
 #pragma Main Loading Methods
@@ -297,9 +282,6 @@
 		
 		// setup playback progress bar timer
 		if (playbackTimer == nil)
-			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
-		// otherwise check if it's been invalidated and create a new one
-		else if (![playbackTimer isValid])
 			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
 	});
 	// only use one instance of artistInfo
@@ -350,11 +332,6 @@
 	else {
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
-			// remove playback timer updating if the iPod is no longer playing
-			if ([playbackTimer isValid]) {
-				[playbackTimer invalidate];
-				[playTimeProgressView setProgress:0];
-			}
 			if (recentTracks==nil) {
 				recentTracks = [[LFMRecentTracks alloc] init];
 				[recentTracks setDelegate:self];
@@ -375,6 +352,11 @@
 	#if !(TARGET_IPHONE_SIMULATOR)
 	if ([_track nowPlaying]) {
 	#endif
+		// remove playback timer updating if the iPod is no longer playing
+		if ([playbackTimer isValid]) {
+			[playbackTimer invalidate], playbackTimer = nil;
+			[playTimeProgressView setProgress:0];
+		}
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
 			dispatch_async(dispatch_get_main_queue(), ^{
