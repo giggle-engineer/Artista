@@ -538,6 +538,12 @@
 	}
 }
 
+// Top tracks view tracks are not selectable
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
+{	
+    return nil;
+}
+
 #pragma mark  - Account View Controller Delegate
 
 - (void)didReceiveReceiveUsername {
