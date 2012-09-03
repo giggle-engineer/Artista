@@ -523,6 +523,7 @@
 		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
 		cell.textLabel.textColor = [UIColor blackColor];
 		cell.textLabel.shadowColor = [UIColor whiteColor];
+		cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	} else {
@@ -531,6 +532,7 @@
 		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
 		cell.textLabel.textColor = [UIColor blackColor];
 		cell.textLabel.shadowColor = [UIColor whiteColor];
+		cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	}
