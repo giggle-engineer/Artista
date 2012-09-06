@@ -47,7 +47,7 @@
 	tagView.alpha = 0.5;
 	
 	// round the corners of the album art view
-	albumArtView.layer.cornerRadius = 5.0;
+	albumArtView.layer.cornerRadius = 3.0;
 	albumArtView.layer.masksToBounds = YES;
 	
 	// skin the playback time progress view
@@ -476,6 +476,46 @@
 		s = [s stringByReplacingCharactersInRange:r withString:@""];
 	return s; }
 
+#pragma mark - Setup Hidden Version View
+
+- (void)setupHiddenVersionView {
+	// Remove old label
+	[versionLabel removeFromSuperview];
+	
+	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+	NSString *appDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+	NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+	NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+	
+	UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:12];
+	
+	// \n Copyright © 2012 Rainbow Dog Studios
+	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@)", appDisplayName, majorVersion, minorVersion];
+	CGSize textSize = [versionString sizeWithFont:font];
+	
+	float height = textSize.height;
+	float width = textSize.width;
+	float padding = 30;
+	float y;
+	
+	if (bioTextView.contentSize.height > bioTextView.frame.size.height) {
+		y = bioTextView.contentSize.height + padding;
+	}
+	// if the text doesn't fill up the entire view then append the text at the bottom of the view
+	else {
+		y = bioTextView.frame.size.height - padding;
+	}
+	
+	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
+	versionLabel.backgroundColor = [UIColor clearColor];
+	versionLabel.textColor = [UIColor grayColor];
+	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
+	versionLabel.font = font;
+	versionLabel.text = versionString;
+	
+	[bioTextView addSubview:versionLabel];
+}
+
 #pragma mark - LastFMArtistInfo Delegate
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
@@ -488,6 +528,8 @@
 		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
+		
+		[self setupHiddenVersionView];
     });
 	isFinishedLoadingArtistInfo = YES;
 	[self finishLoadingAction];

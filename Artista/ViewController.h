@@ -52,6 +52,7 @@
 	NSThread *iPodReloadingThread;
 	NSArray *topAlbumsArray;
 	NSArray *topTracksArray;
+	UILabel *versionLabel;
 }
 
 @end
