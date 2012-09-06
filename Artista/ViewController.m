@@ -61,6 +61,12 @@
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;
 	
+	// give shadow to artist text
+    artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    artist.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+    artist.layer.shadowOpacity = 0.5f;
+    artist.layer.shadowRadius = 0.5f;
+	
 	// setup refreshing
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
