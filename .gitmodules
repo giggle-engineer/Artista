@@ -7,3 +7,6 @@
 [submodule "Artista/RaptureXML"]
 	path = Artista/RaptureXML
 	url = git://github.com/ZaBlanc/RaptureXML.git
+[submodule "Artista/Reachability"]
+	path = Artista/Reachability
+	url = git://github.com/tonymillion/Reachability.git

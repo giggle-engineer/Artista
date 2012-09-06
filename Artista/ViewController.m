@@ -28,6 +28,10 @@
 	// Do any additional setup after loading the view, typically from a nib.
 	playbackTimer = nil;
 	
+	// setup reachability
+	reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
+	[reach startNotifier];
+	
 	// setup grid view
 	albumGridView.cellSize = CGSizeMake(100.f, 100.f);
 	albumGridView.backgroundColor = [UIColor clearColor];
@@ -92,6 +96,9 @@
 	[notificationCenter addObserver:self
 						   selector:@selector (handle_NowPlayingItemChanged:)
 							   name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:nil];
+	[notificationCenter addObserver:self
+						   selector:@selector(reachabilityChanged:)
+							   name:kReachabilityChangedNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -118,6 +125,12 @@
         AccountViewController *accountViewController = segue.destinationViewController;
         [accountViewController setDelegate:self];
     }
+}
+
+#pragma mark - Reachability
+
+- (void)reachabilityChanged:(id)sender {
+	
 }
 
 #pragma mark - Segment Control Target
@@ -335,7 +348,30 @@
 	});
 }
 
+- (void)reset {
+	topAlbumsArray = nil;
+	topTracksArray = nil;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[refreshControl endRefreshing];
+		[bioTextView setText:nil];
+		[artistImageView setImage:nil];
+		[tagView setTags:nil];
+		[topTracksTableView reloadData];
+		[albumGridView reloadData];
+		[albumArtView setImage:nil];
+		[artist setText:nil];
+		[album setText:nil];
+		[track setText:nil];
+	});
+}
+
 - (void)load {
+	// simply exit this if no internet is available
+	if (![reach isReachable]) {
+		// TODO: Add proper no internet available graphics
+		[self reset];
+		return;
+	}
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
 	});
@@ -381,6 +417,12 @@
 		});
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	}
+	if (![reach isReachable]) {
+		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
+		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+		// TODO: Begin unreachable code here
+		[self reset];
 	}
 }
 
@@ -474,13 +516,6 @@
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
 }
-
--(NSString *) stringByStrippingHTML:(NSString*)s {
-	NSRange r;
-	//NSString *s = [[self copy] autorelease];
-	while ((r = [s rangeOfString:@"<[^>]+>" options:NSRegularExpressionSearch]).location != NSNotFound)
-		s = [s stringByReplacingCharactersInRange:r withString:@""];
-	return s; }
 
 #pragma mark - Setup Hidden Version View
 
@@ -586,6 +621,10 @@
 	[self finishLoadingAction];
 }
 
+- (void)didFailToReceiveTopTracks:(NSError *)error {
+	NSLog(@"Failed to receive track info with error:%@", [error description]);
+}
+
 #pragma mark - UITableView Data Source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -636,7 +675,7 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    return (interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown);
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

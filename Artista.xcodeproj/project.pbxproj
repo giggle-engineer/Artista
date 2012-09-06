@@ -66,6 +66,8 @@
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
+		37ECBACF15F92C8100450F30 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 37ECBACE15F92C8100450F30 /* Reachability.m */; };
+		37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
 /* End PBXBuildFile section */
 
@@ -192,6 +194,9 @@
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		37ECBACD15F92C8100450F30 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Reachability.h; path = Artista/Reachability/Reachability.h; sourceTree = SOURCE_ROOT; };
+		37ECBACE15F92C8100450F30 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Reachability.m; path = Artista/Reachability/Reachability.m; sourceTree = SOURCE_ROOT; };
+		37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -205,6 +210,7 @@
 				3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */,
 				3720DED415EE2123006C6B61 /* libRaptureXML.a in Frameworks */,
 				379FBAFB15EDE8F100A5BBAE /* libKKGridView.a in Frameworks */,
+				37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */,
 				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
@@ -295,6 +301,7 @@
 				379FBAF015EDE8DE00A5BBAE /* KKGridView.xcodeproj */,
 				3720DEC515EE20D1006C6B61 /* libz.dylib */,
 				3720DEC315EE20C8006C6B61 /* libxml2.dylib */,
+				37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */,
 				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
 				37970C9315DC37B700E5CD0D /* QuartzCore.framework */,
@@ -319,6 +326,7 @@
 				3795C81015DC23700058023F /* Categories */,
 				37BF2DEE15DE233F007EB3A7 /* ODRefreshControl */,
 				3727D05F15EB071E00C88744 /* SVSegmentedControl */,
+				37ECBACC15F92C6D00450F30 /* Reachability */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
 			);
 			path = Artista;
@@ -439,6 +447,16 @@
 				37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */,
 			);
 			path = ODRefreshControl;
+			sourceTree = "<group>";
+		};
+		37ECBACC15F92C6D00450F30 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				37ECBACD15F92C8100450F30 /* Reachability.h */,
+				37ECBACE15F92C8100450F30 /* Reachability.m */,
+			);
+			name = Reachability;
+			path = SVSegmentedControl;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -624,6 +642,7 @@
 				3727D06F15EB5E9800C88744 /* LFMAlbum.m in Sources */,
 				377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */,
 				3720DED915EE2BCC006C6B61 /* LFMArtistTopTracks.m in Sources */,
+				37ECBACF15F92C8100450F30 /* Reachability.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
