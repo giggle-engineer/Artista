@@ -34,6 +34,8 @@
 	IBOutlet UIView *topTracksView;
 	IBOutlet KKGridView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
+	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
+	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;
     LastFMArtistInfo *artistInfo;
 	LFMTrackInfo *trackInfo;

@@ -88,6 +88,34 @@
 							   name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:nil];
 }
 
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    // Release any retained subviews of the main view.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
+		[self load];
+	}
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    // load Last.fm account login view. only display this on first run
+    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
+        [self performSegueWithIdentifier: @"Account"
+                                  sender: nil];
+    }
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"Account"]) {
+        AccountViewController *accountViewController = segue.destinationViewController;
+        [accountViewController setDelegate:self];
+    }
+}
+
+#pragma mark - Segment Control Target
+
 - (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
 	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedIndex);
 	if (segmentedControl.selectedIndex==0) {
@@ -131,9 +159,13 @@
 	}
 }
 
+#pragma mark - Pull to refresh
+
 - (void)dropViewDidBeginRefreshing:(id)sender {
 	[self load];
 }
+
+#pragma mark - Scrolling
 
 // Technically everwhere I've found says to override layoutSubviews on UIScrollView but this works just fine.
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
@@ -192,32 +224,6 @@
 		[topTracksTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
-- (void)viewDidUnload
-{
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
-		[self load];
-	}
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    // load Last.fm account login view. only display this on first run
-    if (![[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
-        [self performSegueWithIdentifier: @"Account"
-                                  sender: nil];
-    }
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"Account"]) {
-        AccountViewController *accountViewController = segue.destinationViewController;
-        [accountViewController setDelegate:self];
-    }
-}
-
 #pragma mark - iPod Change Notifications
 
 - (void)handle_NowPlayingItemChanged:(id)sender {
@@ -261,7 +267,7 @@
 	return cell;
 }
 
-#pragma mark -
+#pragma mark - Playback Timer
 
 - (void)updatePlaybackProgress {
 	NSTimeInterval currentTime = [iPodController currentPlaybackTime];
@@ -270,9 +276,11 @@
 	[playTimeProgressView setProgress:progress];
 }
 
-#pragma Main Loading Methods
+#pragma mark - Main Loading Methods
 
 - (void)loadInfoFromiPod {
+	// let the refresher know we're using the iPod info
+	isUsingiPod = YES;
 	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
@@ -319,10 +327,6 @@
 	dispatch_async(queue,^{
 	[topTracks requestTopTracksWithArtist:artistName];
 	});
-	
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[refreshControl endRefreshing];
-	});
 }
 
 - (void)load {
@@ -351,6 +355,29 @@
 	}
 }
 
+// called from each delegate that downloads data after it finishes
+// this way no matter what order they finish in the final conditions the refreshing ends
+- (void)finishLoadingAction {
+	#warning No timeout detection
+	// this will go through only if we're playing from the iPod
+	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
+		#if !(TARGET_IPHONE_SIMULATOR)
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[refreshControl endRefreshing];
+		});
+		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
+		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+		#endif
+	}
+	if (isFinishedLoadingArtistInfo && isFinishedLoadingTrackInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[refreshControl endRefreshing];
+		});
+		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
+		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	}
+}
+
 - (IBAction)reloadRecentTracks:(id)sender {
     [self load];
 }
@@ -359,6 +386,7 @@
 
 - (void)didReceiveRecentTracks:(LFMTrack *)_track {
 	// only display tracks from Last.fm is we are currently playing
+	isUsingiPod = NO;
 	#if !(TARGET_IPHONE_SIMULATOR)
 	if ([_track nowPlaying]) {
 	#endif
@@ -423,10 +451,6 @@
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 				});
 			}
-			
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[refreshControl endRefreshing];
-			});
 		});
 	#if !(TARGET_IPHONE_SIMULATOR)
 	}
@@ -465,6 +489,8 @@
         [artistImageView setImage:blurredImage];
 		[tagView setTags:[_artist tags]];
     });
+	isFinishedLoadingArtistInfo = YES;
+	[self finishLoadingAction];
 }
 
 - (void)didFailToReceiveArtistDetails:(NSError *)error {
@@ -478,6 +504,8 @@
 		[album setText:[_track album]];
 		[albumArtView setImage:[_track artwork]];
 	});
+	isFinishedLoadingTrackInfo = YES;
+	[self finishLoadingAction];
 }
 
 - (void)didFailToReceiveTrackInfo:(NSError *)error {
@@ -491,6 +519,8 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumGridView reloadData];
 	});
+	isFinishedLoadingTopAlbums = YES;
+	[self finishLoadingAction];
 }
 
 - (void)didFailToReceiveTopAlbums:(NSError *)error {
@@ -504,6 +534,8 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[topTracksTableView reloadData];
 	});
+	isFinishedLoadingTopTracks = YES;
+	[self finishLoadingAction];
 }
 
 #pragma mark - UITableView Data Source
