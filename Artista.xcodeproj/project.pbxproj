@@ -37,10 +37,6 @@
 		377C6F6015DCBDFA00B1CA34 /* bottombar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5F15DCBDFA00B1CA34 /* bottombar.png */; };
 		377C6F6215DCBE0100B1CA34 /* bgtransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6115DCBE0100B1CA34 /* bgtransparent.png */; };
 		377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */; };
-		377C6F6915DCBE4400B1CA34 /* heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6515DCBE4400B1CA34 /* heart.png */; };
-		377C6F6A15DCBE4400B1CA34 /* heart@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6615DCBE4400B1CA34 /* heart@2x.png */; };
-		377C6F6B15DCBE4400B1CA34 /* heartloved.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6715DCBE4400B1CA34 /* heartloved.png */; };
-		377C6F6C15DCBE4400B1CA34 /* heartloved@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6815DCBE4400B1CA34 /* heartloved@2x.png */; };
 		3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C315DB5DD70058023F /* UIKit.framework */; };
 		3795C7C615DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7C815DB5DD70058023F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C715DB5DD70058023F /* CoreGraphics.framework */; };
@@ -151,10 +147,6 @@
 		377C6F5F15DCBDFA00B1CA34 /* bottombar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombar.png; sourceTree = "<group>"; };
 		377C6F6115DCBE0100B1CA34 /* bgtransparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgtransparent.png; sourceTree = "<group>"; };
 		377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgtransparent@2x.png"; sourceTree = "<group>"; };
-		377C6F6515DCBE4400B1CA34 /* heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heart.png; sourceTree = "<group>"; };
-		377C6F6615DCBE4400B1CA34 /* heart@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heart@2x.png"; sourceTree = "<group>"; };
-		377C6F6715DCBE4400B1CA34 /* heartloved.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = heartloved.png; sourceTree = "<group>"; };
-		377C6F6815DCBE4400B1CA34 /* heartloved@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "heartloved@2x.png"; sourceTree = "<group>"; };
 		3795C7BF15DB5DD70058023F /* Artista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3795C7C315DB5DD70058023F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3795C7C515DB5DD70058023F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -343,10 +335,6 @@
 				377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */,
 				377C6F5915DCBDEB00B1CA34 /* progressbarfill.png */,
 				377C6F5A15DCBDEB00B1CA34 /* progressbarfill@2x.png */,
-				377C6F6515DCBE4400B1CA34 /* heart.png */,
-				377C6F6615DCBE4400B1CA34 /* heart@2x.png */,
-				377C6F6715DCBE4400B1CA34 /* heartloved.png */,
-				377C6F6815DCBE4400B1CA34 /* heartloved@2x.png */,
 				37379FA115F863F400B77708 /* overlay.png */,
 				37379FA215F863F400B77708 /* overlay@2x.png */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
@@ -575,10 +563,6 @@
 				377C6F6015DCBDFA00B1CA34 /* bottombar.png in Resources */,
 				377C6F6215DCBE0100B1CA34 /* bgtransparent.png in Resources */,
 				377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */,
-				377C6F6915DCBE4400B1CA34 /* heart.png in Resources */,
-				377C6F6A15DCBE4400B1CA34 /* heart@2x.png in Resources */,
-				377C6F6B15DCBE4400B1CA34 /* heartloved.png in Resources */,
-				377C6F6C15DCBE4400B1CA34 /* heartloved@2x.png in Resources */,
 				37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */,
 				37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */,
 				379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */,
