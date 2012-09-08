@@ -54,6 +54,7 @@
 	NSArray *topAlbumsArray;
 	NSArray *topTracksArray;
 	UILabel *versionLabel;
+	UILabel *copyrightLabel;
 	Reachability* reach;
 }
 

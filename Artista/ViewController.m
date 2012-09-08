@@ -527,6 +527,7 @@
 - (void)setupHiddenVersionView {
 	// Remove old label
 	[versionLabel removeFromSuperview];
+	[copyrightLabel removeFromSuperview];
 	
 	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
 	NSString *appDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
@@ -535,7 +536,7 @@
 	
 	UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:12];
 	
-	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@) \nCopyright © 2012 Phantom Sun Creative", appDisplayName, majorVersion, minorVersion];
+	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@)", appDisplayName, majorVersion, minorVersion];
 	CGSize textSize = [versionString sizeWithFont:font];
 	
 	float height = textSize.height;
@@ -557,10 +558,24 @@
 	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
 	versionLabel.font = font;
 	versionLabel.text = versionString;
-	versionLabel.lineBreakMode = UILineBreakModeWordWrap;
-	versionLabel.numberOfLines = 2;
+	
+	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative.";
+	textSize = [copyrightString sizeWithFont:font];
+	
+	height = textSize.height;
+	width = textSize.width;
+
+	y = versionLabel.frame.origin.y + versionLabel.frame.size.height;
+	
+	copyrightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
+	copyrightLabel.backgroundColor = [UIColor clearColor];
+	copyrightLabel.textColor = [UIColor grayColor];
+	copyrightLabel.center = CGPointMake(bioTextView.center.x, copyrightLabel.center.y);
+	copyrightLabel.font = font;
+	copyrightLabel.text = copyrightString;
 	
 	[bioTextView addSubview:versionLabel];
+	[bioTextView addSubview:copyrightLabel];
 }
 
 #pragma mark - LFMArtistInfo Delegate
