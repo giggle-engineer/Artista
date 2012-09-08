@@ -75,6 +75,12 @@
 	// setup refreshing
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+
+	albumRefreshControl = [[ODRefreshControl alloc] initInScrollView:albumGridView];
+	[albumRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+	
+	trackRefreshControl = [[ODRefreshControl alloc] initInScrollView:topTracksTableView];
+	[trackRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 	
 	// push scroll views content up past the bottom bar...
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
@@ -301,6 +307,8 @@
 	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
+		[albumRefreshControl beginRefreshing];
+		[trackRefreshControl beginRefreshing];
 	});
 	[iPodController beginGeneratingPlaybackNotifications];
 	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
@@ -351,6 +359,8 @@
 	topTracksArray = nil;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl endRefreshing];
+		[albumRefreshControl endRefreshing];
+		[trackRefreshControl endRefreshing];
 		[bioTextView setText:nil];
 		[artistImageView setImage:nil];
 		[tagView setTags:nil];
@@ -373,6 +383,8 @@
 	}
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
+		[albumRefreshControl beginRefreshing];
+		[trackRefreshControl beginRefreshing];
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
@@ -405,6 +417,8 @@
 		#if !(TARGET_IPHONE_SIMULATOR)
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[refreshControl endRefreshing];
+			[albumRefreshControl endRefreshing];
+			[trackRefreshControl endRefreshing];
 		});
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
@@ -413,6 +427,8 @@
 	if (isFinishedLoadingArtistInfo && isFinishedLoadingTrackInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[refreshControl endRefreshing];
+			[albumRefreshControl endRefreshing];
+			[trackRefreshControl endRefreshing];
 		});
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
@@ -436,10 +452,9 @@
 	LFMTrack *_track = [tracks firstObject];
 	// only display tracks from Last.fm is we are currently playing
 	isUsingiPod = NO;
-	//#if !(TARGET_IPHONE_SIMULATOR)
-	//[_track nowPlaying]
-	if (true) {
-	//#endif
+	#if !(TARGET_IPHONE_SIMULATOR)
+	if ([_track nowPlaying]) {
+	#endif
 		// remove playback timer updating if the iPod is no longer playing
 		if ([playbackTimer isValid]) {
 			[playbackTimer invalidate], playbackTimer = nil;
@@ -504,7 +519,7 @@
 				});
 			}
 		});
-	//#if !(TARGET_IPHONE_SIMULATOR)
+	#if !(TARGET_IPHONE_SIMULATOR)
 	}
 	else {
 		// reverting to iPod info even if not playing or perhaps show nothing all together
@@ -514,7 +529,7 @@
 			[iPodReloadingThread start];
 		}
 	}
-	//#endif
+	#endif
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
