@@ -15,6 +15,7 @@
 #import "NSArray+StringWithDelimeter.h"
 #import "UITag.h"
 #import "AlbumViewCell.h"
+#import "NSArray+FirstObject.h"
 
 @interface ViewController ()
 
@@ -29,7 +30,7 @@
 	playbackTimer = nil;
 	
 	// setup reachability
-	reach = [Reachability reachabilityWithHostname:@"www.apple.com"];
+	reach = [Reachability reachabilityWithHostname:@"ws.audioscrobbler.com"];
 	[reach startNotifier];
 	
 	// setup grid view
@@ -106,9 +107,6 @@
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-	if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"]) {
-		[self load];
-	}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -323,7 +321,7 @@
 	});
 	// only use one instance of artistInfo
 	if (artistInfo==nil) {
-		artistInfo = [[LastFMArtistInfo alloc] init];
+		artistInfo = [[LFMArtistInfo alloc] init];
 		[artistInfo setDelegate:self];
 	}
 	// setup top albums
@@ -366,6 +364,7 @@
 }
 
 - (void)load {
+	#warning Reachability isn't given enough time to see if internet is available
 	// simply exit this if no internet is available
 	if (![reach isReachable]) {
 		// TODO: Add proper no internet available graphics
@@ -432,12 +431,15 @@
 
 #pragma mark - LFMRecentTracks Delegate
 
-- (void)didReceiveRecentTracks:(LFMTrack *)_track {
+- (void)didReceiveRecentTracks:(NSArray*)tracks {
+	// first object is most recent
+	LFMTrack *_track = [tracks firstObject];
 	// only display tracks from Last.fm is we are currently playing
 	isUsingiPod = NO;
-	#if !(TARGET_IPHONE_SIMULATOR)
-	if ([_track nowPlaying]) {
-	#endif
+	//#if !(TARGET_IPHONE_SIMULATOR)
+	//[_track nowPlaying]
+	if (true) {
+	//#endif
 		// remove playback timer updating if the iPod is no longer playing
 		if ([playbackTimer isValid]) {
 			[playbackTimer invalidate], playbackTimer = nil;
@@ -449,12 +451,12 @@
 		dispatch_async(queue,^{
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artist setText:[_track artist]];
-				[track setText:[_track track]];
+				[track setText:[_track name]];
 			});
 			
 			// setup artist info
 			if (artistInfo==nil) {
-				artistInfo = [[LastFMArtistInfo alloc] init];
+				artistInfo = [[LFMArtistInfo alloc] init];
 				[artistInfo setDelegate:self];
 			}
 			// setup top albums
@@ -478,7 +480,7 @@
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
 				});
 				dispatch_async(queue,^{
-				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				[trackInfo requestInfo:[_track artist] withTrack:[_track name]];
 				});
 				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithMusicBrainzID:[_track musicBrainzID]];
@@ -492,7 +494,7 @@
 				[artistInfo requestInfoWithArtist:[_track artist]];
 				});
 				dispatch_async(queue,^{
-				[trackInfo requestInfo:[_track artist] withTrack:[_track track]];
+				[trackInfo requestInfo:[_track artist] withTrack:[_track name]];
 				});
 				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
@@ -502,7 +504,7 @@
 				});
 			}
 		});
-	#if !(TARGET_IPHONE_SIMULATOR)
+	//#if !(TARGET_IPHONE_SIMULATOR)
 	}
 	else {
 		// reverting to iPod info even if not playing or perhaps show nothing all together
@@ -512,11 +514,12 @@
 			[iPodReloadingThread start];
 		}
 	}
-	#endif
+	//#endif
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
+	[self reset];
 }
 
 #pragma mark - Setup Hidden Version View
@@ -532,8 +535,7 @@
 	
 	UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:12];
 	
-	// \n Copyright © 2012 Rainbow Dog Studios
-	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@)", appDisplayName, majorVersion, minorVersion];
+	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@) \nCopyright © 2012 Phantom Sun Creative", appDisplayName, majorVersion, minorVersion];
 	CGSize textSize = [versionString sizeWithFont:font];
 	
 	float height = textSize.height;
@@ -555,11 +557,13 @@
 	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
 	versionLabel.font = font;
 	versionLabel.text = versionString;
+	versionLabel.lineBreakMode = UILineBreakModeWordWrap;
+	versionLabel.numberOfLines = 2;
 	
 	[bioTextView addSubview:versionLabel];
 }
 
-#pragma mark - LastFMArtistInfo Delegate
+#pragma mark - LFMArtistInfo Delegate
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
 	//NSLog(@"tags:%u", [[_artist tags] count]);
@@ -580,6 +584,7 @@
 
 - (void)didFailToReceiveArtistDetails:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
+	[self reset];
 }
 
 #pragma mark - LFMTrackInfo Delegate
@@ -595,11 +600,19 @@
 
 - (void)didFailToReceiveTrackInfo:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
+	[self reset];
 }
 
 #pragma mark - LFMArtistTopAlbums Delegate
 
 - (void)didReceiveTopAlbums:(NSArray *)albums {
+	topAlbumsArray = albums;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[albumGridView reloadData];
+	});
+}
+
+- (void)didFinishReceivingTopAlbums:(NSArray *)albums {
 	topAlbumsArray = albums;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumGridView reloadData];
@@ -610,6 +623,7 @@
 
 - (void)didFailToReceiveTopAlbums:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
+	[self reset];
 }
 
 #pragma mark - LFMArtistTopTracks Delegate
@@ -625,6 +639,7 @@
 
 - (void)didFailToReceiveTopTracks:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
+	[self reset];
 }
 
 #pragma mark - UITableView Data Source

@@ -12,7 +12,7 @@
 #import "AccountViewController.h"
 #import "LFMRecentTracks.h"
 #import "LFMTrackInfo.h"
-#import "LastFMArtistInfo.h"
+#import "LFMArtistInfo.h"
 #import "LFMArtistTopTracks.h"
 #import "LFMArtistTopAlbums.h"
 #import "ODRefreshControl.h"
@@ -20,7 +20,7 @@
 #import "SVSegmentedControl.h"
 #import "Reachability.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LastFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
@@ -38,7 +38,7 @@
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;
-    LastFMArtistInfo *artistInfo;
+    LFMArtistInfo *artistInfo;
 	LFMTrackInfo *trackInfo;
 	LFMArtistTopAlbums *topAlbums;
 	LFMArtistTopTracks *topTracks;

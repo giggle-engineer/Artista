@@ -1,5 +1,5 @@
 //
-//  LastFMArtistInfo.h
+//  LFMArtistInfo.h
 //  Musica
 //
 //  Created by Chloe Stars on 2/27/11.
@@ -7,17 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
 #import "LFMArtist.h"
 #import "NSString+URLEncoding.h"
 
-@protocol LastFMArtistInfoDelegate <NSObject>
+@protocol LFMArtistInfoDelegate <NSObject>
 @required
 - (void) didReceiveArtistInfo: (LFMArtist *)artist;
 - (void) didFailToReceiveArtistDetails: (NSError *)error;
 @end
 
-@interface LastFMArtistInfo : NSObject <NSXMLParserDelegate> {
-    id <LastFMArtistInfoDelegate> delegate;
+@interface LFMArtistInfo : NSObject <NSXMLParserDelegate> {
+    id <LFMArtistInfoDelegate> delegate;
     
     @private
     NSString *currentElement;

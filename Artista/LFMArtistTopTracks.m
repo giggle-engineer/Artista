@@ -22,9 +22,33 @@
     NSLog(@"LFMArtistTopTracks artist requested: %@", artist);
     NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
+	
 	tracks = [NSMutableArray new];
 	
 	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
+	
+	if ([rootXML isValid]) {
+		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
+			RXMLElement *errorElement = [rootXML child:@"error"];
+			
+			NSMutableDictionary* details = [NSMutableDictionary dictionary];
+			[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
+			
+			// populate the error object with the details
+			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+			[[self delegate] didFailToReceiveTopTracks:error];
+			return;
+		}
+	}
+	else {
+		// populate the error object with the details
+		NSMutableDictionary* details = [NSMutableDictionary dictionary];
+		[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
+		
+		NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+		[[self delegate] didFailToReceiveTopTracks:error];
+		return;
+	}
 	
 	[rootXML iterate:@"toptracks.track" usingBlock: ^(RXMLElement *e) {
 		[tracks addObject:[e child:@"name"].text];
@@ -40,9 +64,33 @@
     NSLog(@"LFMArtistTopTracks artist requested: %@", mbid);
     NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
+	
 	tracks = [NSMutableArray new];
 	
 	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
+	
+	if ([rootXML isValid]) {
+		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
+			RXMLElement *errorElement = [rootXML child:@"error"];
+			
+			NSMutableDictionary* details = [NSMutableDictionary dictionary];
+			[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
+			
+			// populate the error object with the details
+			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+			[[self delegate] didFailToReceiveTopTracks:error];
+			return;
+		}
+	}
+	else {
+		// populate the error object with the details
+		NSMutableDictionary* details = [NSMutableDictionary dictionary];
+		[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
+		
+		NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+		[[self delegate] didFailToReceiveTopTracks:error];
+		return;
+	}
 	
 	[rootXML iterate:@"toptracks.track" usingBlock: ^(RXMLElement *e) {
 		[tracks addObject:[e child:@"name"].text];

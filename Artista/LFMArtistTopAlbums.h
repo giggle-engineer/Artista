@@ -14,6 +14,7 @@
 @required
 - (void) didReceiveTopAlbums: (NSArray *)albums;
 - (void) didFailToReceiveTopAlbums: (NSError *)error;
+- (void) didFinishReceivingTopAlbums: (NSArray *)albums;
 @end
 
 @interface LFMArtistTopAlbums : NSObject <NSXMLParserDelegate> {

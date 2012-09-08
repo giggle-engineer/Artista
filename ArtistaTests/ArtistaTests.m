@@ -26,7 +26,7 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in Music InfoTests");
+    STFail(@"Unit tests are not implemented yet in ArtistaTests");
 }
 
 @end

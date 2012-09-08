@@ -7,26 +7,18 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
 #import "NSString+URLEncoding.h"
 #import "LFMTrack.h"
 
 @protocol LFMRecentTracksDelegate <NSObject>
 @required
-- (void) didReceiveRecentTracks: (LFMTrack*)track;
+- (void) didReceiveRecentTracks: (NSArray*)tracks;
 - (void) didFailToReceiveRecentTracks: (NSError *)error;
 @end
 
 @interface LFMRecentTracks : NSObject <NSXMLParserDelegate> {
     id <LFMRecentTracksDelegate> delegate;
-    LFMTrack *mostRecentTrack;
-    
-@private
-    NSString *currentElement;
-    NSString *currentAttribute;
-    NSString *artist;
-    NSString *track;
-    NSString *musicBrainzID;
-    BOOL nowPlaying;
 }
 
 @property (strong) id delegate;

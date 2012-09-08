@@ -21,134 +21,46 @@
     NSLog(@"LFMRecentTracks user requested: %@", user);
     NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:
-                              urlRequestString]
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *returnedData = [[NSData alloc] init];
-    returnedData = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response error:&error];
+    RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
-    
-    if (returnedData == nil) {
-        //[pool release];
-        //return -1;
-    }
-    else {
-        if ([self parseData:returnedData] != nil) {
-            //[pool release];
-            //return -1;
-        }
-        //[pool release];
-        //return 0;
-    }
-}
-
-/**
- *  Parses the retrieved data from the website
- */
-- (NSError *)parseData:(NSData *)info {
-    BOOL success;
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:info];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:YES];
-    success = [parser parse];
-    if (success == NO) {
-        return [parser parserError];
-    }
-    //[parser release];
-    return nil;
-}
-
-- (void)parserDidStartDocument:(NSXMLParser *)parser {
-	//NSLog(@"found file and started parsing");
-}
-
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    // Parsing failed
-	[[self delegate] didFailToReceiveRecentTracks:parseError];
-}
-
-- (void)parser:(NSXMLParser *)parser
-didStartElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName
-	attributes:(NSDictionary *)attributeDict{
-	//NSLog(@"found this element: %@", elementName);
-	currentElement = [elementName copy];
-    
-	if ([currentElement isEqualToString:@"track"]) {
-		currentAttribute = [attributeDict valueForKey:@"nowplaying"];
-		if ([currentAttribute isEqualToString:@"true"]) {
-			nowPlaying = YES;
-		}
-		else if ([currentAttribute isEqualToString:@"false"]) {
-			nowPlaying = NO;
+	if ([rootXML isValid]) {
+		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
+			RXMLElement *errorElement = [rootXML child:@"error"];
+			
+			NSMutableDictionary* details = [NSMutableDictionary dictionary];
+			[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
+			
+			// populate the error object with the details
+			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+			[[self delegate] didFailToReceiveRecentTracks:error];
+			return;
 		}
 	}
-	if ([elementName isEqualToString:@"name"]) {
-        // make sure we don't read this twice
-        if (!track) {
-            track = nil;
-        }
+	else {
+		// populate the error object with the details
+		NSMutableDictionary* details = [NSMutableDictionary dictionary];
+		[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
+		
+		NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+		[[self delegate] didFailToReceiveRecentTracks:error];
+		return;
 	}
-    if ([elementName isEqualToString:@"artist"]) {
-        // make sure we don't read this twice
-        if (musicBrainzID == nil) {
-            musicBrainzID = [attributeDict valueForKey:@"mbid"];
-        }
-    }
-}
-- (void)parser:(NSXMLParser *)parser
- didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName{
-	// do nothing element tag ended
-}
-
-// the stuff inside the tags
-- (void)parser:(NSXMLParser *)parser
-foundCharacters:(NSString *)string{
-	//NSLog(@"found characters: %@", string);
-	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"name"]) {
-        if (track == nil) {
-            NSLog(@"LastFMArtistInfo track name: %@", string);
-            track = string;
-        }
-	}
-	if ([currentElement isEqualToString:@"artist"]) {
-        if (artist == nil) {
-            artist = string;
-            NSLog(@"LFMRecentTracks Details: %@", artist);
-        }
-    }
-}
-
-/**
- * Parsing is finished here so this is when the delegate gets called
- */
-- (void)parserDidEndDocument:(NSXMLParser *)parser {
-    mostRecentTrack = [[LFMTrack alloc] init];
-    [mostRecentTrack setArtist:artist];
-    [mostRecentTrack setMusicBrainzID:musicBrainzID];
-    [mostRecentTrack setTrack:track];
-	[mostRecentTrack setNowPlaying:nowPlaying];
 	
-	// Success let controller know we have data
-    [[self delegate] didReceiveRecentTracks:mostRecentTrack];
+	NSMutableArray *tracks = [NSMutableArray new];
+
+	[rootXML iterate:@"recenttracks.track" usingBlock: ^(RXMLElement *e) {
+		LFMTrack *track = [LFMTrack new];
+		RXMLElement *artist = [e child:@"artist"];
+		
+		[track setArtist:[artist child:@"name"].text];
+		[track setMusicBrainzID:[artist child:@"mbid"].text];
+		
+		[track setName:[e child:@"name"].text];
+
+		[tracks addObject:track];
+	}];
 	
-    // reset variables
-    currentElement = nil;
-    currentAttribute = nil;
-    artist = nil;
-    track = nil;
-    musicBrainzID = nil;
-    nowPlaying = NO;
-    
+	[[self delegate] didReceiveRecentTracks:tracks];
 }
 
 @end

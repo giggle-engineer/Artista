@@ -37,6 +37,7 @@
 		377C6F6015DCBDFA00B1CA34 /* bottombar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5F15DCBDFA00B1CA34 /* bottombar.png */; };
 		377C6F6215DCBE0100B1CA34 /* bgtransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6115DCBE0100B1CA34 /* bgtransparent.png */; };
 		377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */; };
+		37873F0B15FAE67200C5DD04 /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */; };
 		3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C315DB5DD70058023F /* UIKit.framework */; };
 		3795C7C615DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7C815DB5DD70058023F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C715DB5DD70058023F /* CoreGraphics.framework */; };
@@ -49,7 +50,7 @@
 		3795C7E415DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7EC15DB5DD70058023F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3795C7EA15DB5DD70058023F /* InfoPlist.strings */; };
 		3795C7EF15DB5DD70058023F /* ArtistaTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7EE15DB5DD70058023F /* ArtistaTests.m */; };
-		3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7F915DB5E400058023F /* LastFMArtistInfo.m */; };
+		3795C7FA15DB5E400058023F /* LFMArtistInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7F915DB5E400058023F /* LFMArtistInfo.m */; };
 		3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */; };
 		3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C7FF15DB62460058023F /* LFMRecentTracks.m */; };
 		3795C80315DB63610058023F /* LFMTrack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3795C80215DB63610058023F /* LFMTrack.m */; };
@@ -147,6 +148,8 @@
 		377C6F5F15DCBDFA00B1CA34 /* bottombar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombar.png; sourceTree = "<group>"; };
 		377C6F6115DCBE0100B1CA34 /* bgtransparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgtransparent.png; sourceTree = "<group>"; };
 		377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgtransparent@2x.png"; sourceTree = "<group>"; };
+		37873F0915FAE67200C5DD04 /* NSArray+FirstObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FirstObject.h"; sourceTree = "<group>"; };
+		37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FirstObject.m"; sourceTree = "<group>"; };
 		3795C7BF15DB5DD70058023F /* Artista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3795C7C315DB5DD70058023F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3795C7C515DB5DD70058023F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -166,8 +169,8 @@
 		3795C7EB15DB5DD70058023F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		3795C7ED15DB5DD70058023F /* ArtistaTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ArtistaTests.h; sourceTree = "<group>"; };
 		3795C7EE15DB5DD70058023F /* ArtistaTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ArtistaTests.m; sourceTree = "<group>"; };
-		3795C7F815DB5E400058023F /* LastFMArtistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LastFMArtistInfo.h; sourceTree = "<group>"; };
-		3795C7F915DB5E400058023F /* LastFMArtistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LastFMArtistInfo.m; sourceTree = "<group>"; };
+		3795C7F815DB5E400058023F /* LFMArtistInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtistInfo.h; sourceTree = "<group>"; };
+		3795C7F915DB5E400058023F /* LFMArtistInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtistInfo.m; sourceTree = "<group>"; };
 		3795C7FB15DB5E540058023F /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
 		3795C7FC15DB5E540058023F /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
 		3795C7FE15DB62460058023F /* LFMRecentTracks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMRecentTracks.h; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 			isa = PBXGroup;
 			children = (
 				3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */,
+				37873F0915FAE67200C5DD04 /* NSArray+FirstObject.h */,
+				37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */,
 				3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */,
 				376DDFA415E9ED6A00F7F284 /* GTMNSString+HTML.h */,
 				376DDFA515E9ED6A00F7F284 /* GTMNSString+HTML.m */,
@@ -400,8 +405,8 @@
 		3795C81415DC246B0058023F /* Last.fm */ = {
 			isa = PBXGroup;
 			children = (
-				3795C7F815DB5E400058023F /* LastFMArtistInfo.h */,
-				3795C7F915DB5E400058023F /* LastFMArtistInfo.m */,
+				3795C7F815DB5E400058023F /* LFMArtistInfo.h */,
+				3795C7F915DB5E400058023F /* LFMArtistInfo.m */,
 				3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */,
 				3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */,
 				3720DED715EE2BCC006C6B61 /* LFMArtistTopTracks.h */,
@@ -605,7 +610,7 @@
 				3795C7D015DB5DD70058023F /* main.m in Sources */,
 				3795C7D415DB5DD70058023F /* AppDelegate.m in Sources */,
 				3770AE0915E4820800B0144C /* ViewController.m in Sources */,
-				3795C7FA15DB5E400058023F /* LastFMArtistInfo.m in Sources */,
+				3795C7FA15DB5E400058023F /* LFMArtistInfo.m in Sources */,
 				3795C7FD15DB5E540058023F /* NSString+URLEncoding.m in Sources */,
 				3795C80015DB62460058023F /* LFMRecentTracks.m in Sources */,
 				3795C80315DB63610058023F /* LFMTrack.m in Sources */,
@@ -627,6 +632,7 @@
 				377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */,
 				3720DED915EE2BCC006C6B61 /* LFMArtistTopTracks.m in Sources */,
 				37ECBACF15F92C8100450F30 /* Reachability.m in Sources */,
+				37873F0B15FAE67200C5DD04 /* NSArray+FirstObject.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

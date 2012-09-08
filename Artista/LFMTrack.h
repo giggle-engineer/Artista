@@ -11,7 +11,7 @@
 @interface LFMTrack : NSObject
 
 @property NSString *artist;
-@property NSString *track;
+@property NSString *name;
 @property NSString *album;
 @property UIImage *artwork;
 @property NSString *musicBrainzID;
