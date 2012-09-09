@@ -7,7 +7,14 @@
 //
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "LFM.h"
 
-@interface ArtistaTests : SenTestCase
+@interface ArtistaTests : SenTestCase <LFMArtistInfoDelegate> {
+	LFMArtistInfo *lfmArtistInfo;
+	LFMArtistTopAlbums *lfmArtistTopAlbums;
+	LFMArtistTopTracks *lfmArtistTopTracks;
+	LFMRecentTracks *lfmRecentTracks;
+	LFMTrackInfo *lfmTrackInfo;
+}
 
 @end

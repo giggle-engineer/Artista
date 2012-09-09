@@ -21,11 +21,6 @@
     id <LFMArtistInfoDelegate> delegate;
     
     @private
-    NSString *currentElement;
-    NSString *currentAttribute;
-    UIImage *artistImage;
-    NSString *artistDetails;
-	BOOL isInsideTagsTag;
 	NSMutableArray *tagsArray;
 }
 

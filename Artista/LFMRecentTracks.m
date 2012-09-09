@@ -52,6 +52,10 @@
 		LFMTrack *track = [LFMTrack new];
 		RXMLElement *artist = [e child:@"artist"];
 		
+		if ([[e attribute:@"nowplaying"] isEqualToString:@"true"]) {
+			[track setNowPlaying:YES];
+		}
+		
 		[track setArtist:[artist child:@"name"].text];
 		[track setMusicBrainzID:[artist child:@"mbid"].text];
 		

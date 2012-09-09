@@ -21,7 +21,6 @@
 		3741CE7515E49E000086294E /* UITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7415E49E000086294E /* UITag.m */; };
 		3741CE7A15E49EA40086294E /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7915E49EA40086294E /* UITagView.m */; };
 		3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3741CE7B15E4B1AD0086294E /* CoreText.framework */; };
-		3764CBD015ECAE4600EB3F1D /* AlbumViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */; };
 		376DDFA215E9DC5600F7F284 /* NSString_stripHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA115E9DC5600F7F284 /* NSString_stripHtml.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFA715E9ED6A00F7F284 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA515E9ED6A00F7F284 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFAA15E9EE5000F7F284 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA915E9EE5000F7F284 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -183,6 +182,7 @@
 		3795C80E15DC23670058023F /* UIImage+DSP.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DSP.m"; sourceTree = "<group>"; };
 		3795C81115DC23B50058023F /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		37970C9315DC37B700E5CD0D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		379976CB15FC1454003E6533 /* LFM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFM.h; sourceTree = "<group>"; };
 		379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlbumViewCell.xib; sourceTree = "<group>"; };
 		379FBAF015EDE8DE00A5BBAE /* KKGridView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = KKGridView.xcodeproj; path = Artista/KKGridView/KKGridView.xcodeproj; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
@@ -405,6 +405,7 @@
 		3795C81415DC246B0058023F /* Last.fm */ = {
 			isa = PBXGroup;
 			children = (
+				379976CB15FC1454003E6533 /* LFM.h */,
 				3795C7F815DB5E400058023F /* LFMArtistInfo.h */,
 				3795C7F915DB5E400058023F /* LFMArtistInfo.m */,
 				3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */,
@@ -641,7 +642,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				3795C7EF15DB5DD70058023F /* ArtistaTests.m in Sources */,
-				3764CBD015ECAE4600EB3F1D /* AlbumViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,6 +793,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Artista/RaptureXML/**",
+					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "ArtistaTests/ArtistaTests-Info.plist";
 				PRODUCT_NAME = ArtistaTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -810,6 +814,10 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Artista/RaptureXML/**",
+					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+				);
 				INFOPLIST_FILE = "ArtistaTests/ArtistaTests-Info.plist";
 				PRODUCT_NAME = ArtistaTests;
 				TEST_HOST = "$(BUNDLE_LOADER)";

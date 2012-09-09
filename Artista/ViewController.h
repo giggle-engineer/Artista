@@ -10,11 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <KKGridView/KKGridView.h>
 #import "AccountViewController.h"
-#import "LFMRecentTracks.h"
-#import "LFMTrackInfo.h"
-#import "LFMArtistInfo.h"
-#import "LFMArtistTopTracks.h"
-#import "LFMArtistTopAlbums.h"
+#import "LFM.h"
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"

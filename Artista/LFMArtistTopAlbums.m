@@ -19,7 +19,7 @@
 - (void)requestTopAlbumsWithArtist:(NSString*)artist
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=%@&api_key=%@",
-                                  nil, kLastFMKey];
+                                  [artist URLEncodedString], kLastFMKey];
     NSLog(@"LFMArtistTopAlbums artist requested: %@", artist);
     NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
     // Initialization code here.
@@ -60,11 +60,11 @@
 				[album setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:image.text]]]];
 			}
 		}
-		[albums addObject:album];
 		// TODO: Have the adding to the array be done on the view controller through the delegate
+		[albums addObject:album];
 		[[self delegate] didReceiveTopAlbums:(NSArray*)[albums copy]];
 	}];
-
+	
 	NSLog(@"albums count:%d", [albums count]);
     [[self delegate] didFinishReceivingTopAlbums:(NSArray*)[albums copy]];
 	//[albums removeAllObjects];

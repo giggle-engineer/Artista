@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "368840689.559588"
+         timestampString = "368843327.474305"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "675"
-         endingLineNumber = "675"
+         startingLineNumber = "673"
+         endingLineNumber = "673"
          landmarkName = "@implementation ViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "368840689.559588"
+         timestampString = "368843327.474305"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "679"
-         endingLineNumber = "679"
+         startingLineNumber = "677"
+         endingLineNumber = "677"
          landmarkName = "-tableView:numberOfRowsInSection:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -110,11 +110,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "368840609.685758"
+         timestampString = "368843327.474305"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "380"
-         endingLineNumber = "380"
+         startingLineNumber = "379"
+         endingLineNumber = "379"
          landmarkName = "-load"
          landmarkType = "5">
       </FileBreakpoint>

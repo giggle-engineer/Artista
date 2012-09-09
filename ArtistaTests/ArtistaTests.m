@@ -15,6 +15,14 @@
     [super setUp];
     
     // Set-up code here.
+	lfmArtistInfo = [[LFMArtistInfo alloc] init];
+	NSLog(@"setting up testing");
+	[lfmArtistInfo setDelegate:self];
+	lfmArtistTopAlbums = [[LFMArtistTopAlbums alloc] init];
+	lfmArtistTopTracks = [[LFMArtistTopTracks alloc] init];
+	lfmRecentTracks = [[LFMRecentTracks alloc] init];
+	lfmTrackInfo = [[LFMTrackInfo alloc] init];
+	
 }
 
 - (void)tearDown
@@ -26,7 +34,15 @@
 
 - (void)testExample
 {
-    STFail(@"Unit tests are not implemented yet in ArtistaTests");
+	[lfmArtistInfo requestInfoWithArtist:@"Tiësto"];
 }
+
+#pragma mark - LFMArtistInfo Delegate
+
+- (void)didReceiveArtistInfo:(LFMArtist *)artist {
+	STAssertNotNil([artist bio], @"Artist bio found.");
+}
+
+#pragma mark -
 
 @end
