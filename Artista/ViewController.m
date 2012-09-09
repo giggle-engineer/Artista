@@ -60,10 +60,10 @@
 	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
 	
 	// give shadow to bio text
-    bioTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
+    /*bioTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
-    bioTextView.layer.shadowRadius = 0.5f;
+    bioTextView.layer.shadowRadius = 0.5f;*/
 	
 	// give shadow to artist text
     artist.layer.shadowColor = [[UIColor whiteColor] CGColor];

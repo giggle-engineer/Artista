@@ -373,9 +373,9 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */,
 				37873F0915FAE67200C5DD04 /* NSArray+FirstObject.h */,
 				37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */,
+				3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */,
 				3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */,
 				376DDFA415E9ED6A00F7F284 /* GTMNSString+HTML.h */,
 				376DDFA515E9ED6A00F7F284 /* GTMNSString+HTML.m */,
