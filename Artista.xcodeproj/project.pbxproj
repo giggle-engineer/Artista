@@ -17,6 +17,8 @@
 		3727D06F15EB5E9800C88744 /* LFMAlbum.m in Sources */ = {isa = PBXBuildFile; fileRef = 3727D06E15EB5E9800C88744 /* LFMAlbum.m */; };
 		37379FA315F863F400B77708 /* overlay.png in Resources */ = {isa = PBXBuildFile; fileRef = 37379FA115F863F400B77708 /* overlay.png */; };
 		37379FA415F863F400B77708 /* overlay@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37379FA215F863F400B77708 /* overlay@2x.png */; };
+		3739028E15FE7CB700C9B7B7 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 3739028D15FE7CB700C9B7B7 /* Default.png */; };
+		3739029015FE7CB900C9B7B7 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3739028F15FE7CB900C9B7B7 /* Default@2x.png */; };
 		3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */; };
 		3741CE7515E49E000086294E /* UITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7415E49E000086294E /* UITag.m */; };
 		3741CE7A15E49EA40086294E /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7915E49EA40086294E /* UITagView.m */; };
@@ -120,6 +122,8 @@
 		3727D06E15EB5E9800C88744 /* LFMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMAlbum.m; sourceTree = "<group>"; };
 		37379FA115F863F400B77708 /* overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay.png; sourceTree = "<group>"; };
 		37379FA215F863F400B77708 /* overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay@2x.png"; sourceTree = "<group>"; };
+		3739028D15FE7CB700C9B7B7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
+		3739028F15FE7CB900C9B7B7 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 		3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		3741CE7315E49E000086294E /* UITag.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITag.h; sourceTree = "<group>"; };
 		3741CE7415E49E000086294E /* UITag.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITag.m; sourceTree = "<group>"; };
@@ -326,6 +330,8 @@
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3739028F15FE7CB900C9B7B7 /* Default@2x.png */,
+				3739028D15FE7CB700C9B7B7 /* Default.png */,
 				377C6F5F15DCBDFA00B1CA34 /* bottombar.png */,
 				377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */,
 				377C6F6115DCBE0100B1CA34 /* bgtransparent.png */,
@@ -560,6 +566,8 @@
 				379FBA9015EDD03D00A5BBAE /* AlbumViewCell.xib in Resources */,
 				37379FA315F863F400B77708 /* overlay.png in Resources */,
 				37379FA415F863F400B77708 /* overlay@2x.png in Resources */,
+				3739028E15FE7CB700C9B7B7 /* Default.png in Resources */,
+				3739029015FE7CB900C9B7B7 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
