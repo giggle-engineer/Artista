@@ -115,6 +115,11 @@
     }
 }
 
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"Account"]) {
@@ -376,14 +381,25 @@
 		#endif
 	}
 	else {
-		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-		dispatch_async(queue,^{
-			if (recentTracks==nil) {
-				recentTracks = [[LFMRecentTracks alloc] init];
-				[recentTracks setDelegate:self];
+		// make sure we have a Last.fm account setup
+		if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
+			dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+			dispatch_async(queue,^{
+				if (recentTracks==nil) {
+					recentTracks = [[LFMRecentTracks alloc] init];
+					[recentTracks setDelegate:self];
+				}
+				[recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
+			});
+		}
+		// default back to loading the iPod if we don't havea Last.fm account and nothing is playing
+		else {
+			// only one copy of this thread should ever be running
+			if (![iPodReloadingThread isExecuting]) {
+				iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
+				[iPodReloadingThread start];
 			}
-			[recentTracks requestInfo:[[NSUserDefaults standardUserDefaults] stringForKey:@"user"]];
-		});
+		}
 	}
 }
 
@@ -412,10 +428,6 @@
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
 	}
-}
-
-- (IBAction)reloadRecentTracks:(id)sender {
-    [self load];
 }
 
 #pragma mark - LFMRecentTracks Delegate
@@ -701,11 +713,13 @@
 
 - (void)didFailToReceiveUsername:(NSError *)error {
     NSLog(@"Failed to receive username with error:%@", [error description]);
+	[self load];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+// edit account options
+- (IBAction)showAccountView:(id)sender {
+	[self performSegueWithIdentifier: @"Account"
+							  sender: nil];
 }
 
 @end

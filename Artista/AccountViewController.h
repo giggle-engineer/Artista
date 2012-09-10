@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "LFMRecentTracks.h"
 
 @protocol AccountViewControllerDelegate <NSObject>
 @required
@@ -14,7 +15,7 @@
 - (void) didFailToReceiveUsername: (NSError *)error;
 @end
 
-@interface AccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate> {
+@interface AccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LFMRecentTracksDelegate> {
     id <AccountViewControllerDelegate> delegate;
     
     UITextField *userNameTextField;

@@ -121,7 +121,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                     </progressView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7d-F7-eyd">
-                                        <rect key="frame" x="124" y="11" width="72" height="37"/>
+                                        <rect key="frame" x="268" y="13" width="52" height="37"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal">
@@ -132,7 +132,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="reloadRecentTracks:" destination="2" eventType="touchUpInside" id="E4N-2c-Iiu"/>
+                                            <action selector="showAccountView:" destination="2" eventType="touchUpInside" id="eXq-QS-OGr"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -218,8 +218,8 @@
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="reloadRecentTracks:"/>
                 <relationship kind="action" name="scrollCurrentViewToTop:"/>
+                <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="album" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="KKGridView"/>

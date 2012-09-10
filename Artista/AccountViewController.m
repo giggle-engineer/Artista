@@ -26,13 +26,17 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+	// show keyboard for username text field
+	[userNameTextField becomeFirstResponder];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -54,7 +58,7 @@
 	
 	[textField resignFirstResponder];
 	
-	[self saveAndDismiss];
+	[self verifyUser];
 	
 	return YES;
 	
@@ -89,7 +93,11 @@
             [userNameTextField setKeyboardType:UIKeyboardTypeURL];
             [userNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
             [userNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
-            [userNameTextField setPlaceholder:@"User Name"];
+            [userNameTextField setPlaceholder:@"Username"];
+			// if an account is already linked show it
+			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
+				[userNameTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+			}
             [cell addSubview:userNameTextField];
             return cell;
         }
@@ -100,7 +108,14 @@
         }
 		if (indexPath.row==2) {
 			UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-			cell.textLabel.text = @"Skip";
+			// if no username is set show the skip button
+			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
+				cell.textLabel.text = @"Skip";
+			}
+			// other wise the button will unlink a currently linked account
+			else {
+				cell.textLabel.text = @"Unlink Account";
+			}
 			return cell;
 		}
     }
@@ -119,31 +134,42 @@
     }
 }
 
-/*
- // Override to support rearranging the table view.
- - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
- {
- }
- */
+- (void)verifyUser {
+	LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
+	[recentTracks setDelegate:self];
+	[recentTracks requestInfo:userNameTextField.text];
+}
 
-/*
- // Override to support conditional rearranging of the table view.
- - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
- {
- // Return NO if you do not want the item to be re-orderable.
- return YES;
- }
- */
+- (void)didReceiveRecentTracks:(NSArray *)tracks {
+	// account valid. save and dismiss
+	[self saveAndDismiss];
+}
+
+- (void)didFailToReceiveRecentTracks:(NSError *)error {
+	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid username or Last.fm is down." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+	[alert show];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section==0) {
         if (indexPath.row==1) {
-            [self saveAndDismiss];
+            [self verifyUser];
         }
 		if (indexPath.row==2) {
-			[self dismissModalViewControllerAnimated:YES];
+			// decided not to link an account
+			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
+				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+				[[self delegate] didFailToReceiveUsername:nil];
+				[self dismissModalViewControllerAnimated:YES];
+			}
+			// removing existing link to Last.fm
+			else {
+				[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+				[[self delegate] didFailToReceiveUsername:nil];
+				[self dismissModalViewControllerAnimated:YES];
+			}
 		}
     }
 }
