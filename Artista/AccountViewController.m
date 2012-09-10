@@ -44,14 +44,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)saveAndDismiss {
-	// save user name and dissmiss
-	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
-	[[self delegate] didReceiveReceiveUsername];
-	[self dismissModalViewControllerAnimated:YES];
-}
-
 #pragma mark - Text Field Delegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
@@ -68,7 +60,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -135,14 +127,28 @@
 }
 
 - (void)verifyUser {
-	LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
-	[recentTracks setDelegate:self];
-	[recentTracks requestInfo:userNameTextField.text];
+	// don't be that jerk who makes the button stay highlighted until the loading is done
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
+		LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
+		[recentTracks setDelegate:self];
+		[recentTracks requestInfo:userNameTextField.text];
+	});
+}
+
+- (void)saveAndDismiss {
+	// save user name and dissmiss
+	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+	[[self delegate] didReceiveReceiveUsername];
+	[self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)didReceiveRecentTracks:(NSArray *)tracks {
 	// account valid. save and dismiss
-	[self saveAndDismiss];
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self saveAndDismiss];
+	});
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
@@ -180,6 +186,9 @@
         case 0:
             return @"Last.fm Account";
             break;
+		case 1:
+			return @"Linking with Last.fm allows you to use Artista with the currently scrobbled track.";
+			break;
         default:
             return @"";
             break;
