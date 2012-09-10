@@ -14,7 +14,6 @@
 #import "ODRefreshControl.h"
 #import "UITagView.h"
 #import "SVSegmentedControl.h"
-#import "Reachability.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate> {
     IBOutlet UILabel *artist;
@@ -53,7 +52,6 @@
 	NSArray *topTracksArray;
 	UILabel *versionLabel;
 	UILabel *copyrightLabel;
-	Reachability* reach;
 }
 
 @end
