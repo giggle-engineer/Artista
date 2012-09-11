@@ -556,7 +556,7 @@
 	
 	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
 	versionLabel.backgroundColor = [UIColor clearColor];
-	versionLabel.textColor = [UIColor grayColor];
+	versionLabel.textColor = [UIColor darkGrayColor];
 	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
 	versionLabel.font = font;
 	versionLabel.text = versionString;
@@ -571,7 +571,7 @@
 	
 	copyrightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
 	copyrightLabel.backgroundColor = [UIColor clearColor];
-	copyrightLabel.textColor = [UIColor grayColor];
+	copyrightLabel.textColor = [UIColor darkGrayColor];
 	copyrightLabel.center = CGPointMake(bioTextView.center.x, copyrightLabel.center.y);
 	copyrightLabel.font = font;
 	copyrightLabel.text = copyrightString;

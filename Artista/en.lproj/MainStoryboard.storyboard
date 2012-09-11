@@ -13,7 +13,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.70000000000000007" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
                                 <rect key="frame" x="0.0" y="-4" width="320" height="488"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
