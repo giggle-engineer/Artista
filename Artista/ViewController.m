@@ -323,7 +323,8 @@
 		[refreshControl endRefreshing];
 		[albumRefreshControl endRefreshing];
 		[trackRefreshControl endRefreshing];
-		[bioTextView setText:nil];
+		[navigation moveThumbToIndex:0 animate:YES];
+		[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues. Sorry for any inconvenience, if this is the case please try again later."];
 		[artistImageView setImage:nil];
 		[tagView setTags:nil];
 		[topTracksTableView reloadData];
