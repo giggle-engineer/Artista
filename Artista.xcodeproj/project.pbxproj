@@ -23,6 +23,8 @@
 		3741CE7515E49E000086294E /* UITag.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7415E49E000086294E /* UITag.m */; };
 		3741CE7A15E49EA40086294E /* UITagView.m in Sources */ = {isa = PBXBuildFile; fileRef = 3741CE7915E49EA40086294E /* UITagView.m */; };
 		3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3741CE7B15E4B1AD0086294E /* CoreText.framework */; };
+		374FCCC515FECC330098CC30 /* TrackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374FCCC415FECC330098CC30 /* TrackViewCell.xib */; };
+		374FCCC815FED0840098CC30 /* TrackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 374FCCC715FED0840098CC30 /* TrackViewCell.m */; };
 		376DDFA215E9DC5600F7F284 /* NSString_stripHtml.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA115E9DC5600F7F284 /* NSString_stripHtml.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFA715E9ED6A00F7F284 /* GTMNSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA515E9ED6A00F7F284 /* GTMNSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		376DDFAA15E9EE5000F7F284 /* NSString+HTML.m in Sources */ = {isa = PBXBuildFile; fileRef = 376DDFA915E9EE5000F7F284 /* NSString+HTML.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -130,6 +132,9 @@
 		3741CE7815E49EA40086294E /* UITagView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITagView.h; sourceTree = "<group>"; };
 		3741CE7915E49EA40086294E /* UITagView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITagView.m; sourceTree = "<group>"; };
 		3741CE7B15E4B1AD0086294E /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		374FCCC415FECC330098CC30 /* TrackViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackViewCell.xib; sourceTree = "<group>"; };
+		374FCCC615FED0840098CC30 /* TrackViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewCell.h; sourceTree = "<group>"; };
+		374FCCC715FED0840098CC30 /* TrackViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewCell.m; sourceTree = "<group>"; };
 		3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewCell.h; sourceTree = "<group>"; };
 		3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewCell.m; sourceTree = "<group>"; };
 		376DDFA015E9DC5600F7F284 /* NSString_stripHtml.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSString_stripHtml.h; sourceTree = "<group>"; };
@@ -256,6 +261,9 @@
 				3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */,
 				3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */,
 				379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */,
+				374FCCC615FED0840098CC30 /* TrackViewCell.h */,
+				374FCCC715FED0840098CC30 /* TrackViewCell.m */,
+				374FCCC415FECC330098CC30 /* TrackViewCell.xib */,
 			);
 			name = "Custom Cell";
 			sourceTree = "<group>";
@@ -568,6 +576,7 @@
 				37379FA415F863F400B77708 /* overlay@2x.png in Resources */,
 				3739028E15FE7CB700C9B7B7 /* Default.png in Resources */,
 				3739029015FE7CB900C9B7B7 /* Default@2x.png in Resources */,
+				374FCCC515FECC330098CC30 /* TrackViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,6 +636,7 @@
 				377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */,
 				3720DED915EE2BCC006C6B61 /* LFMArtistTopTracks.m in Sources */,
 				37873F0B15FAE67200C5DD04 /* NSArray+FirstObject.m in Sources */,
+				374FCCC815FED0840098CC30 /* TrackViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

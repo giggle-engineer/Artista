@@ -14,6 +14,7 @@
 #import "NSArray+StringWithDelimeter.h"
 #import "UITag.h"
 #import "AlbumViewCell.h"
+#import "TrackViewCell.h"
 #import "NSArray+FirstObject.h"
 
 @interface ViewController ()
@@ -60,6 +61,9 @@
     bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
     bioTextView.layer.shadowOpacity = 1.0f;
     bioTextView.layer.shadowRadius = 0.5f;*/
+	
+	// set track table separator to semi transparent
+	topTracksTableView.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 	
 	// give shadow to artist text
     artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
@@ -246,39 +250,6 @@
 		iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
 		[iPodReloadingThread start];
 	}
-}
-
-#pragma mark - KKGridView Data Source
-
-- (NSUInteger)gridView:(KKGridView *)gridView numberOfItemsInSection:(NSUInteger)section
-{
-	return [topAlbumsArray count];
-}
-
-- (KKGridViewCell *)gridView:(KKGridView *)gridView cellForItemAtIndexPath:(KKIndexPath *)indexPath
-{	
-	static NSString * const identifier = @"Cell";
-	AlbumViewCell *cell = (AlbumViewCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
-	
-	if (cell) {
-		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
-		cell.backgroundColor = [UIColor clearColor];
-		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-		cell.contentView.backgroundColor = [UIColor clearColor];
-	}
-	if (!cell) {
-		cell = [AlbumViewCell cellFromNib];
-		cell.reuseIdentifier = identifier;
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
-		cell.backgroundColor = [UIColor clearColor];
-		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-		cell.contentView.backgroundColor = [UIColor clearColor];
-	}
-	
-	return cell;
 }
 
 #pragma mark - Playback Timer
@@ -676,24 +647,33 @@
 - (UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString * const reuseIdentifier = @"TracksViewCell";
 	
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+	TrackViewCell *cell = (TrackViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	
 	if (!cell) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:reuseIdentifier];
+		//NSCParameterAssert([cell isKindOfClass:[TrackViewCell class]]);
+		cell = [TrackViewCell cellFromNib];
+		cell.reuseIdentifier = reuseIdentifier;
 		cell.backgroundColor = [UIColor clearColor];
-		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
-		cell.textLabel.textColor = [UIColor blackColor];
-		cell.textLabel.shadowColor = [UIColor whiteColor];
-		cell.textLabel.shadowOffset = CGSizeMake(0, 1);
+		cell.selectionStyle = UITableViewCellSelectionStyleNone;
+		cell.trackName.text = [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] name];
+		cell.listeningAndCount.text = [[NSString alloc] initWithFormat:@"%@ listeners · %@ plays", [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] listeners], [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] playCount]];
+		cell.duration.text =  [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] duration];
+		//cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
+		//cell.textLabel.textColor = [UIColor blackColor];
+		//cell.textLabel.shadowColor = [UIColor whiteColor];
+		//cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	} else {
 		// using dequeued cell
 		cell.backgroundColor = [UIColor clearColor];
-		cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
-		cell.textLabel.textColor = [UIColor blackColor];
-		cell.textLabel.shadowColor = [UIColor whiteColor];
-		cell.textLabel.shadowOffset = CGSizeMake(0, 1);
+		cell.trackName.text = [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] name];
+		cell.listeningAndCount.text = [[NSString alloc] initWithFormat:@"%@ listeners · %@ plays", [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] listeners], [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] playCount]];
+		cell.duration.text =  [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] duration];
+		//cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
+		//cell.textLabel.textColor = [UIColor blackColor];
+		//cell.textLabel.shadowColor = [UIColor whiteColor];
+		//cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	}
@@ -703,6 +683,39 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)path
 {	
     return nil;
+}
+
+#pragma mark - KKGridView Data Source
+
+- (NSUInteger)gridView:(KKGridView *)gridView numberOfItemsInSection:(NSUInteger)section
+{
+	return [topAlbumsArray count];
+}
+
+- (KKGridViewCell *)gridView:(KKGridView *)gridView cellForItemAtIndexPath:(KKIndexPath *)indexPath
+{
+	static NSString * const identifier = @"Cell";
+	AlbumViewCell *cell = (AlbumViewCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
+	
+	if (cell) {
+		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.backgroundColor = [UIColor clearColor];
+		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+		cell.contentView.backgroundColor = [UIColor clearColor];
+	}
+	if (!cell) {
+		cell = [AlbumViewCell cellFromNib];
+		cell.reuseIdentifier = identifier;
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.backgroundColor = [UIColor clearColor];
+		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+		cell.contentView.backgroundColor = [UIColor clearColor];
+	}
+	
+	return cell;
 }
 
 #pragma mark  - Account View Controller Delegate

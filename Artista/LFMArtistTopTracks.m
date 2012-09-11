@@ -7,6 +7,7 @@
 //
 
 #import "LFMArtistTopTracks.h"
+#import "LFMTrack.h"
 #import "NSString+URLEncoding.h"
 
 #define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
@@ -51,7 +52,58 @@
 	}
 	
 	[rootXML iterate:@"toptracks.track" usingBlock: ^(RXMLElement *e) {
-		[tracks addObject:[e child:@"name"].text];
+		LFMTrack *track = [LFMTrack new];
+		[track setName:[e child:@"name"].text];
+		
+		// format listener and play count with commas/separators
+		NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+		[numberFormatter setGroupingSize:3];
+		[numberFormatter setUsesGroupingSeparator:YES];
+		NSString *formattedListeners = [numberFormatter stringFromNumber:[NSNumber numberWithInt:[[[e child:@"listeners"] text] intValue]]];
+		NSString *formattedPlayCount = [numberFormatter stringFromNumber:[NSNumber numberWithInt:[[[e child:@"playcount"] text] intValue]]];
+		[track setPlayCount:formattedPlayCount];
+		[track setListeners:formattedListeners];
+		
+		// convert seconds to hours, minutes and seconds
+		NSTimeInterval theTimeInterval = [[[e child:@"duration"] text] doubleValue];
+		// Get the system calendar
+		NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+		// Create the NSDates
+		NSDate *date1 = [[NSDate alloc] init];
+		NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
+		// Get conversion to months, days, hours, minutes
+		unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+		NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
+		NSString *formattedDuration;
+		if ([conversionInfo hour]>0) {
+			if ([conversionInfo minute]<10) {
+				if ([conversionInfo second]<10) {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d:0%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+				else {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d:%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+			}
+			else {
+				if ([conversionInfo second]<10) {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d:0%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+				else {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d:%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+			}
+		}
+		else {
+			if ([conversionInfo second]<10) {
+				formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d", [conversionInfo minute], [conversionInfo second]];
+			}
+			else {
+				formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d", [conversionInfo minute], [conversionInfo second]];
+			}
+		}
+		[track setDuration:formattedDuration];
+		
+		[tracks addObject:track];
 	}];
 	NSLog(@"tracks count:%d", [tracks count]);
     [[self delegate] didReceiveTopTracks:(NSArray*)[tracks copy]];
@@ -93,7 +145,58 @@
 	}
 	
 	[rootXML iterate:@"toptracks.track" usingBlock: ^(RXMLElement *e) {
-		[tracks addObject:[e child:@"name"].text];
+		LFMTrack *track = [LFMTrack new];
+		[track setName:[e child:@"name"].text];
+		
+		// format listener and play count with commas/separators
+		NSNumberFormatter *numberFormatter = [NSNumberFormatter new];
+		[numberFormatter setGroupingSize:3];
+		[numberFormatter setUsesGroupingSeparator:YES];
+		NSString *formattedListeners = [numberFormatter stringFromNumber:[NSNumber numberWithInt:[[[e child:@"listeners"] text] intValue]]];
+		NSString *formattedPlayCount = [numberFormatter stringFromNumber:[NSNumber numberWithInt:[[[e child:@"playcount"] text] intValue]]];
+		[track setPlayCount:formattedPlayCount];
+		[track setListeners:formattedListeners];
+		
+		// convert seconds to hours, minutes and seconds
+		NSTimeInterval theTimeInterval = [[[e child:@"duration"] text] doubleValue];
+		// Get the system calendar
+		NSCalendar *sysCalendar = [NSCalendar currentCalendar];
+		// Create the NSDates
+		NSDate *date1 = [[NSDate alloc] init];
+		NSDate *date2 = [[NSDate alloc] initWithTimeInterval:theTimeInterval sinceDate:date1];
+		// Get conversion to months, days, hours, minutes
+		unsigned int unitFlags = NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit;
+		NSDateComponents *conversionInfo = [sysCalendar components:unitFlags fromDate:date1  toDate:date2  options:0];
+		NSString *formattedDuration;
+		if ([conversionInfo hour]>0) {
+			if ([conversionInfo minute]<10) {
+				if ([conversionInfo second]<10) {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d:0%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+				else {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d:%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+			}
+			else {
+				if ([conversionInfo second]<10) {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d:0%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+				else {
+					formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d:%d", [conversionInfo hour], [conversionInfo minute], [conversionInfo second]];
+				}
+			}
+		}
+		else {
+			if ([conversionInfo second]<10) {
+				formattedDuration = [[NSString alloc] initWithFormat:@"%d:0%d", [conversionInfo minute], [conversionInfo second]];
+			}
+			else {
+				formattedDuration = [[NSString alloc] initWithFormat:@"%d:%d", [conversionInfo minute], [conversionInfo second]];
+			}
+		}
+		[track setDuration:formattedDuration];
+		
+		[tracks addObject:track];
 	}];
 	NSLog(@"tracks count:%d", [tracks count]);
     [[self delegate] didReceiveTopTracks:(NSArray*)[tracks copy]];

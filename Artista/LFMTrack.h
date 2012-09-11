@@ -12,6 +12,9 @@
 
 @property NSString *artist;
 @property NSString *name;
+@property NSString *listeners;
+@property NSString *playCount;
+@property NSString *duration;
 @property NSString *album;
 @property UIImage *artwork;
 @property NSString *musicBrainzID;
