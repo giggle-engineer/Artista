@@ -66,6 +66,7 @@
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
+		37E6244D1601688F003FADC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E6244C1601688F003FADC9 /* Default-568h@2x.png */; };
 		37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
 /* End PBXBuildFile section */
@@ -197,6 +198,7 @@
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		37E6244C1601688F003FADC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
@@ -338,6 +340,7 @@
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				37E6244C1601688F003FADC9 /* Default-568h@2x.png */,
 				3739028F15FE7CB900C9B7B7 /* Default@2x.png */,
 				3739028D15FE7CB700C9B7B7 /* Default.png */,
 				377C6F5F15DCBDFA00B1CA34 /* bottombar.png */,
@@ -577,6 +580,7 @@
 				3739028E15FE7CB700C9B7B7 /* Default.png in Resources */,
 				3739029015FE7CB900C9B7B7 /* Default@2x.png in Resources */,
 				374FCCC515FECC330098CC30 /* TrackViewCell.xib in Resources */,
+				37E6244D1601688F003FADC9 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
