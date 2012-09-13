@@ -82,7 +82,8 @@
 	[trackRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 	
 	// push scroll views content up past the bottom bar...
-	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, bottomBarView.frame.size.height, 0.0);
+	// was bottomBarView.frame.size.height now 49 because of unaccounted for transparency height
+	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 49, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
 	albumGridView.contentInset = contentInsets;
@@ -100,8 +101,11 @@
 						   selector:@selector(load)
 							   name:UIApplicationDidBecomeActiveNotification object:nil];
 	[notificationCenter addObserver:self
-						   selector:@selector (handle_NowPlayingItemChanged:)
+						   selector:@selector (handleNowPlayingItemChanged:)
 							   name:MPMusicPlayerControllerNowPlayingItemDidChangeNotification object:nil];
+	[notificationCenter addObserver:self
+						   selector:@selector(handlePlaybackChanged:)
+							   name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:nil];
 }
 
 - (void)viewDidUnload
@@ -244,12 +248,26 @@
 
 #pragma mark - iPod Change Notifications
 
-- (void)handle_NowPlayingItemChanged:(id)sender {
+- (void)handleNowPlayingItemChanged:(id)sender {
 	// only one copy of this thread should ever be running
 	if (![iPodReloadingThread isExecuting]) {
 		iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
 		[iPodReloadingThread start];
 	}
+}
+
+- (void)handlePlaybackChanged:(id)sender {
+	// if iPod has begun playing and was paused reload
+	if (lastPlaybackState==MPMusicPlaybackStateStopped) {
+		if ([iPodController playbackState]==MPMusicPlaybackStatePlaying||[iPodController playbackState]==MPMusicPlaybackStatePaused) {
+			if (![iPodReloadingThread isExecuting]) {
+				iPodReloadingThread = [[NSThread alloc] initWithTarget:self selector:@selector(loadInfoFromiPod) object:nil];
+				[iPodReloadingThread start];
+			}
+		}
+	}
+	// keep track of last playback state
+	lastPlaybackState = [iPodController playbackState];
 }
 
 #pragma mark - Playback Timer
@@ -264,6 +282,10 @@
 #pragma mark - Main Loading Methods
 
 - (void)loadInfoFromiPod {
+	if ([iPodController playbackState]==MPMusicPlaybackStateStopped) {
+		[self reset:YES];
+		return;
+	}
 	// let the refresher know we're using the iPod info
 	isUsingiPod = YES;
 	// used if the player notification is called
@@ -316,7 +338,7 @@
 	});
 }
 
-- (void)reset {
+- (void)reset:(BOOL)isInternetWorking {
 	topAlbumsArray = nil;
 	topTracksArray = nil;
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -324,7 +346,14 @@
 		[albumRefreshControl endRefreshing];
 		[trackRefreshControl endRefreshing];
 		[navigation moveThumbToIndex:0 animate:YES];
-		[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues. Sorry for any inconvenience, if this is the case please try again later."];
+		// Internet isn't working display message.
+		if (isInternetWorking==NO) {
+			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
+		}
+		// Internet is working but absolutely nothing is playing. Display message.
+		else {
+			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please insure that your application is scrobbling successfully."];
+		}
 		[artistImageView setImage:nil];
 		[tagView setTags:nil];
 		[topTracksTableView reloadData];
@@ -493,7 +522,7 @@
     NSLog(@"Failed to receive track with error:%@", [error description]);
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset];
+	[self reset:NO];
 }
 
 #pragma mark - Setup Hidden Version View
@@ -575,7 +604,7 @@
     NSLog(@"Failed to receive track with error:%@", [error description]);
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset];
+	[self reset:NO];
 }
 
 #pragma mark - LFMTrackInfo Delegate
@@ -593,7 +622,7 @@
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset];
+	[self reset:NO];
 }
 
 #pragma mark - LFMArtistTopAlbums Delegate
@@ -618,7 +647,7 @@
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset];
+	[self reset:NO];
 }
 
 #pragma mark - LFMArtistTopTracks Delegate
@@ -636,7 +665,7 @@
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset];
+	[self reset:NO];
 }
 
 #pragma mark - UITableView Data Source

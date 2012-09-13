@@ -52,6 +52,7 @@
 	NSArray *topTracksArray;
 	UILabel *versionLabel;
 	UILabel *copyrightLabel;
+	MPMusicPlaybackState lastPlaybackState;
 }
 
 @end
