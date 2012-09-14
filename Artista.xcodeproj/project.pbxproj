@@ -68,6 +68,8 @@
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
 		37E6244D1601688F003FADC9 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37E6244C1601688F003FADC9 /* Default-568h@2x.png */; };
 		37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */; };
+		37EF61C01602F0F90085F625 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BE1602F0F90085F625 /* gears.png */; };
+		37EF61C11602F0F90085F625 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BF1602F0F90085F625 /* gears@2x.png */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
 /* End PBXBuildFile section */
 
@@ -200,6 +202,8 @@
 		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		37E6244C1601688F003FADC9 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "../Default-568h@2x.png"; sourceTree = "<group>"; };
 		37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		37EF61BE1602F0F90085F625 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
+		37EF61BF1602F0F90085F625 /* gears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gears@2x.png"; sourceTree = "<group>"; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -343,6 +347,8 @@
 				37E6244C1601688F003FADC9 /* Default-568h@2x.png */,
 				3739028F15FE7CB900C9B7B7 /* Default@2x.png */,
 				3739028D15FE7CB700C9B7B7 /* Default.png */,
+				37EF61BE1602F0F90085F625 /* gears.png */,
+				37EF61BF1602F0F90085F625 /* gears@2x.png */,
 				377C6F5F15DCBDFA00B1CA34 /* bottombar.png */,
 				377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */,
 				377C6F6115DCBE0100B1CA34 /* bgtransparent.png */,
@@ -581,6 +587,8 @@
 				3739029015FE7CB900C9B7B7 /* Default@2x.png in Resources */,
 				374FCCC515FECC330098CC30 /* TrackViewCell.xib in Resources */,
 				37E6244D1601688F003FADC9 /* Default-568h@2x.png in Resources */,
+				37EF61C01602F0F90085F625 /* gears.png in Resources */,
+				37EF61C11602F0F90085F625 /* gears@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
