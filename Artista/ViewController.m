@@ -352,7 +352,7 @@
 		}
 		// Internet is working but absolutely nothing is playing. Display message.
 		else {
-			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please insure that your application is scrobbling successfully."];
+			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully."];
 		}
 		[artistImageView setImage:nil];
 		[tagView setTags:nil];
