@@ -587,6 +587,10 @@
 	//NSLog(@"tags:%u", [[_artist tags] count]);
 	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
 	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
+	// remove the stupid space at the beginning of paragraphs
+	while ([stripped rangeOfString:@"\n "].location != NSNotFound) {
+		stripped = [stripped stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
+	}
     dispatch_async(dispatch_get_main_queue(), ^{
         UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
         [bioTextView setText:stripped];
