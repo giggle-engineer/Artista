@@ -354,6 +354,8 @@
 		else {
 			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully."];
 		}
+		// make sure the hidden view still works
+		[self setupHiddenVersionView];
 		[artistImageView setImage:nil];
 		[tagView setTags:nil];
 		[topTracksTableView reloadData];

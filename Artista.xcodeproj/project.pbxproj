@@ -756,7 +756,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chloe Stars (7HU4NHXL9M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -770,7 +770,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D176F24C-29CA-4DE6-8CAF-3909A550DB2D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -779,7 +779,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chloe Stars (7HU4NHXL9M)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -793,7 +793,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D176F24C-29CA-4DE6-8CAF-3909A550DB2D";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
