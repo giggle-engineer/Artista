@@ -125,6 +125,7 @@
 		3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtistTopAlbums.m; sourceTree = "<group>"; };
 		3727D06D15EB5E9800C88744 /* LFMAlbum.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMAlbum.h; sourceTree = "<group>"; };
 		3727D06E15EB5E9800C88744 /* LFMAlbum.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMAlbum.m; sourceTree = "<group>"; };
+		3733B8E016253BAE0098E6A1 /* LFMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMDefines.h; sourceTree = "<group>"; };
 		37379FA115F863F400B77708 /* overlay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = overlay.png; sourceTree = "<group>"; };
 		37379FA215F863F400B77708 /* overlay@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "overlay@2x.png"; sourceTree = "<group>"; };
 		3739028D15FE7CB700C9B7B7 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = ../Default.png; sourceTree = "<group>"; };
@@ -425,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				379976CB15FC1454003E6533 /* LFM.h */,
+				3733B8E016253BAE0098E6A1 /* LFMDefines.h */,
 				3795C7F815DB5E400058023F /* LFMArtistInfo.h */,
 				3795C7F915DB5E400058023F /* LFMArtistInfo.m */,
 				3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */,
@@ -770,7 +772,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D176F24C-29CA-4DE6-8CAF-3909A550DB2D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F88C351-0EAF-49C5-95F6-CEE78316EB49";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -793,7 +795,7 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "D176F24C-29CA-4DE6-8CAF-3909A550DB2D";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "7F88C351-0EAF-49C5-95F6-CEE78316EB49";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -8,8 +8,7 @@
 
 #import "LFMArtistTopAlbums.h"
 #import "NSString+URLEncoding.h"
-
-#define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
+#import "LFMDefines.h"
 
 @implementation LFMArtistTopAlbums
 @synthesize delegate;
@@ -19,7 +18,7 @@
 - (void)requestTopAlbumsWithArtist:(NSString*)artist
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=%@&api_key=%@",
-                                  [artist URLEncodedString], kLastFMKey];
+                                  [artist URLEncodedString], kAPIKey];
     NSLog(@"LFMArtistTopAlbums artist requested: %@", artist);
     NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
     // Initialization code here.
@@ -73,7 +72,7 @@
 - (void)requestTopAlbumsWithMusicBrainzID:(NSString*)mbid
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&mbid=%@&api_key=%@",
-                                  [mbid URLEncodedString], kLastFMKey];
+                                  [mbid URLEncodedString], kAPIKey];
     NSLog(@"LFMArtistTopAlbums artist requested: %@", mbid);
     NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
     // Initialization code here.

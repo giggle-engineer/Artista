@@ -7,17 +7,17 @@
 //
 
 #import "LFMRecentTracks.h"
-
-#define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
+#import "LFMDefines.h"
 
 @implementation LFMRecentTracks
+@synthesize delegate;
 
 // http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=CodinGuru&api_key=b25b959554ed76058ac220b7b2e0a026
 
 - (void)requestInfo:(NSString*)user
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=%@&api_key=%@",
-                                  [user URLEncodedString], kLastFMKey];
+                                  [user URLEncodedString], kAPIKey];
     NSLog(@"LFMRecentTracks user requested: %@", user);
     NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
@@ -56,9 +56,10 @@
 			[track setNowPlaying:YES];
 		}
 		
-		[track setArtist:[artist child:@"name"].text];
-		[track setMusicBrainzID:[artist child:@"mbid"].text];
-		
+		[track setArtist:artist.text];
+		NSLog(@"artist:%@", [track artist]);
+		[track setMusicBrainzID:[artist attribute:@"mbid"]];
+		NSLog(@"music brainz:%@", [track musicBrainzID]);
 		[track setName:[e child:@"name"].text];
 
 		[tracks addObject:track];

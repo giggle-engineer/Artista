@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <RaptureXML/RXMLElement.h>
 #import "LFMTrack.h"
 
 @protocol LFMTrackInfoDelegate <NSObject>
@@ -17,13 +18,6 @@
 
 @interface LFMTrackInfo : NSObject <NSXMLParserDelegate> {
     id <LFMTrackInfoDelegate> delegate;
-    LFMTrack *mostRecentTrack;
-    
-@private
-    NSString *currentElement;
-    NSString *currentAttribute;
-    NSString *album;
-    UIImage *artwork;
 }
 
 @property (strong) id delegate;

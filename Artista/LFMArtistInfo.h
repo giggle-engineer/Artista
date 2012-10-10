@@ -17,7 +17,7 @@
 - (void) didFailToReceiveArtistDetails: (NSError *)error;
 @end
 
-@interface LFMArtistInfo : NSObject <NSXMLParserDelegate> {
+@interface LFMArtistInfo : NSObject {
     id <LFMArtistInfoDelegate> delegate;
     
     @private

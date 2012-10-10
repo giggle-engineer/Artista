@@ -7,8 +7,7 @@
 //
 
 #import "LFMArtistInfo.h"
-
-#define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
+#import "LFMDefines.h"
 
 @implementation LFMArtistInfo
 
@@ -17,7 +16,7 @@
 - (void)requestInfoWithArtist:(NSString*)artist
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=%@&api_key=%@", 
-                                  [artist URLEncodedString], kLastFMKey];
+                                  [artist URLEncodedString], kAPIKey];
     NSLog(@"LastFMArtistInfo artist requested: %@", artist);
     NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
@@ -72,7 +71,7 @@
 
 - (void)requestInfoWithMusicBrainzID:(NSString*)mbid {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=%@&api_key=%@",
-                                  [mbid URLEncodedString], kLastFMKey];
+                                  [mbid URLEncodedString], kAPIKey];
     NSLog(@"LastFMArtistInfo mbid requested: %@", mbid);
     NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.

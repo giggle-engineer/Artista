@@ -8,8 +8,7 @@
 
 #import "LFMTrackInfo.h"
 #import "NSString+URLEncoding.h"
-
-#define kLastFMKey @"b25b959554ed76058ac220b7b2e0a026"
+#import "LFMDefines.h"
 
 @implementation LFMTrackInfo
 
@@ -18,116 +17,48 @@
 - (void)requestInfo:(NSString*)artist withTrack:(NSString*)track
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=%@&track=%@&api_key=%@",
-                                  [artist URLEncodedString], [track URLEncodedString], kLastFMKey];
+                                  [artist URLEncodedString], [track URLEncodedString], kAPIKey];
     NSLog(@"LFMTrackInfo artist requested: %@ with track:%@", artist, track);
     NSLog(@"LFMTrackInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
-    NSURLRequest *request = [NSURLRequest requestWithURL:
-                             [NSURL URLWithString:
-                              urlRequestString]
-                                             cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:60.0];
-    NSURLResponse *response = [[NSURLResponse alloc] init];
-    NSError *error = [[NSError alloc] init];
-    NSData *returnedData = [[NSData alloc] init];
-    returnedData = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response error:&error];
+	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
 	
-	//NSLog(@"Loaded:%@", [[NSString alloc] initWithData:returnedData encoding:NSStringEncodingConversionAllowLossy]);
-    
-    if (returnedData == nil) {
-        //[pool release];
-        //return -1;
-    }
-    else {
-        if ([self parseData:returnedData] != nil) {
-            //[pool release];
-            //return -1;
-        }
-        //[pool release];
-        //return 0;
-    }
-}
-
-/**
- *  Parses the retrieved data from the website
- */
-- (NSError *)parseData:(NSData *)info {
-    BOOL success;
-    NSXMLParser *parser = [[NSXMLParser alloc] initWithData:info];
-    [parser setDelegate:self];
-    [parser setShouldResolveExternalEntities:YES];
-    success = [parser parse];
-    if (success == NO) {
-        return [parser parserError];
-    }
-    //[parser release];
-    return nil;
-}
-
-- (void)parserDidStartDocument:(NSXMLParser *)parser {
-	//NSLog(@"found file and started parsing");
-}
-
-- (void)parser:(NSXMLParser *)parser parseErrorOccurred:(NSError *)parseError {
-    // Parsing failed
-	[[self delegate] didFailToReceiveTrackInfo:parseError];
-}
-
-- (void)parser:(NSXMLParser *)parser
-didStartElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName
-	attributes:(NSDictionary *)attributeDict{
-	//NSLog(@"found this element: %@", elementName);
-	currentElement = [elementName copy];
-    
-    if ([elementName isEqualToString:@"image"]) {
-        currentAttribute = [attributeDict valueForKey:@"size"];
-	}
-}
-- (void)parser:(NSXMLParser *)parser
- didEndElement:(NSString *)elementName
-  namespaceURI:(NSString *)namespaceURI
- qualifiedName:(NSString *)qName{
-	// do nothing element tag ended
-}
-
-// the stuff inside the tags
-- (void)parser:(NSXMLParser *)parser
-foundCharacters:(NSString *)string{
-	//NSLog(@"found characters: %@", string);
-	// save the characters for the current item...
-	if ([currentElement isEqualToString:@"title"]) {
-        if (album == nil) {
-            NSLog(@"LastFMArtistInfo album name: %@", string);
-            album = string;
-        }
-	} else if ([currentElement isEqualToString:@"image"]) {
-		if ([currentAttribute isEqualToString:@"small"]) {
-			if (artwork == nil) {
-				artwork = [[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:string]]];
-				NSLog(@"LFMRecentTracks image URL: %@", string);
-			}
+	if ([rootXML isValid]) {
+		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
+			RXMLElement *errorElement = [rootXML child:@"error"];
+			
+			NSMutableDictionary* details = [NSMutableDictionary dictionary];
+			[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
+			
+			// populate the error object with the details
+			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+			[[self delegate] didFailToReceiveTrackInfo:error];
+			return;
 		}
-    }
-}
-
-/**
- * Parsing is finished here so this is when the delegate gets called
- */
-- (void)parserDidEndDocument:(NSXMLParser *)parser {
-    mostRecentTrack = [[LFMTrack alloc] init];
-    [mostRecentTrack setAlbum:album];
-    [mostRecentTrack setArtwork:artwork];
+	}
+	else {
+		// populate the error object with the details
+		NSMutableDictionary* details = [NSMutableDictionary dictionary];
+		[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
+		
+		NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+		[[self delegate] didFailToReceiveTrackInfo:error];
+		return;
+	}
 	
-	// Success let controller know we have data
-    [[self delegate] didReceiveTrackInfo:mostRecentTrack];
+	LFMTrack *trackInfo = [[LFMTrack alloc] init];
+	[rootXML iterate:@"track" usingBlock: ^(RXMLElement *trackElement) {
+		[trackElement iterate:@"album" usingBlock:^(RXMLElement *albumElement) {
+			[trackInfo setAlbum:[albumElement child:@"title"].text];
+			for (RXMLElement *image in [albumElement children:@"image"]) {
+				if ([[image attribute:@"size"] isEqualToString:@"small"]) {
+					[trackInfo setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[image text]]]]];
+				}
+			}
+		}];
+	}];
 	
-    // reset variables
-    currentElement = nil;
-    currentAttribute = nil;
-    album = nil;
-	artwork = nil;
+    [[self delegate] didReceiveTrackInfo:trackInfo];
 }
 
 @end

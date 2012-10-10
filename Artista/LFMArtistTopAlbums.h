@@ -17,7 +17,7 @@
 - (void) didFinishReceivingTopAlbums: (NSArray *)albums;
 @end
 
-@interface LFMArtistTopAlbums : NSObject <NSXMLParserDelegate> {
+@interface LFMArtistTopAlbums : NSObject {
 	id <LFMArtistTopAlbumsDelegate> delegate;
     
 @private
