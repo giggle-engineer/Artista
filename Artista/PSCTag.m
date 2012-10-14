@@ -6,11 +6,11 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import "UITag.h"
+#import "PSCTag.h"
 #import <QuartzCore/QuartzCore.h>
 #import <CoreText/CoreText.h>
 
-@implementation UITag
+@implementation PSCTag
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -31,6 +31,22 @@
 	
 	CGSize size = [string sizeWithFont:_font];
 	self = [super initWithFrame:CGRectMake(point.x, point.y, size.width, size.height)];
+	if (self) {
+		// Initialization code
+		self.opaque = NO;
+	}
+	return self;
+}
+
+- (id)initWithString:(NSString *)_string withFont:(UIFont*)_font withTextColor:(UIColor*)_textColor withBackgroundColor:(UIColor*)_backgroundColor {
+	// set up instance variable
+	string = _string;
+	font = _font;
+	textColor = _textColor;
+	backgroundColor = _backgroundColor;
+	
+	CGSize size = [string sizeWithFont:_font];
+	self = [super initWithFrame:CGRectMake(0, 0, size.width, size.height)];
 	if (self) {
 		// Initialization code
 		self.opaque = NO;

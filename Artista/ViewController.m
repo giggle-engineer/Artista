@@ -12,7 +12,7 @@
 #import "NSString+HTML.h"
 #import "NSString_stripHtml.h"
 #import "NSArray+StringWithDelimeter.h"
-#import "UITag.h"
+#import "PSCTag.h"
 #import "AlbumViewCell.h"
 #import "TrackViewCell.h"
 #import "NSArray+FirstObject.h"
@@ -598,7 +598,8 @@
         [bioTextView setText:stripped];
 		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
         [artistImageView setImage:blurredImage];
-		[tagView setTags:[_artist tags]];
+		NSMutableArray *array = [NSMutableArray arrayWithArray:[_artist tags]];
+		[tagView setTags:array];
 		
 		[self setupHiddenVersionView];
     });

@@ -7,9 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UITag.h"
+#import "PSCTag.h"
 
-@interface UITagView : UIScrollView {
+@interface PSCTagView : UIScrollView {
 	@private
 	NSMutableArray *tagArray;
 }

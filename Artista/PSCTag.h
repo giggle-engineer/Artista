@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITag : UIView {
+@interface PSCTag : UIView {
 	@private
 	UIFont *font;
 	UIColor *textColor;
@@ -17,5 +17,6 @@
 }
 
 - (id)initWithString:(NSString *)string withFont:(UIFont*)font withTextColor:(UIColor*)textColor withBackgroundColor:(UIColor*)_backgroundColor withPoint:(CGPoint)point;
+- (id)initWithString:(NSString *)_string withFont:(UIFont*)_font withTextColor:(UIColor*)_textColor withBackgroundColor:(UIColor*)_backgroundColor;
 
 @end

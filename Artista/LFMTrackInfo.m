@@ -47,15 +47,13 @@
 	}
 	
 	LFMTrack *trackInfo = [[LFMTrack alloc] init];
-	[rootXML iterate:@"track" usingBlock: ^(RXMLElement *trackElement) {
-		[trackElement iterate:@"album" usingBlock:^(RXMLElement *albumElement) {
-			[trackInfo setAlbum:[albumElement child:@"title"].text];
-			for (RXMLElement *image in [albumElement children:@"image"]) {
-				if ([[image attribute:@"size"] isEqualToString:@"small"]) {
-					[trackInfo setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[image text]]]]];
-				}
+	[rootXML iterate:@"track.album" usingBlock:^(RXMLElement *albumElement) {
+		[trackInfo setAlbum:[albumElement child:@"title"].text];
+		for (RXMLElement *image in [albumElement children:@"image"]) {
+			if ([[image attribute:@"size"] isEqualToString:@"small"]) {
+				[trackInfo setArtwork:[[UIImage alloc] initWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:[image text]]]]];
 			}
-		}];
+		}
 	}];
 	
     [[self delegate] didReceiveTrackInfo:trackInfo];

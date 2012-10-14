@@ -12,7 +12,7 @@
 #import "AccountViewController.h"
 #import "LFM.h"
 #import "ODRefreshControl.h"
-#import "UITagView.h"
+#import "PSCTagView.h"
 #import "SVSegmentedControl.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate> {
@@ -24,7 +24,7 @@
 	IBOutlet UILabel *track;
 	IBOutlet UIImageView *albumArtView;
 	IBOutlet UIView *bottomBarView;
-	IBOutlet UITagView *tagView;
+	IBOutlet PSCTagView *tagView;
 	IBOutlet UIView *biographyView;
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;

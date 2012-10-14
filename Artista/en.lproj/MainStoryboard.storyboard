@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2840" systemVersion="12B19" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -136,7 +136,7 @@
                                     </button>
                                 </subviews>
                             </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="wNH-X9-WFv" customClass="UITagView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="wNH-X9-WFv" customClass="PSCTagView">
                                 <rect key="frame" x="0.0" y="40" width="320" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
@@ -201,42 +201,6 @@
         <image name="bottombar.png" width="320" height="58"/>
         <image name="gears.png" width="15" height="15"/>
     </resources>
-    <classes>
-        <class className="AccountViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
-        </class>
-        <class className="KKGridView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KKGridView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dataSource"/>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="UITagView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UITagView.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="scrollCurrentViewToTop:"/>
-                <relationship kind="action" name="showAccountView:"/>
-                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="albumGridView" candidateClass="KKGridView"/>
-                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="biographyView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="tagView" candidateClass="UITagView"/>
-                <relationship kind="outlet" name="topAlbumsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="topTracksView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

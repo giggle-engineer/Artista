@@ -6,11 +6,13 @@
 //  Copyright (c) 2012 Chloe Stars. All rights reserved.
 //
 
-#import "UITagView.h"
+#import "PSCTagView.h"
 #define kPadding 4
 
-@implementation UITagView
-@synthesize font, textColor, backgroundColor;
+@implementation PSCTagView
+@synthesize font;
+@synthesize textColor;
+@synthesize backgroundColor;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -45,8 +47,19 @@
 			point.x = 0;
 		point.y = 0;
 		
-		// create the tag
-		UITag *tag = [[UITag alloc] initWithString:[tags objectAtIndex:i] withFont:font withTextColor:textColor withBackgroundColor:backgroundColor withPoint:point];
+		PSCTag *tag;
+		// The array object can be either a string or an actual tag
+		if ([[tags objectAtIndex:i] isKindOfClass:[PSCTag class]]) {
+			// is container
+			tag = [tags objectAtIndex:i];
+			// set the point
+			CGRect frame = [tag frame];
+			tag.frame = CGRectMake(point.x, point.y, frame.size.width, frame.size.height);
+		}
+		if ([[tags objectAtIndex:i] isKindOfClass:[NSString class]]) {
+			// is string
+			tag = [[PSCTag alloc] initWithString:[tags objectAtIndex:i] withFont:font withTextColor:textColor withBackgroundColor:backgroundColor withPoint:point];
+		}
 		
 		// add the same padding to the total width only after the first tag
 		if (i!=0)
@@ -61,14 +74,5 @@
 	// adjust the content size for the tags
 	self.contentSize = CGSizeMake(pushedX, self.frame.size.height);
 }
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
 
 @end

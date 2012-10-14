@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "369646086.18008"
+         timestampString = "371891064.633415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "682"
-         endingLineNumber = "682"
+         startingLineNumber = "683"
+         endingLineNumber = "683"
          landmarkName = "@implementation ViewController"
          landmarkType = "3">
       </FileBreakpoint>
@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "369646086.18008"
+         timestampString = "371891064.633415"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "686"
-         endingLineNumber = "686"
+         startingLineNumber = "687"
+         endingLineNumber = "687"
          landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -116,6 +116,19 @@
          startingLineNumber = "18"
          endingLineNumber = "18"
          landmarkName = "-requestInfoWithArtist:"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "Artista/PSCTagView.m"
+         timestampString = "371889810.38403"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "50"
+         endingLineNumber = "50"
+         landmarkName = "-setTags:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
