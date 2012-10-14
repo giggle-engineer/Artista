@@ -33,6 +33,14 @@
 }
 
 - (void)setTags:(NSArray*)tags {
+	// check for nil, if found remove all objects and return
+	if (tags==nil) {
+		// remove old tags from both array and the superview
+		[tagArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
+		[tagArray removeAllObjects];
+		return;
+	}
+	
 	// remove old tags from both array and the superview
 	[tagArray makeObjectsPerformSelector:@selector(removeFromSuperview)];
 	[tagArray removeAllObjects];
