@@ -29,7 +29,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Login"]]];
+	
+	// set the background image
+	[[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Login"]]];
+	
+	// if an account is already linked show it
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
+		[userNameTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+	}
 }
 
 - (void)viewDidUnload
