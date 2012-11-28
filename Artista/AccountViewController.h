@@ -18,9 +18,12 @@
 @interface AccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LFMRecentTracksDelegate> {
     id <AccountViewControllerDelegate> delegate;
     
-    UITextField *userNameTextField;
+    IBOutlet UITextField *userNameTextField;
 }
 
+- (IBAction)closeView:(id)sender;
+
 @property (strong) id delegate;
+@property UITextField *userNameTextField;
 
 @end

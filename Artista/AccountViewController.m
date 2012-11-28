@@ -7,12 +7,15 @@
 //
 
 #import "AccountViewController.h"
+#import "UIImage+H568.h"
 
 @interface AccountViewController ()
 
 @end
 
 @implementation AccountViewController
+@synthesize delegate;
+@synthesize userNameTextField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -26,6 +29,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	[self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Login"]]];
 }
 
 - (void)viewDidUnload
@@ -37,6 +41,11 @@
 - (void)viewDidAppear:(BOOL)animated {
 	// show keyboard for username text field
 	[userNameTextField becomeFirstResponder];
+}
+
+- (IBAction)closeView:(id)sender
+{
+	[self verifyUser];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

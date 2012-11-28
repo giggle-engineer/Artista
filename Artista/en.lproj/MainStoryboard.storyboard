@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2843" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="3079" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1929"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="2077"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -9,15 +9,15 @@
             <objects>
                 <viewController id="2" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
-                                <rect key="frame" x="0.0" y="-4" width="320" height="488"/>
+                                <rect key="frame" x="0.0" y="-4" width="320" height="576"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" image="bgtransparent.png" id="63p-3C-boI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1Mx-zF-z7R">
@@ -44,11 +44,11 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" id="Px4-RA-cJ1" userLabel="Biography View">
-                                <rect key="frame" x="0.0" y="95.5" width="320" height="385"/>
+                                <rect key="frame" x="0.0" y="95.5" width="320" height="473"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" id="ToQ-pP-Rnd">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="385"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
@@ -60,11 +60,11 @@
                                 </subviews>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="Fao-iK-pmm" userLabel="Top Albums View">
-                                <rect key="frame" x="0.0" y="95.75" width="320" height="385"/>
+                                <rect key="frame" x="0.0" y="95.75" width="320" height="473"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="S7a-d3-geQ" customClass="KKGridView">
-                                        <rect key="frame" x="0.0" y="-1.25" width="320" height="385"/>
+                                        <rect key="frame" x="0.0" y="-1.25" width="320" height="473"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <connections>
                                             <outlet property="dataSource" destination="2" id="SFh-9c-eFK"/>
@@ -74,11 +74,11 @@
                                 </subviews>
                             </view>
                             <view alpha="0.0" contentMode="scaleToFill" id="202-xy-N49" userLabel="Top Tracks View">
-                                <rect key="frame" x="0.0" y="94.75" width="320" height="385"/>
+                                <rect key="frame" x="0.0" y="94.75" width="320" height="473"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wh6-CI-hfQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="385"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -90,7 +90,7 @@
                                 </subviews>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" id="Kd0-ZJ-FTJ" userLabel="Bottom Bar View">
-                                <rect key="frame" x="0.0" y="424" width="320" height="58"/>
+                                <rect key="frame" x="0.0" y="512" width="320" height="58"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bottombar.png" id="uyg-He-Mp4">
@@ -173,23 +173,66 @@
             <objects>
                 <viewController id="xRD-iT-Muu" customClass="AccountViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="i0O-tn-3u9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="bRy-dN-Euv">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lastfm.png" id="ZXX-4V-Eqp">
+                                <rect key="frame" x="85" y="75" width="150" height="39"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Gvq-Ls-oc6">
+                                <rect key="frame" x="10" y="10" width="24" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="close.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <outlet property="dataSource" destination="xRD-iT-Muu" id="ZH1-sb-Isq"/>
-                                    <outlet property="delegate" destination="xRD-iT-Muu" id="EDL-FV-orc"/>
+                                    <action selector="closeView:" destination="xRD-iT-Muu" eventType="touchUpInside" id="lc1-7g-pSO"/>
                                 </connections>
-                            </tableView>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="input.png" id="49j-7A-Tsn">
+                                <rect key="frame" x="10" y="139" width="266" height="40"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="2YB-Xg-iyG">
+                                <rect key="frame" x="20" y="144" width="246" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="submit.png" id="f67-2i-HsW">
+                                <rect key="frame" x="286" y="146" width="24" height="25"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gpk-xb-6Ea">
+                                <rect key="frame" x="10" y="526" width="300" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <string key="text">Artista © 2012 Phantom Sun Creative, Ltd.
+Text, images, and information provided by Last.fm</string>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.41176474094390869" green="0.41176474094390869" blue="0.41176474094390869" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Linking your Last.fm account allows Artista to display information from the currently scrobbled track." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xq7-OW-z8g">
+                                <rect key="frame" x="10" y="194" width="300" height="57"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                <color key="textColor" red="0.25882354378700256" green="0.25882354378700256" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="oMy-9q-Uqg"/>
                     <nil key="simulatedStatusBarMetrics"/>
+                    <connections>
+                        <outlet property="userNameTextField" destination="2YB-Xg-iyG" id="Kyd-0j-hI0"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqF-0Z-qG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -199,11 +242,53 @@
     <resources>
         <image name="bgtransparent.png" width="320" height="480"/>
         <image name="bottombar.png" width="320" height="58"/>
+        <image name="close.png" width="24" height="25"/>
         <image name="gears.png" width="15" height="15"/>
+        <image name="input.png" width="266" height="40"/>
+        <image name="lastfm.png" width="150" height="39"/>
+        <image name="submit.png" width="24" height="25"/>
     </resources>
+    <classes>
+        <class className="AccountViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeView:"/>
+                <relationship kind="outlet" name="userNameTextField" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="KKGridView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/KKGridView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="dataSource"/>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="PSCTagView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="albumGridView" candidateClass="KKGridView"/>
+                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="biographyView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
+                <relationship kind="outlet" name="topAlbumsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="topTracksView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
 </document>

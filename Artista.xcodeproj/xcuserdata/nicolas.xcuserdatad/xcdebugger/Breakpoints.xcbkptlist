@@ -89,8 +89,8 @@
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "684"
          endingLineNumber = "684"
-         landmarkName = "@implementation ViewController"
-         landmarkType = "3">
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
+         landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
