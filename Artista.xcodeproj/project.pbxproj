@@ -935,6 +935,7 @@
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",
@@ -958,6 +959,7 @@
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-ObjC",

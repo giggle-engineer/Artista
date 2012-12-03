@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -12,25 +12,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" id="6tI-Ha-oD5">
-                                <rect key="frame" x="0.0" y="-4" width="320" height="576"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tI-Ha-oD5">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="576" id="oA1-63-8IM"/>
+                                </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" image="bgtransparent.png" id="63p-3C-boI">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                            </imageView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="1Mx-zF-z7R">
-                                <rect key="frame" x="8" y="2" width="304" height="39"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="bottom" image="bgtransparent.png" translatesAutoresizingMaskIntoConstraints="NO" id="63p-3C-boI"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="304" id="NJ6-Bt-2oW"/>
+                                    <constraint firstAttribute="height" constant="39" id="nqr-21-fCw"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" red="0.098039224743843079" green="0.098039224743843079" blue="0.098039224743843079" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7IM-E2-yaa">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-E2-yaa">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="Yoi-PB-Nu9"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -43,13 +44,9 @@
                                     <action selector="scrollCurrentViewToTop:" destination="2" eventType="touchUpInside" id="8Ir-x8-Ib5"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" id="Px4-RA-cJ1" userLabel="Biography View">
-                                <rect key="frame" x="0.0" y="95.5" width="320" height="473"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Px4-RA-cJ1" userLabel="Biography View">
                                 <subviews>
-                                    <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" id="ToQ-pP-Rnd">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToQ-pP-Rnd">
                                         <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -58,28 +55,32 @@
                                         </connections>
                                     </textView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="Px4-RA-cJ1" secondAttribute="trailing" type="default" id="C42-aL-8n0"/>
+                                    <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="Px4-RA-cJ1" secondAttribute="top" type="default" id="XZp-j7-XiE"/>
+                                    <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="Px4-RA-cJ1" secondAttribute="bottom" type="default" id="p2z-qp-7Ao"/>
+                                    <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="Px4-RA-cJ1" secondAttribute="leading" type="default" id="x7U-xn-6GV"/>
+                                </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" id="Fao-iK-pmm" userLabel="Top Albums View">
-                                <rect key="frame" x="0.0" y="95.75" width="320" height="473"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fao-iK-pmm" userLabel="Top Albums View">
                                 <subviews>
-                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="S7a-d3-geQ" customClass="KKGridView">
-                                        <rect key="frame" x="0.0" y="-1.25" width="320" height="473"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7a-d3-geQ" customClass="KKGridView">
                                         <connections>
                                             <outlet property="dataSource" destination="2" id="SFh-9c-eFK"/>
                                             <outlet property="delegate" destination="2" id="AGe-vg-84g"/>
                                         </connections>
                                     </scrollView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="S7a-d3-geQ" secondAttribute="bottom" constant="1" id="QgB-Mr-204"/>
+                                    <constraint firstItem="S7a-d3-geQ" firstAttribute="top" secondItem="Fao-iK-pmm" secondAttribute="top" constant="-1" id="d4J-Vf-5VU"/>
+                                    <constraint firstItem="S7a-d3-geQ" firstAttribute="trailing" secondItem="Fao-iK-pmm" secondAttribute="trailing" type="default" id="hqS-qv-JwY"/>
+                                    <constraint firstItem="S7a-d3-geQ" firstAttribute="leading" secondItem="Fao-iK-pmm" secondAttribute="leading" type="default" id="iyg-Kg-nIj"/>
+                                </constraints>
                             </view>
-                            <view alpha="0.0" contentMode="scaleToFill" id="202-xy-N49" userLabel="Top Tracks View">
-                                <rect key="frame" x="0.0" y="94.75" width="320" height="473"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="202-xy-N49" userLabel="Top Tracks View">
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wh6-CI-hfQ">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="473"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-CI-hfQ">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -88,91 +89,95 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="202-xy-N49" secondAttribute="leading" type="default" id="G4t-r5-XpG"/>
+                                    <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="202-xy-N49" secondAttribute="top" type="default" id="SRb-jX-Gj5"/>
+                                    <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="202-xy-N49" secondAttribute="bottom" type="default" id="Sm8-jy-I75"/>
+                                    <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="202-xy-N49" secondAttribute="trailing" type="default" id="s1W-GL-a1m"/>
+                                </constraints>
                             </view>
-                            <view opaque="NO" contentMode="scaleToFill" id="Kd0-ZJ-FTJ" userLabel="Bottom Bar View">
-                                <rect key="frame" x="0.0" y="512" width="320" height="58"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="bottombar.png" id="uyg-He-Mp4">
-                                        <rect key="frame" x="0.0" y="-1" width="320" height="58"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" id="gby-lg-UyI">
-                                        <rect key="frame" x="9" y="17" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </imageView>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="ne9-dw-zqw">
-                                        <rect key="frame" x="45.5" y="14.5" width="241.5" height="15"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="WKr-pg-2nu">
-                                        <rect key="frame" x="45.5" y="28" width="241.5" height="12"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <progressView opaque="NO" contentMode="scaleToFill" id="RLh-eF-fMK">
-                                        <rect key="frame" x="45.5" y="45.5" width="241.5" height="9"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                    </progressView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="L7d-F7-eyd">
-                                        <rect key="frame" x="296" y="22" width="15" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                        <state key="normal" image="gears.png">
-                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <state key="highlighted">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="showAccountView:" destination="2" eventType="touchUpInside" id="eXq-QS-OGr"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                            </view>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" id="wNH-X9-WFv" customClass="PSCTagView">
-                                <rect key="frame" x="0.0" y="40" width="320" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <tabBar contentMode="scaleToFill" id="lSh-Tb-iud">
-                                        <rect key="frame" x="0.0" y="124" width="320" height="49"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                        <items>
-                                            <tabBarItem systemItem="favorites" id="BA6-Zw-8ar"/>
-                                            <tabBarItem systemItem="more" id="NVe-KK-LuD"/>
-                                        </items>
-                                    </tabBar>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="gears.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="showAccountView:" destination="2" eventType="touchUpInside" id="eXq-QS-OGr"/>
+                                </connections>
+                            </button>
+                            <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSh-Tb-iud">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <tabBarItem title="Top Albums" image="close.png" id="BA6-Zw-8ar"/>
+                                    <tabBarItem title="Biography" image="warning.png" id="pV5-Jc-xB2"/>
+                                    <tabBarItem title="Top Tracks" image="submit.png" id="NVe-KK-LuD"/>
+                                </items>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="C57-X4-m6L"/>
+                                </connections>
+                            </tabBar>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-X9-WFv" customClass="PSCTagView">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" type="user" id="qJ2-uS-mL1"/>
+                                </constraints>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="PNs-kj-18x"/>
                                 </connections>
                             </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="3BU-Gv-sb0"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="3Tc-7n-Z4b"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="default" id="4vs-tG-qp9"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5RW-n4-eJO"/>
+                            <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
+                            <constraint firstItem="Px4-RA-cJ1" firstAttribute="top" secondItem="3" secondAttribute="top" constant="96" id="A7d-qT-gfs"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Axh-fd-Qpd"/>
+                            <constraint firstItem="63p-3C-boI" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="DHv-cA-vfS"/>
+                            <constraint firstItem="7IM-E2-yaa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="EAO-xA-169"/>
+                            <constraint firstItem="Fao-iK-pmm" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="H0u-19-f56"/>
+                            <constraint firstItem="Px4-RA-cJ1" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="IN2-Sy-86M"/>
+                            <constraint firstItem="7IM-E2-yaa" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="JRc-ex-ASp"/>
+                            <constraint firstItem="Px4-RA-cJ1" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="MQr-Sq-AQp"/>
+                            <constraint firstItem="202-xy-N49" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="S77-cP-Cyi"/>
+                            <constraint firstAttribute="bottom" secondItem="Fao-iK-pmm" secondAttribute="bottom" constant="-1" id="TY3-J3-ClC"/>
+                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="2" id="TtO-kX-GSn"/>
+                            <constraint firstItem="63p-3C-boI" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="USf-ff-Nlc"/>
+                            <constraint firstItem="6tI-Ha-oD5" firstAttribute="centerY" secondItem="63p-3C-boI" secondAttribute="centerY" type="default" id="Ujf-MS-oxd"/>
+                            <constraint firstItem="6tI-Ha-oD5" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Xk1-jA-JnW"/>
+                            <constraint firstItem="6tI-Ha-oD5" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="ZMc-oj-2k7"/>
+                            <constraint firstItem="63p-3C-boI" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="a6O-0Z-ZRN"/>
+                            <constraint firstItem="202-xy-N49" firstAttribute="top" secondItem="3" secondAttribute="top" constant="95" id="b9L-lO-ccA"/>
+                            <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
+                            <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
+                            <constraint firstItem="Px4-RA-cJ1" firstAttribute="bottom" secondItem="Fao-iK-pmm" secondAttribute="bottom" type="default" id="kIy-gW-AnF"/>
+                            <constraint firstItem="7IM-E2-yaa" firstAttribute="centerX" secondItem="1Mx-zF-z7R" secondAttribute="centerX" type="default" id="kJG-qN-uvZ"/>
+                            <constraint firstItem="202-xy-N49" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="m80-J3-TmD"/>
+                            <constraint firstItem="202-xy-N49" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="ogd-8c-g1k"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="40" type="user" id="pws-xZ-3el"/>
+                            <constraint firstAttribute="bottom" secondItem="wNH-X9-WFv" secondAttribute="bottom" constant="503" type="user" id="reJ-Hv-mHJ"/>
+                            <constraint firstItem="Fao-iK-pmm" firstAttribute="top" secondItem="Px4-RA-cJ1" secondAttribute="top" type="default" id="t0d-cG-Cdc"/>
+                            <constraint firstItem="7IM-E2-yaa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="vuB-AX-4fO"/>
+                            <constraint firstItem="Fao-iK-pmm" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="xQx-06-e3T"/>
+                        </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="album" destination="WKr-pg-2nu" id="zBz-n5-imz"/>
-                        <outlet property="albumArtView" destination="gby-lg-UyI" id="dei-ZN-qYk"/>
                         <outlet property="albumGridView" destination="S7a-d3-geQ" id="py7-Af-aXw"/>
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
                         <outlet property="artistImageView" destination="6tI-Ha-oD5" id="daJ-Sa-k1D"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
                         <outlet property="biographyView" destination="Px4-RA-cJ1" id="IPv-Rp-lhE"/>
-                        <outlet property="bottomBarView" destination="Kd0-ZJ-FTJ" id="Tni-3W-FUW"/>
-                        <outlet property="playTimeProgressView" destination="RLh-eF-fMK" id="8rq-YW-H9E"/>
+                        <outlet property="tabBar" destination="lSh-Tb-iud" id="1Xx-04-ynR"/>
                         <outlet property="tagView" destination="wNH-X9-WFv" id="0cp-nr-qtC"/>
                         <outlet property="topAlbumsView" destination="Fao-iK-pmm" id="wiW-RM-wci"/>
                         <outlet property="topTracksTableView" destination="Wh6-CI-hfQ" id="RTf-u2-w5q"/>
                         <outlet property="topTracksView" destination="202-xy-N49" id="9Np-Xk-pap"/>
-                        <outlet property="track" destination="ne9-dw-zqw" id="q4e-ez-i6B"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
                     </connections>
                 </viewController>
@@ -187,59 +192,69 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lastfm.png" id="ZXX-4V-Eqp">
-                                <rect key="frame" x="85" y="20" width="150" height="39"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </imageView>
-                            <view contentMode="scaleToFill" id="tJT-TW-mi3">
-                                <rect key="frame" x="15" y="70" width="290" height="122"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="lastfm.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZXX-4V-Eqp"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tJT-TW-mi3">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting to Last.fm enables Artista to sync with the currently scrobbled track." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="xq7-OW-z8g">
-                                        <rect key="frame" x="4" y="0.0" width="282" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connecting to Last.fm enables Artista to sync with the currently scrobbled track." lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="282" translatesAutoresizingMaskIntoConstraints="NO" id="xq7-OW-z8g">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="282" id="dMo-6O-qZ4"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" red="0.25882354378700256" green="0.25882354378700256" blue="0.25882354378700256" alpha="1" colorSpace="deviceRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="input.png" id="49j-7A-Tsn">
-                                        <rect key="frame" x="0.0" y="46" width="290" height="76"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                    </imageView>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" id="2YB-Xg-iyG">
-                                        <rect key="frame" x="10" y="49" width="270" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="input.png" translatesAutoresizingMaskIntoConstraints="NO" id="49j-7A-Tsn"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2YB-Xg-iyG">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="270" id="0Wv-u5-2dP"/>
+                                            <constraint firstAttribute="height" constant="30" id="TEK-LX-Hph"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" id="df0-ag-R8L">
-                                        <rect key="frame" x="10" y="87" width="270" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="df0-ag-R8L">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="7kV-hY-N7X"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
-                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="3xn-Ey-9zo">
-                                        <rect key="frame" x="253" y="54" width="27" height="25"/>
-                                        <autoresizingMask key="autoresizingMask"/>
+                                    <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" translatesAutoresizingMaskIntoConstraints="NO" id="3xn-Ey-9zo">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="27" id="QLD-LL-Bff"/>
+                                            <constraint firstAttribute="height" constant="25" id="bbV-DY-AFo"/>
+                                        </constraints>
                                     </imageView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="df0-ag-R8L" firstAttribute="top" secondItem="2YB-Xg-iyG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="cGD-oR-dDa"/>
+                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="leading" secondItem="tJT-TW-mi3" secondAttribute="leading" type="default" id="e5u-za-XOj"/>
+                                    <constraint firstItem="df0-ag-R8L" firstAttribute="trailing" secondItem="3xn-Ey-9zo" secondAttribute="trailing" type="default" id="nCR-Lq-wH8"/>
+                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="top" secondItem="xq7-OW-z8g" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="o19-G3-xtA"/>
+                                    <constraint firstItem="xq7-OW-z8g" firstAttribute="centerX" secondItem="2YB-Xg-iyG" secondAttribute="centerX" type="default" id="rlv-Gg-Rzh"/>
+                                    <constraint firstItem="df0-ag-R8L" firstAttribute="leading" secondItem="2YB-Xg-iyG" secondAttribute="leading" type="default" id="sFd-cT-86E"/>
+                                    <constraint firstItem="xq7-OW-z8g" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="top" type="default" id="sf5-ZF-ZIb"/>
+                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="bottom" secondItem="tJT-TW-mi3" secondAttribute="bottom" type="default" id="tDc-KL-Bq9"/>
+                                    <constraint firstItem="2YB-Xg-iyG" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="top" constant="49" id="v50-uP-Abh"/>
+                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="centerX" secondItem="df0-ag-R8L" secondAttribute="centerX" type="default" id="vlp-JK-5dc"/>
+                                    <constraint firstItem="df0-ag-R8L" firstAttribute="top" secondItem="3xn-Ey-9zo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wU2-QT-IJ3"/>
+                                    <constraint firstItem="2YB-Xg-iyG" firstAttribute="trailing" secondItem="3xn-Ey-9zo" secondAttribute="trailing" type="default" id="xqI-hF-YTT"/>
+                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="trailing" secondItem="tJT-TW-mi3" secondAttribute="trailing" type="default" id="zzD-YL-JwE"/>
+                                </constraints>
                             </view>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Gpk-xb-6Ea">
-                                <rect key="frame" x="10" y="526" width="300" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="300" translatesAutoresizingMaskIntoConstraints="NO" id="Gpk-xb-6Ea">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="uyn-JU-jyh"/>
+                                </constraints>
                                 <string key="text">Artista © 2012 Phantom Sun Creative, Ltd.
 Text, images, and information provided by Last.fm</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.41176474094390869" green="0.41176474094390869" blue="0.41176474094390869" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" id="0mV-15-M9H">
-                                <rect key="frame" x="16" y="220" width="289" height="103"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0mV-15-M9H">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="yI6-kF-vT2">
-                                        <rect key="frame" x="0.0" y="0.0" width="289" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yI6-kF-vT2">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="connect.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -252,9 +267,7 @@ Text, images, and information provided by Last.fm</string>
                                             <action selector="verifyUser:" destination="xRD-iT-Muu" eventType="touchUpInside" id="Hhf-gh-ZxF"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="7gg-Rs-l7w">
-                                        <rect key="frame" x="0.0" y="55" width="289" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7gg-Rs-l7w">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="notnow.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -268,14 +281,17 @@ Text, images, and information provided by Last.fm</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="7gg-Rs-l7w" firstAttribute="leading" secondItem="0mV-15-M9H" secondAttribute="leading" type="default" id="MHU-W1-ouw"/>
+                                    <constraint firstItem="yI6-kF-vT2" firstAttribute="leading" secondItem="0mV-15-M9H" secondAttribute="leading" type="default" id="MPc-vi-ivs"/>
+                                    <constraint firstItem="yI6-kF-vT2" firstAttribute="top" secondItem="0mV-15-M9H" secondAttribute="top" type="default" id="T8Z-7F-iej"/>
+                                    <constraint firstItem="yI6-kF-vT2" firstAttribute="trailing" secondItem="0mV-15-M9H" secondAttribute="trailing" type="default" id="l5V-bi-yNO"/>
+                                    <constraint firstAttribute="bottom" secondItem="7gg-Rs-l7w" secondAttribute="bottom" constant="10" id="s0D-IH-aWT"/>
+                                </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="OpP-jL-hys">
-                                <rect key="frame" x="16" y="200" width="289" height="134"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OpP-jL-hys">
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="Nee-ad-wIi">
-                                        <rect key="frame" x="150" y="0.0" width="139" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nee-ad-wIi">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="connect-small.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -288,9 +304,7 @@ Text, images, and information provided by Last.fm</string>
                                             <action selector="verifyUser:" destination="xRD-iT-Muu" eventType="touchUpInside" id="5Co-iO-kln"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mha-tn-I6v">
-                                        <rect key="frame" x="0.0" y="0.0" width="139" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mha-tn-I6v">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="notnow-small.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -304,28 +318,26 @@ Text, images, and information provided by Last.fm</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="mha-tn-I6v" firstAttribute="leading" secondItem="OpP-jL-hys" secondAttribute="leading" type="default" id="FZP-8v-zDk"/>
+                                    <constraint firstItem="Nee-ad-wIi" firstAttribute="top" secondItem="OpP-jL-hys" secondAttribute="top" type="default" id="IFj-WS-xhD"/>
+                                    <constraint firstItem="mha-tn-I6v" firstAttribute="top" secondItem="OpP-jL-hys" secondAttribute="top" type="default" id="MoG-hF-fKj"/>
+                                    <constraint firstItem="Nee-ad-wIi" firstAttribute="trailing" secondItem="OpP-jL-hys" secondAttribute="trailing" type="default" id="hXI-Vn-Ltq"/>
+                                </constraints>
                             </view>
-                            <view hidden="YES" contentMode="scaleToFill" id="fyP-l1-57K">
-                                <rect key="frame" x="15" y="67" width="290" height="113"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyP-l1-57K">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connected as " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tpm-gI-jGx">
-                                        <rect key="frame" x="54" y="20" width="97" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connected as " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpm-gI-jGx">
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="ZwC-k8-4Wy">
-                                        <rect key="frame" x="150" y="20" width="71" height="19"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwC-k8-4Wy">
                                         <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="ltE-Ui-Uz7">
-                                        <rect key="frame" x="92" y="47" width="107" height="38"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ltE-Ui-Uz7">
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" image="disconnect.png">
                                             <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -339,10 +351,16 @@ Text, images, and information provided by Last.fm</string>
                                         </connections>
                                     </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="Tpm-gI-jGx" firstAttribute="top" secondItem="fyP-l1-57K" secondAttribute="top" constant="20" symbolic="YES" type="default" id="5VU-mz-gzw"/>
+                                    <constraint firstItem="ZwC-k8-4Wy" firstAttribute="top" secondItem="fyP-l1-57K" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Dsd-js-NLG"/>
+                                    <constraint firstItem="Tpm-gI-jGx" firstAttribute="leading" secondItem="fyP-l1-57K" secondAttribute="leading" constant="54" id="Hys-gf-hcv"/>
+                                    <constraint firstItem="ltE-Ui-Uz7" firstAttribute="top" secondItem="Tpm-gI-jGx" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="LEP-u1-ih5"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZwC-k8-4Wy" secondAttribute="trailing" constant="69" id="Zfh-bJ-IhI"/>
+                                    <constraint firstItem="ltE-Ui-Uz7" firstAttribute="centerX" secondItem="fyP-l1-57K" secondAttribute="centerX" type="default" id="cpe-an-6kf"/>
+                                </constraints>
                             </view>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="wao-Et-YX4">
-                                <rect key="frame" x="10" y="10" width="24" height="25"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wao-Et-YX4">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="close.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -357,6 +375,27 @@ Text, images, and information provided by Last.fm</string>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tJT-TW-mi3" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="70" id="0UQ-te-PkN"/>
+                            <constraint firstItem="OpP-jL-hys" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2iV-Vw-aRP"/>
+                            <constraint firstItem="0mV-15-M9H" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="220" id="6DN-ay-acj"/>
+                            <constraint firstItem="ZXX-4V-Eqp" firstAttribute="centerX" secondItem="fyP-l1-57K" secondAttribute="centerX" type="default" id="71Q-wk-7MG"/>
+                            <constraint firstItem="wao-Et-YX4" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="10" id="B1h-9R-fov"/>
+                            <constraint firstItem="0mV-15-M9H" firstAttribute="centerX" secondItem="Gpk-xb-6Ea" secondAttribute="centerX" type="default" id="Hlf-5Z-ImF"/>
+                            <constraint firstAttribute="bottom" secondItem="0mV-15-M9H" secondAttribute="bottom" constant="245" id="Ibz-h8-HLP"/>
+                            <constraint firstItem="fyP-l1-57K" firstAttribute="top" secondItem="ZXX-4V-Eqp" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="OV7-Vs-h99"/>
+                            <constraint firstAttribute="bottom" secondItem="fyP-l1-57K" secondAttribute="bottom" constant="388" id="UE7-iH-JGb"/>
+                            <constraint firstItem="tJT-TW-mi3" firstAttribute="leading" secondItem="fyP-l1-57K" secondAttribute="leading" type="default" id="jYr-LB-RQ7"/>
+                            <constraint firstItem="tJT-TW-mi3" firstAttribute="trailing" secondItem="fyP-l1-57K" secondAttribute="trailing" type="default" id="keA-7l-ioQ"/>
+                            <constraint firstAttribute="bottom" secondItem="OpP-jL-hys" secondAttribute="bottom" constant="234" id="lsI-IX-aXl"/>
+                            <constraint firstItem="0mV-15-M9H" firstAttribute="trailing" secondItem="OpP-jL-hys" secondAttribute="trailing" type="default" id="oAc-h4-AR4"/>
+                            <constraint firstItem="tJT-TW-mi3" firstAttribute="trailing" secondItem="0mV-15-M9H" secondAttribute="trailing" type="default" id="pV6-FJ-ZGa"/>
+                            <constraint firstItem="0mV-15-M9H" firstAttribute="centerX" secondItem="i0O-tn-3u9" secondAttribute="centerX" type="default" id="qLD-bW-zzm"/>
+                            <constraint firstItem="ZXX-4V-Eqp" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="uy1-F8-zow"/>
+                            <constraint firstAttribute="bottom" secondItem="Gpk-xb-6Ea" secondAttribute="bottom" constant="10" id="w5b-8L-pts"/>
+                            <constraint firstItem="Gpk-xb-6Ea" firstAttribute="leading" secondItem="wao-Et-YX4" secondAttribute="leading" type="default" id="xIR-nq-smr"/>
+                            <constraint firstItem="OpP-jL-hys" firstAttribute="leading" secondItem="0mV-15-M9H" secondAttribute="leading" type="default" id="yae-Kf-X4t"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oMy-9q-Uqg"/>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -378,7 +417,6 @@ Text, images, and information provided by Last.fm</string>
     </scenes>
     <resources>
         <image name="bgtransparent.png" width="320" height="480"/>
-        <image name="bottombar.png" width="320" height="58"/>
         <image name="close.png" width="24" height="25"/>
         <image name="connect-pressed.png" width="289" height="38"/>
         <image name="connect-small-pressed.png" width="139" height="38"/>
@@ -393,6 +431,8 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow-small-pressed.png" width="139" height="38"/>
         <image name="notnow-small.png" width="139" height="38"/>
         <image name="notnow.png" width="289" height="38"/>
+        <image name="submit.png" width="24" height="25"/>
+        <image name="warning.png" width="27" height="25"/>
     </resources>
     <classes>
         <class className="AccountViewController" superclassName="UIViewController">
@@ -418,6 +458,9 @@ Text, images, and information provided by Last.fm</string>
                 <relationship kind="outlet" name="delegate"/>
             </relationships>
         </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
         <class className="PSCTagView" superclassName="UIScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
         </class>
@@ -435,6 +478,7 @@ Text, images, and information provided by Last.fm</string>
                 <relationship kind="outlet" name="biographyView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
                 <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
                 <relationship kind="outlet" name="topAlbumsView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>

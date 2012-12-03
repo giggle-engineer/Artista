@@ -15,7 +15,7 @@
 #import "PSCTagView.h"
 #import "SVSegmentedControl.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
@@ -30,6 +30,7 @@
 	IBOutlet UIView *topTracksView;
 	IBOutlet KKGridView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
+	IBOutlet UITabBar *tabBar;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;

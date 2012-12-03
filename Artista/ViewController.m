@@ -33,6 +33,22 @@
 	albumGridView.cellSize = CGSizeMake(100.f, 100.f);
 	albumGridView.backgroundColor = [UIColor clearColor];
 	
+	// setup tab bar
+	UIImage *tabBackground = [[UIImage imageNamed:@"bottombar.png"]
+							  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+	[[UITabBar appearance] setBackgroundImage:tabBackground];
+	// select middle item, biography
+	[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
+	//[[UITabBar appearance] setTintColor:[UIColor clearColor]];
+	//[[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0 green:0.2 blue:1.0 alpha:1.0]];
+	// set the images for the tab bar items
+	UITabBarItem *topAlbumsItem = [[tabBar items] objectAtIndex:0];
+	[topAlbumsItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	UITabBarItem *biographyItem = [[tabBar items] objectAtIndex:1];
+	[biographyItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	UITabBarItem *topTracksItem = [[tabBar items] objectAtIndex:2];
+	[topTracksItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
 	navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
 	navigation.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
@@ -134,6 +150,68 @@
         AccountViewController *accountViewController = segue.destinationViewController;
         [accountViewController setDelegate:self];
     }
+}
+
+#pragma mark - Tab Control Target
+- (void)tabBar:(UITabBar *)_tabBar didSelectItem:(UITabBarItem *)_item
+{
+	int i = 0;
+	for (UITabBarItem *item in [_tabBar items])
+	{
+		if (item==_item)
+		{
+			switch (i) {
+				case 0:
+				{
+					[UIView animateWithDuration:0.50
+										  delay:0
+										options:UIViewAnimationCurveEaseIn
+									 animations:^{
+										 biographyView.alpha = 0.0;
+										 topAlbumsView.alpha = 1.0;
+										 topTracksView.alpha = 0.0;
+									 }
+									 completion:^(BOOL finished){
+										 
+									 }];
+					break;
+				}
+				case 1:
+				{
+					[UIView animateWithDuration:0.50
+										  delay:0
+										options:UIViewAnimationCurveEaseIn
+									 animations:^{
+										 biographyView.alpha = 1.0;
+										 topAlbumsView.alpha = 0.0;
+										 topTracksView.alpha = 0.0;
+									 }
+									 completion:^(BOOL finished){
+										 
+									 }];
+					break;
+				}
+				case 2:
+				{
+					[UIView animateWithDuration:0.50
+										  delay:0
+										options:UIViewAnimationCurveEaseIn
+									 animations:^{
+										 biographyView.alpha = 0.0;
+										 topAlbumsView.alpha = 0.0;
+										 topTracksView.alpha = 1.0;
+									 }
+									 completion:^(BOOL finished){
+										 
+									 }];
+					break;
+				}
+				default:
+					break;
+			}
+		}
+		++i;
+	}
 }
 
 #pragma mark - Segment Control Target
@@ -346,6 +424,8 @@
 		[albumRefreshControl endRefreshing];
 		[trackRefreshControl endRefreshing];
 		[navigation moveThumbToIndex:0 animate:YES];
+		// select middle item, biography
+		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
 		// Internet isn't working display message.
 		if (isInternetWorking==NO) {
 			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
