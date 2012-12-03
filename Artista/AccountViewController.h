@@ -19,11 +19,25 @@
     id <AccountViewControllerDelegate> delegate;
     
     IBOutlet UITextField *userNameTextField;
+	IBOutlet UIImageView *verifiedImageView;
+	IBOutlet UIView *longButtonsView;
+	IBOutlet UIView *shortButtonView;
+	IBOutlet UIView *connectedView;
+	IBOutlet UIView *notConnectedView;
+	IBOutlet UILabel *userNameLabel;
+	IBOutlet UIButton *closeButton;
 }
 
 - (IBAction)closeView:(id)sender;
 
 @property (strong) id delegate;
-@property UITextField *userNameTextField;
+@property IBOutlet UITextField *userNameTextField;
+@property IBOutlet UIImageView *verifiedImageView;
+@property IBOutlet UIView *longButtonsView;
+@property IBOutlet UIView *shortButtonView;
+@property IBOutlet UIView *connectedView;
+@property IBOutlet UIView *notConnectedView;
+@property IBOutlet UILabel *userNameLabel;
+@property IBOutlet UIButton *closeButton;
 
 @end

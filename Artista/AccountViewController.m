@@ -8,6 +8,7 @@
 
 #import "AccountViewController.h"
 #import "UIImage+H568.h"
+#import "NSTimer+Blocks.h"
 
 @interface AccountViewController ()
 
@@ -16,6 +17,13 @@
 @implementation AccountViewController
 @synthesize delegate;
 @synthesize userNameTextField;
+@synthesize verifiedImageView;
+@synthesize longButtonsView;
+@synthesize shortButtonView;
+@synthesize connectedView;
+@synthesize notConnectedView;
+@synthesize userNameLabel;
+@synthesize closeButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,12 +38,26 @@
 {
     [super viewDidLoad];
 	
+	if  ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) &&
+		 ([UIScreen mainScreen].bounds.size.height == 480.0f))
+	{
+		[longButtonsView setHidden:YES];
+		[shortButtonView setHidden:NO];
+	}
+	
 	// set the background image
 	[[self view] setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"Login"]]];
 	
 	// if an account is already linked show it
 	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
-		[userNameTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+		// show appropriate UI stuff on the screen
+		//[verifiedImageView setImage:[UIImage imageNamed:@"submit"]];
+		[shortButtonView setHidden:YES];
+		[longButtonsView setHidden:YES];
+		[notConnectedView setHidden:YES];
+		[connectedView setHidden:NO];
+		[userNameLabel setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+		[closeButton setHidden:NO];
 	}
 }
 
@@ -46,13 +68,89 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-	// show keyboard for username text field
-	[userNameTextField becomeFirstResponder];
+	// show keyboard for username text field if not connected
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
+		[userNameTextField becomeFirstResponder];
+	}
+}
+
+#pragma mark -
+#pragma mark Button Actions
+
+- (IBAction)skipOrUnlink:(id)sender
+{
+	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil)
+	{
+		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+		[notConnectedView setHidden:NO];
+		// show connected view and unhide appropriate button view
+		[connectedView setHidden:YES];
+		if  ((UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) &&
+			 ([UIScreen mainScreen].bounds.size.height == 480.0f))
+		{
+			[shortButtonView setHidden:NO];
+		}
+		else
+		{
+			[longButtonsView setHidden:NO];
+		}
+	}
+	else
+	{
+		[self dismissViewControllerAnimated:YES completion:^{}];
+	}
+}
+
+- (IBAction)verifyUser:(id)sender
+{
+	// don't be that jerk who makes the button stay highlighted until the loading is done
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
+		LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
+		[recentTracks setDelegate:self];
+		[recentTracks requestInfo:userNameTextField.text];
+	});
 }
 
 - (IBAction)closeView:(id)sender
 {
-	[self verifyUser];
+	[self dismissViewControllerAnimated:YES completion:^{}];
+}
+
+- (void)saveAndDismiss {
+	// save user name and dissmiss
+	[userNameTextField resignFirstResponder];
+	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+	[[self delegate] didReceiveReceiveUsername];
+	
+	//[verifiedImageView setImage:[UIImage imageNamed:@"submit"]];
+	// set username in the connected view and hide button views
+	[userNameLabel setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+	[notConnectedView setHidden:YES];
+	[shortButtonView setHidden:YES];
+	[longButtonsView setHidden:YES];
+	[connectedView setHidden:NO];
+	
+	// wait some time so that the user notices the link with Last.fm was successfull
+	[NSTimer scheduledTimerWithTimeInterval:2.0 block:^(NSTimer *timer) {
+		[self dismissViewControllerAnimated:YES completion:^{}];
+	} repeats:NO];
+}
+
+- (void)didReceiveRecentTracks:(NSArray *)tracks {
+	// account valid. save and dismiss
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[self saveAndDismiss];
+	});
+}
+
+- (void)didFailToReceiveRecentTracks:(NSError *)error {
+	/*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid username or Last.fm is down." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+	 [alert show];*/
+	dispatch_async(dispatch_get_main_queue(), ^{
+		[verifiedImageView setImage:[UIImage imageNamed:@"warning.png"]];
+	});
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -66,7 +164,7 @@
 	
 	[textField resignFirstResponder];
 	
-	[self verifyUser];
+	[self verifyUser:nil];
 	
 	return YES;
 	
@@ -142,55 +240,25 @@
     }
 }
 
-- (void)verifyUser {
-	// don't be that jerk who makes the button stay highlighted until the loading is done
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-	dispatch_async(queue,^{
-		LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
-		[recentTracks setDelegate:self];
-		[recentTracks requestInfo:userNameTextField.text];
-	});
-}
-
-- (void)saveAndDismiss {
-	// save user name and dissmiss
-	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
-	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
-	[[self delegate] didReceiveReceiveUsername];
-	[self dismissModalViewControllerAnimated:YES];
-}
-
-- (void)didReceiveRecentTracks:(NSArray *)tracks {
-	// account valid. save and dismiss
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[self saveAndDismiss];
-	});
-}
-
-- (void)didFailToReceiveRecentTracks:(NSError *)error {
-	UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid username or Last.fm is down." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-	[alert show];
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.section==0) {
         if (indexPath.row==1) {
-            [self verifyUser];
+            [self verifyUser:nil];
         }
 		if (indexPath.row==2) {
 			// decided not to link an account
 			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
 				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
 				[[self delegate] didFailToReceiveUsername:nil];
-				[self dismissModalViewControllerAnimated:YES];
+				[self dismissViewControllerAnimated:YES completion:^{}];
 			}
 			// removing existing link to Last.fm
 			else {
 				[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
 				[[self delegate] didFailToReceiveUsername:nil];
-				[self dismissModalViewControllerAnimated:YES];
+				[self dismissViewControllerAnimated:YES completion:^{}];
 			}
 		}
     }
