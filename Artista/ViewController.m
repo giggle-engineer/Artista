@@ -43,11 +43,16 @@
 	//[[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0 green:0.2 blue:1.0 alpha:1.0]];
 	// set the images for the tab bar items
 	UITabBarItem *topAlbumsItem = [[tabBar items] objectAtIndex:0];
-	[topAlbumsItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	[topAlbumsItem setFinishedSelectedImage:[UIImage imageNamed:@"albums-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"albums.png"]];
 	UITabBarItem *biographyItem = [[tabBar items] objectAtIndex:1];
-	[biographyItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	[biographyItem setFinishedSelectedImage:[UIImage imageNamed:@"biography-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"biography.png"]];
 	UITabBarItem *topTracksItem = [[tabBar items] objectAtIndex:2];
-	[topTracksItem setFinishedSelectedImage:[UIImage imageNamed:@"submit.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"warning.png"]];
+	[topTracksItem setFinishedSelectedImage:[UIImage imageNamed:@"tracks-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tracks.png"]];
+    
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor lightGrayColor] }
+                                             forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor darkGrayColor] }
+                                             forState:UIControlStateHighlighted];
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
 	navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
