@@ -10,3 +10,6 @@
 [submodule "Artista/Reachability"]
 	path = Artista/Reachability
 	url = git://github.com/tonymillion/Reachability.git
+[submodule "Artista/MGImageUtilities"]
+	path = Artista/MGImageUtilities
+	url = git://github.com/mattgemmell/MGImageUtilities.git

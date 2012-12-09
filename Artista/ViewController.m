@@ -16,6 +16,7 @@
 #import "AlbumViewCell.h"
 #import "TrackViewCell.h"
 #import "NSArray+FirstObject.h"
+#import "UIImage+ProportionalFill.h"
 
 @interface ViewController ()
 
@@ -34,7 +35,7 @@
 	albumGridView.backgroundColor = [UIColor clearColor];
 	
 	// setup tab bar
-	UIImage *tabBackground = [[UIImage imageNamed:@"bottombar.png"]
+	UIImage *tabBackground = [[UIImage imageNamed:@"tab-bar.png"]
 							  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[[UITabBar appearance] setBackgroundImage:tabBackground];
 	// select middle item, biography
@@ -61,7 +62,7 @@
 	navigation.titleEdgeInsets = UIEdgeInsetsMake(-1, 16, 0, 16);
     [navigation addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
     
-	[self.view addSubview:navigation];
+	//[self.view addSubview:navigation];
 	
 	navigation.center = CGPointMake(160, 80);
 	
@@ -86,12 +87,6 @@
 	// set track table separator to semi transparent
 	topTracksTableView.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 	
-	// give shadow to artist text
-    artist.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    artist.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    artist.layer.shadowOpacity = 0.5f;
-    artist.layer.shadowRadius = 0.5f;
-	
 	// setup refreshing
 	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
 	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
@@ -112,6 +107,11 @@
 	topTracksTableView.contentInset = contentInsets;
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
 	
+	// set fonts
+	[bioTextView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
+	//[albumGridView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
+	//[topTracksTableView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
+	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
 	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
 	tagView.contentInset = moreContentInsets;
@@ -127,6 +127,7 @@
 	[notificationCenter addObserver:self
 						   selector:@selector(handlePlaybackChanged:)
 							   name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:nil];
+	
 }
 
 - (void)viewDidUnload
@@ -172,9 +173,9 @@
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
-										 biographyView.alpha = 0.0;
-										 topAlbumsView.alpha = 1.0;
-										 topTracksView.alpha = 0.0;
+										 bioTextView.alpha = 0.0;
+										 albumGridView.alpha = 1.0;
+										 topTracksTableView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
 										 
@@ -187,9 +188,9 @@
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
-										 biographyView.alpha = 1.0;
-										 topAlbumsView.alpha = 0.0;
-										 topTracksView.alpha = 0.0;
+										 bioTextView.alpha = 1.0;
+										 albumGridView.alpha = 0.0;
+										 topTracksTableView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
 										 
@@ -202,9 +203,9 @@
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
-										 biographyView.alpha = 0.0;
-										 topAlbumsView.alpha = 0.0;
-										 topTracksView.alpha = 1.0;
+										 bioTextView.alpha = 0.0;
+										 albumGridView.alpha = 0.0;
+										 topTracksTableView.alpha = 1.0;
 									 }
 									 completion:^(BOOL finished){
 										 
@@ -228,9 +229,9 @@
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
-							 biographyView.alpha = 1.0;
-							 topAlbumsView.alpha = 0.0;
-							 topTracksView.alpha = 0.0;
+							 bioTextView.alpha = 1.0;
+							 albumGridView.alpha = 0.0;
+							 topTracksTableView.alpha = 0.0;
 						 }
 						 completion:^(BOOL finished){
 							 
@@ -241,9 +242,9 @@
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
-							 biographyView.alpha = 0.0;
-							 topAlbumsView.alpha = 1.0;
-							 topTracksView.alpha = 0.0;
+							 bioTextView.alpha = 0.0;
+							 albumGridView.alpha = 1.0;
+							 topTracksTableView.alpha = 0.0;
 						 }
 						 completion:^(BOOL finished){
 							 
@@ -254,9 +255,9 @@
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
-							 biographyView.alpha = 0.0;
-							 topAlbumsView.alpha = 0.0;
-							 topTracksView.alpha = 1.0;
+							 bioTextView.alpha = 0.0;
+							 albumGridView.alpha = 0.0;
+							 topTracksTableView.alpha = 1.0;
 						 }
 						 completion:^(BOOL finished){
 							 
@@ -428,7 +429,7 @@
 		[refreshControl endRefreshing];
 		[albumRefreshControl endRefreshing];
 		[trackRefreshControl endRefreshing];
-		[navigation moveThumbToIndex:0 animate:YES];
+		//[navigation moveThumbToIndex:0 animate:YES];
 		// select middle item, biography
 		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
 		// Internet isn't working display message.
@@ -542,6 +543,27 @@
 				[track setText:[_track name]];
 			});
 			
+			LFMArtistImages *artistImage = [LFMArtistImages new];
+			[artistImage requestImagesWithArtist:/*@"Taylor Swift"*/[_track artist] completion:^(NSArray *images, NSError *error) {
+				NSLog(@"completion thing!!!!");
+				//NSLog(@"array:%@", images);
+				if (images.count==0)
+					return;
+				//for (NSDictionary *dictionary in images)
+				//{
+					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+					__block UIImage *image;
+					dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+					dispatch_async(queue,^{
+						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						dispatch_async(dispatch_get_main_queue(), ^{
+							[artistImageView setImage:image];
+						});
+					});
+				//}
+			}];
+			
 			// setup artist info
 			if (artistInfo==nil) {
 				artistInfo = [[LFMArtistInfo alloc] init];
@@ -649,7 +671,7 @@
 	versionLabel.font = font;
 	versionLabel.text = versionString;
 	
-	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative.";
+	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative, Ltd.";
 	textSize = [copyrightString sizeWithFont:font];
 	
 	height = textSize.height;
@@ -679,10 +701,10 @@
 		stripped = [stripped stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
 	}
     dispatch_async(dispatch_get_main_queue(), ^{
-        UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
+        //UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
         [bioTextView setText:stripped];
 		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
-        [artistImageView setImage:blurredImage];
+        //[artistImageView setImage:blurredImage];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[_artist tags]];
 		[tagView setTags:array];
 		

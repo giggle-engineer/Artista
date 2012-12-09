@@ -40,6 +40,7 @@
 		3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3741CE7B15E4B1AD0086294E /* CoreText.framework */; };
 		374FCCC515FECC330098CC30 /* TrackViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 374FCCC415FECC330098CC30 /* TrackViewCell.xib */; };
 		374FCCC815FED0840098CC30 /* TrackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 374FCCC715FED0840098CC30 /* TrackViewCell.m */; };
+		375331F7167092CF002AF215 /* Grandesign Neue Serif.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 375331F6167092CF002AF215 /* Grandesign Neue Serif.ttf */; };
 		37607AB5166581320008CB5A /* libRaptureXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DED115EE211A006C6B61 /* libRaptureXML.a */; };
 		37607AD01665F05A0008CB5A /* UIImage+H568.m in Sources */ = {isa = PBXBuildFile; fileRef = 37607ACF1665F05A0008CB5A /* UIImage+H568.m */; };
 		37607AD41665F0D80008CB5A /* Login-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37607AD11665F0D80008CB5A /* Login-568h@2x.png */; };
@@ -64,15 +65,15 @@
 		3770AE0C15E4884300B0144C /* LFMArtist.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0B15E4884300B0144C /* LFMArtist.m */; };
 		3770AE0F15E48A8F00B0144C /* NSArray+StringWithDelimeter.m in Sources */ = {isa = PBXBuildFile; fileRef = 3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */; };
 		377A3FEF15ECB036006FF667 /* AlbumViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */; };
-		377C6F5515DCBB2E00B1CA34 /* bottombar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */; };
 		377C6F5B15DCBDEB00B1CA34 /* progressbar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5715DCBDEB00B1CA34 /* progressbar.png */; };
 		377C6F5C15DCBDEB00B1CA34 /* progressbar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */; };
 		377C6F5D15DCBDEB00B1CA34 /* progressbarfill.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5915DCBDEB00B1CA34 /* progressbarfill.png */; };
 		377C6F5E15DCBDEB00B1CA34 /* progressbarfill@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5A15DCBDEB00B1CA34 /* progressbarfill@2x.png */; };
-		377C6F6015DCBDFA00B1CA34 /* bottombar.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F5F15DCBDFA00B1CA34 /* bottombar.png */; };
 		377C6F6215DCBE0100B1CA34 /* bgtransparent.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6115DCBE0100B1CA34 /* bgtransparent.png */; };
 		377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */; };
 		37873F0B15FAE67200C5DD04 /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */; };
+		3795667F166D4EBE00DD1118 /* tab-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795667D166D4EBE00DD1118 /* tab-bar.png */; };
+		37956680166D4EBE00DD1118 /* tab-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795667E166D4EBE00DD1118 /* tab-bar@2x.png */; };
 		3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C315DB5DD70058023F /* UIKit.framework */; };
 		3795C7C615DB5DD70058023F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C515DB5DD70058023F /* Foundation.framework */; };
 		3795C7C815DB5DD70058023F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C715DB5DD70058023F /* CoreGraphics.framework */; };
@@ -98,6 +99,9 @@
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37BF2DF115DE233F007EB3A7 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */; };
+		37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C93422167476B200AE8BD6 /* UIImage+ProportionalFill.m */; };
+		37C934261674790700AE8BD6 /* top-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C934241674790700AE8BD6 /* top-gradient.png */; };
+		37C934271674790700AE8BD6 /* top-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37C934251674790700AE8BD6 /* top-gradient@2x.png */; };
 		37CA5B031667F6A400265A8B /* warning.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CA5B011667F6A400265A8B /* warning.png */; };
 		37CA5B041667F6A400265A8B /* warning@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37CA5B021667F6A400265A8B /* warning@2x.png */; };
 		37CA5B0A16681B2B00265A8B /* NSTimer+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 37CA5B0916681B2B00265A8B /* NSTimer+Blocks.m */; };
@@ -106,6 +110,7 @@
 		37EF61C01602F0F90085F625 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BE1602F0F90085F625 /* gears.png */; };
 		37EF61C11602F0F90085F625 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BF1602F0F90085F625 /* gears@2x.png */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
+		37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */; };
 		7048FB5B166D3F9100A7C103 /* tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7048FB55166D3F9100A7C103 /* tracks@2x.png */; };
 		7048FB5C166D3F9100A7C103 /* tracks.png in Resources */ = {isa = PBXBuildFile; fileRef = 7048FB56166D3F9100A7C103 /* tracks.png */; };
 		7048FB5D166D3F9100A7C103 /* biography@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7048FB57166D3F9100A7C103 /* biography@2x.png */; };
@@ -202,6 +207,7 @@
 		374FCCC415FECC330098CC30 /* TrackViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TrackViewCell.xib; sourceTree = "<group>"; };
 		374FCCC615FED0840098CC30 /* TrackViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrackViewCell.h; sourceTree = "<group>"; };
 		374FCCC715FED0840098CC30 /* TrackViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewCell.m; sourceTree = "<group>"; };
+		375331F6167092CF002AF215 /* Grandesign Neue Serif.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Grandesign Neue Serif.ttf"; sourceTree = "<group>"; };
 		37607ACE1665F05A0008CB5A /* UIImage+H568.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+H568.h"; sourceTree = "<group>"; };
 		37607ACF1665F05A0008CB5A /* UIImage+H568.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+H568.m"; sourceTree = "<group>"; };
 		37607AD11665F0D80008CB5A /* Login-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Login-568h@2x.png"; sourceTree = "<group>"; };
@@ -231,16 +237,16 @@
 		3770AE0B15E4884300B0144C /* LFMArtist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtist.m; sourceTree = "<group>"; };
 		3770AE0D15E48A8F00B0144C /* NSArray+StringWithDelimeter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+StringWithDelimeter.h"; sourceTree = "<group>"; };
 		3770AE0E15E48A8F00B0144C /* NSArray+StringWithDelimeter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+StringWithDelimeter.m"; sourceTree = "<group>"; };
-		377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bottombar@2x.png"; sourceTree = "<group>"; };
 		377C6F5715DCBDEB00B1CA34 /* progressbar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbar.png; sourceTree = "<group>"; };
 		377C6F5815DCBDEB00B1CA34 /* progressbar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressbar@2x.png"; sourceTree = "<group>"; };
 		377C6F5915DCBDEB00B1CA34 /* progressbarfill.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = progressbarfill.png; sourceTree = "<group>"; };
 		377C6F5A15DCBDEB00B1CA34 /* progressbarfill@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "progressbarfill@2x.png"; sourceTree = "<group>"; };
-		377C6F5F15DCBDFA00B1CA34 /* bottombar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bottombar.png; sourceTree = "<group>"; };
 		377C6F6115DCBE0100B1CA34 /* bgtransparent.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bgtransparent.png; sourceTree = "<group>"; };
 		377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bgtransparent@2x.png"; sourceTree = "<group>"; };
 		37873F0915FAE67200C5DD04 /* NSArray+FirstObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FirstObject.h"; sourceTree = "<group>"; };
 		37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FirstObject.m"; sourceTree = "<group>"; };
+		3795667D166D4EBE00DD1118 /* tab-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar.png"; sourceTree = "<group>"; };
+		3795667E166D4EBE00DD1118 /* tab-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar@2x.png"; sourceTree = "<group>"; };
 		3795C7BF15DB5DD70058023F /* Artista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artista.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3795C7C315DB5DD70058023F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		3795C7C515DB5DD70058023F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -281,6 +287,10 @@
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37BF2DEF15DE233F007EB3A7 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
 		37BF2DF015DE233F007EB3A7 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
+		37C93421167476B200AE8BD6 /* UIImage+ProportionalFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ProportionalFill.h"; path = "MGImageUtilities/Classes/UIImage+ProportionalFill.h"; sourceTree = "<group>"; };
+		37C93422167476B200AE8BD6 /* UIImage+ProportionalFill.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ProportionalFill.m"; path = "MGImageUtilities/Classes/UIImage+ProportionalFill.m"; sourceTree = "<group>"; };
+		37C934241674790700AE8BD6 /* top-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-gradient.png"; sourceTree = "<group>"; };
+		37C934251674790700AE8BD6 /* top-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "top-gradient@2x.png"; sourceTree = "<group>"; };
 		37CA5B011667F6A400265A8B /* warning.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = warning.png; sourceTree = "<group>"; };
 		37CA5B021667F6A400265A8B /* warning@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "warning@2x.png"; sourceTree = "<group>"; };
 		37CA5B0816681B2B00265A8B /* NSTimer+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSTimer+Blocks.h"; sourceTree = "<group>"; };
@@ -291,6 +301,8 @@
 		37EF61BF1602F0F90085F625 /* gears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gears@2x.png"; sourceTree = "<group>"; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
+		37FB3247166EC4AE00C6BCB9 /* LFMArtistImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtistImages.h; sourceTree = "<group>"; };
+		37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtistImages.m; sourceTree = "<group>"; };
 		7048FB55166D3F9100A7C103 /* tracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tracks@2x.png"; sourceTree = "<group>"; };
 		7048FB56166D3F9100A7C103 /* tracks.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tracks.png; sourceTree = "<group>"; };
 		7048FB57166D3F9100A7C103 /* biography@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "biography@2x.png"; sourceTree = "<group>"; };
@@ -497,6 +509,7 @@
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				375331F6167092CF002AF215 /* Grandesign Neue Serif.ttf */,
 				7048FB61166D44B400A7C103 /* albums-selected@2x.png */,
 				7048FB62166D44B400A7C103 /* albums-selected.png */,
 				7048FB63166D44B400A7C103 /* biography-selected@2x.png */,
@@ -514,8 +527,8 @@
 				3739028D15FE7CB700C9B7B7 /* Default.png */,
 				37EF61BE1602F0F90085F625 /* gears.png */,
 				37EF61BF1602F0F90085F625 /* gears@2x.png */,
-				377C6F5F15DCBDFA00B1CA34 /* bottombar.png */,
-				377C6F5415DCBB2E00B1CA34 /* bottombar@2x.png */,
+				3795667D166D4EBE00DD1118 /* tab-bar.png */,
+				3795667E166D4EBE00DD1118 /* tab-bar@2x.png */,
 				377C6F6115DCBE0100B1CA34 /* bgtransparent.png */,
 				377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */,
 				377C6F5715DCBDEB00B1CA34 /* progressbar.png */,
@@ -524,6 +537,8 @@
 				377C6F5A15DCBDEB00B1CA34 /* progressbarfill@2x.png */,
 				37379FA115F863F400B77708 /* overlay.png */,
 				37379FA215F863F400B77708 /* overlay@2x.png */,
+				37C934241674790700AE8BD6 /* top-gradient.png */,
+				37C934251674790700AE8BD6 /* top-gradient@2x.png */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
 				37607AE5166600640008CB5A /* Account Images */,
@@ -558,6 +573,8 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				37C93421167476B200AE8BD6 /* UIImage+ProportionalFill.h */,
+				37C93422167476B200AE8BD6 /* UIImage+ProportionalFill.m */,
 				37607ACE1665F05A0008CB5A /* UIImage+H568.h */,
 				37607ACF1665F05A0008CB5A /* UIImage+H568.m */,
 				37CA5B0816681B2B00265A8B /* NSTimer+Blocks.h */,
@@ -598,6 +615,8 @@
 				3733B8E016253BAE0098E6A1 /* LFMDefines.h */,
 				3795C7F815DB5E400058023F /* LFMArtistInfo.h */,
 				3795C7F915DB5E400058023F /* LFMArtistInfo.m */,
+				37FB3247166EC4AE00C6BCB9 /* LFMArtistImages.h */,
+				37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */,
 				3727D06615EB535D00C88744 /* LFMArtistTopAlbums.h */,
 				3727D06715EB535D00C88744 /* LFMArtistTopAlbums.m */,
 				3720DED715EE2BCC006C6B61 /* LFMArtistTopTracks.h */,
@@ -741,12 +760,10 @@
 			files = (
 				3795C7CE15DB5DD70058023F /* InfoPlist.strings in Resources */,
 				3795C7D715DB5DD70058023F /* MainStoryboard.storyboard in Resources */,
-				377C6F5515DCBB2E00B1CA34 /* bottombar@2x.png in Resources */,
 				377C6F5B15DCBDEB00B1CA34 /* progressbar.png in Resources */,
 				377C6F5C15DCBDEB00B1CA34 /* progressbar@2x.png in Resources */,
 				377C6F5D15DCBDEB00B1CA34 /* progressbarfill.png in Resources */,
 				377C6F5E15DCBDEB00B1CA34 /* progressbarfill@2x.png in Resources */,
-				377C6F6015DCBDFA00B1CA34 /* bottombar.png in Resources */,
 				377C6F6215DCBE0100B1CA34 /* bgtransparent.png in Resources */,
 				377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */,
 				37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */,
@@ -805,6 +822,11 @@
 				7048FB6A166D44B400A7C103 /* biography-selected.png in Resources */,
 				7048FB6B166D44B400A7C103 /* tracks-selected@2x.png in Resources */,
 				7048FB6C166D44B400A7C103 /* tracks-selected.png in Resources */,
+				3795667F166D4EBE00DD1118 /* tab-bar.png in Resources */,
+				37956680166D4EBE00DD1118 /* tab-bar@2x.png in Resources */,
+				375331F7167092CF002AF215 /* Grandesign Neue Serif.ttf in Resources */,
+				37C934261674790700AE8BD6 /* top-gradient.png in Resources */,
+				37C934271674790700AE8BD6 /* top-gradient@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -867,6 +889,8 @@
 				374FCCC815FED0840098CC30 /* TrackViewCell.m in Sources */,
 				37607AD01665F05A0008CB5A /* UIImage+H568.m in Sources */,
 				37CA5B0A16681B2B00265A8B /* NSTimer+Blocks.m in Sources */,
+				37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */,
+				37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

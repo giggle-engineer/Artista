@@ -17,7 +17,6 @@
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
     IBOutlet UILabel *artist;
-    IBOutlet UITextView *bioTextView;
     IBOutlet UIImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;
 	IBOutlet UILabel *album;
@@ -28,6 +27,7 @@
 	IBOutlet UIView *biographyView;
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;
+	IBOutlet UITextView *bioTextView;
 	IBOutlet KKGridView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
 	IBOutlet UITabBar *tabBar;

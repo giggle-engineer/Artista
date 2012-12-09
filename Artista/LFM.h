@@ -7,6 +7,7 @@
 //
 
 #import "LFMArtistInfo.h"
+#import "LFMArtistImages.h"
 #import "LFMArtistTopAlbums.h"
 #import "LFMArtistTopTracks.h"
 #import "LFMRecentTracks.h"

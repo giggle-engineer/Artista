@@ -19,6 +19,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
+		NSLog(@"height: %f", self.frame.size.height);
     }
     return self;
 }
