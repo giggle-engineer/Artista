@@ -31,8 +31,8 @@
 	playbackTimer = nil;
 	
 	// setup grid view
-	albumGridView.cellSize = CGSizeMake(100.f, 100.f);
 	albumGridView.backgroundColor = [UIColor clearColor];
+	[albumGridView registerNib:[UINib nibWithNibName:@"AlbumViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
 	
 	// setup tab bar
 	UIImage *tabBackground = [[UIImage imageNamed:@"tab-bar.png"]
@@ -108,7 +108,7 @@
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
 	
 	// set fonts
-	[bioTextView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
+	//[bioTextView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
 	//[albumGridView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
 	//[topTracksTableView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
 	
@@ -829,31 +829,31 @@
     return nil;
 }
 
-#pragma mark - KKGridView Data Source
+#pragma mark - UICollectionView Data Source
 
-- (NSUInteger)gridView:(KKGridView *)gridView numberOfItemsInSection:(NSUInteger)section
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
 	return [topAlbumsArray count];
 }
 
-- (KKGridViewCell *)gridView:(KKGridView *)gridView cellForItemAtIndexPath:(KKIndexPath *)indexPath
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	static NSString * const identifier = @"Cell";
-	AlbumViewCell *cell = (AlbumViewCell *)[gridView dequeueReusableCellWithIdentifier:identifier];
+	AlbumViewCell *cell = (AlbumViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	
 	if (cell) {
 		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
 		cell.contentView.backgroundColor = [UIColor clearColor];
 	}
 	if (!cell) {
-		cell = [AlbumViewCell cellFromNib];
+		//cell = [AlbumViewCell cellFromNib];
 		cell.reuseIdentifier = identifier;
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] artwork];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.index] name];
+		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
 		cell.contentView.backgroundColor = [UIColor clearColor];

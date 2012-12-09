@@ -53,7 +53,7 @@
                                     <action selector="scrollCurrentViewToTop:" destination="2" eventType="touchUpInside" id="8Ir-x8-Ib5"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-CI-hfQ">
+                            <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-CI-hfQ" userLabel="Top Tracks Table View">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="444" type="user" id="TtU-y0-JrG"/>
@@ -64,13 +64,7 @@
                                     <outlet property="delegate" destination="2" id="Qv8-Li-uTc"/>
                                 </connections>
                             </tableView>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S7a-d3-geQ" customClass="KKGridView">
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="SFh-9c-eFK"/>
-                                    <outlet property="delegate" destination="2" id="AGe-vg-84g"/>
-                                </connections>
-                            </scrollView>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToQ-pP-Rnd">
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToQ-pP-Rnd" userLabel="Biography Text View">
                                 <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -78,6 +72,19 @@
                                     <outlet property="delegate" destination="2" id="w6Y-Ln-s1v"/>
                                 </connections>
                             </textView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zRM-F3-T84">
+                                    <size key="itemSize" width="97" height="121"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="Fuo-ax-Xdn"/>
+                                    <outlet property="delegate" destination="2" id="DcD-pw-g3w"/>
+                                </connections>
+                            </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="gears.png">
@@ -109,39 +116,37 @@
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="default" id="4vs-tG-qp9"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5RW-n4-eJO"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
-                            <constraint firstItem="zsj-gw-2x3" firstAttribute="bottom" secondItem="wNH-X9-WFv" secondAttribute="bottom" type="default" id="7U4-OM-Ja0"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9U8-9l-s0k"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Axh-fd-Qpd"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CJu-4R-eXc"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="EAO-xA-169"/>
+                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="IKm-BZ-cz5"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="JRc-ex-ASp"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="KY0-Sa-aL8"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="OW7-XR-mud"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="OoK-Wo-kr1"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
-                            <constraint firstItem="S7a-d3-geQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="QmJ-zx-XYD"/>
-                            <constraint firstItem="S7a-d3-geQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="Sew-Zr-cha"/>
-                            <constraint firstItem="S7a-d3-geQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="X5c-y7-x07"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="X9C-Jm-Lae"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="60" id="cKr-5t-FOS"/>
-                            <constraint firstItem="S7a-d3-geQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eWK-YV-6st"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
-                            <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="top" type="default" id="gHz-wD-qWW"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
-                            <constraint firstItem="S7a-d3-geQ" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="user" id="q5c-yz-uC4"/>
-                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qdP-Xj-Ja7"/>
-                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="sOb-Bu-gAO"/>
+                            <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="lOQ-JK-06W"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="m42-vh-obI"/>
+                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="oMU-De-eCR"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="sym-Wn-iA2"/>
-                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="user" id="tY2-Wl-md6"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="centerX" secondItem="wNH-X9-WFv" secondAttribute="centerX" type="default" id="vBU-Os-Hc1"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="vuB-AX-4fO"/>
+                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Cmv-5n-oHZ" secondAttribute="top" type="default" id="wSo-aw-oQo"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="x8K-sU-Uni"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="bottom" secondItem="zsj-gw-2x3" secondAttribute="bottom" type="default" id="xwg-lu-Vb6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
                     <connections>
-                        <outlet property="albumGridView" destination="S7a-d3-geQ" id="py7-Af-aXw"/>
+                        <outlet property="albumGridView" destination="Cmv-5n-oHZ" id="GBh-fH-hkK"/>
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
                         <outlet property="artistImageView" destination="Sy4-GE-vdG" id="uNT-oq-eXa"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
@@ -421,6 +426,8 @@ Text, images, and information provided by Last.fm</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
             <relationships>
                 <relationship kind="action" name="closeView:"/>
+                <relationship kind="action" name="skipOrUnlink:"/>
+                <relationship kind="action" name="verifyUser:"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="connectedView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="longButtonsView" candidateClass="UIView"/>
@@ -431,27 +438,21 @@ Text, images, and information provided by Last.fm</string>
                 <relationship kind="outlet" name="verifiedImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
-        <class className="KKGridView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/KKGridView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="dataSource"/>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
         <class className="PSCTagView" superclassName="UIScrollView">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
         </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="scrollCurrentViewToTop:"/>
-                <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="album" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="albumGridView" candidateClass="KKGridView"/>
+                <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>

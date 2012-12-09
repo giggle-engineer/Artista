@@ -1,15 +1,6 @@
-[submodule "Artista/NAMenu"]
-	path = Artista/NAMenu
-	url = git://github.com/cammsaul/NAMenu.git
-[submodule "Artista/KKGridView"]
-	path = Artista/KKGridView
-	url = git://github.com/kolinkrewinkel/KKGridView.git
 [submodule "Artista/RaptureXML"]
 	path = Artista/RaptureXML
 	url = git://github.com/ZaBlanc/RaptureXML.git
-[submodule "Artista/Reachability"]
-	path = Artista/Reachability
-	url = git://github.com/tonymillion/Reachability.git
 [submodule "Artista/MGImageUtilities"]
 	path = Artista/MGImageUtilities
 	url = git://github.com/mattgemmell/MGImageUtilities.git

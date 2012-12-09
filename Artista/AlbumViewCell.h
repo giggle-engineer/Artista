@@ -7,9 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <KKGridView/KKGridView.h>
 
-@interface AlbumViewCell : KKGridViewCell {
+@interface AlbumViewCell : UICollectionViewCell {
 	IBOutlet UIImageView *artworkView;
 	IBOutlet UILabel *nameLabel;
 }

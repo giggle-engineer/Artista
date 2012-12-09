@@ -13,8 +13,7 @@
 @dynamic backgroundView;
 @dynamic reuseIdentifier;
 
-+ (id) cellFromNib {
-	
+/*+ (id) cellFromNib {
 	static UINib *nib = nil;
 	static dispatch_once_t onceToken;
 	dispatch_once(&onceToken, ^{
@@ -29,6 +28,6 @@
 	
 	return nil;
 	
-}
+}*/
 
 @end

@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <KKGridView/KKGridView.h>
 #import "AccountViewController.h"
 #import "LFM.h"
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
 #import "SVSegmentedControl.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, KKGridViewDataSource, KKGridViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UIImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;
@@ -28,7 +27,7 @@
 	IBOutlet UIView *topAlbumsView;
 	IBOutlet UIView *topTracksView;
 	IBOutlet UITextView *bioTextView;
-	IBOutlet KKGridView *albumGridView;
+	IBOutlet UICollectionView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
 	IBOutlet UITabBar *tabBar;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
