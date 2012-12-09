@@ -26,7 +26,7 @@
 
 - (void)awakeFromNib {
 	// set defaults
-	font = [UIFont fontWithName:@"Helvetica Neue" size:17];
+	font = [UIFont fontWithName:@"HelveticaNeue" size:17];
 	textColor = [UIColor whiteColor];
 	backgroundColor = [UIColor blackColor];
 	// setup tag array

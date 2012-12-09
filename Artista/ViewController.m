@@ -57,7 +57,7 @@
 	
 	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
 	navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
-	navigation.font = [UIFont fontWithName:@"Helvetica Neue" size:12];
+	navigation.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
 	navigation.alpha = 0.7f;
 	navigation.titleEdgeInsets = UIEdgeInsetsMake(-1, 16, 0, 16);
     [navigation addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
@@ -67,7 +67,7 @@
 	navigation.center = CGPointMake(160, 80);
 	
 	// subtly dim the tag view
-	tagView.alpha = 0.5;
+	//tagView.alpha = 0.5;
 	
 	// round the corners of the album art view
 	albumArtView.layer.cornerRadius = 3.0;
@@ -706,7 +706,20 @@
 		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
         //[artistImageView setImage:blurredImage];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[_artist tags]];
-		[tagView setTags:array];
+		NSMutableArray *tagArray = [NSMutableArray new];
+		int i = 0;
+		for (NSString *tagString in array)
+		{
+			NSString *newTagString;
+			++i;
+			if (i!=array.count)
+				newTagString = [[NSString alloc] initWithFormat:@"%@,", tagString];
+			else
+				newTagString = tagString;
+			PSCTag *tag = [[PSCTag alloc] initWithString:newTagString withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12] withTextColor:[UIColor lightGrayColor] withBackgroundColor:[UIColor clearColor]];
+			[tagArray addObject:tag];
+		}
+		[tagView setTags:tagArray];
 		
 		[self setupHiddenVersionView];
     });
