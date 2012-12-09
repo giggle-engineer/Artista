@@ -15,11 +15,5 @@
 
 @property IBOutlet UIImageView *artworkView;
 @property IBOutlet UILabel *nameLabel;
-@property (nonatomic, strong) IBOutlet UIView *backgroundView; // Underneath contentView, use this to customize backgrounds
-@property (nonatomic, strong) IBOutlet UIView *contentView; // Where all subviews should be.
-@property (nonatomic, strong) IBOutlet UIView *selectedBackgroundView;
-@property (nonatomic, copy) NSString *reuseIdentifier;
-
-+ (id) cellFromNib;
 
 @end

@@ -95,11 +95,11 @@
 }
 
 - (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion {
-	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=%@&api_key=%@",
+	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getimages&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
     NSLog(@"LFMArtistImages mbid requested: %@", mbid);
     NSLog(@"LFMArtistImages Requesting from url: %@", urlRequestString);
-	[self requestImagesWithURL:urlRequestString completion:nil];
+	[self requestImagesWithURL:urlRequestString completion:completion];
 }
 
 @end

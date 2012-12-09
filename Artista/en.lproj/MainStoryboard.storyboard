@@ -12,6 +12,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-CI-hfQ" userLabel="Top Tracks Table View">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="444" type="user" id="srB-as-DHw"/>
+                                </constraints>
+                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="heE-D2-SLc"/>
+                                    <outlet property="delegate" destination="2" id="Qv8-Li-uTc"/>
+                                </connections>
+                            </tableView>
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zRM-F3-T84">
+                                    <size key="itemSize" width="97" height="121"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells/>
+                                <connections>
+                                    <outlet property="dataSource" destination="2" id="Fuo-ax-Xdn"/>
+                                    <outlet property="delegate" destination="2" id="DcD-pw-g3w"/>
+                                </connections>
+                            </collectionView>
+                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToQ-pP-Rnd" userLabel="Biography Text View">
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="lessThanOrEqual" constant="444" type="user" id="HsE-Kx-VhN"/>
+                                </constraints>
+                                <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="w6Y-Ln-s1v"/>
+                                </connections>
+                            </textView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sy4-GE-vdG">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" type="user" id="9cS-1P-Pgu"/>
@@ -19,15 +54,7 @@
                                 </constraints>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="top-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-gw-2x3"/>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-X9-WFv" customClass="PSCTagView">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="25" type="user" id="qJ2-uS-mL1"/>
-                                </constraints>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="PNs-kj-18x"/>
-                                </connections>
-                            </scrollView>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R" userLabel="Artist Label">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="304" id="NJ6-Bt-2oW"/>
                                     <constraint firstAttribute="height" constant="39" id="nqr-21-fCw"/>
@@ -37,7 +64,15 @@
                                 <nil key="highlightedColor"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-E2-yaa">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-X9-WFv" customClass="PSCTagView">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" type="user" id="qJ2-uS-mL1"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="delegate" destination="2" id="PNs-kj-18x"/>
+                                </connections>
+                            </scrollView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7IM-E2-yaa" userLabel="Scroll to top Button">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="22" id="Yoi-PB-Nu9"/>
                                 </constraints>
@@ -53,39 +88,7 @@
                                     <action selector="scrollCurrentViewToTop:" destination="2" eventType="touchUpInside" id="8Ir-x8-Ib5"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Wh6-CI-hfQ" userLabel="Top Tracks Table View">
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="444" type="user" id="TtU-y0-JrG"/>
-                                </constraints>
-                                <color key="separatorColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="heE-D2-SLc"/>
-                                    <outlet property="delegate" destination="2" id="Qv8-Li-uTc"/>
-                                </connections>
-                            </tableView>
-                            <textView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" editable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ToQ-pP-Rnd" userLabel="Biography Text View">
-                                <color key="textColor" red="0.09803922474" green="0.09803922474" blue="0.09803922474" alpha="1" colorSpace="deviceRGB"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <connections>
-                                    <outlet property="delegate" destination="2" id="w6Y-Ln-s1v"/>
-                                </connections>
-                            </textView>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
-                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zRM-F3-T84">
-                                    <size key="itemSize" width="97" height="121"/>
-                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                </collectionViewFlowLayout>
-                                <cells/>
-                                <connections>
-                                    <outlet property="dataSource" destination="2" id="Fuo-ax-Xdn"/>
-                                    <outlet property="delegate" destination="2" id="DcD-pw-g3w"/>
-                                </connections>
-                            </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd" userLabel="Configure Button">
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" image="gears.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -112,36 +115,36 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="3BU-Gv-sb0"/>
+                            <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="4gI-hT-arT"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="default" id="4vs-tG-qp9"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5RW-n4-eJO"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="6YK-AT-zU0"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9U8-9l-s0k"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Axh-fd-Qpd"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CJu-4R-eXc"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="EAO-xA-169"/>
-                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="IKm-BZ-cz5"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="JRc-ex-ASp"/>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="KY0-Sa-aL8"/>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="OW7-XR-mud"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="NsI-2d-tuU"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="OoK-Wo-kr1"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
-                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="X9C-Jm-Lae"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Pod-0O-v8P"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="60" id="cKr-5t-FOS"/>
+                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
-                            <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="lOQ-JK-06W"/>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="m42-vh-obI"/>
-                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="oMU-De-eCR"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="default" id="nWL-py-kda"/>
+                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
+                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qS0-pC-REd"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="siS-wF-B84"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="sym-Wn-iA2"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="centerX" secondItem="wNH-X9-WFv" secondAttribute="centerX" type="default" id="vBU-Os-Hc1"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="vuB-AX-4fO"/>
-                            <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Cmv-5n-oHZ" secondAttribute="top" type="default" id="wSo-aw-oQo"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="bottom" secondItem="Sy4-GE-vdG" secondAttribute="bottom" type="default" id="wRB-Oy-3LV"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="x8K-sU-Uni"/>
-                            <constraint firstItem="wNH-X9-WFv" firstAttribute="bottom" secondItem="zsj-gw-2x3" secondAttribute="bottom" type="default" id="xwg-lu-Vb6"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -426,8 +429,6 @@ Text, images, and information provided by Last.fm</string>
             <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
             <relationships>
                 <relationship kind="action" name="closeView:"/>
-                <relationship kind="action" name="skipOrUnlink:"/>
-                <relationship kind="action" name="verifyUser:"/>
                 <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
                 <relationship kind="outlet" name="connectedView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="longButtonsView" candidateClass="UIView"/>
@@ -446,6 +447,9 @@ Text, images, and information provided by Last.fm</string>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>

@@ -428,7 +428,10 @@
 		__block UIImage *image;
 		dispatch_async(queue,^{
 			image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
-			image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+			if ([UIScreen mainScreen].scale==2.0f)
+				image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+			else
+				image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artistImageView setImage:image];
 			});
@@ -601,7 +604,10 @@
 					__block UIImage *image;
 					dispatch_async(queue,^{
 						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
-						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						if ([UIScreen mainScreen].scale==2.0f)
+							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						else
+							image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
 						});
@@ -628,7 +634,10 @@
 					__block UIImage *image;
 					dispatch_async(queue,^{
 						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
-						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						if ([UIScreen mainScreen].scale==2.0f)
+							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						else
+							image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
 						});
@@ -886,7 +895,7 @@
 	}
 	if (!cell) {
 		//cell = [AlbumViewCell cellFromNib];
-		cell.reuseIdentifier = identifier;
+		//cell.reuseIdentifier = identifier;
 		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
 		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
 		cell.backgroundColor = [UIColor clearColor];
