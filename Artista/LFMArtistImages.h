@@ -27,6 +27,6 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error);
 @property (strong) id delegate;
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion;
-- (void)requestImagesWithMusicBrainzID:(NSString*)mbid;
+- (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion;
 
 @end

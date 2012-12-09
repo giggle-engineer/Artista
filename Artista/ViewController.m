@@ -420,6 +420,20 @@
 	dispatch_async(queue,^{
 	[topTracks requestTopTracksWithArtist:artistName];
 	});
+	LFMArtistImages *artistImage = [LFMArtistImages new];
+	[artistImage requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error) {
+		if (images.count==0)
+			return;
+		NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+		__block UIImage *image;
+		dispatch_async(queue,^{
+			image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+			image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[artistImageView setImage:image];
+			});
+		});
+	}];
 }
 
 - (void)reset:(BOOL)isInternetWorking {
@@ -543,27 +557,6 @@
 				[track setText:[_track name]];
 			});
 			
-			LFMArtistImages *artistImage = [LFMArtistImages new];
-			[artistImage requestImagesWithArtist:/*@"Taylor Swift"*/[_track artist] completion:^(NSArray *images, NSError *error) {
-				NSLog(@"completion thing!!!!");
-				//NSLog(@"array:%@", images);
-				if (images.count==0)
-					return;
-				//for (NSDictionary *dictionary in images)
-				//{
-					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
-					__block UIImage *image;
-					dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-					dispatch_async(queue,^{
-						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
-						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
-						dispatch_async(dispatch_get_main_queue(), ^{
-							[artistImageView setImage:image];
-						});
-					});
-				//}
-			}];
-			
 			// setup artist info
 			if (artistInfo==nil) {
 				artistInfo = [[LFMArtistInfo alloc] init];
@@ -584,6 +577,9 @@
 				[topTracks setDelegate:self];
 			}
 			
+			// move this to an iVar?
+			LFMArtistImages *artistImage = [LFMArtistImages new];
+			
 			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
 				dispatch_async(queue,^{
@@ -598,6 +594,19 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
 				});
+				[artistImage requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error) {
+					if (images.count==0)
+						return;
+					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+					__block UIImage *image;
+					dispatch_async(queue,^{
+						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						dispatch_async(dispatch_get_main_queue(), ^{
+							[artistImageView setImage:image];
+						});
+					});
+				}];
 			}
 			else {
 				dispatch_async(queue,^{
@@ -612,6 +621,19 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 				});
+				[artistImage requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error) {
+					if (images.count==0)
+						return;
+					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+					__block UIImage *image;
+					dispatch_async(queue,^{
+						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+						dispatch_async(dispatch_get_main_queue(), ^{
+							[artistImageView setImage:image];
+						});
+					});
+				}];
 			}
 		});
 	#if !(TARGET_IPHONE_SIMULATOR)

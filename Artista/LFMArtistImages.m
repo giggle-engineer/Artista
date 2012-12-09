@@ -50,11 +50,8 @@
 	int pages = [[[rootXML child:@"images"] attribute:@"totalPages"] intValue];
 	NSLog(@"pages: %i", pages);
 	
-	[rootXML iterate:@"images.image" usingBlock: ^(RXMLElement *e) {
-		//NSLog(@"title:%@", [[e child:@"title"] text]);
-		
+	[rootXML iterate:@"images.image" usingBlock: ^(RXMLElement *e) {		
 		NSMutableDictionary *sizeDictionary = [NSMutableDictionary new];
-		//NSLog(@"children:%d",[[e children:@"sizes"] count]);
 		BOOL acceptable = NO;
 		for (RXMLElement *size in [[e child:@"sizes"] children:@"size"])
 		{
@@ -97,7 +94,7 @@
 	[self requestImagesWithURL:urlRequestString completion:completion];
 }
 
-- (void)requestImagesWithMusicBrainzID:(NSString*)mbid {
+- (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion {
 	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
     NSLog(@"LFMArtistImages mbid requested: %@", mbid);
