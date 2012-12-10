@@ -38,6 +38,8 @@
 	UIImage *tabBackground = [[UIImage imageNamed:@"tab-bar.png"]
 							  resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
 	[[UITabBar appearance] setBackgroundImage:tabBackground];
+    // Custom highlight image
+    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab-highlight.png"]];
 	// select middle item, biography
 	[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
 	//[[UITabBar appearance] setTintColor:[UIColor clearColor]];

@@ -114,7 +114,7 @@
                                 </connections>
                             </tabBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.97751783290000005" green="0.97751783290000005" blue="0.97751783290000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="2UT-gT-UUD"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="4gI-hT-arT"/>
