@@ -747,8 +747,17 @@
 				newTagString = [[NSString alloc] initWithFormat:@"%@,", tagString];
 			else
 				newTagString = tagString;
+            // Define tag text colour below
 			PSCTag *tag = [[PSCTag alloc] initWithString:newTagString withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor clearColor]];
 			[tagArray addObject:tag];
+            //tag.shadowColor = [UIColor colorWithRed:0 green:0 blue: alpha:.35];
+            //tag.shadowOffset = CGSizeMake(0, -1.0);
+            
+            // tag view text shadow
+            tagView.layer.shadowColor = [[UIColor blackColor] CGColor];
+            tagView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
+            tagView.layer.shadowOpacity = 0.50f;
+            tagView.layer.shadowRadius = 0.0f;
 		}
 		[tagView setTags:tagArray];
 		
