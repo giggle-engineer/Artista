@@ -105,9 +105,10 @@
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSh-Tb-iud">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="Top Albums" image="close.png" id="BA6-Zw-8ar"/>
                                     <tabBarItem title="Biography" image="warning.png" id="pV5-Jc-xB2"/>
+                                    <tabBarItem title="Top Albums" image="close.png" id="BA6-Zw-8ar"/>
                                     <tabBarItem title="Top Tracks" image="submit.png" id="NVe-KK-LuD"/>
+                                    <tabBarItem title="Photos" image="photos.png" id="Akg-Vn-DCm"/>
                                 </items>
                                 <connections>
                                     <outlet property="delegate" destination="2" id="C57-X4-m6L"/>
@@ -405,6 +406,19 @@ Text, images, and information provided by Last.fm</string>
             </objects>
             <point key="canvasLocation" x="593" y="23"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Y3C-3c-XMr">
+            <objects>
+                <viewController id="nry-sJ-pKG" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="x4W-Uf-7KS">
+                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JTA-6R-50D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+        </scene>
     </scenes>
     <resources>
         <image name="close.png" width="24" height="25"/>
@@ -421,6 +435,7 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow-small-pressed.png" width="139" height="38"/>
         <image name="notnow-small.png" width="139" height="38"/>
         <image name="notnow.png" width="289" height="38"/>
+        <image name="photos.png" width="29" height="31"/>
         <image name="submit.png" width="24" height="25"/>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>

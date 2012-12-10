@@ -41,16 +41,18 @@
     // Custom highlight image
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab-highlight.png"]];
 	// select middle item, biography
-	[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
+	[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
 	//[[UITabBar appearance] setTintColor:[UIColor clearColor]];
 	//[[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0 green:0.2 blue:1.0 alpha:1.0]];
 	// set the images for the tab bar items
-	UITabBarItem *topAlbumsItem = [[tabBar items] objectAtIndex:0];
+	UITabBarItem *topAlbumsItem = [[tabBar items] objectAtIndex:1];
 	[topAlbumsItem setFinishedSelectedImage:[UIImage imageNamed:@"albums-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"albums.png"]];
-	UITabBarItem *biographyItem = [[tabBar items] objectAtIndex:1];
+	UITabBarItem *biographyItem = [[tabBar items] objectAtIndex:0];
 	[biographyItem setFinishedSelectedImage:[UIImage imageNamed:@"biography-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"biography.png"]];
 	UITabBarItem *topTracksItem = [[tabBar items] objectAtIndex:2];
 	[topTracksItem setFinishedSelectedImage:[UIImage imageNamed:@"tracks-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"tracks.png"]];
+    UITabBarItem *photosItem = [[tabBar items] objectAtIndex:3];
+	[photosItem setFinishedSelectedImage:[UIImage imageNamed:@"photos-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"photos.png"]];
     
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor lightGrayColor] }
                                              forState:UIControlStateNormal];
@@ -175,8 +177,8 @@
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
-										 bioTextView.alpha = 0.0;
-										 albumGridView.alpha = 1.0;
+										 bioTextView.alpha = 1.0;
+										 albumGridView.alpha = 0.0;
 										 topTracksTableView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
@@ -190,8 +192,8 @@
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
-										 bioTextView.alpha = 1.0;
-										 albumGridView.alpha = 0.0;
+										 bioTextView.alpha = 0.0;
+										 albumGridView.alpha = 1.0;
 										 topTracksTableView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
@@ -450,7 +452,7 @@
 		[trackRefreshControl endRefreshing];
 		//[navigation moveThumbToIndex:0 animate:YES];
 		// select middle item, biography
-		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:1]];
+		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
 		// Internet isn't working display message.
 		if (isInternetWorking==NO) {
 			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
