@@ -747,7 +747,7 @@
 				newTagString = [[NSString alloc] initWithFormat:@"%@,", tagString];
 			else
 				newTagString = tagString;
-			PSCTag *tag = [[PSCTag alloc] initWithString:newTagString withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12] withTextColor:[UIColor lightGrayColor] withBackgroundColor:[UIColor clearColor]];
+			PSCTag *tag = [[PSCTag alloc] initWithString:newTagString withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor clearColor]];
 			[tagArray addObject:tag];
 		}
 		[tagView setTags:tagArray];

@@ -53,8 +53,8 @@
                                     <constraint firstAttribute="height" constant="125" type="user" id="tIk-nl-1Vt"/>
                                 </constraints>
                             </imageView>
-                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="top-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-gw-2x3"/>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R" userLabel="Artist Label">
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="center" image="top-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-gw-2x3"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R" userLabel="Artist Label">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="304" id="NJ6-Bt-2oW"/>
                                     <constraint firstAttribute="height" constant="39" id="nqr-21-fCw"/>
@@ -62,9 +62,10 @@
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.0" alpha="0.29999999999999999" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-X9-WFv" customClass="PSCTagView">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.5" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wNH-X9-WFv" customClass="PSCTagView">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" type="user" id="qJ2-uS-mL1"/>
                                 </constraints>
@@ -118,6 +119,7 @@
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="2UT-gT-UUD"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="4gI-hT-arT"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="default" id="4vs-tG-qp9"/>
+                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="70" id="52z-Yk-ywn"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5RW-n4-eJO"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="6YK-AT-zU0"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
@@ -131,19 +133,18 @@
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Pod-0O-v8P"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
-                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="60" id="cKr-5t-FOS"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="default" id="nWL-py-kda"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="105" id="nqh-jz-CVs"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qS0-pC-REd"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="sym-Wn-iA2"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="centerX" secondItem="wNH-X9-WFv" secondAttribute="centerX" type="default" id="vBU-Os-Hc1"/>
                             <constraint firstItem="7IM-E2-yaa" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="vuB-AX-4fO"/>
-                            <constraint firstItem="wNH-X9-WFv" firstAttribute="bottom" secondItem="Sy4-GE-vdG" secondAttribute="bottom" type="default" id="wRB-Oy-3LV"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="x8K-sU-Uni"/>
                         </constraints>
                     </view>
