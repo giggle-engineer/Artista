@@ -17,6 +17,8 @@
 #import "TrackViewCell.h"
 #import "NSArray+FirstObject.h"
 #import "UIImage+ProportionalFill.h"
+#import "TMPhotoQuiltViewCell.h"
+#import "NYXImagesKit.h"
 
 @interface ViewController ()
 
@@ -72,6 +74,10 @@
 	
 	// subtly dim the tag view
 	//tagView.alpha = 0.5;
+	
+	// setup quilt view
+	photoGridView.delegate = self;
+	photoGridView.dataSource = self;
 	
 	// round the corners of the album art view
 	albumArtView.layer.cornerRadius = 3.0;
@@ -399,6 +405,10 @@
 		topTracks = [[LFMArtistTopTracks alloc] init];
 		[topTracks setDelegate:self];
 	}
+	if (artistImages==nil)
+	{
+		artistImages = [LFMArtistImages new];
+	}
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 	dispatch_async(queue,^{
 	[artistInfo requestInfoWithArtist:artistName];
@@ -409,20 +419,20 @@
 	dispatch_async(queue,^{
 	[topTracks requestTopTracksWithArtist:artistName];
 	});
-	LFMArtistImages *artistImage = [LFMArtistImages new];
-	[artistImage requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error) {
+	[artistImages requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error) {
 		if (images.count==0)
 			return;
-		NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
-			image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+			image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
 			if ([UIScreen mainScreen].scale==2.0f)
 				image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 			else
 				image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artistImageView setImage:image];
+				[photoGridView reloadData];
 			});
 		});
 	}];
@@ -525,6 +535,62 @@
 	}
 }
 
+#pragma mark - Setup Hidden Version View
+
+- (void)setupHiddenVersionView {
+	// Remove old label
+	[versionLabel removeFromSuperview];
+	[copyrightLabel removeFromSuperview];
+	
+	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+	NSString *appDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+	NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+	NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
+	
+	UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:12];
+	
+	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@)", appDisplayName, majorVersion, minorVersion];
+	CGSize textSize = [versionString sizeWithFont:font];
+	
+	float height = textSize.height;
+	float width = textSize.width;
+	float padding = 30;
+	float y;
+	
+	if (bioTextView.contentSize.height > bioTextView.frame.size.height) {
+		y = bioTextView.contentSize.height + padding;
+	}
+	// if the text doesn't fill up the entire view then append the text at the bottom of the view
+	else {
+		y = bioTextView.frame.size.height - padding;
+	}
+	
+	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
+	versionLabel.backgroundColor = [UIColor clearColor];
+	versionLabel.textColor = [UIColor darkGrayColor];
+	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
+	versionLabel.font = font;
+	versionLabel.text = versionString;
+	
+	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative, Ltd.";
+	textSize = [copyrightString sizeWithFont:font];
+	
+	height = textSize.height;
+	width = textSize.width;
+	
+	y = versionLabel.frame.origin.y + versionLabel.frame.size.height;
+	
+	copyrightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
+	copyrightLabel.backgroundColor = [UIColor clearColor];
+	copyrightLabel.textColor = [UIColor darkGrayColor];
+	copyrightLabel.center = CGPointMake(bioTextView.center.x, copyrightLabel.center.y);
+	copyrightLabel.font = font;
+	copyrightLabel.text = copyrightString;
+	
+	[bioTextView addSubview:versionLabel];
+	[bioTextView addSubview:copyrightLabel];
+}
+
 #pragma mark - LFMRecentTracks Delegate
 
 - (void)didReceiveRecentTracks:(NSArray*)tracks {
@@ -568,9 +634,13 @@
 				topTracks = [[LFMArtistTopTracks alloc] init];
 				[topTracks setDelegate:self];
 			}
+			if (artistImages==nil)
+			{
+				artistImages = [LFMArtistImages new];
+			}
 			
 			// move this to an iVar?
-			LFMArtistImages *artistImage = [LFMArtistImages new];
+			
 			
 			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
@@ -586,19 +656,21 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
 				});
-				[artistImage requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error) {
+				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error) {
 					if (images.count==0)
 						return;
-					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+					NSLog(@"IMGES:%i",artistImages.images.count);
+					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
-						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
 							image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
+							[photoGridView reloadData];
 						});
 					});
 				}];
@@ -616,19 +688,20 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 				});
-				[artistImage requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error) {
+				[artistImages requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error) {
 					if (images.count==0)
 						return;
-					NSMutableDictionary *dictionary = [images objectAtIndex:arc4random() % images.count];
+					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
-						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[dictionary objectForKey:@"original"]]];
+						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
 							image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
+							[photoGridView reloadData];
 						});
 					});
 				}];
@@ -652,62 +725,6 @@
 	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
 	[self reset:NO];
-}
-
-#pragma mark - Setup Hidden Version View
-
-- (void)setupHiddenVersionView {
-	// Remove old label
-	[versionLabel removeFromSuperview];
-	[copyrightLabel removeFromSuperview];
-	
-	NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
-	NSString *appDisplayName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
-	NSString *majorVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
-	NSString *minorVersion = [infoDictionary objectForKey:@"CFBundleVersion"];
-	
-	UIFont *font = [UIFont fontWithName:@"Helvetica Neue" size:12];
-	
-	NSString *versionString = [[NSString alloc] initWithFormat:@"%@ %@ (%@)", appDisplayName, majorVersion, minorVersion];
-	CGSize textSize = [versionString sizeWithFont:font];
-	
-	float height = textSize.height;
-	float width = textSize.width;
-	float padding = 30;
-	float y;
-	
-	if (bioTextView.contentSize.height > bioTextView.frame.size.height) {
-		y = bioTextView.contentSize.height + padding;
-	}
-	// if the text doesn't fill up the entire view then append the text at the bottom of the view
-	else {
-		y = bioTextView.frame.size.height - padding;
-	}
-	
-	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
-	versionLabel.backgroundColor = [UIColor clearColor];
-	versionLabel.textColor = [UIColor darkGrayColor];
-	versionLabel.center = CGPointMake(bioTextView.center.x, versionLabel.center.y);
-	versionLabel.font = font;
-	versionLabel.text = versionString;
-	
-	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative, Ltd.";
-	textSize = [copyrightString sizeWithFont:font];
-	
-	height = textSize.height;
-	width = textSize.width;
-
-	y = versionLabel.frame.origin.y + versionLabel.frame.size.height;
-	
-	copyrightLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
-	copyrightLabel.backgroundColor = [UIColor clearColor];
-	copyrightLabel.textColor = [UIColor darkGrayColor];
-	copyrightLabel.center = CGPointMake(bioTextView.center.x, copyrightLabel.center.y);
-	copyrightLabel.font = font;
-	copyrightLabel.text = copyrightString;
-	
-	[bioTextView addSubview:versionLabel];
-	[bioTextView addSubview:copyrightLabel];
 }
 
 #pragma mark - LFMArtistInfo Delegate
@@ -784,8 +801,20 @@
 #pragma mark - LFMArtistTopAlbums Delegate
 
 - (void)didReceiveTopAlbums:(NSArray *)albums {
+	/*if (albums.count==1 && topAlbumsArray.count != 0) {
+		topAlbumsArray = albums;
+		// remove current rows if present
+		NSMutableArray *indexPaths = [NSMutableArray new];
+		for (int i = 0; i==albums.count-1; i++)
+		{
+			[indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
+		}
+		[albumGridView deleteItemsAtIndexPaths:indexPaths];
+	}*/
 	topAlbumsArray = albums;
 	dispatch_async(dispatch_get_main_queue(), ^{
+		//NSLog(@"albums.count:%i",albums.count);
+		//[albumGridView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:albums.count-1 inSection:0]]];
 		[albumGridView reloadData];
 	});
 }
@@ -919,6 +948,47 @@
 - (IBAction)showAccountView:(id)sender {
 	[self performSegueWithIdentifier: @"Account"
 							  sender: nil];
+}
+
+#pragma mark - QuiltViewControllerDataSource
+
+- (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
+	NSLog(@"gallery:%i", artistImages.images.count);
+    return [artistImages.images count];
+}
+
+- (TMQuiltViewCell *)quiltView:(TMQuiltView *)quiltView cellAtIndexPath:(NSIndexPath *)indexPath {
+    TMPhotoQuiltViewCell *cell = (TMPhotoQuiltViewCell *)[quiltView dequeueReusableCellWithReuseIdentifier:@"PhotoCell"];
+    if (!cell) {
+        cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
+    }
+    
+	//cell.photoView.image = nil;
+	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+	[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
+	
+	cell.titleLabel.hidden = YES;
+    //cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
+	//cell.titleLabel.text = artistImage.title;
+    return cell;
+}
+
+#pragma mark - TMQuiltViewDelegate
+
+- (NSInteger)quiltViewNumberOfColumns:(TMQuiltView *)quiltView {
+	
+    
+    if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft
+        || [[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeRight) {
+        return 3;
+    } else {
+        return 2;
+    }
+}
+
+- (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
+	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+    return artistImage.height / [self quiltViewNumberOfColumns:quiltView];
 }
 
 @end

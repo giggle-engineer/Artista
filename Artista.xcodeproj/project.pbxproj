@@ -107,6 +107,12 @@
 		37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */; };
 		37EF61C01602F0F90085F625 /* gears.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BE1602F0F90085F625 /* gears.png */; };
 		37EF61C11602F0F90085F625 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BF1602F0F90085F625 /* gears@2x.png */; };
+		37F2A17416771C8A00D7779D /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F2A17316771C8A00D7779D /* AssetsLibrary.framework */; };
+		37F2A17616771C9300D7779D /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F2A17516771C9300D7779D /* ImageIO.framework */; };
+		37F2A17816771C9C00D7779D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F2A17716771C9C00D7779D /* MobileCoreServices.framework */; };
+		37F2A17A16771CAE00D7779D /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F2A17916771CAE00D7779D /* CoreImage.framework */; };
+		37F2A17D16771F4F00D7779D /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */; };
+		37F2A187167733F300D7779D /* libNYXImagesKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37F2A186167732B100D7779D /* libNYXImagesKit.a */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
 		37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */; };
 		7048FB5B166D3F9100A7C103 /* tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7048FB55166D3F9100A7C103 /* tracks@2x.png */; };
@@ -166,6 +172,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 3795C7BE15DB5DD70058023F;
 			remoteInfo = Artista;
+		};
+		37F2A185167732B100D7779D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 37F2A17E167732B100D7779D /* NYXImagesKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 1E0289D7144EF32200B6B6D5;
+			remoteInfo = NYXImagesKit;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -303,6 +316,13 @@
 		37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		37EF61BE1602F0F90085F625 /* gears.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gears.png; sourceTree = "<group>"; };
 		37EF61BF1602F0F90085F625 /* gears@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gears@2x.png"; sourceTree = "<group>"; };
+		37F2A17316771C8A00D7779D /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		37F2A17516771C9300D7779D /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
+		37F2A17716771C9C00D7779D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		37F2A17916771CAE00D7779D /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		37F2A17B16771F4F00D7779D /* TMPhotoQuiltViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TMPhotoQuiltViewCell.h; sourceTree = "<group>"; };
+		37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMPhotoQuiltViewCell.m; sourceTree = "<group>"; };
+		37F2A17E167732B100D7779D /* NYXImagesKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = NYXImagesKit.xcodeproj; path = Artista/NYXImagesKit/NYXImagesKit.xcodeproj; sourceTree = "<group>"; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
 		37FB3247166EC4AE00C6BCB9 /* LFMArtistImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtistImages.h; sourceTree = "<group>"; };
@@ -336,13 +356,18 @@
 			files = (
 				3720DED615EE220B006C6B61 /* libz.dylib in Frameworks */,
 				3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */,
+				37F2A187167733F300D7779D /* libNYXImagesKit.a in Frameworks */,
 				37801F9F1676ACB600877EB5 /* libTMQuiltView.a in Frameworks */,
 				37607AB5166581320008CB5A /* libRaptureXML.a in Frameworks */,
+				37F2A17A16771CAE00D7779D /* CoreImage.framework in Frameworks */,
+				37F2A17816771C9C00D7779D /* MobileCoreServices.framework in Frameworks */,
+				37F2A17616771C9300D7779D /* ImageIO.framework in Frameworks */,
+				37F2A17416771C8A00D7779D /* AssetsLibrary.framework in Frameworks */,
+				3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */,
 				37ECBAD115F92C9C00450F30 /* SystemConfiguration.framework in Frameworks */,
 				3741CE7C15E4B1AD0086294E /* CoreText.framework in Frameworks */,
 				3740C77E15DDFF8E008D96B8 /* MediaPlayer.framework in Frameworks */,
 				37970C9415DC37B700E5CD0D /* QuartzCore.framework in Frameworks */,
-				3795C81215DC23B50058023F /* Accelerate.framework in Frameworks */,
 				3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */,
 				3795C7C615DB5DD70058023F /* Foundation.framework in Frameworks */,
 				3795C7C815DB5DD70058023F /* CoreGraphics.framework in Frameworks */,
@@ -415,6 +440,8 @@
 		3737EA2615EDFAEA00C94500 /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				37F2A17B16771F4F00D7779D /* TMPhotoQuiltViewCell.h */,
+				37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */,
 				3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */,
 				3764CBCE15ECAE4600EB3F1D /* AlbumViewCell.m */,
 				379FBA8F15EDD03D00A5BBAE /* AlbumViewCell.xib */,
@@ -493,10 +520,15 @@
 		3795C7C215DB5DD70058023F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				37F2A17E167732B100D7779D /* NYXImagesKit.xcodeproj */,
 				37801F931676AC2500877EB5 /* TMQuiltView.xcodeproj */,
 				3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */,
 				3720DEC515EE20D1006C6B61 /* libz.dylib */,
 				3720DEC315EE20C8006C6B61 /* libxml2.dylib */,
+				37F2A17916771CAE00D7779D /* CoreImage.framework */,
+				37F2A17716771C9C00D7779D /* MobileCoreServices.framework */,
+				37F2A17516771C9300D7779D /* ImageIO.framework */,
+				37F2A17316771C8A00D7779D /* AssetsLibrary.framework */,
 				37ECBAD015F92C9C00450F30 /* SystemConfiguration.framework */,
 				3741CE7B15E4B1AD0086294E /* CoreText.framework */,
 				3740C77D15DDFF8E008D96B8 /* MediaPlayer.framework */,
@@ -671,6 +703,14 @@
 			path = ODRefreshControl;
 			sourceTree = "<group>";
 		};
+		37F2A17F167732B100D7779D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				37F2A186167732B100D7779D /* libNYXImagesKit.a */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -731,6 +771,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = 37F2A17F167732B100D7779D /* Products */;
+					ProjectRef = 37F2A17E167732B100D7779D /* NYXImagesKit.xcodeproj */;
+				},
+				{
 					ProductGroup = 3720DEC815EE211A006C6B61 /* Products */;
 					ProjectRef = 3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */;
 				},
@@ -774,6 +818,13 @@
 			fileType = wrapper.application;
 			path = TMQuiltViewTests.app;
 			remoteRef = 37801F9D1676AC2500877EB5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		37F2A186167732B100D7779D /* libNYXImagesKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libNYXImagesKit.a;
+			remoteRef = 37F2A185167732B100D7779D /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -922,6 +973,7 @@
 				37CA5B0A16681B2B00265A8B /* NSTimer+Blocks.m in Sources */,
 				37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */,
 				37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */,
+				37F2A17D16771F4F00D7779D /* TMPhotoQuiltViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1032,6 +1084,7 @@
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+					"/Users/nicolas/Projects/repos/NYXImagesKit/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1057,6 +1110,7 @@
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
+					"/Users/nicolas/Projects/repos/NYXImagesKit/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

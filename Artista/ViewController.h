@@ -14,10 +14,11 @@
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
 #import "SVSegmentedControl.h"
+#import "NYXImagesKit.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, TMQuiltViewDataSource, TMQuiltViewDelegate> {
     IBOutlet UILabel *artist;
-    IBOutlet UIImageView *artistImageView;
+    IBOutlet NYXProgressiveImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;
 	IBOutlet UILabel *album;
 	IBOutlet UILabel *track;
@@ -33,6 +34,7 @@
 	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;
     LFMArtistInfo *artistInfo;
+	LFMArtistImages *artistImages;
 	LFMTrackInfo *trackInfo;
 	LFMArtistTopAlbums *topAlbums;
 	LFMArtistTopTracks *topTracks;

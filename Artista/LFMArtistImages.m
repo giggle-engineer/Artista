@@ -11,7 +11,11 @@
 #import "NSString+URLEncoding.h"
 #import "LFMDefines.h"
 
+@implementation LFMArtistImage
+@end
+
 @implementation LFMArtistImages
+@synthesize images;
 @synthesize delegate;
 
 // http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=cher&api_key=b25b959554ed76058ac220b7b2e0a026
@@ -53,16 +57,21 @@
 	[rootXML iterate:@"images.image" usingBlock: ^(RXMLElement *e) {		
 		NSMutableDictionary *sizeDictionary = [NSMutableDictionary new];
 		BOOL acceptable = NO;
+		LFMArtistImage *artistImage = [LFMArtistImage new];
+		artistImage.title = [[e child:@"title"] text];
 		for (RXMLElement *size in [[e child:@"sizes"] children:@"size"])
 		{
 			[sizeDictionary setValue:[NSURL URLWithString:[size text]] forKey:[size attribute:@"name"]];
 			//NSLog(@"artist image thing %@", [size attribute:@"name"]);
-			/*if ([[size attribute:@"name"] isEqualToString:@"original"])
+			if ([[size attribute:@"name"] isEqualToString:@"original"])
 			{
-				float width = [[size attribute:@"width"] floatValue];
-				float height = [[size attribute:@"height"] floatValue];
+				int width = [[size attribute:@"width"] intValue];
+				int height = [[size attribute:@"height"] intValue];
 				
-				float ratio = width/height;
+				artistImage.width = width;
+				artistImage.height = height;
+				
+				/*float ratio = width/height;
 				NSRange a = NSMakeRange(2.56f-0.7, 2.56f+0.7);
 				NSRange b = NSMakeRange(ratio, ratio);
 				NSRange intersection = NSIntersectionRange(a, b);
@@ -74,16 +83,16 @@
 				{
 					NSLog(@"Intersection = %@", NSStringFromRange(intersection));
 					acceptable = YES;
-				}
-			}*/
+				}*/
+			}
 		}
 		//if (acceptable)
-			[images addObject:sizeDictionary];
+		artistImage.qualities = sizeDictionary;
+		[images addObject:artistImage];
 	}];
 	NSLog(@"images count:%d", [images count]);
     //[[self delegate] didReceiveImages:(NSArray*)[images copy]];
 	completion([images copy], nil);
-	[images removeAllObjects];
 }
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion {

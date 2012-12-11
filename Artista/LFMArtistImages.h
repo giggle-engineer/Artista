@@ -9,6 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <RaptureXML/RXMLElement.h>
 
+@interface LFMArtistImage : NSObject
+@property NSDictionary *qualities;
+@property NSString *title;
+@property int width;
+@property int height;
+@end
+
 @protocol LFMArtistImagesDelegate <NSObject>
 @required
 - (void) didReceiveImages: (NSArray *)images;
@@ -19,12 +26,11 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error);
 
 @interface LFMArtistImages : NSObject {
 	id <LFMArtistImagesDelegate> delegate;
-    
-@private
 	NSMutableArray *images;
 }
 
 @property (strong) id delegate;
+@property NSMutableArray *images;
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion;
 - (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion;
