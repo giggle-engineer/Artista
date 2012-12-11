@@ -4,3 +4,6 @@
 [submodule "Artista/MGImageUtilities"]
 	path = Artista/MGImageUtilities
 	url = git://github.com/mattgemmell/MGImageUtilities.git
+[submodule "Artista/TMQuiltView"]
+	path = Artista/TMQuiltView
+	url = git://github.com/1000Memories/TMQuiltView.git

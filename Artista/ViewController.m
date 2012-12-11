@@ -77,6 +77,15 @@
 	albumArtView.layer.cornerRadius = 3.0;
 	albumArtView.layer.masksToBounds = YES;
 	
+	// disable scroll to top on tag view
+	tagView.scrollsToTop = NO;
+	// change scrolls to top to Biography view
+	bioTextView.scrollsToTop = YES;
+	albumGridView.scrollsToTop = NO;
+	topTracksTableView.scrollsToTop = NO;
+	photoGridView.scrollsToTop = NO;
+	
+	
 	// skin the playback time progress view
 	[playTimeProgressView setProgressImage:[UIImage imageNamed:@"progressbarfill.png"]];
 	[playTimeProgressView setTrackImage:[UIImage imageNamed:@"progressbar.png"]];
@@ -180,9 +189,13 @@
 										 bioTextView.alpha = 1.0;
 										 albumGridView.alpha = 0.0;
 										 topTracksTableView.alpha = 0.0;
+										 photoGridView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
-										 
+										 bioTextView.scrollsToTop = YES;
+										 albumGridView.scrollsToTop = NO;
+										 topTracksTableView.scrollsToTop = NO;
+										 photoGridView.scrollsToTop = NO;
 									 }];
 					break;
 				}
@@ -195,9 +208,13 @@
 										 bioTextView.alpha = 0.0;
 										 albumGridView.alpha = 1.0;
 										 topTracksTableView.alpha = 0.0;
+										 photoGridView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
-										 
+										 bioTextView.scrollsToTop = NO;
+										 albumGridView.scrollsToTop = YES;
+										 topTracksTableView.scrollsToTop = NO;
+										 photoGridView.scrollsToTop = NO;
 									 }];
 					break;
 				}
@@ -210,9 +227,32 @@
 										 bioTextView.alpha = 0.0;
 										 albumGridView.alpha = 0.0;
 										 topTracksTableView.alpha = 1.0;
+										 photoGridView.alpha = 0.0;
 									 }
 									 completion:^(BOOL finished){
-										 
+										 bioTextView.scrollsToTop = NO;
+										 albumGridView.scrollsToTop = NO;
+										 topTracksTableView.scrollsToTop = YES;
+										 photoGridView.scrollsToTop = NO;
+									 }];
+					break;
+				}
+				case 3:
+				{
+					[UIView animateWithDuration:0.50
+										  delay:0
+										options:UIViewAnimationCurveEaseIn
+									 animations:^{
+										 bioTextView.alpha = 0.0;
+										 albumGridView.alpha = 0.0;
+										 topTracksTableView.alpha = 0.0;
+										 photoGridView.alpha = 1.0;
+									 }
+									 completion:^(BOOL finished){
+										 bioTextView.scrollsToTop = NO;
+										 albumGridView.scrollsToTop = NO;
+										 topTracksTableView.scrollsToTop = NO;
+										 photoGridView.scrollsToTop = YES;
 									 }];
 					break;
 				}
@@ -221,51 +261,6 @@
 			}
 		}
 		++i;
-	}
-}
-
-#pragma mark - Segment Control Target
-
-- (void)segmentedControlChangedValue:(SVSegmentedControl*)segmentedControl {
-	NSLog(@"segmentedControl %i did select index %i (via UIControl method)", segmentedControl.tag, segmentedControl.selectedIndex);
-	if (segmentedControl.selectedIndex==0) {
-		[UIView animateWithDuration:0.50
-							  delay:0
-							options:UIViewAnimationCurveEaseIn
-						 animations:^{
-							 bioTextView.alpha = 1.0;
-							 albumGridView.alpha = 0.0;
-							 topTracksTableView.alpha = 0.0;
-						 }
-						 completion:^(BOOL finished){
-							 
-						 }];
-	}
-	if (segmentedControl.selectedIndex==1) {
-		[UIView animateWithDuration:0.50
-							  delay:0
-							options:UIViewAnimationCurveEaseIn
-						 animations:^{
-							 bioTextView.alpha = 0.0;
-							 albumGridView.alpha = 1.0;
-							 topTracksTableView.alpha = 0.0;
-						 }
-						 completion:^(BOOL finished){
-							 
-						 }];
-	}
-	if (segmentedControl.selectedIndex==2) {
-		[UIView animateWithDuration:0.50
-							  delay:0
-							options:UIViewAnimationCurveEaseIn
-						 animations:^{
-							 bioTextView.alpha = 0.0;
-							 albumGridView.alpha = 0.0;
-							 topTracksTableView.alpha = 1.0;
-						 }
-						 completion:^(BOOL finished){
-							 
-						 }];
 	}
 }
 
@@ -322,16 +317,6 @@
 		bioTextView.layer.mask.frame = layerMaskFrame;
 		[CATransaction commit];
 	}
-}
-
-- (IBAction)scrollCurrentViewToTop:(id)sender {
-	// if the view is visible scroll it to the top
-	if (navigation.selectedIndex==0)
-		[bioTextView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	if (navigation.selectedIndex==1)
-		[albumGridView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
-	if (navigation.selectedIndex==2)
-		[topTracksTableView scrollRectToVisible:CGRectMake(0, 0, 1, 1) animated:YES];
 }
 
 #pragma mark - iPod Change Notifications

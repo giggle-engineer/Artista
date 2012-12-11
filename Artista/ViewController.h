@@ -8,13 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
+#import <TMQuiltView/TMQuiltView.h>
 #import "AccountViewController.h"
 #import "LFM.h"
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
 #import "SVSegmentedControl.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, TMQuiltViewDataSource, TMQuiltViewDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UIImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;
@@ -23,12 +24,10 @@
 	IBOutlet UIImageView *albumArtView;
 	IBOutlet UIView *bottomBarView;
 	IBOutlet PSCTagView *tagView;
-	IBOutlet UIView *biographyView;
-	IBOutlet UIView *topAlbumsView;
-	IBOutlet UIView *topTracksView;
 	IBOutlet UITextView *bioTextView;
 	IBOutlet UICollectionView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
+	IBOutlet TMQuiltView *photoGridView;
 	IBOutlet UITabBar *tabBar;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
