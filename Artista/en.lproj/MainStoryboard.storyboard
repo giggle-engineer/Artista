@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -32,6 +32,9 @@
                                 </connections>
                             </tableView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="310" id="oVM-4V-haU"/>
+                                </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zRM-F3-T84">
                                     <size key="itemSize" width="100" height="120"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -109,21 +112,19 @@
                         </subviews>
                         <color key="backgroundColor" red="0.97751783290000005" green="0.97751783290000005" blue="0.97751783290000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="2UT-gT-UUD"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="4gI-hT-arT"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="default" id="4vs-tG-qp9"/>
                             <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="70" id="52z-Yk-ywn"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="5RW-n4-eJO"/>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="6YK-AT-zU0"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9U8-9l-s0k"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Axh-fd-Qpd"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CJu-4R-eXc"/>
                             <constraint firstItem="Ry3-8F-Iv9" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="G1m-xl-Xl9"/>
-                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="NsI-2d-tuU"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="OoK-Wo-kr1"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Pod-0O-v8P"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="default" id="Q4f-bi-6mm"/>
                             <constraint firstItem="Ry3-8F-Iv9" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="user" id="WHw-RA-bh9"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
@@ -132,6 +133,7 @@
                             <constraint firstItem="Ry3-8F-Iv9" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="j94-QW-ICA"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
+                            <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lgB-Ro-uj0"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="105" id="nqh-jz-CVs"/>
                             <constraint firstItem="Ry3-8F-Iv9" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="ovZ-4P-wkA"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
@@ -434,6 +436,58 @@ Text, images, and information provided by Last.fm</string>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>
     </resources>
+    <classes>
+        <class className="AccountViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeView:"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="connectedView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="longButtonsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="notConnectedView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="shortButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="userNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="verifiedImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="NYXProgressiveImageView" superclassName="UIImageView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NYXProgressiveImageView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="PSCTagView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
+        </class>
+        <class className="TMQuiltView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TMQuiltView.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="artistImageView" candidateClass="NYXProgressiveImageView"/>
+                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="photoGridView" candidateClass="TMQuiltView"/>
+                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
+                <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
+                <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
