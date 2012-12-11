@@ -1083,8 +1083,8 @@
 					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
+					"$(PROJECT_DIR)/Artista/NYXImagesKit/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
-					"/Users/nicolas/Projects/repos/NYXImagesKit/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
@@ -1109,8 +1109,8 @@
 					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
+					"$(PROJECT_DIR)/Artista/NYXImagesKit/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
-					"/Users/nicolas/Projects/repos/NYXImagesKit/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;

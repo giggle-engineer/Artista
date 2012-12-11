@@ -429,64 +429,11 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow-small-pressed.png" width="139" height="38"/>
         <image name="notnow-small.png" width="139" height="38"/>
         <image name="notnow.png" width="289" height="38"/>
-        <image name="photos.png" width="28" height="30"/>
+        <image name="photos.png" width="27" height="29"/>
         <image name="submit.png" width="24" height="25"/>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>
     </resources>
-    <classes>
-        <class className="AccountViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="closeView:"/>
-                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="connectedView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="longButtonsView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="notConnectedView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="shortButtonView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="userNameLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="userNameTextField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="verifiedImageView" candidateClass="UIImageView"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="NYXProgressiveImageView" superclassName="UIImageView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NYXProgressiveImageView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="PSCTagView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
-        </class>
-        <class className="TMQuiltView" superclassName="UIScrollView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/TMQuiltView.h"/>
-        </class>
-        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="ViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showAccountView:"/>
-                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="artistImageView" candidateClass="NYXProgressiveImageView"/>
-                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
-                <relationship kind="outlet" name="photoGridView" candidateClass="TMQuiltView"/>
-                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
-                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
-                <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
-                <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
