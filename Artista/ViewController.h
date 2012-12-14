@@ -41,6 +41,7 @@
 	ODRefreshControl *refreshControl;
 	ODRefreshControl *albumRefreshControl;
 	ODRefreshControl *trackRefreshControl;
+	ODRefreshControl *photosRefreshControl;
 	CALayer *bioMask;
 	CALayer *tagMaskLeft;
 	CALayer *tagMaskMiddle;

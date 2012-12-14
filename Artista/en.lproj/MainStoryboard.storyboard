@@ -31,7 +31,7 @@
                                     <outlet property="delegate" destination="2" id="Qv8-Li-uTc"/>
                                 </connections>
                             </tableView>
-                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
+                            <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="310" id="oVM-4V-haU"/>
                                 </constraints>

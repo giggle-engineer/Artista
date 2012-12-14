@@ -105,6 +105,9 @@
 	trackRefreshControl = [[ODRefreshControl alloc] initInScrollView:topTracksTableView];
 	[trackRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
 	
+	photosRefreshControl = [[ODRefreshControl alloc] initInScrollView:photoGridView];
+	[photosRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+	
 	// push scroll views content up past the bottom bar...
 	// was bottomBarView.frame.size.height now 49 because of unaccounted for transparency height
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 49, 0.0);
@@ -508,6 +511,7 @@
 			[refreshControl endRefreshing];
 			[albumRefreshControl endRefreshing];
 			[trackRefreshControl endRefreshing];
+			[photosRefreshControl endRefreshing];
 		});
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
@@ -518,6 +522,7 @@
 			[refreshControl endRefreshing];
 			[albumRefreshControl endRefreshing];
 			[trackRefreshControl endRefreshing];
+			[photosRefreshControl endRefreshing];
 		});
 		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
@@ -955,7 +960,7 @@
 	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
 	//[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
 	[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
-                   placeholderImage:[UIImage imageNamed:@"overlay.png"]];
+                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 	
 	cell.titleLabel.hidden = YES;
     //cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
