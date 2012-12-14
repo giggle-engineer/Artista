@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377153698.24599"
+         timestampString = "377156289.866588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "951"
-         endingLineNumber = "951"
+         startingLineNumber = "1082"
+         endingLineNumber = "1082"
          landmarkName = "-quiltViewNumberOfCells:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -110,11 +110,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377153698.24599"
+         timestampString = "377156289.866588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "959"
-         endingLineNumber = "959"
+         startingLineNumber = "1100"
+         endingLineNumber = "1100"
          landmarkName = "-quiltView:cellAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -123,25 +123,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377153698.24599"
+         timestampString = "377156289.866588"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "976"
-         endingLineNumber = "976"
+         startingLineNumber = "1113"
+         endingLineNumber = "1113"
          landmarkName = "-quiltViewNumberOfColumns:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "Artista/ViewController.m"
-         timestampString = "377153698.24599"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "986"
-         endingLineNumber = "986"
-         landmarkName = "-quiltView:heightForCellAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

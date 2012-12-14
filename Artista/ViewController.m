@@ -117,6 +117,8 @@
 	albumGridView.scrollIndicatorInsets = contentInsets;
 	topTracksTableView.contentInset = contentInsets;
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
+	photoGridView.contentInset = contentInsets;
+	photoGridView.scrollIndicatorInsets = contentInsets;
 	
 	// set fonts
 	//[bioTextView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
@@ -313,6 +315,135 @@
 		layerMaskFrame.origin = [self.view convertPoint:bioTextView.bounds.origin toView:self.view];
 		
 		bioTextView.layer.mask.frame = layerMaskFrame;
+		[CATransaction commit];
+	}
+	if (scrollView==albumGridView) {
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		float offset = scrollView.contentOffset.y;
+		if (offset<=0) {
+			// remove fade mask
+			//NSLog(@"bioTextView scroll at top");
+			albumGridView.layer.mask = nil;
+		}
+		else {
+			if (albumsMask==nil) {
+				// fade out text when scrolling
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.1],
+								  [NSNumber numberWithFloat:0.9],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor clearColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = albumGridView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0, 0);
+				mask.endPoint = CGPointMake(0, 1);
+				
+				albumsMask = mask;
+			}
+			albumGridView.layer.mask = albumsMask;
+		}
+		
+		CGRect layerMaskFrame = albumGridView.layer.mask.frame;
+		layerMaskFrame.origin = [self.view convertPoint:albumGridView.bounds.origin toView:self.view];
+		
+		albumGridView.layer.mask.frame = layerMaskFrame;
+		[CATransaction commit];
+	}
+	if (scrollView==topTracksTableView) {
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		float offset = scrollView.contentOffset.y;
+		if (offset<=0) {
+			// remove fade mask
+			//NSLog(@"bioTextView scroll at top");
+			topTracksTableView.layer.mask = nil;
+		}
+		else {
+			if (tracksMask==nil) {
+				// fade out text when scrolling
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.1],
+								  [NSNumber numberWithFloat:0.9],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor clearColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = topTracksTableView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0, 0);
+				mask.endPoint = CGPointMake(0, 1);
+				
+				tracksMask = mask;
+			}
+			topTracksTableView.layer.mask = tracksMask;
+		}
+		
+		CGRect layerMaskFrame = topTracksTableView.layer.mask.frame;
+		layerMaskFrame.origin = [self.view convertPoint:topTracksTableView.bounds.origin toView:self.view];
+		
+		topTracksTableView.layer.mask.frame = layerMaskFrame;
+		[CATransaction commit];
+	}
+	if (scrollView==photoGridView) {
+		[CATransaction begin];
+		[CATransaction setValue:(id)kCFBooleanTrue forKey:kCATransactionDisableActions];
+		float offset = scrollView.contentOffset.y;
+		if (offset<=0) {
+			// remove fade mask
+			//NSLog(@"bioTextView scroll at top");
+			photoGridView.layer.mask = nil;
+		}
+		else {
+			if (photosMask==nil) {
+				// fade out text when scrolling
+				CAGradientLayer *mask = [CAGradientLayer layer];
+				mask.locations = [NSArray arrayWithObjects:
+								  [NSNumber numberWithFloat:0.0],
+								  [NSNumber numberWithFloat:0.1],
+								  [NSNumber numberWithFloat:0.9],
+								  [NSNumber numberWithFloat:1.0],
+								  nil];
+				
+				mask.colors = [NSArray arrayWithObjects:
+							   (id)[UIColor clearColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor whiteColor].CGColor,
+							   (id)[UIColor clearColor].CGColor,
+							   nil];
+				
+				mask.frame = photoGridView.bounds;
+				// vertical direction
+				mask.startPoint = CGPointMake(0, 0);
+				mask.endPoint = CGPointMake(0, 1);
+				
+				photosMask = mask;
+			}
+			photoGridView.layer.mask = photosMask;
+		}
+		
+		CGRect layerMaskFrame = photoGridView.layer.mask.frame;
+		layerMaskFrame.origin = [self.view convertPoint:photoGridView.bounds.origin toView:self.view];
+		
+		photoGridView.layer.mask.frame = layerMaskFrame;
 		[CATransaction commit];
 	}
 }
@@ -957,10 +1088,16 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-	//[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
-	[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
-                   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+	// handle index of 0 exception that seems to happen on instant reload
+	@try {
+		LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+		//[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
+		[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
+					   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Index of 0... ignoring.");
+	}
 	
 	cell.titleLabel.hidden = YES;
     //cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
@@ -982,8 +1119,15 @@
 }
 
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
-	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-    return artistImage.height / [self quiltViewNumberOfColumns:quiltView];
+	// handle index of 0 exception that seems to happen on instant reload
+	@try {
+		LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+		return artistImage.height / [self quiltViewNumberOfColumns:quiltView];
+	}
+	@catch (NSException *exception) {
+		NSLog(@"Index of 0... ignoring.");
+		return 0;
+	}
 }
 
 @end
