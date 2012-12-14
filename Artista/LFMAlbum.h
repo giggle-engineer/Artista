@@ -12,5 +12,6 @@
 
 @property NSString *name;
 @property UIImage *artwork;
+@property NSURL *URL;
 
 @end

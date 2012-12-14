@@ -1044,7 +1044,8 @@
 	
 	if (cell) {
 		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		//cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		[cell.artworkView setImageWithURL:[(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL] placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
 		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
@@ -1053,7 +1054,8 @@
 	if (!cell) {
 		//cell = [AlbumViewCell cellFromNib];
 		//cell.reuseIdentifier = identifier;
-		cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		//cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
+		[cell.artworkView setImageWithURL:[(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL] placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
 		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
