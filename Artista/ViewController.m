@@ -1042,25 +1042,26 @@
 	static NSString * const identifier = @"Cell";
 	AlbumViewCell *cell = (AlbumViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
 	
-	if (cell) {
-		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-		//cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
-		[cell.artworkView setImageWithURL:[(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL] placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
-		cell.backgroundColor = [UIColor clearColor];
-		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-		cell.contentView.backgroundColor = [UIColor clearColor];
-	}
 	if (!cell) {
-		//cell = [AlbumViewCell cellFromNib];
-		//cell.reuseIdentifier = identifier;
-		//cell.artworkView.image = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] artwork];
-		[cell.artworkView setImageWithURL:[(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL] placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
+		// setup cells
+		NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
 		cell.backgroundColor = [UIColor clearColor];
 		cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
 		cell.contentView.backgroundColor = [UIColor clearColor];
 	}
+	
+	NSURL *imageURL = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL];
+	// detect Last.fm's ugly default album image and replace it with the placeholder
+	if (![[imageURL absoluteString] isEqualToString:@"http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png"])
+	{
+		[cell.artworkView setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
+	}
+	else
+	{
+		[cell.artworkView setImage:[UIImage imageNamed:@"album-placeholder.png"]];
+	}
+	cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
+	
 	
 	return cell;
 }

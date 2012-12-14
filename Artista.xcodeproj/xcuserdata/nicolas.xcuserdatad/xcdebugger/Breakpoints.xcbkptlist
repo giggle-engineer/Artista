@@ -97,11 +97,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377159847.914992"
+         timestampString = "377162170.511963"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1087"
-         endingLineNumber = "1087"
+         startingLineNumber = "1088"
+         endingLineNumber = "1088"
          landmarkName = "-quiltViewNumberOfCells:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -110,11 +110,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377159847.914992"
+         timestampString = "377162170.511963"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1105"
-         endingLineNumber = "1105"
+         startingLineNumber = "1106"
+         endingLineNumber = "1106"
          landmarkName = "-quiltView:cellAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -123,11 +123,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "Artista/ViewController.m"
-         timestampString = "377159847.914992"
+         timestampString = "377162170.511963"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "1118"
-         endingLineNumber = "1118"
+         startingLineNumber = "1119"
+         endingLineNumber = "1119"
          landmarkName = "-quiltViewNumberOfColumns:"
          landmarkType = "5">
       </FileBreakpoint>
