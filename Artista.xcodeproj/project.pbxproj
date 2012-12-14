@@ -1063,6 +1063,7 @@
 					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
+					"$(PROJECT_DIR)/Artista/SDWebImage/SDWebImage",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
@@ -1088,6 +1089,7 @@
 					"$(PROJECT_DIR)/Artista/KKGridView/KKGridView/**",
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
+					"$(PROJECT_DIR)/Artista/SDWebImage/SDWebImage",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
