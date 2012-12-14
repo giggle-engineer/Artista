@@ -562,16 +562,21 @@
 }
 
 - (void)reset:(BOOL)isInternetWorking {
+	// clear out tables
 	topAlbumsArray = nil;
 	topTracksArray = nil;
+	artistImages = nil;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl endRefreshing];
 		[albumRefreshControl endRefreshing];
 		[trackRefreshControl endRefreshing];
-		//[navigation moveThumbToIndex:0 animate:YES];
+		[photosRefreshControl endRefreshing];
 		// select middle item, biography
 		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
+		// simulate switch back to biography to show the message
+		[self tabBar:tabBar didSelectItem:[[tabBar items] objectAtIndex:0]];
 		// Internet isn't working display message.
+		#warning Fix issue #3
 		if (isInternetWorking==NO) {
 			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
 		}
