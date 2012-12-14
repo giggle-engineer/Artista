@@ -19,11 +19,10 @@
 
 #import <UIKit/UIKit.h>
 #import <TMQuiltView/TMQuiltView.h>
-#import "NYXImagesKit.h"
 
 @interface TMPhotoQuiltViewCell : TMQuiltViewCell
 
-@property (nonatomic, retain) NYXProgressiveImageView *photoView;
+@property (nonatomic, retain) UIImageView *photoView;
 @property (nonatomic, retain) UILabel *titleLabel;
 
 @end

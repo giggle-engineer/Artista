@@ -45,7 +45,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 
 - (UIImageView *)photoView {
     if (!_photoView) {
-        _photoView = [[NYXProgressiveImageView alloc] init];
+        _photoView = [[UIImageView alloc] init];
         _photoView.contentMode = UIViewContentModeScaleAspectFill;
         _photoView.clipsToBounds = YES;
         [self addSubview:_photoView];

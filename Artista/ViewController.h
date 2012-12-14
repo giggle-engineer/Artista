@@ -13,12 +13,10 @@
 #import "LFM.h"
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
-#import "SVSegmentedControl.h"
-#import "NYXImagesKit.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, TMQuiltViewDataSource, TMQuiltViewDelegate> {
     IBOutlet UILabel *artist;
-    IBOutlet NYXProgressiveImageView *artistImageView;
+    IBOutlet UIImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;
 	IBOutlet UILabel *album;
 	IBOutlet UILabel *track;
@@ -43,7 +41,6 @@
 	ODRefreshControl *refreshControl;
 	ODRefreshControl *albumRefreshControl;
 	ODRefreshControl *trackRefreshControl;
-	SVSegmentedControl *navigation;
 	CALayer *bioMask;
 	CALayer *tagMaskLeft;
 	CALayer *tagMaskMiddle;

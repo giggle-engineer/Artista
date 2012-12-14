@@ -7,6 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
+#import <SDWebImage/UIImageView+WebCache.h>
 #import "ViewController.h"
 #import "UIImage+DSP.h"
 #import "NSString+HTML.h"
@@ -18,7 +19,6 @@
 #import "NSArray+FirstObject.h"
 #import "UIImage+ProportionalFill.h"
 #import "TMPhotoQuiltViewCell.h"
-#import "NYXImagesKit.h"
 
 @interface ViewController ()
 
@@ -60,17 +60,6 @@
                                              forState:UIControlStateNormal];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor darkGrayColor] }
                                              forState:UIControlStateHighlighted];
-	
-	// set up navigation bar. notice that conspicuous blank space in the storyboard? yea, that's for this
-	navigation = [[SVSegmentedControl alloc] initWithSectionTitles:[NSArray arrayWithObjects:@"Biography", @"Top Albums", @"Top Tracks", nil]];
-	navigation.font = [UIFont fontWithName:@"HelveticaNeue" size:12];
-	navigation.alpha = 0.7f;
-	navigation.titleEdgeInsets = UIEdgeInsetsMake(-1, 16, 0, 16);
-    [navigation addTarget:self action:@selector(segmentedControlChangedValue:) forControlEvents:UIControlEventValueChanged];
-    
-	//[self.view addSubview:navigation];
-	
-	navigation.center = CGPointMake(160, 80);
 	
 	// subtly dim the tag view
 	//tagView.alpha = 0.5;
@@ -659,7 +648,7 @@
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error) {
 					if (images.count==0)
 						return;
-					NSLog(@"IMGES:%i",artistImages.images.count);
+					//NSLog(@"IMGES:%i",artistImages.images.count);
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
@@ -953,7 +942,7 @@
 #pragma mark - QuiltViewControllerDataSource
 
 - (NSInteger)quiltViewNumberOfCells:(TMQuiltView *)TMQuiltView {
-	NSLog(@"gallery:%i", artistImages.images.count);
+	//NSLog(@"gallery:%i", artistImages.images.count);
     return [artistImages.images count];
 }
 
@@ -963,9 +952,10 @@
         cell = [[TMPhotoQuiltViewCell alloc] initWithReuseIdentifier:@"PhotoCell"];
     }
     
-	//cell.photoView.image = nil;
 	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-	[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
+	//[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
+	[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
+                   placeholderImage:[UIImage imageNamed:@"overlay.png"]];
 	
 	cell.titleLabel.hidden = YES;
     //cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];

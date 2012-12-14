@@ -7,6 +7,9 @@
 [submodule "Artista/TMQuiltView"]
 	path = Artista/TMQuiltView
 	url = git://github.com/1000Memories/TMQuiltView.git
-[submodule "Artista/NYXImagesKit"]
-	path = Artista/NYXImagesKit
-	url = git://github.com/Nyx0uf/NYXImagesKit.git
+[submodule "Artista/SDWebImage"]
+	path = Artista/SDWebImage
+	url = git://github.com/rs/SDWebImage.git
+[submodule "Artista/ODRefreshControl"]
+	path = Artista/ODRefreshControl
+	url = git://github.com/Sephiroth87/ODRefreshControl.git
