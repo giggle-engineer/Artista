@@ -23,6 +23,14 @@
 		370AAB301669CFCD00526C8F /* notnow-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB2E1669CFCD00526C8F /* notnow-small-pressed@2x.png */; };
 		370AAB331669CFD600526C8F /* notnow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB311669CFD600526C8F /* notnow-small.png */; };
 		370AAB341669CFD600526C8F /* notnow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB321669CFD600526C8F /* notnow-small@2x.png */; };
+		371D6A0F167DD2A2008C72FF /* divide.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A07167DD2A2008C72FF /* divide.png */; };
+		371D6A10167DD2A2008C72FF /* divide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A08167DD2A2008C72FF /* divide@2x.png */; };
+		371D6A11167DD2A2008C72FF /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A09167DD2A2008C72FF /* done.png */; };
+		371D6A12167DD2A2008C72FF /* done@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A0A167DD2A2008C72FF /* done@2x.png */; };
+		371D6A13167DD2A2008C72FF /* photos-gradient.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A0B167DD2A2008C72FF /* photos-gradient.png */; };
+		371D6A14167DD2A2008C72FF /* photos-gradient@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A0C167DD2A2008C72FF /* photos-gradient@2x.png */; };
+		371D6A15167DD2A2008C72FF /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A0D167DD2A2008C72FF /* share.png */; };
+		371D6A16167DD2A2008C72FF /* share@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A0E167DD2A2008C72FF /* share@2x.png */; };
 		3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC315EE20C8006C6B61 /* libxml2.dylib */; };
 		3720DED615EE220B006C6B61 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC515EE20D1006C6B61 /* libz.dylib */; };
 		3720DED915EE2BCC006C6B61 /* LFMArtistTopTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3720DED815EE2BCC006C6B61 /* LFMArtistTopTracks.m */; };
@@ -204,6 +212,14 @@
 		370AAB2E1669CFCD00526C8F /* notnow-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small-pressed@2x.png"; sourceTree = "<group>"; };
 		370AAB311669CFD600526C8F /* notnow-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small.png"; sourceTree = "<group>"; };
 		370AAB321669CFD600526C8F /* notnow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small@2x.png"; sourceTree = "<group>"; };
+		371D6A07167DD2A2008C72FF /* divide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divide.png; sourceTree = "<group>"; };
+		371D6A08167DD2A2008C72FF /* divide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "divide@2x.png"; sourceTree = "<group>"; };
+		371D6A09167DD2A2008C72FF /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
+		371D6A0A167DD2A2008C72FF /* done@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "done@2x.png"; sourceTree = "<group>"; };
+		371D6A0B167DD2A2008C72FF /* photos-gradient.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos-gradient.png"; sourceTree = "<group>"; };
+		371D6A0C167DD2A2008C72FF /* photos-gradient@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos-gradient@2x.png"; sourceTree = "<group>"; };
+		371D6A0D167DD2A2008C72FF /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		371D6A0E167DD2A2008C72FF /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		3720DEC315EE20C8006C6B61 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		3720DEC515EE20D1006C6B61 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RaptureXML.xcodeproj; path = Artista/RaptureXML/RaptureXML.xcodeproj; sourceTree = "<group>"; };
@@ -414,6 +430,21 @@
 			name = "3.5 inch screen";
 			sourceTree = "<group>";
 		};
+		371D6A06167DD295008C72FF /* Photo Viewer */ = {
+			isa = PBXGroup;
+			children = (
+				371D6A07167DD2A2008C72FF /* divide.png */,
+				371D6A08167DD2A2008C72FF /* divide@2x.png */,
+				371D6A09167DD2A2008C72FF /* done.png */,
+				371D6A0A167DD2A2008C72FF /* done@2x.png */,
+				371D6A0B167DD2A2008C72FF /* photos-gradient.png */,
+				371D6A0C167DD2A2008C72FF /* photos-gradient@2x.png */,
+				371D6A0D167DD2A2008C72FF /* share.png */,
+				371D6A0E167DD2A2008C72FF /* share@2x.png */,
+			);
+			name = "Photo Viewer";
+			sourceTree = "<group>";
+		};
 		3720DEC815EE211A006C6B61 /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +635,7 @@
 				375234B3167AE951004A6061 /* placeholder@2x.png */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
+				371D6A06167DD295008C72FF /* Photo Viewer */,
 				37607AE5166600640008CB5A /* Account Images */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
 				3795C7CB15DB5DD70058023F /* Artista-Info.plist */,
@@ -907,6 +939,14 @@
 				703A3821167AFC330006C7BF /* overlay.png in Resources */,
 				703A3822167AFC330006C7BF /* album-placeholder.png in Resources */,
 				703A3823167AFC330006C7BF /* album-placeholder@2x.png in Resources */,
+				371D6A0F167DD2A2008C72FF /* divide.png in Resources */,
+				371D6A10167DD2A2008C72FF /* divide@2x.png in Resources */,
+				371D6A11167DD2A2008C72FF /* done.png in Resources */,
+				371D6A12167DD2A2008C72FF /* done@2x.png in Resources */,
+				371D6A13167DD2A2008C72FF /* photos-gradient.png in Resources */,
+				371D6A14167DD2A2008C72FF /* photos-gradient@2x.png in Resources */,
+				371D6A15167DD2A2008C72FF /* share.png in Resources */,
+				371D6A16167DD2A2008C72FF /* share@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

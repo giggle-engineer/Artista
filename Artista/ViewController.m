@@ -1138,4 +1138,81 @@
 	}
 }
 
+- (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
+{
+	TMPhotoQuiltViewCell *cell = (TMPhotoQuiltViewCell *)[quiltView cellAtIndexPath:indexPath];
+	// if we're still loading don't allow to view the image
+	if ([cell.photoView.image isEqual:[UIImage imageNamed:@"placeholder.png"]])
+		return;
+	// hide the photo in the cell
+	[cell.photoView setHidden:YES];
+	// convert the coordinates of the cell from inside photoGridView to self.view
+	CGRect rectInSelf = [photoGridView convertRect:cell.frame toView:self.view];
+	// mirror the cell's imageview properties
+	UIImageView *popOutImageView = [[UIImageView alloc] init];
+	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
+	[popOutImageView setClipsToBounds:YES];
+	// set the image and add it to the subview
+	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+	[popOutImageView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
+				   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+	[popOutImageView setFrame:rectInSelf];
+	[self.view addSubview:popOutImageView];
+	// animations leading up to the photoviewer
+	[UIView animateWithDuration:0.50
+						  delay:0
+						options:UIViewAnimationCurveEaseIn
+					 animations:^{
+						 // move to the center
+						 // expand image to be full width
+						 CGRect fullFrame = CGRectMake(self.view.bounds.size.width / 2  - artistImage.width / 2, self.view.bounds.size.height / 2  - artistImage.height / 2, artistImage.width, artistImage.height);
+						 
+						 self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
+						 self.view.backgroundColor = [UIColor blackColor];
+						 for (UIView *view in [[self view] subviews])
+						 {
+							 if (view!=popOutImageView)
+							 {
+								 view.alpha = 0.0;
+							 }
+						 }
+						 //self.view.alpha = 0.0;
+						 
+						 //popOutImageView.center = CGPointMake(self.view.center.x, self.view.center.y);
+						 popOutImageView.frame = fullFrame;
+					 }
+					 completion:^(BOOL finished){
+						 // revert cell to normal
+						 //[popOutImageView removeFromSuperview];
+						 //cell.photoView.hidden = NO;
+						 // animations following exiting the photoviewer
+						 [UIView animateWithDuration:0.50
+											   delay:0
+											 options:UIViewAnimationCurveEaseIn
+										  animations:^{
+											  // it's probably best to take a photo of the view and shrink it.. maybe?
+											  self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
+											  self.view.backgroundColor = [UIColor whiteColor];
+											  for (UIView *view in [[self view] subviews])
+											  {
+												  if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
+												  {
+													  view.alpha = 1.0;
+												  }
+											  }
+											  //self.view.alpha = 1.0;
+											  popOutImageView.frame = rectInSelf;
+											  // expand image to be full width
+											  /*CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
+											  popOutImageView.frame = fullFrame;*/
+										  }
+										  completion:^(BOOL finished){
+											  // revert cell to normal
+											  [popOutImageView removeFromSuperview];
+											  cell.photoView.hidden = NO;
+											  //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
+										  }];
+					 }];
+}
+
 @end

@@ -6,10 +6,13 @@
 	url = git://github.com/mattgemmell/MGImageUtilities.git
 [submodule "Artista/TMQuiltView"]
 	path = Artista/TMQuiltView
-	url = git://github.com/1000Memories/TMQuiltView.git
+	url = https://github.com/CodinGuru/TMQuiltView.git
 [submodule "Artista/SDWebImage"]
 	path = Artista/SDWebImage
 	url = git://github.com/rs/SDWebImage.git
 [submodule "Artista/ODRefreshControl"]
 	path = Artista/ODRefreshControl
 	url = git://github.com/Sephiroth87/ODRefreshControl.git
+[submodule "Artista/nimbus"]
+	path = Artista/nimbus
+	url = git://github.com/jverkoey/nimbus.git
