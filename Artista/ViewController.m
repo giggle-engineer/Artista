@@ -1167,6 +1167,7 @@
 	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
 	[popOutImageView setClipsToBounds:YES];
 	PhotoViewerView *photoViewerView = [PhotoViewerView viewFromNib];
+	[photoViewerView.currentPhoto setText:[[NSString alloc] initWithFormat:@"%d of %d", indexPath.row+1, [artistImages.images count]]];
 	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.origin.y-20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+20)];
 	//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
 	//[photoViewer setClipsToBounds:YES];
