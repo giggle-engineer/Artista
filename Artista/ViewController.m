@@ -1161,14 +1161,13 @@
 	[cell.photoView setHidden:YES];
 	// convert the coordinates of the cell from inside photoGridView to self.view
 	CGRect rectInSelf = [photoGridView convertRect:cell.frame toView:self.view];
-	CGRect statusBarOffsetRect = CGRectOffset([UIScreen mainScreen].bounds, 0, -20);
 	// mirror the cell's imageview properties
 	UIImageView *popOutImageView = [[UIImageView alloc] initWithFrame:rectInSelf];
 	[popOutImageView setImage:cell.photoView.image];
 	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
 	[popOutImageView setClipsToBounds:YES];
 	PhotoViewerView *photoViewerView = [PhotoViewerView viewFromNib];
-	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.origin.y-20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+20)];
 	//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
 	//[photoViewer setClipsToBounds:YES];
 	//[photoViewer setBackgroundColor:[UIColor purpleColor]];
@@ -1248,7 +1247,7 @@
 									 {
 										 //((UIImageView*)subview).image = nil;
 										 // adjust for adjustment because of status bar offset
-										 [popOutImageView setFrame:CGRectOffset(subview.frame, 0, -20)];
+										 [popOutImageView setFrame:CGRectOffset(subview.frame, 0, -40)];
 									 }
 								 }
 							 }
@@ -1264,7 +1263,7 @@
 							//					   sender: self];
 						 //[self.view addSubview:photoViewer];
 						 // subtract staus bar offset
-						 [photoViewerView setFrame:statusBarOffsetRect];
+						 [photoViewerView setFrame:CGRectOffset([UIScreen mainScreen].bounds, 0, -20)];
 						 [popOutImageView setHidden:YES];
 						 [photoViewerView setHidden:NO];
 						 //return;
