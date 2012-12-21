@@ -16,3 +16,6 @@
 [submodule "Artista/nimbus"]
 	path = Artista/nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "Artista/BlocksKit"]
+	path = Artista/BlocksKit
+	url = git://github.com/pandamonia/BlocksKit.git

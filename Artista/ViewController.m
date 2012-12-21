@@ -8,8 +8,8 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+//#import "BlocksKit.h"
 #import "ViewController.h"
-#import "UIImage+DSP.h"
 #import "NSString+HTML.h"
 #import "NSString_stripHtml.h"
 #import "NSArray+StringWithDelimeter.h"
@@ -20,7 +20,7 @@
 #import "UIImage+ProportionalFill.h"
 #import "TMPhotoQuiltViewCell.h"
 #import "NIPhotoScrollView.h"
-#import "UIView+GestureBlocks.h"
+#import "PhotoViewerView.h"
 
 @interface ViewController ()
 
@@ -506,6 +506,7 @@
 		[refreshControl beginRefreshing];
 		[albumRefreshControl beginRefreshing];
 		[trackRefreshControl beginRefreshing];
+		[photosRefreshControl beginRefreshing];
 	});
 	[iPodController beginGeneratingPlaybackNotifications];
 	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
@@ -613,6 +614,7 @@
 		[refreshControl beginRefreshing];
 		[albumRefreshControl beginRefreshing];
 		[trackRefreshControl beginRefreshing];
+		[photosRefreshControl beginRefreshing];
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
@@ -1159,11 +1161,13 @@
 	[cell.photoView setHidden:YES];
 	// convert the coordinates of the cell from inside photoGridView to self.view
 	CGRect rectInSelf = [photoGridView convertRect:cell.frame toView:self.view];
+	CGRect statusBarOffsetRect = CGRectOffset([UIScreen mainScreen].bounds, 0, -20);
 	// mirror the cell's imageview properties
 	UIImageView *popOutImageView = [[UIImageView alloc] initWithFrame:rectInSelf];
 	[popOutImageView setImage:cell.photoView.image];
 	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
 	[popOutImageView setClipsToBounds:YES];
+	PhotoViewerView *photoViewerView = [PhotoViewerView viewFromNib];
 	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
 	//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
 	//[photoViewer setClipsToBounds:YES];
@@ -1173,7 +1177,7 @@
 	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
 	[photoViewer setPhotoDimensions:CGSizeMake(artistImage.width, artistImage.height)];
 	[photoViewer setImage:cell.photoView.image photoSize:NIPhotoScrollViewPhotoSizeOriginal];
-	[photoViewer initialiseTapHandler:^(UIGestureRecognizer *sender) {
+	/*[photoViewerView.doneButton addEventHandler:^(id sender) {
 		[popOutImageView setHidden:NO];
 		[photoViewer removeFromSuperview];
 		[UIView animateWithDuration:0.50
@@ -1181,6 +1185,7 @@
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
 							 // it's probably best to take a photo of the view and shrink it.. maybe?
+							[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 							 self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
 							 self.view.backgroundColor = [UIColor whiteColor];
 							 for (UIView *view in [[self view] subviews])
@@ -1202,13 +1207,16 @@
 							 cell.photoView.hidden = NO;
 							 //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
 						 }];
-	} forTaps:1];
+	} forControlEvents:UIControlEventTouchUpInside];*/
+	//[photoViewerView setPhotoScrollView:photoViewer];
 	//[popOutImageView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
 	//			   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 	//[popOutImageView setFrame:rectInSelf];
 	[self.view addSubview:popOutImageView];
-	[self.view addSubview:photoViewer];
-	[photoViewer setHidden:YES];
+	[self.view addSubview:photoViewerView];
+	[photoViewerView addSubview:photoViewer];
+	[photoViewerView sendSubviewToBack:photoViewer];
+	[photoViewerView setHidden:YES];
 	// animations leading up to the photoviewer
 	[UIView animateWithDuration:0.50
 						  delay:0
@@ -1218,11 +1226,12 @@
 						 // expand image to be full width
 						 //CGRect fullFrame = CGRectMake(self.view.bounds.size.width / 2  - artistImage.width / 2, self.view.bounds.size.height / 2  - artistImage.height / 2, artistImage.width, artistImage.height);
 						 
+						 [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 						 self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
 						 self.view.backgroundColor = [UIColor blackColor];
 						 for (UIView *view in [[self view] subviews])
 						 {
-							 if (view!=popOutImageView && view!=photoViewer)
+							 if (view!=popOutImageView && view!=photoViewerView && view!=photoViewer)
 							 {
 								 view.alpha = 0.0;
 							 }
@@ -1238,7 +1247,8 @@
 									 if ([subview isKindOfClass:[UIImageView class]])
 									 {
 										 //((UIImageView*)subview).image = nil;
-										 [popOutImageView setFrame:subview.frame];
+										 // adjust for adjustment because of status bar offset
+										 [popOutImageView setFrame:CGRectOffset(subview.frame, 0, -20)];
 									 }
 								 }
 							 }
@@ -1253,9 +1263,10 @@
 						 //[self performSegueWithIdentifier: @"PhotoViewer"
 							//					   sender: self];
 						 //[self.view addSubview:photoViewer];
-						 //[photoViewer setFrame:[UIScreen mainScreen].bounds];
+						 // subtract staus bar offset
+						 [photoViewerView setFrame:statusBarOffsetRect];
 						 [popOutImageView setHidden:YES];
-						 [photoViewer setHidden:NO];
+						 [photoViewerView setHidden:NO];
 						 //return;
 						 /*[UIView animateWithDuration:0.50
 											   delay:0
