@@ -8,7 +8,6 @@
 
 #import <QuartzCore/QuartzCore.h>
 #import <SDWebImage/UIImageView+WebCache.h>
-//#import "BlocksKit.h"
 #import "ViewController.h"
 #import "NSString+HTML.h"
 #import "NSString_stripHtml.h"
@@ -21,6 +20,7 @@
 #import "TMPhotoQuiltViewCell.h"
 #import "NIPhotoScrollView.h"
 #import "PhotoViewerView.h"
+#import "UIControl+JTTargetActionBlock.h"
 
 @interface ViewController ()
 
@@ -1176,41 +1176,71 @@
 	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
 	[photoViewer setPhotoDimensions:CGSizeMake(artistImage.width, artistImage.height)];
 	[photoViewer setImage:cell.photoView.image photoSize:NIPhotoScrollViewPhotoSizeOriginal];
-	/*[photoViewerView.doneButton addEventHandler:^(id sender) {
-		[popOutImageView setHidden:NO];
-		[photoViewer removeFromSuperview];
-		[UIView animateWithDuration:0.50
-							  delay:0
-							options:UIViewAnimationCurveEaseIn
-						 animations:^{
-							 // it's probably best to take a photo of the view and shrink it.. maybe?
-							[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-							 self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
-							 self.view.backgroundColor = [UIColor whiteColor];
-							 for (UIView *view in [[self view] subviews])
-							 {
-								 if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
+	[photoViewerView.doneButton addEventHandler:^(id sender, UIEvent *event) {
+		void (^exit_animation)(void) =
+		^{
+			// prepare view by unhiding the popOutImage and removing the photo viewer
+			[popOutImageView setHidden:NO];
+			[photoViewerView removeFromSuperview];
+			// main photo viewer exit animation
+			[UIView animateWithDuration:0.50
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 // it's probably best to take a photo of the view and shrink it.. maybe?
+								 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
+								 self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
+								 self.view.backgroundColor = [UIColor whiteColor];
+								 for (UIView *view in [[self view] subviews])
 								 {
-									 view.alpha = 1.0;
+									 if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
+									 {
+										 view.alpha = 1.0;
+									 }
 								 }
+								 popOutImageView.frame = rectInSelf;
 							 }
-							 //self.view.alpha = 1.0;
-							 popOutImageView.frame = rectInSelf;
-							 // expand image to be full width
-							 //CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
-							 //popOutImageView.frame = fullFrame;
-						 }
-						 completion:^(BOOL finished){
-							 // revert cell to normal
-							 [popOutImageView removeFromSuperview];
-							 cell.photoView.hidden = NO;
-							 //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
-						 }];
-	} forControlEvents:UIControlEventTouchUpInside];*/
-	//[photoViewerView setPhotoScrollView:photoViewer];
-	//[popOutImageView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
-	//			   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-	//[popOutImageView setFrame:rectInSelf];
+							 completion:^(BOOL finished){
+								 // revert cell to normal
+								 [popOutImageView removeFromSuperview];
+								 cell.photoView.hidden = NO;
+							 }];
+
+		};
+		// find the scroll view in the NIPhotoScrollView and reset the zoom
+		for (UIView *view in [photoViewer subviews])
+		{
+			if ([view isKindOfClass:[UIScrollView class]]) {
+				if ([(UIScrollView*)view zoomScale]!=0.0f)
+				{
+					[UIView animateWithDuration:0.50
+										  delay:0
+										options:UIViewAnimationCurveEaseIn
+									 animations:^{
+										 [(UIScrollView*)view setZoomScale:0.0f animated:NO];
+									 }
+									 completion:^(BOOL finished){
+										 exit_animation();
+									 }];
+				}
+				else {
+					exit_animation();
+				}
+				
+			}
+		}
+	} forControlEvent:UIControlEventTouchUpInside];
+	[photoViewerView.shareButton addEventHandler:^(id sender, UIEvent *event) {
+		UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
+															initWithActivityItems:@[cell.photoView.image] applicationActivities:nil];
+		activityViewController.completionHandler = ^(NSString *activityType, BOOL completed) {
+			if (completed) {
+				[self dismissViewControllerAnimated:YES completion:nil];
+			}
+		};
+		
+		[self presentViewController:activityViewController animated:YES completion:nil];
+	} forControlEvent:UIControlEventTouchUpInside];
 	[self.view addSubview:popOutImageView];
 	[self.view addSubview:photoViewerView];
 	[photoViewerView addSubview:photoViewer];
@@ -1221,23 +1251,17 @@
 						  delay:0
 						options:UIViewAnimationCurveEaseIn
 					 animations:^{
-						 // move to the center
-						 // expand image to be full width
-						 //CGRect fullFrame = CGRectMake(self.view.bounds.size.width / 2  - artistImage.width / 2, self.view.bounds.size.height / 2  - artistImage.height / 2, artistImage.width, artistImage.height);
-						 
+						 // hide staus bar
 						 [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 						 self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
 						 self.view.backgroundColor = [UIColor blackColor];
 						 for (UIView *view in [[self view] subviews])
 						 {
-							 if (view!=popOutImageView && view!=photoViewerView && view!=photoViewer)
+							 if (view!=popOutImageView && view!=photoViewerView)
 							 {
 								 view.alpha = 0.0;
 							 }
 						 }
-						 //self.view.alpha = 0.0;
-						 
-						 //popOutImageView.center = CGPointMake(self.view.center.x, self.view.center.y);
 						 // process location of image view
 						 for (UIView *view in [photoViewer subviews])
 						 {
@@ -1245,54 +1269,18 @@
 								 for(UIView* subview in [view subviews]) {
 									 if ([subview isKindOfClass:[UIImageView class]])
 									 {
-										 //((UIImageView*)subview).image = nil;
 										 // adjust for adjustment because of status bar offset
 										 [popOutImageView setFrame:CGRectOffset(subview.frame, 0, -40)];
 									 }
 								 }
 							 }
 						 }
-						 //popOutImageView.frame = fullFrame;
 					 }
 					 completion:^(BOOL finished){
-						 // revert cell to normal
-						 //[popOutImageView removeFromSuperview];
-						 //cell.photoView.hidden = NO;
-						 // animations following exiting the photoviewer
-						 //[self performSegueWithIdentifier: @"PhotoViewer"
-							//					   sender: self];
-						 //[self.view addSubview:photoViewer];
 						 // subtract staus bar offset
 						 [photoViewerView setFrame:CGRectOffset([UIScreen mainScreen].bounds, 0, -20)];
 						 [popOutImageView setHidden:YES];
 						 [photoViewerView setHidden:NO];
-						 //return;
-						 /*[UIView animateWithDuration:0.50
-											   delay:0
-											 options:UIViewAnimationCurveEaseIn
-										  animations:^{
-											  // it's probably best to take a photo of the view and shrink it.. maybe?
-											  self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
-											  self.view.backgroundColor = [UIColor whiteColor];
-											  for (UIView *view in [[self view] subviews])
-											  {
-												  if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
-												  {
-													  view.alpha = 1.0;
-												  }
-											  }
-											  //self.view.alpha = 1.0;
-											  popOutImageView.frame = rectInSelf;
-											  // expand image to be full width
-											  //CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
-											  //popOutImageView.frame = fullFrame;
-										  }
-										  completion:^(BOOL finished){
-											  // revert cell to normal
-											  [popOutImageView removeFromSuperview];
-											  cell.photoView.hidden = NO;
-											  //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
-										  }];*/
 					 }];
 }
 
