@@ -19,6 +19,8 @@
 #import "NSArray+FirstObject.h"
 #import "UIImage+ProportionalFill.h"
 #import "TMPhotoQuiltViewCell.h"
+#import "NIPhotoScrollView.h"
+#import "UIView+GestureBlocks.h"
 
 @interface ViewController ()
 
@@ -165,10 +167,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"Account"]) {
+    if ([segue.identifier isEqualToString:@"Account"])
+	{
         AccountViewController *accountViewController = segue.destinationViewController;
         [accountViewController setDelegate:self];
     }
+	if ([segue.identifier isEqual:@"PhotoViewer"])
+	{
+		//PhotoViewController *photoViewController = segue.destinationViewController;
+		//[[photoViewController photoView] setImage:[UIImage imageNamed:@"placeholder.png"] photoSize:NIPhotoScrollViewPhotoSizeOriginal];
+		//[[photoViewController view] setBackgroundColor:[UIColor purpleColor]];
+		//NIToolbarPhotoViewController *photoViewController = segue.destinationViewController;
+		//[photoViewController setChromeCanBeHidden:YES];
+	}
 }
 
 #pragma mark - Tab Control Target
@@ -1149,15 +1160,55 @@
 	// convert the coordinates of the cell from inside photoGridView to self.view
 	CGRect rectInSelf = [photoGridView convertRect:cell.frame toView:self.view];
 	// mirror the cell's imageview properties
-	UIImageView *popOutImageView = [[UIImageView alloc] init];
+	UIImageView *popOutImageView = [[UIImageView alloc] initWithFrame:rectInSelf];
+	[popOutImageView setImage:cell.photoView.image];
 	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
 	[popOutImageView setClipsToBounds:YES];
-	// set the image and add it to the subview
+	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+	//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
+	//[photoViewer setClipsToBounds:YES];
+	//[photoViewer setBackgroundColor:[UIColor purpleColor]];
+	[photoViewer setDoubleTapToZoomIsEnabled:YES];
+	[photoViewer setZoomingIsEnabled:YES];
 	LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-	[popOutImageView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
-				   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-	[popOutImageView setFrame:rectInSelf];
+	[photoViewer setPhotoDimensions:CGSizeMake(artistImage.width, artistImage.height)];
+	[photoViewer setImage:cell.photoView.image photoSize:NIPhotoScrollViewPhotoSizeOriginal];
+	[photoViewer initialiseTapHandler:^(UIGestureRecognizer *sender) {
+		[popOutImageView setHidden:NO];
+		[photoViewer removeFromSuperview];
+		[UIView animateWithDuration:0.50
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 // it's probably best to take a photo of the view and shrink it.. maybe?
+							 self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
+							 self.view.backgroundColor = [UIColor whiteColor];
+							 for (UIView *view in [[self view] subviews])
+							 {
+								 if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
+								 {
+									 view.alpha = 1.0;
+								 }
+							 }
+							 //self.view.alpha = 1.0;
+							 popOutImageView.frame = rectInSelf;
+							 // expand image to be full width
+							 //CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
+							 //popOutImageView.frame = fullFrame;
+						 }
+						 completion:^(BOOL finished){
+							 // revert cell to normal
+							 [popOutImageView removeFromSuperview];
+							 cell.photoView.hidden = NO;
+							 //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
+						 }];
+	} forTaps:1];
+	//[popOutImageView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
+	//			   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+	//[popOutImageView setFrame:rectInSelf];
 	[self.view addSubview:popOutImageView];
+	[self.view addSubview:photoViewer];
+	[photoViewer setHidden:YES];
 	// animations leading up to the photoviewer
 	[UIView animateWithDuration:0.50
 						  delay:0
@@ -1165,13 +1216,13 @@
 					 animations:^{
 						 // move to the center
 						 // expand image to be full width
-						 CGRect fullFrame = CGRectMake(self.view.bounds.size.width / 2  - artistImage.width / 2, self.view.bounds.size.height / 2  - artistImage.height / 2, artistImage.width, artistImage.height);
+						 //CGRect fullFrame = CGRectMake(self.view.bounds.size.width / 2  - artistImage.width / 2, self.view.bounds.size.height / 2  - artistImage.height / 2, artistImage.width, artistImage.height);
 						 
 						 self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
 						 self.view.backgroundColor = [UIColor blackColor];
 						 for (UIView *view in [[self view] subviews])
 						 {
-							 if (view!=popOutImageView)
+							 if (view!=popOutImageView && view!=photoViewer)
 							 {
 								 view.alpha = 0.0;
 							 }
@@ -1179,14 +1230,34 @@
 						 //self.view.alpha = 0.0;
 						 
 						 //popOutImageView.center = CGPointMake(self.view.center.x, self.view.center.y);
-						 popOutImageView.frame = fullFrame;
+						 // process location of image view
+						 for (UIView *view in [photoViewer subviews])
+						 {
+							 if ([view isKindOfClass:[UIScrollView class]]) {
+								 for(UIView* subview in [view subviews]) {
+									 if ([subview isKindOfClass:[UIImageView class]])
+									 {
+										 //((UIImageView*)subview).image = nil;
+										 [popOutImageView setFrame:subview.frame];
+									 }
+								 }
+							 }
+						 }
+						 //popOutImageView.frame = fullFrame;
 					 }
 					 completion:^(BOOL finished){
 						 // revert cell to normal
 						 //[popOutImageView removeFromSuperview];
 						 //cell.photoView.hidden = NO;
 						 // animations following exiting the photoviewer
-						 [UIView animateWithDuration:0.50
+						 //[self performSegueWithIdentifier: @"PhotoViewer"
+							//					   sender: self];
+						 //[self.view addSubview:photoViewer];
+						 //[photoViewer setFrame:[UIScreen mainScreen].bounds];
+						 [popOutImageView setHidden:YES];
+						 [photoViewer setHidden:NO];
+						 //return;
+						 /*[UIView animateWithDuration:0.50
 											   delay:0
 											 options:UIViewAnimationCurveEaseIn
 										  animations:^{
@@ -1203,15 +1274,15 @@
 											  //self.view.alpha = 1.0;
 											  popOutImageView.frame = rectInSelf;
 											  // expand image to be full width
-											  /*CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
-											  popOutImageView.frame = fullFrame;*/
+											  //CGRect fullFrame = CGRectMake(popOutImageView.frame.origin.x, popOutImageView.frame.origin.x, artistImage.width, artistImage.height);
+											  //popOutImageView.frame = fullFrame;
 										  }
 										  completion:^(BOOL finished){
 											  // revert cell to normal
 											  [popOutImageView removeFromSuperview];
 											  cell.photoView.hidden = NO;
 											  //self.view.frame = CGRectInset(self.view.frame, -3.0, -3.0);
-										  }];
+										  }];*/
 					 }];
 }
 

@@ -34,7 +34,6 @@
 		371D6A8B167DDF4B008C72FF /* libNimbusPhotos.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 371D6A7C167DDF05008C72FF /* libNimbusPhotos.a */; };
 		371D6A8C167DE000008C72FF /* libNimbusCore.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 371D6A5C167DDF05008C72FF /* libNimbusCore.a */; };
 		371D6A8D167DE013008C72FF /* libNimbusPagingScrollView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 371D6A78167DDF05008C72FF /* libNimbusPagingScrollView.a */; };
-		371D6A8F167DE23A008C72FF /* PhotoViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A8E167DE23A008C72FF /* PhotoViewerView.xib */; };
 		3720DED515EE21F8006C6B61 /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC315EE20C8006C6B61 /* libxml2.dylib */; };
 		3720DED615EE220B006C6B61 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DEC515EE20D1006C6B61 /* libz.dylib */; };
 		3720DED915EE2BCC006C6B61 /* LFMArtistTopTracks.m in Sources */ = {isa = PBXBuildFile; fileRef = 3720DED815EE2BCC006C6B61 /* LFMArtistTopTracks.m */; };
@@ -86,6 +85,10 @@
 		377C6F6415DCBE0700B1CA34 /* bgtransparent@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 377C6F6315DCBE0700B1CA34 /* bgtransparent@2x.png */; };
 		37801F9F1676ACB600877EB5 /* libTMQuiltView.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 37801F9C1676AC2500877EB5 /* libTMQuiltView.a */; };
 		37873F0B15FAE67200C5DD04 /* NSArray+FirstObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */; };
+		378C868B168400730064E6D6 /* PSCPhotoScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 378C868A168400730064E6D6 /* PSCPhotoScrollView.m */; };
+		378C868E16840ADC0064E6D6 /* UIView+GestureBlocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 378C868D16840ADC0064E6D6 /* UIView+GestureBlocks.m */; };
+		378C869416841E160064E6D6 /* PhotoViewerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 378C869316841E160064E6D6 /* PhotoViewerView.xib */; };
+		378FE1DE167FE92A0055F8E4 /* PhotoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 378FE1DD167FE92A0055F8E4 /* PhotoViewController.m */; };
 		3795667F166D4EBE00DD1118 /* tab-bar.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795667D166D4EBE00DD1118 /* tab-bar.png */; };
 		37956680166D4EBE00DD1118 /* tab-bar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 3795667E166D4EBE00DD1118 /* tab-bar@2x.png */; };
 		3795C7C415DB5DD70058023F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3795C7C315DB5DD70058023F /* UIKit.framework */; };
@@ -122,6 +125,7 @@
 		37EF61C11602F0F90085F625 /* gears@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37EF61BF1602F0F90085F625 /* gears@2x.png */; };
 		37F2A17D16771F4F00D7779D /* TMPhotoQuiltViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */; };
 		37F5CE4415DF351200167C42 /* LFMTrackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 37F5CE4315DF351200167C42 /* LFMTrackInfo.m */; };
+		37F760AC16829C78000BD6B5 /* NimbusPhotos.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37F760AB16829C78000BD6B5 /* NimbusPhotos.bundle */; };
 		37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */; };
 		70381C411676F41B0087E3CB /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70381C3D1676F41B0087E3CB /* photos@2x.png */; };
 		70381C421676F41B0087E3CB /* photos.png in Resources */ = {isa = PBXBuildFile; fileRef = 70381C3E1676F41B0087E3CB /* photos.png */; };
@@ -407,7 +411,6 @@
 		371D6A0D167DD2A2008C72FF /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
 		371D6A0E167DD2A2008C72FF /* share@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "share@2x.png"; sourceTree = "<group>"; };
 		371D6A22167DDF04008C72FF /* Nimbus.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Nimbus.xcodeproj; path = Artista/nimbus/src/Nimbus.xcodeproj; sourceTree = "<group>"; };
-		371D6A8E167DE23A008C72FF /* PhotoViewerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewerView.xib; sourceTree = "<group>"; };
 		3720DEC315EE20C8006C6B61 /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		3720DEC515EE20D1006C6B61 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		3720DEC715EE211A006C6B61 /* RaptureXML.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RaptureXML.xcodeproj; path = Artista/RaptureXML/RaptureXML.xcodeproj; sourceTree = "<group>"; };
@@ -474,6 +477,13 @@
 		37801F931676AC2500877EB5 /* TMQuiltView.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = TMQuiltView.xcodeproj; path = Artista/TMQuiltView/TMQuiltView/TMQuiltView.xcodeproj; sourceTree = "<group>"; };
 		37873F0915FAE67200C5DD04 /* NSArray+FirstObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+FirstObject.h"; sourceTree = "<group>"; };
 		37873F0A15FAE67200C5DD04 /* NSArray+FirstObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+FirstObject.m"; sourceTree = "<group>"; };
+		378C8689168400730064E6D6 /* PSCPhotoScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSCPhotoScrollView.h; sourceTree = "<group>"; };
+		378C868A168400730064E6D6 /* PSCPhotoScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSCPhotoScrollView.m; sourceTree = "<group>"; };
+		378C868C16840ADB0064E6D6 /* UIView+GestureBlocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+GestureBlocks.h"; sourceTree = "<group>"; };
+		378C868D16840ADC0064E6D6 /* UIView+GestureBlocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+GestureBlocks.m"; sourceTree = "<group>"; };
+		378C869316841E160064E6D6 /* PhotoViewerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PhotoViewerView.xib; sourceTree = "<group>"; };
+		378FE1DC167FE92A0055F8E4 /* PhotoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoViewController.h; sourceTree = "<group>"; };
+		378FE1DD167FE92A0055F8E4 /* PhotoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoViewController.m; sourceTree = "<group>"; };
 		3795667D166D4EBE00DD1118 /* tab-bar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar.png"; sourceTree = "<group>"; };
 		3795667E166D4EBE00DD1118 /* tab-bar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tab-bar@2x.png"; sourceTree = "<group>"; };
 		3795C7BF15DB5DD70058023F /* Artista.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Artista.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,6 +538,7 @@
 		37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TMPhotoQuiltViewCell.m; sourceTree = "<group>"; };
 		37F5CE4215DF351200167C42 /* LFMTrackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMTrackInfo.h; sourceTree = "<group>"; };
 		37F5CE4315DF351200167C42 /* LFMTrackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMTrackInfo.m; sourceTree = "<group>"; };
+		37F760AB16829C78000BD6B5 /* NimbusPhotos.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = NimbusPhotos.bundle; path = nimbus/src/photos/resources/NimbusPhotos.bundle; sourceTree = "<group>"; };
 		37FB3247166EC4AE00C6BCB9 /* LFMArtistImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LFMArtistImages.h; sourceTree = "<group>"; };
 		37FB3248166EC4AE00C6BCB9 /* LFMArtistImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LFMArtistImages.m; sourceTree = "<group>"; };
 		70381C3D1676F41B0087E3CB /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
@@ -681,6 +692,9 @@
 		3737EA2615EDFAEA00C94500 /* Custom Cell */ = {
 			isa = PBXGroup;
 			children = (
+				378C8689168400730064E6D6 /* PSCPhotoScrollView.h */,
+				378C868A168400730064E6D6 /* PSCPhotoScrollView.m */,
+				378C869316841E160064E6D6 /* PhotoViewerView.xib */,
 				37F2A17B16771F4F00D7779D /* TMPhotoQuiltViewCell.h */,
 				37F2A17C16771F4F00D7779D /* TMPhotoQuiltViewCell.m */,
 				3764CBCD15ECAE4600EB3F1D /* AlbumViewCell.h */,
@@ -689,7 +703,6 @@
 				374FCCC615FED0840098CC30 /* TrackViewCell.h */,
 				374FCCC715FED0840098CC30 /* TrackViewCell.m */,
 				374FCCC415FECC330098CC30 /* TrackViewCell.xib */,
-				371D6A8E167DE23A008C72FF /* PhotoViewerView.xib */,
 			);
 			name = "Custom Cell";
 			sourceTree = "<group>";
@@ -863,6 +876,7 @@
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
 				371D6A06167DD295008C72FF /* Photo Viewer */,
 				37607AE5166600640008CB5A /* Account Images */,
+				37F760AB16829C78000BD6B5 /* NimbusPhotos.bundle */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
 				3795C7CB15DB5DD70058023F /* Artista-Info.plist */,
 				3795C7CC15DB5DD70058023F /* InfoPlist.strings */,
@@ -894,6 +908,8 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				378C868C16840ADB0064E6D6 /* UIView+GestureBlocks.h */,
+				378C868D16840ADC0064E6D6 /* UIView+GestureBlocks.m */,
 				37C93421167476B200AE8BD6 /* UIImage+ProportionalFill.h */,
 				37C93422167476B200AE8BD6 /* UIImage+ProportionalFill.m */,
 				37607ACE1665F05A0008CB5A /* UIImage+H568.h */,
@@ -925,6 +941,8 @@
 				3795C7D915DB5DD70058023F /* ViewController.m */,
 				3795C80415DB73D30058023F /* AccountViewController.h */,
 				3795C80515DB73D40058023F /* AccountViewController.m */,
+				378FE1DC167FE92A0055F8E4 /* PhotoViewController.h */,
+				378FE1DD167FE92A0055F8E4 /* PhotoViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -1359,7 +1377,8 @@
 				371D6A14167DD2A2008C72FF /* photos-gradient@2x.png in Resources */,
 				371D6A15167DD2A2008C72FF /* share.png in Resources */,
 				371D6A16167DD2A2008C72FF /* share@2x.png in Resources */,
-				371D6A8F167DE23A008C72FF /* PhotoViewerView.xib in Resources */,
+				37F760AC16829C78000BD6B5 /* NimbusPhotos.bundle in Resources */,
+				378C869416841E160064E6D6 /* PhotoViewerView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,6 +1442,9 @@
 				37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */,
 				37F2A17D16771F4F00D7779D /* TMPhotoQuiltViewCell.m in Sources */,
 				375234B1167AC7A2004A6061 /* ODRefreshControl.m in Sources */,
+				378FE1DE167FE92A0055F8E4 /* PhotoViewController.m in Sources */,
+				378C868B168400730064E6D6 /* PSCPhotoScrollView.m in Sources */,
+				378C868E16840ADC0064E6D6 /* UIView+GestureBlocks.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1533,6 +1555,7 @@
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
 					"$(PROJECT_DIR)/Artista/SDWebImage/SDWebImage",
+					"$(PROJECT_DIR)/Artista/nimbus/src/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";
@@ -1559,6 +1582,7 @@
 					"$(PROJECT_DIR)/Artista/RaptureXML/**",
 					"$(PROJECT_DIR)/Artista/TMQuiltView/TMQuiltView/**",
 					"$(PROJECT_DIR)/Artista/SDWebImage/SDWebImage",
+					"$(PROJECT_DIR)/Artista/nimbus/src/**",
 					"\"$(SDK_DIR)\"/usr/include/libxml2/**",
 				);
 				INFOPLIST_FILE = "Artista/Artista-Info.plist";

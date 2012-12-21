@@ -10,6 +10,7 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <TMQuiltView/TMQuiltView.h>
 #import "AccountViewController.h"
+#import "PhotoViewController.h"
 #import "LFM.h"
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"

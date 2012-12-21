@@ -157,6 +157,7 @@
                         <outlet property="tagView" destination="wNH-X9-WFv" id="0cp-nr-qtC"/>
                         <outlet property="topTracksTableView" destination="Wh6-CI-hfQ" id="RTf-u2-w5q"/>
                         <segue destination="xRD-iT-Muu" kind="modal" identifier="Account" id="3Kl-Jk-fra"/>
+                        <segue destination="Xhn-Kv-vnd" kind="modal" identifier="PhotoViewer" modalTransitionStyle="crossDissolve" id="obf-Xf-MMC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -402,20 +403,68 @@ Text, images, and information provided by Last.fm</string>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UqF-0Z-qG0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="593" y="23"/>
+            <point key="canvasLocation" x="750" y="7"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="Y3C-3c-XMr">
+        <!--Toolbar Photo View Controller-->
+        <scene sceneID="fjt-Kl-oji">
             <objects>
-                <viewController id="nry-sJ-pKG" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="x4W-Uf-7KS">
-                        <rect key="frame" x="0.0" y="20" width="320" height="548"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                <viewController id="Xhn-Kv-vnd" customClass="NIToolbarPhotoViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="qh4-Zv-Kw9">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drV-WE-9G6" customClass="NIPhotoScrollView"/>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="photos-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="nak-Ba-Yau"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UEW-6b-rFd">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="done.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NOM-U1-p3k">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="share.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
+                            <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="divide.png" translatesAutoresizingMaskIntoConstraints="NO" id="vEq-Kz-SmQ"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="1 of 50" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bm3-YX-sS3">
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="bm3-YX-sS3" firstAttribute="leading" secondItem="vEq-Kz-SmQ" secondAttribute="leading" type="default" id="0oX-KS-egh"/>
+                            <constraint firstItem="UEW-6b-rFd" firstAttribute="top" secondItem="qh4-Zv-Kw9" secondAttribute="top" constant="10" id="5V5-40-V9q"/>
+                            <constraint firstAttribute="bottom" secondItem="bm3-YX-sS3" secondAttribute="bottom" constant="10" id="CnK-BH-I78"/>
+                            <constraint firstItem="vEq-Kz-SmQ" firstAttribute="trailing" secondItem="NOM-U1-p3k" secondAttribute="trailing" type="default" id="Gzs-mH-7xB"/>
+                            <constraint firstAttribute="bottom" secondItem="vEq-Kz-SmQ" secondAttribute="bottom" constant="50" id="Lu7-mK-Mop"/>
+                            <constraint firstItem="bm3-YX-sS3" firstAttribute="top" secondItem="NOM-U1-p3k" secondAttribute="top" type="default" id="Q1N-K8-qtm"/>
+                            <constraint firstItem="vEq-Kz-SmQ" firstAttribute="centerX" secondItem="nak-Ba-Yau" secondAttribute="centerX" type="default" id="SU5-YH-Uzb"/>
+                            <constraint firstItem="drV-WE-9G6" firstAttribute="leading" secondItem="qh4-Zv-Kw9" secondAttribute="leading" type="default" id="Szu-PW-k1l"/>
+                            <constraint firstItem="drV-WE-9G6" firstAttribute="top" secondItem="qh4-Zv-Kw9" secondAttribute="top" type="default" id="Ugm-LS-N2f"/>
+                            <constraint firstItem="drV-WE-9G6" firstAttribute="trailing" secondItem="qh4-Zv-Kw9" secondAttribute="trailing" type="default" id="XiD-Dq-Xci"/>
+                            <constraint firstItem="nak-Ba-Yau" firstAttribute="leading" secondItem="qh4-Zv-Kw9" secondAttribute="leading" type="default" id="oCS-Ki-hdh"/>
+                            <constraint firstItem="vEq-Kz-SmQ" firstAttribute="trailing" secondItem="UEW-6b-rFd" secondAttribute="trailing" type="default" id="p9l-ZG-FjC"/>
+                            <constraint firstItem="drV-WE-9G6" firstAttribute="bottom" secondItem="qh4-Zv-Kw9" secondAttribute="bottom" type="default" id="w2H-8u-Gm5"/>
+                            <constraint firstItem="nak-Ba-Yau" firstAttribute="bottom" secondItem="qh4-Zv-Kw9" secondAttribute="bottom" type="default" id="zQa-qY-oAc"/>
+                        </constraints>
+                        <simulatedStatusBarMetrics key="simulatedStatusBarMetrics"/>
+                        <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     </view>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="JTA-6R-50D" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sWC-Co-us7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="37" y="590"/>
         </scene>
     </scenes>
     <resources>
@@ -426,6 +475,8 @@ Text, images, and information provided by Last.fm</string>
         <image name="connect.png" width="289" height="38"/>
         <image name="disconnect-pressed.png" width="107" height="38"/>
         <image name="disconnect.png" width="107" height="38"/>
+        <image name="divide.png" width="300" height="1"/>
+        <image name="done.png" width="55" height="31"/>
         <image name="gears.png" width="15" height="15"/>
         <image name="input.png" width="290" height="76"/>
         <image name="lastfm.png" width="150" height="39"/>
@@ -433,7 +484,9 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow-small-pressed.png" width="139" height="38"/>
         <image name="notnow-small.png" width="139" height="38"/>
         <image name="notnow.png" width="289" height="38"/>
+        <image name="photos-gradient.png" width="320" height="135"/>
         <image name="photos.png" width="27" height="29"/>
+        <image name="share.png" width="26" height="21"/>
         <image name="submit.png" width="24" height="25"/>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>
@@ -453,6 +506,12 @@ Text, images, and information provided by Last.fm</string>
                 <relationship kind="outlet" name="verifiedImageView" candidateClass="UIImageView"/>
             </relationships>
         </class>
+        <class className="NIPhotoScrollView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPhotoScrollView.h"/>
+        </class>
+        <class className="NIToolbarPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIToolbarPhotoViewController.h"/>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
@@ -468,6 +527,7 @@ Text, images, and information provided by Last.fm</string>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="album" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
