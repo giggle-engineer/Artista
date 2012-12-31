@@ -22,11 +22,12 @@
 - (void) didFailToReceiveImages: (NSError *)error;
 @end
 
-typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error);
+typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error, BOOL paging);
 
 @interface LFMArtistImages : NSObject {
 	id <LFMArtistImagesDelegate> delegate;
 	NSMutableArray *images;
+	int isCanceled;
 }
 
 @property (strong) id delegate;
@@ -34,5 +35,6 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error);
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion;
 - (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion;
+- (void)cancelPagingOperation;
 
 @end

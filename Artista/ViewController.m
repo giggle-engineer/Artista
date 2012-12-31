@@ -522,8 +522,8 @@
 		[track setText:trackName];
 		
 		// setup playback progress bar timer
-		if (playbackTimer == nil)
-			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];
+		/*if (playbackTimer == nil)
+			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];*/
 	});
 	// only use one instance of artistInfo
 	if (artistInfo==nil) {
@@ -554,8 +554,9 @@
 	dispatch_async(queue,^{
 	[topTracks requestTopTracksWithArtist:artistName];
 	});
-	[artistImages requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error) {
-		if (images.count==0)
+	[artistImages requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error, BOOL paging) {
+		[[SDImageCache sharedImageCache] cleanDisk];
+		if (images.count==0 || paging)
 			return;
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
@@ -799,8 +800,9 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
 				});
-				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error) {
-					if (images.count==0)
+				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
+					[[SDImageCache sharedImageCache] cleanDisk];
+					if (images.count==0 || paging)
 						return;
 					//NSLog(@"IMGES:%i",artistImages.images.count);
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
@@ -831,8 +833,9 @@
 				dispatch_async(queue,^{
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 				});
-				[artistImages requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error) {
-					if (images.count==0)
+				[artistImages requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error, BOOL paging) {
+					[[SDImageCache sharedImageCache] cleanDisk];
+					if (images.count==0 || paging)
 						return;
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
@@ -1167,7 +1170,7 @@
 	[popOutImageView setContentMode:UIViewContentModeScaleAspectFill];
 	[popOutImageView setClipsToBounds:YES];
 	PhotoViewerView *photoViewerView = [PhotoViewerView viewFromNib];
-	[photoViewerView.currentPhoto setText:[[NSString alloc] initWithFormat:@"%d of %d", indexPath.row+1, [artistImages.images count]]];
+	[photoViewerView.currentPhoto setText:[[NSString alloc] initWithFormat:@"%i of %i", indexPath.row+1, [artistImages.images count]]];
 	NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.origin.y-20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+20)];
 	//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
 	//[photoViewer setClipsToBounds:YES];

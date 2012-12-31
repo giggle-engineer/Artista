@@ -7,6 +7,7 @@
  */
 
 // JTTargetActionBlock is built with ARC environment
+// http://stackoverflow.com/a/3977305/1000339
 
 #import <UIKit/UIKit.h>
 
