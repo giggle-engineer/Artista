@@ -1238,11 +1238,12 @@
 		UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
 															initWithActivityItems:@[cell.photoView.image] applicationActivities:nil];
 		activityViewController.completionHandler = ^(NSString *activityType, BOOL completed) {
+			[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 			if (completed) {
 				[self dismissViewControllerAnimated:YES completion:nil];
 			}
 		};
-		
+		[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 		[self presentViewController:activityViewController animated:YES completion:nil];
 	} forControlEvent:UIControlEventTouchUpInside];
 	[self.view addSubview:popOutImageView];
