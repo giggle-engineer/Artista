@@ -23,6 +23,7 @@
 		370AAB301669CFCD00526C8F /* notnow-small-pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB2E1669CFCD00526C8F /* notnow-small-pressed@2x.png */; };
 		370AAB331669CFD600526C8F /* notnow-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB311669CFD600526C8F /* notnow-small.png */; };
 		370AAB341669CFD600526C8F /* notnow-small@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 370AAB321669CFD600526C8F /* notnow-small@2x.png */; };
+		370F901C1697895900B283E5 /* FTUtils+UIGestureRecognizer.m in Sources */ = {isa = PBXBuildFile; fileRef = 370F901B1697895900B283E5 /* FTUtils+UIGestureRecognizer.m */; };
 		371D6A0F167DD2A2008C72FF /* divide.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A07167DD2A2008C72FF /* divide.png */; };
 		371D6A10167DD2A2008C72FF /* divide@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A08167DD2A2008C72FF /* divide@2x.png */; };
 		371D6A11167DD2A2008C72FF /* done.png in Resources */ = {isa = PBXBuildFile; fileRef = 371D6A09167DD2A2008C72FF /* done.png */; };
@@ -400,6 +401,8 @@
 		370AAB2E1669CFCD00526C8F /* notnow-small-pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small-pressed@2x.png"; sourceTree = "<group>"; };
 		370AAB311669CFD600526C8F /* notnow-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small.png"; sourceTree = "<group>"; };
 		370AAB321669CFD600526C8F /* notnow-small@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notnow-small@2x.png"; sourceTree = "<group>"; };
+		370F901A1697895900B283E5 /* FTUtils+UIGestureRecognizer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FTUtils+UIGestureRecognizer.h"; sourceTree = "<group>"; };
+		370F901B1697895900B283E5 /* FTUtils+UIGestureRecognizer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FTUtils+UIGestureRecognizer.m"; sourceTree = "<group>"; };
 		371D6A07167DD2A2008C72FF /* divide.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = divide.png; sourceTree = "<group>"; };
 		371D6A08167DD2A2008C72FF /* divide@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "divide@2x.png"; sourceTree = "<group>"; };
 		371D6A09167DD2A2008C72FF /* done.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = done.png; sourceTree = "<group>"; };
@@ -902,6 +905,8 @@
 		3795C81015DC23700058023F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				370F901A1697895900B283E5 /* FTUtils+UIGestureRecognizer.h */,
+				370F901B1697895900B283E5 /* FTUtils+UIGestureRecognizer.m */,
 				378C873816844DA20064E6D6 /* UIControl+JTTargetActionBlock.h */,
 				378C873916844DA20064E6D6 /* UIControl+JTTargetActionBlock.m */,
 				37C93421167476B200AE8BD6 /* UIImage+ProportionalFill.h */,
@@ -1435,6 +1440,7 @@
 				378FE1DE167FE92A0055F8E4 /* PhotoViewController.m in Sources */,
 				378C869716841FE60064E6D6 /* PhotoViewerView.m in Sources */,
 				378C873A16844DA20064E6D6 /* UIControl+JTTargetActionBlock.m in Sources */,
+				370F901C1697895900B283E5 /* FTUtils+UIGestureRecognizer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
