@@ -717,7 +717,7 @@
 	versionLabel.font = font;
 	versionLabel.text = versionString;
 	
-	NSString *copyrightString = @"Copyright © 2012 Phantom Sun Creative, Ltd.";
+	NSString *copyrightString = @"Copyright © 2013 Phantom Sun Creative, Ltd.";
 	textSize = [copyrightString sizeWithFont:font];
 	
 	height = textSize.height;
