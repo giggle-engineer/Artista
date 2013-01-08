@@ -612,7 +612,7 @@
 		}
 		// Internet is working but absolutely nothing is playing. Display message.
 		else {
-			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully."];
+			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully or try pulling to refresh again."];
 		}
 		// make sure the hidden view still works
 		[self setupHiddenVersionView];
@@ -1188,14 +1188,15 @@
 
 - (CGFloat)quiltView:(TMQuiltView *)quiltView heightForCellAtIndexPath:(NSIndexPath *)indexPath {
 	// handle index of 0 exception that seems to happen on instant reload
-	@try {
+	/*@try {
 		LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
 		return artistImage.height / [self quiltViewNumberOfColumns:quiltView];
 	}
 	@catch (NSException *exception) {
 		NSLog(@"Index of 0... ignoring.");
 		return 0;
-	}
+	}*/
+	return 100;
 }
 
 - (void)quiltView:(TMQuiltView *)quiltView didSelectCellAtIndexPath:(NSIndexPath *)indexPath;
