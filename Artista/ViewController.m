@@ -558,7 +558,23 @@
 	[artistImages requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error, BOOL paging) {
 		[[SDImageCache sharedImageCache] cleanDisk];
 		if (images.count==0 || paging)
+		{
+			if (images.count==0)
+			{
+				dispatch_async(queue,^{
+					UIImage *image = [UIImage imageNamed:@"Header.png"];
+					if ([UIScreen mainScreen].scale==2.0f)
+						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+					else
+						image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
+					dispatch_async(dispatch_get_main_queue(), ^{
+						[artistImageView setImage:image];
+					});
+				});
+			}
 			return;
+		}
+		
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
@@ -804,7 +820,18 @@
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
 					[[SDImageCache sharedImageCache] cleanDisk];
 					if (images.count==0 || paging)
+					{
+						if (images.count==0)
+						{
+							UIImage *image = [UIImage imageNamed:@"Login.png"];
+							if ([UIScreen mainScreen].scale==2.0f)
+								image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+							else
+								image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
+							[artistImageView setImage:image];
+						}
 						return;
+					}
 					//NSLog(@"IMGES:%i",artistImages.images.count);
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
@@ -837,7 +864,23 @@
 				[artistImages requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error, BOOL paging) {
 					[[SDImageCache sharedImageCache] cleanDisk];
 					if (images.count==0 || paging)
+					{
+						if (images.count==0)
+						{
+							dispatch_async(queue,^{
+								UIImage *image = [UIImage imageNamed:@"Header.png"];
+								if ([UIScreen mainScreen].scale==2.0f)
+									image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
+								else
+									image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
+								dispatch_async(dispatch_get_main_queue(), ^{
+									[artistImageView setImage:image];
+								});
+							});
+						}
 						return;
+					}
+
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
