@@ -9,6 +9,8 @@
 #import "AccountViewController.h"
 #import "UIImage+H568.h"
 #import "NSTimer+Blocks.h"
+#import "LFMMobileAuth.h"
+#import "FDKeychain.h"
 
 @interface AccountViewController ()
 
@@ -17,6 +19,7 @@
 @implementation AccountViewController
 @synthesize delegate;
 @synthesize userNameTextField;
+@synthesize passwordTextField;
 @synthesize verifiedImageView;
 @synthesize longButtonsView;
 @synthesize shortButtonView;
@@ -82,6 +85,11 @@
 	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil)
 	{
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
+		// delete the session key and api signature from the iOS keychain
+		[FDKeychain deleteItemForKey: @"sessionKey"
+						  forService: @"Last.fm"];
+		[FDKeychain deleteItemForKey: @"apiSignature"
+						  forService: @"Last.fm"];
 		[notConnectedView setHidden:NO];
 		// show connected view and unhide appropriate button view
 		[connectedView setHidden:YES];
@@ -104,11 +112,43 @@
 - (IBAction)verifyUser:(id)sender
 {
 	// don't be that jerk who makes the button stay highlighted until the loading is done
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	/*dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 	dispatch_async(queue,^{
 		LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
 		[recentTracks setDelegate:self];
 		[recentTracks requestInfo:userNameTextField.text];
+	});*/
+	
+	// UIKit isn't threading safe, save them in memory for the dispatch
+	NSString *password = passwordTextField.text;
+	NSString *userName = userNameTextField.text;
+	
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
+		LFMMobileAuth *mobileAuth = [[LFMMobileAuth alloc] init];
+		NSString *apiSignature = [mobileAuth createSignatureWithPassword:password username:userName];
+		NSString *sessionKey = [mobileAuth getSesssionKeyWithUsername:userName password:password signature:apiSignature];
+		//NSLog(@"Acquired session key, %@", sessionKey);
+		// if authenticated then save the details
+		if (![sessionKey isEqualToString:@""])
+		{
+			// save session key and signature securely and safely to the iOS keychain
+			[FDKeychain saveItem: sessionKey
+						  forKey: @"sessionKey"
+					  forService: @"Last.fm"];
+			[FDKeychain saveItem: apiSignature
+						  forKey: @"apiSignature"
+					  forService: @"Last.fm"];
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[self saveAndDismiss];
+			});
+		}
+		else
+		{
+			dispatch_async(dispatch_get_main_queue(), ^{
+				[verifiedImageView setImage:[UIImage imageNamed:@"warning.png"]];
+			});
+		}
 	});
 }
 

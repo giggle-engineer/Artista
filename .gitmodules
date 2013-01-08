@@ -16,3 +16,6 @@
 [submodule "Artista/nimbus"]
 	path = Artista/nimbus
 	url = git://github.com/jverkoey/nimbus.git
+[submodule "Artista/FDKeychain"]
+	path = Artista/FDKeychain
+	url = git://github.com/reidmain/FDKeychain.git

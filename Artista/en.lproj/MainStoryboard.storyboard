@@ -395,6 +395,7 @@ Text, images, and information provided by Last.fm</string>
                         <outlet property="connectedView" destination="fyP-l1-57K" id="9Qp-Un-ygV"/>
                         <outlet property="longButtonsView" destination="0mV-15-M9H" id="jeo-uM-KOX"/>
                         <outlet property="notConnectedView" destination="tJT-TW-mi3" id="zhf-Jf-hFk"/>
+                        <outlet property="passwordTextField" destination="df0-ag-R8L" id="vE3-Tt-HRR"/>
                         <outlet property="shortButtonView" destination="OpP-jL-hys" id="nKf-tF-DH0"/>
                         <outlet property="userNameLabel" destination="ZwC-k8-4Wy" id="LEk-qV-PCh"/>
                         <outlet property="userNameTextField" destination="2YB-Xg-iyG" id="Kyd-0j-hI0"/>
@@ -491,6 +492,64 @@ Text, images, and information provided by Last.fm</string>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>
     </resources>
+    <classes>
+        <class className="AccountViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AccountViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="closeView:"/>
+                <relationship kind="action" name="skipOrUnlink:"/>
+                <relationship kind="action" name="verifyUser:"/>
+                <relationship kind="outlet" name="closeButton" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="connectedView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="longButtonsView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="notConnectedView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="passwordTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="shortButtonView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="userNameLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="userNameTextField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="verifiedImageView" candidateClass="UIImageView"/>
+            </relationships>
+        </class>
+        <class className="NIPhotoScrollView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIPhotoScrollView.h"/>
+        </class>
+        <class className="NIToolbarPhotoViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NIToolbarPhotoViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PSCTagView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PSCTagView.h"/>
+        </class>
+        <class className="TMQuiltView" superclassName="UIScrollView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/TMQuiltView.h"/>
+        </class>
+        <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
+        </class>
+        <class className="UICollectionViewLayout" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
+        </class>
+        <class className="ViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
+                <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
+                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
+                <relationship kind="outlet" name="photoGridView" candidateClass="TMQuiltView"/>
+                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
+                <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
+                <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
+                <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
+                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

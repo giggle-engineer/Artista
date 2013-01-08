@@ -8,6 +8,7 @@
 
 #import "LFMRecentTracks.h"
 #import "LFMDefines.h"
+#import "FDKeychain.h"
 
 @implementation LFMRecentTracks
 @synthesize delegate;
@@ -16,8 +17,12 @@
 
 - (void)requestInfo:(NSString*)user
 {
-    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=%@&api_key=%@",
-                                  [user URLEncodedString], kAPIKey];
+	NSString *sessionKey = [FDKeychain itemForKey: @"sessionKey"
+										 forService: @"Last.fm"];
+	NSString *apiSignature = [FDKeychain itemForKey: @"apiSignature"
+										 forService: @"Last.fm"];
+    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=%@&api_key=%@&sk=%@&api_sig=%@",
+                                  [user URLEncodedString], kAPIKey, sessionKey, apiSignature];
     NSLog(@"LFMRecentTracks user requested: %@", user);
     NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.

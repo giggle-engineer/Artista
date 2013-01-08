@@ -19,6 +19,7 @@
     id <AccountViewControllerDelegate> delegate;
     
     IBOutlet UITextField *userNameTextField;
+	IBOutlet UITextField *passwordTextField;
 	IBOutlet UIImageView *verifiedImageView;
 	IBOutlet UIView *longButtonsView;
 	IBOutlet UIView *shortButtonView;
@@ -32,6 +33,7 @@
 
 @property (strong) id delegate;
 @property IBOutlet UITextField *userNameTextField;
+@property IBOutlet UITextField *passwordTextField;
 @property IBOutlet UIImageView *verifiedImageView;
 @property IBOutlet UIView *longButtonsView;
 @property IBOutlet UIView *shortButtonView;

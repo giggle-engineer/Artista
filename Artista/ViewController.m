@@ -1194,7 +1194,7 @@
 							 animations:^{
 								 // it's probably best to take a photo of the view and shrink it.. maybe?
 								 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-								 self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
+								 //self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
 								 self.view.backgroundColor = [UIColor whiteColor];
 								 for (UIView *view in [[self view] subviews])
 								 {
@@ -1238,63 +1238,9 @@
 	[tapGesture requireGestureRecognizerToFail:photoViewer.doubleTapGestureRecognizer];
     tapGesture.numberOfTapsRequired = 1;
     [photoViewer addGestureRecognizer:tapGesture];
-	[photoViewerView.doneButton addEventHandler:^(id sender, UIEvent *event) {
-		void (^exit_animation)(void) =
-		^{
-			// prepare view by unhiding the popOutImage and removing the photo viewer
-			[popOutImageView setHidden:NO];
-			[photoViewerView removeFromSuperview];
-			// main photo viewer exit animation
-			[UIView animateWithDuration:0.50
-								  delay:0
-								options:UIViewAnimationCurveEaseIn
-							 animations:^{
-								 // it's probably best to take a photo of the view and shrink it.. maybe?
-								 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-								 //self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
-								 self.view.backgroundColor = [UIColor whiteColor];
-								 for (UIView *view in [[self view] subviews])
-								 {
-									 if (view!=popOutImageView && view!=albumGridView && view!=bioTextView && view!=topTracksTableView)
-									 {
-										 view.alpha = 1.0;
-									 }
-								 }
-								 popOutImageView.frame = rectInSelf;
-							 }
-							 completion:^(BOOL finished){
-								 // revert cell to normal
-								 [popOutImageView removeFromSuperview];
-								 cell.photoView.hidden = NO;
-							 }];
-
-		};
-		// find the scroll view in the NIPhotoScrollView and reset the zoom
-		for (UIView *view in [photoViewer subviews])
-		{
-			if ([view isKindOfClass:[UIScrollView class]]) {
-				if ([(UIScrollView*)view zoomScale]!=0.0f)
-				{
-					[UIView animateWithDuration:0.50
-										  delay:0
-										options:UIViewAnimationCurveEaseIn
-									 animations:^{
-										 [(UIScrollView*)view setZoomScale:0.0f animated:NO];
-									 }
-									 completion:^(BOOL finished){
-										 exit_animation();
-									 }];
-				}
-				else {
-					exit_animation();
-				}
-				
-			}
-		}
-	} forControlEvent:UIControlEventTouchUpInside];
 	[photoViewerView.shareButton addEventHandler:^(id sender, UIEvent *event) {
 		UIActivityViewController *activityViewController = [[UIActivityViewController alloc]
-															initWithActivityItems:@[@"", cell.photoView.image] applicationActivities:nil];
+															initWithActivityItems:@[cell.photoView.image] applicationActivities:nil];
 		activityViewController.completionHandler = ^(NSString *activityType, BOOL completed) {
 			if (completed) {
 				[self dismissViewControllerAnimated:YES completion:nil];
@@ -1320,9 +1266,9 @@
 						 // hide staus bar
 						 [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 						 // view dance to get the photoviewer location extraction to work
-						 //self.view.frame = CGRectInset(self.view.frame, 0.01, 0);
-						 //self.view.frame = CGRectInset(self.view.frame, -0.01, 0);
-						 self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
+						 self.view.frame = CGRectInset(self.view.frame, 0.01, 0);
+						 self.view.frame = CGRectInset(self.view.frame, -0.01, 0);
+						 //self.view.frame = CGRectInset(self.view.frame, 5.0, 5.0);
 						 self.view.backgroundColor = [UIColor blackColor];
 						 for (UIView *view in [[self view] subviews])
 						 {
