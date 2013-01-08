@@ -17,16 +17,33 @@
 
 - (void)requestInfo:(NSString*)user
 {
+    NSString *urlRequestString = @"https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks";
+	
+    NSLog(@"LFMRecentTracks user requested: %@", user);
+    //NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
+	
 	NSString *sessionKey = [FDKeychain itemForKey: @"sessionKey"
-										 forService: @"Last.fm"];
+									   forService: @"Last.fm"];
 	NSString *apiSignature = [FDKeychain itemForKey: @"apiSignature"
 										 forService: @"Last.fm"];
-    NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=%@&api_key=%@&sk=%@&api_sig=%@",
-                                  [user URLEncodedString], kAPIKey, sessionKey, apiSignature];
-    NSLog(@"LFMRecentTracks user requested: %@", user);
-    NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
-    // Initialization code here.
-    RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
+	
+	// Instructions on how to use the POST method found here http://panditpakhurde.wordpress.com/2009/04/16/posting-data-to-url-in-objective-c/
+	NSString *post = [NSString stringWithFormat:@"&user=%@&api_key=%@&sk=%@&api_sig=%@",[user URLEncodedString], kAPIKey, sessionKey, apiSignature];
+	
+	// Encode the post string using NSASCIIStringEncoding and also the post string you need to send in NSData format.
+	NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+	// You need to send the actual length of your data. Calculate the length of the post string.
+	NSString *postLength = [NSString stringWithFormat:@"%d",[postData length]];
+	
+	NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
+	[request setHTTPMethod:@"POST"];
+	[request setValue:postLength forHTTPHeaderField:@"Content-Length"];
+	[request setHTTPBody:postData];
+	
+	NSError *connectionError;
+	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&connectionError];
+	
+	RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 	
 	if ([rootXML isValid]) {
 		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
