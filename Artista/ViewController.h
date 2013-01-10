@@ -56,6 +56,7 @@
 	UILabel *versionLabel;
 	UILabel *copyrightLabel;
 	MPMusicPlaybackState lastPlaybackState;
+	UIButton *pagingButton;
 }
 
 @end

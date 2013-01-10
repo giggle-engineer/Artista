@@ -116,7 +116,7 @@
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 49, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
-	albumGridView.contentInset = contentInsets;
+	//albumGridView.contentInset = contentInsets;
 	albumGridView.scrollIndicatorInsets = contentInsets;
 	topTracksTableView.contentInset = contentInsets;
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
@@ -572,6 +572,10 @@
 					});
 				});
 			}
+			if (paging)
+			{
+				[photoGridView reloadData];
+			}
 			return;
 		}
 		
@@ -752,6 +756,51 @@
 	[bioTextView addSubview:copyrightLabel];
 }
 
+- (void)setupPhotoGridPagingButton
+{
+	// Remove old label
+	[pagingButton removeFromSuperview];
+	
+	UIImage *buttonImage = [UIImage imageNamed:@"dots.png"];
+	float height = buttonImage.size.height; //31;
+	float width = buttonImage.size.width; //85;
+	float padding = 10;
+	float y;
+	
+	float bottomBarHeight = 49;
+	float distanceToBottomBarPadding = 10;
+	
+	//if (albumGridView.contentSize.height > albumGridView.frame.size.height) {
+	y = albumGridView.contentSize.height + padding;
+	//}
+	// if the text doesn't fill up the entire view then append the text at the bottom of the view
+	/*else {
+		y = albumGridView.frame.size.height - padding;
+		return;
+	}*/
+	
+	albumGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+distanceToBottomBarPadding+height+bottomBarHeight, 0);
+	
+		
+	pagingButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[pagingButton addTarget:self
+					 action:@selector(page:)
+	 forControlEvents:UIControlEventTouchDown];
+	pagingButton.frame = CGRectMake(0, y, width, height);
+	//[pagingButton sizeToFit];
+	[pagingButton setImage:[UIImage imageNamed:@"dots.png"] forState:UIControlStateNormal];
+	[pagingButton setImage:[UIImage imageNamed:@"dots-pressed.png"] forState:UIControlStateHighlighted];
+	pagingButton.center = CGPointMake(albumGridView.center.x, pagingButton.center.y);
+	[albumGridView addSubview:pagingButton];
+	//albumGridView.contentSize = CGSizeZero;
+	//albumGridView.contentSize = CGSizeMake(albumGridView.contentSize.width, albumGridView.contentSize.height + padding + pagingButton.frame.size.height);
+}
+
+- (void)page:(id)sender
+{
+	return;
+}
+
 #pragma mark - LFMRecentTracks Delegate
 
 - (void)didReceiveRecentTracks:(NSArray*)tracks {
@@ -819,6 +868,7 @@
 				});
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
 					[[SDImageCache sharedImageCache] cleanDisk];
+					[self setupPhotoGridPagingButton];
 					if (images.count==0 || paging)
 					{
 						if (images.count==0)
@@ -829,6 +879,10 @@
 							else
 								image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
 							[artistImageView setImage:image];
+						}
+						if (paging)
+						{
+							[photoGridView reloadData];
 						}
 						return;
 					}
@@ -877,6 +931,10 @@
 									[artistImageView setImage:image];
 								});
 							});
+						}
+						if (paging)
+						{
+							[photoGridView reloadData];
 						}
 						return;
 					}
@@ -1013,6 +1071,7 @@
 	topAlbumsArray = albums;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumGridView reloadData];
+		[self setupPhotoGridPagingButton];
 	});
 	isFinishedLoadingTopAlbums = YES;
 	[self finishLoadingAction];
