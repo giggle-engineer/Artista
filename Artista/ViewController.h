@@ -27,7 +27,7 @@
 	IBOutlet UITextView *bioTextView;
 	IBOutlet UICollectionView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
-	IBOutlet TMQuiltView *photoGridView;
+	IBOutlet UICollectionView *photoGridView;
 	IBOutlet UITabBar *tabBar;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;

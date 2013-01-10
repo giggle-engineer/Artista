@@ -18,9 +18,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <TMQuiltView/TMQuiltView.h>
+//#import <TMQuiltView/TMQuiltView.h>
 
-@interface TMPhotoQuiltViewCell : TMQuiltViewCell
+@interface TMPhotoQuiltViewCell : UICollectionViewCell
 
 @property (nonatomic, retain) UIImageView *photoView;
 @property (nonatomic, retain) UILabel *titleLabel;

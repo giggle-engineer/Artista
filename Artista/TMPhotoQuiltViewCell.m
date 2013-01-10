@@ -34,14 +34,33 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     //[super dealloc];
 }
 
-- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+	self = [super initWithCoder:aDecoder];
+	if (self) {
+		self.backgroundColor = [UIColor whiteColor];
+	}
+	return self;
+}
+
+- (id)initWithFrame:(CGRect)frame
+{
+	self = [super initWithFrame:frame];
+	if (self) {
+		self.backgroundColor = [UIColor whiteColor];
+	}
+	
+	return self;
+}
+
+/*- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
 {
     self = [super initWithReuseIdentifier:reuseIdentifier];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
     }
     return self;
-}
+}*/
 
 - (UIImageView *)photoView {
     if (!_photoView) {
