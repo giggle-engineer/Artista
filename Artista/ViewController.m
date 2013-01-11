@@ -569,6 +569,8 @@
 			if (paging)
 			{
 				[photoGridView reloadData];
+				//[self setupPhotoGridPagingButton];
+				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 			}
 			return;
 		}
@@ -584,6 +586,8 @@
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artistImageView setImage:image];
 				[photoGridView reloadData];
+				//[self setupPhotoGridPagingButton];
+				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 			});
 		});
 	}];
@@ -762,18 +766,18 @@
 	float y;
 	
 	float bottomBarHeight = 49;
-	float distanceToBottomBarPadding = 10;
+	//float distanceToBottomBarPadding = 10;
 	
-	//if (albumGridView.contentSize.height > albumGridView.frame.size.height) {
-	y = albumGridView.contentSize.height + padding;
+	//if (photoGridView.contentSize.height > photoGridView.frame.size.height) {
+	y = photoGridView.contentSize.height;// + padding;
 	//}
 	// if the text doesn't fill up the entire view then append the text at the bottom of the view
 	/*else {
-		y = albumGridView.frame.size.height - padding;
+		y = photoGridView.frame.size.height - padding;
 		return;
 	}*/
 	
-	albumGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+distanceToBottomBarPadding+height+bottomBarHeight, 0);
+	photoGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+height+bottomBarHeight, 0);
 	
 		
 	pagingButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -784,10 +788,10 @@
 	//[pagingButton sizeToFit];
 	[pagingButton setImage:buttonImage forState:UIControlStateNormal];
 	[pagingButton setImage:[UIImage imageNamed:@"dots-pressed.png"] forState:UIControlStateHighlighted];
-	pagingButton.center = CGPointMake(albumGridView.center.x, pagingButton.center.y);
-	[albumGridView addSubview:pagingButton];
-	//albumGridView.contentSize = CGSizeZero;
-	//albumGridView.contentSize = CGSizeMake(albumGridView.contentSize.width, albumGridView.contentSize.height + padding + pagingButton.frame.size.height);
+	pagingButton.center = CGPointMake(photoGridView.center.x, pagingButton.center.y);
+	[photoGridView addSubview:pagingButton];
+	//photoGridView.contentSize = CGSizeZero;
+	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
 }
 
 - (void)page:(id)sender
@@ -862,7 +866,7 @@
 				});
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
 					[[SDImageCache sharedImageCache] cleanDisk];
-					[self setupPhotoGridPagingButton];
+					//[self setupPhotoGridPagingButton];
 					if (images.count==0 || paging)
 					{
 						if (images.count==0)
@@ -875,6 +879,8 @@
 						if (paging)
 						{
 							[photoGridView reloadData];
+							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							//[self setupPhotoGridPagingButton];
 						}
 						return;
 					}
@@ -890,6 +896,8 @@
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
 							[photoGridView reloadData];
+							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							//[self setupPhotoGridPagingButton];
 						});
 					});
 				}];
@@ -921,6 +929,8 @@
 						if (paging)
 						{
 							[photoGridView reloadData];
+							//[self setupPhotoGridPagingButton];
+							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						}
 						return;
 					}
@@ -936,6 +946,8 @@
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
 							[photoGridView reloadData];
+							//[self setupPhotoGridPagingButton];
+							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
 					});
 				}];
@@ -1057,7 +1069,6 @@
 	topAlbumsArray = albums;
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumGridView reloadData];
-		[self setupPhotoGridPagingButton];
 	});
 	isFinishedLoadingTopAlbums = YES;
 	[self finishLoadingAction];

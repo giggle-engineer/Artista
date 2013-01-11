@@ -98,8 +98,8 @@
 	completion([images copy], nil, NO);
 	for (int i=2; i<pages; ++i)
 	{
-		parse_page(i);
-		completion([images copy], nil, YES);
+		//parse_page(i);
+		//completion([images copy], nil, YES);
 	}
 	
 	NSLog(@"images count:%d", [images count]);
