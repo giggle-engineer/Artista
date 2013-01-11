@@ -27,7 +27,10 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error, BOO
 @interface LFMArtistImages : NSObject {
 	id <LFMArtistImagesDelegate> delegate;
 	NSMutableArray *images;
-	int isCanceled;
+	LFMArtistImagesCompletion page_completion;
+	int (^parse_page)(int);
+	int page_index;
+	int page_count;
 }
 
 @property (strong) id delegate;
@@ -35,6 +38,6 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error, BOO
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion;
 - (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion;
-- (void)cancelPagingOperation;
+- (void)loadNewPage;
 
 @end

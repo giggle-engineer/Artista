@@ -34,11 +34,20 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
     //[super dealloc];
 }
 
+- (id)init
+{
+	self = [super init];
+	if (self) {
+		self.backgroundColor = [UIColor lightGrayColor];
+	}
+	return self;
+}
+
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
 	self = [super initWithCoder:aDecoder];
 	if (self) {
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor lightGrayColor];
 	}
 	return self;
 }
@@ -47,7 +56,7 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 {
 	self = [super initWithFrame:frame];
 	if (self) {
-		self.backgroundColor = [UIColor whiteColor];
+		self.backgroundColor = [UIColor lightGrayColor];
 	}
 	
 	return self;

@@ -24,7 +24,9 @@
 {	
 	images = [NSMutableArray new];
 	
-	int (^parse_page)(int) = ^(int page)
+	page_completion = completion;
+	page_index = 1;
+	parse_page = ^(int page)
 	{
 		NSString *pageString = [[NSString alloc] initWithFormat:@"%@&page=%i", urlRequestString,page];
 		RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:pageString]];
@@ -94,13 +96,15 @@
 		return pages;
 	};
 	
-	int pages = parse_page(1);
+	//int pages = parse_page(1);
+	// set the number of pages
+	page_count = parse_page(1);
 	completion([images copy], nil, NO);
-	for (int i=2; i<pages; ++i)
-	{
+	//for (int i=2; i<pages; ++i)
+	//{
 		//parse_page(i);
 		//completion([images copy], nil, YES);
-	}
+	//}
 	
 	NSLog(@"images count:%d", [images count]);
     //[[self delegate] didReceiveImages:(NSArray*)[images copy]];
@@ -125,9 +129,15 @@
 	[self requestImagesWithURL:urlRequestString completion:completion];
 }
 
-- (void)cancelPagingOperation
+- (void)loadNewPage
 {
-	isCanceled = YES;
+	page_index++;
+	// only load the page if we aren't at the last page
+	if (page_index<=page_count)
+	{
+		parse_page(page_index);
+		page_completion([images copy], nil, YES);
+	}
 }
 
 @end

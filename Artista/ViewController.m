@@ -33,8 +33,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-	playbackTimer = nil;
-	
+
 	// setup grid view
 	albumGridView.backgroundColor = [UIColor clearColor];
 	[albumGridView registerNib:[UINib nibWithNibName:@"AlbumViewCell" bundle:nil] forCellWithReuseIdentifier:@"Cell"];
@@ -82,12 +81,6 @@
 	albumGridView.scrollsToTop = NO;
 	topTracksTableView.scrollsToTop = NO;
 	photoGridView.scrollsToTop = NO;
-	
-	
-	// skin the playback time progress view
-	[playTimeProgressView setProgressImage:[UIImage imageNamed:@"progressbarfill.png"]];
-	[playTimeProgressView setTrackImage:[UIImage imageNamed:@"progressbar.png"]];
-	[playTimeProgressView setFrame:CGRectMake(playTimeProgressView.frame.origin.x, playTimeProgressView.frame.origin.y, playTimeProgressView.frame.size.width, 1)];
 	
 	// give shadow to bio text
     /*bioTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
@@ -484,15 +477,6 @@
 	lastPlaybackState = [iPodController playbackState];
 }
 
-#pragma mark - Playback Timer
-
-- (void)updatePlaybackProgress {
-	NSTimeInterval currentTime = [iPodController currentPlaybackTime];
-	NSNumber *playbackDuration = [[iPodController nowPlayingItem] valueForKey:MPMediaItemPropertyPlaybackDuration];
-	float progress = currentTime/playbackDuration.intValue;
-	[playTimeProgressView setProgress:progress];
-}
-
 #pragma mark - Main Loading Methods
 
 - (void)loadInfoFromiPod {
@@ -563,14 +547,17 @@
 			{
 				UIImage *image = [UIImage imageNamed:@"top-default.png"];
 				dispatch_async(dispatch_get_main_queue(), ^{
+					[photoGridView reloadData];
 					[artistImageView setImage:image];
+					[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 				});
 			}
 			if (paging)
 			{
-				[photoGridView reloadData];
-				//[self setupPhotoGridPagingButton];
-				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[photoGridView reloadData];
+					[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+				});
 			}
 			return;
 		}
@@ -586,7 +573,6 @@
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artistImageView setImage:image];
 				[photoGridView reloadData];
-				//[self setupPhotoGridPagingButton];
 				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 			});
 		});
@@ -754,6 +740,8 @@
 	[bioTextView addSubview:copyrightLabel];
 }
 
+#pragma mark - Setup Paging for Photo Grid View
+
 - (void)setupPhotoGridPagingButton
 {
 	// Remove old label
@@ -796,7 +784,10 @@
 
 - (void)page:(id)sender
 {
-	return;
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
+	dispatch_async(queue,^{
+		[artistImages loadNewPage];
+	});
 }
 
 #pragma mark - LFMRecentTracks Delegate
@@ -809,13 +800,6 @@
 	#if !(TARGET_IPHONE_SIMULATOR)
 	if ([_track nowPlaying]) {
 	#endif
-		// remove playback timer updating if the iPod is no longer playing
-		if ([playbackTimer isValid]) {
-			[playbackTimer invalidate], playbackTimer = nil;
-			dispatch_async(dispatch_get_main_queue(), ^{
-				[playTimeProgressView setProgress:0];
-			});
-		}
 		dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
 		dispatch_async(queue,^{
 			dispatch_async(dispatch_get_main_queue(), ^{
@@ -873,13 +857,17 @@
 						{
 							UIImage *image = [UIImage imageNamed:@"top-default.png"];
 							dispatch_async(dispatch_get_main_queue(), ^{
+								[photoGridView reloadData];
 								[artistImageView setImage:image];
+								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
 						}
 						if (paging)
 						{
-							[photoGridView reloadData];
-							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[photoGridView reloadData];
+								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							});
 							//[self setupPhotoGridPagingButton];
 						}
 						return;
@@ -923,14 +911,17 @@
 						{
 							UIImage *image = [UIImage imageNamed:@"top-default.png"];
 							dispatch_async(dispatch_get_main_queue(), ^{
+								[photoGridView reloadData];
 								[artistImageView setImage:image];
+								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
 						}
 						if (paging)
 						{
-							[photoGridView reloadData];
-							//[self setupPhotoGridPagingButton];
-							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[photoGridView reloadData];
+								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+							});
 						}
 						return;
 					}

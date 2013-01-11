@@ -37,7 +37,6 @@
 	LFMArtistTopAlbums *topAlbums;
 	LFMArtistTopTracks *topTracks;
 	MPMusicPlayerController *iPodController;
-	NSTimer *playbackTimer;
 	ODRefreshControl *refreshControl;
 	ODRefreshControl *albumRefreshControl;
 	ODRefreshControl *trackRefreshControl;
