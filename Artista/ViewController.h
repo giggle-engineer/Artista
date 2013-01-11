@@ -8,14 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import <MediaPlayer/MediaPlayer.h>
-#import <TMQuiltView/TMQuiltView.h>
 #import "AccountViewController.h"
 #import "PhotoViewController.h"
 #import "LFM.h"
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate, TMQuiltViewDataSource, TMQuiltViewDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UIImageView *artistImageView;
 	IBOutlet UIProgressView *playTimeProgressView;

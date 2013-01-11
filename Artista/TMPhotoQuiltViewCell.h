@@ -18,7 +18,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//#import <TMQuiltView/TMQuiltView.h>
 
 @interface TMPhotoQuiltViewCell : UICollectionViewCell
 

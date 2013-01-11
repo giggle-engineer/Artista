@@ -53,15 +53,6 @@ const CGFloat kTMPhotoQuiltViewMargin = 5;
 	return self;
 }
 
-/*- (id)initWithReuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithReuseIdentifier:reuseIdentifier];
-    if (self) {
-        self.backgroundColor = [UIColor whiteColor];
-    }
-    return self;
-}*/
-
 - (UIImageView *)photoView {
     if (!_photoView) {
         _photoView = [[UIImageView alloc] init];
