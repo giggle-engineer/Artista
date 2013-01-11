@@ -135,8 +135,12 @@
 	// only load the page if we aren't at the last page
 	if (page_index<=page_count)
 	{
-		parse_page(page_index);
-		page_completion([images copy], nil, YES);
+		// detect parsing failure... parse_page returns 0 if no internet or other failure
+		if (parse_page(page_index)!=0)
+			page_completion([images copy], nil, YES);
+		// retract index increment because page failed
+		else
+			page_index--;
 	}
 }
 

@@ -73,7 +73,7 @@
                                     <outlet property="delegate" destination="2" id="w6Y-Ln-s1v"/>
                                 </connections>
                             </textView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sy4-GE-vdG">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="top-default.png" translatesAutoresizingMaskIntoConstraints="NO" id="Sy4-GE-vdG">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="320" type="user" id="9cS-1P-Pgu"/>
                                     <constraint firstAttribute="height" constant="125" type="user" id="tIk-nl-1Vt"/>
@@ -507,6 +507,7 @@ Text, images, and information provided by Last.fm</string>
         <image name="photos.png" width="27" height="29"/>
         <image name="share.png" width="26" height="21"/>
         <image name="submit.png" width="24" height="25"/>
+        <image name="top-default.png" width="320" height="125"/>
         <image name="top-gradient.png" width="320" height="125"/>
         <image name="warning.png" width="27" height="25"/>
     </resources>
@@ -549,9 +550,6 @@ Text, images, and information provided by Last.fm</string>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="VanishingCellFixLayout" superclassName="UICollectionViewFlowLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VanishingCellFixLayout.h"/>
