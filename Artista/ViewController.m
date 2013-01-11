@@ -561,15 +561,9 @@
 		{
 			if (images.count==0)
 			{
-				dispatch_async(queue,^{
-					UIImage *image = [UIImage imageNamed:@"Header.png"];
-					if ([UIScreen mainScreen].scale==2.0f)
-						image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
-					else
-						image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
-					dispatch_async(dispatch_get_main_queue(), ^{
-						[artistImageView setImage:image];
-					});
+				UIImage *image = [UIImage imageNamed:@"top-default.png"];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[artistImageView setImage:image];
 				});
 			}
 			if (paging)
@@ -873,12 +867,10 @@
 					{
 						if (images.count==0)
 						{
-							UIImage *image = [UIImage imageNamed:@"Login.png"];
-							if ([UIScreen mainScreen].scale==2.0f)
-								image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
-							else
-								image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
-							[artistImageView setImage:image];
+							UIImage *image = [UIImage imageNamed:@"top-default.png"];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[artistImageView setImage:image];
+							});
 						}
 						if (paging)
 						{
@@ -921,15 +913,9 @@
 					{
 						if (images.count==0)
 						{
-							dispatch_async(queue,^{
-								UIImage *image = [UIImage imageNamed:@"Header.png"];
-								if ([UIScreen mainScreen].scale==2.0f)
-									image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
-								else
-									image = [image imageToFitSize:(CGSize){320, 125} method:MGImageResizeCropStart];
-								dispatch_async(dispatch_get_main_queue(), ^{
-									[artistImageView setImage:image];
-								});
+							UIImage *image = [UIImage imageNamed:@"top-default.png"];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[artistImageView setImage:image];
 							});
 						}
 						if (paging)
