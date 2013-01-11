@@ -109,7 +109,7 @@
 	UIEdgeInsets contentInsets = UIEdgeInsetsMake(0.0, 0.0, 49, 0.0);
 	bioTextView.contentInset = contentInsets;
 	bioTextView.scrollIndicatorInsets = contentInsets;
-	//albumGridView.contentInset = contentInsets;
+	albumGridView.contentInset = contentInsets;
 	albumGridView.scrollIndicatorInsets = contentInsets;
 	topTracksTableView.contentInset = contentInsets;
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
