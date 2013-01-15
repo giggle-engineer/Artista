@@ -784,8 +784,7 @@
 	[photoGridView addSubview:pagingButton];
 	//photoGridView.contentSize = CGSizeZero;
 	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
-	// re-add the pull to refresh thing
-	if ([photosRefreshControl initInScrollView:photoGridView]){}
+	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:nil context:nil];
 }
 
 - (void)page:(id)sender
