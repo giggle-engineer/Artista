@@ -10,6 +10,9 @@
 #import "TrackViewCell.h"
 
 @implementation TrackViewCell
+@synthesize listeningAndCount;
+@synthesize duration;
+@synthesize trackName;
 @dynamic reuseIdentifier;
 
 + (id) cellFromNib {

@@ -24,6 +24,5 @@
 @property (strong) id delegate;
 
 - (void)requestInfo:(NSString*)user;
--(NSError *)parseData:(NSData *)info;
 
 @end

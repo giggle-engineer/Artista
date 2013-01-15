@@ -39,8 +39,8 @@
 				[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
 				
 				// populate the error object with the details
-				NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
-				[[self delegate] didFailToReceiveImages:error];
+				//NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+				//[[self delegate] didFailToReceiveImages:error];
 				return 0;
 			}
 		}
@@ -49,8 +49,8 @@
 			NSMutableDictionary* details = [NSMutableDictionary dictionary];
 			[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
 			
-			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
-			[[self delegate] didFailToReceiveImages:error];
+			//NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+			//[[self delegate] didFailToReceiveImages:error];
 			return 0;
 		}
 		
@@ -99,7 +99,7 @@
 	//int pages = parse_page(1);
 	// set the number of pages
 	page_count = parse_page(1);
-	completion([images copy], nil, NO);
+	completion(images, nil, NO);
 	//for (int i=2; i<pages; ++i)
 	//{
 		//parse_page(i);
@@ -137,7 +137,7 @@
 	{
 		// detect parsing failure... parse_page returns 0 if no internet or other failure
 		if (parse_page(page_index)!=0)
-			page_completion([images copy], nil, YES);
+			page_completion(images, nil, YES);
 		// retract index increment because page failed
 		else
 			page_index--;

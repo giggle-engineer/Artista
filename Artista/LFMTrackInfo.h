@@ -23,6 +23,5 @@
 @property (strong) id delegate;
 
 - (void)requestInfo:(NSString*)artist withTrack:(NSString*)track;
--(NSError *)parseData:(NSData *)info;
 
 @end

@@ -609,6 +609,10 @@
 		[topTracksTableView reloadData];
 		[albumGridView reloadData];
 		[albumArtView setImage:nil];
+		// reset photo grid and top image
+		[artistImageView setImage:[UIImage imageNamed:@"top-default.png"]];
+		[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+		[photoGridView reloadData];
 		[artist setText:nil];
 		[album setText:nil];
 		[track setText:nil];

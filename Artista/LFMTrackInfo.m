@@ -11,6 +11,7 @@
 #import "LFMDefines.h"
 
 @implementation LFMTrackInfo
+@synthesize delegate;
 
 // http://ws.audioscrobbler.com/2.0/?method=track.getInfo&api_key=b25b959554ed76058ac220b7b2e0a026&artist=Moe%20Aly&track=The%20Myth
 

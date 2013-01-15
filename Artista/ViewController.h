@@ -55,6 +55,8 @@
 	UILabel *copyrightLabel;
 	MPMusicPlaybackState lastPlaybackState;
 	UIButton *pagingButton;
+	NSString *previousArtistName;
+	NSString *previousArtistMBID;
 }
 
 @end

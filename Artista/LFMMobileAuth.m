@@ -50,7 +50,7 @@
 			[details setValue:errorElement.text forKey:NSLocalizedDescriptionKey];
 			
 			// populate the error object with the details
-			NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
+			//NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:[[errorElement attribute:@"code"] intValue] userInfo:details];
 			return @"";
 		}
 	}
@@ -59,7 +59,7 @@
 		NSMutableDictionary* details = [NSMutableDictionary dictionary];
 		[details setValue:@"Last.fm is likely having issues." forKey:NSLocalizedDescriptionKey];
 		
-		NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
+		//NSError *error = [NSError errorWithDomain:@"ParsingFailed" code:404 userInfo:details];
 		return @"";
 	}
 	
