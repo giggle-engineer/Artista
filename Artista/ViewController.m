@@ -122,7 +122,7 @@
 	//[topTracksTableView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
 	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
-	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 11.0, 0.0, 8.0);
+	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 8.0);
 	tagView.contentInset = moreContentInsets;
 	tagView.scrollIndicatorInsets = moreContentInsets;
     
