@@ -486,6 +486,27 @@
 	}
 	// let the refresher know we're using the iPod info
 	isUsingiPod = YES;
+	[iPodController beginGeneratingPlaybackNotifications];
+	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
+	NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
+	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
+	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
+	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
+	
+	// bail if the artist didn't change
+	if ([artistName isEqualToString:previousArtistName])
+	{
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[refreshControl endRefreshing];
+			[albumRefreshControl endRefreshing];
+			[trackRefreshControl endRefreshing];
+			[photosRefreshControl endRefreshing];
+		});
+		return;
+	}
+	// otherwise let the refresher know we're going to continue loading the artist
+	previousArtistName = artistName;
+	
 	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
@@ -493,12 +514,6 @@
 		[trackRefreshControl beginRefreshing];
 		[photosRefreshControl beginRefreshing];
 	});
-	[iPodController beginGeneratingPlaybackNotifications];
-	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
-	NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
 	// immediately setup ipod info
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
@@ -584,6 +599,9 @@
 	topAlbumsArray = nil;
 	topTracksArray = nil;
 	artistImages = nil;
+	// reset previous artists... this way in case we try reloading an artist after a failure it works
+	previousArtistMusicBrainzID = @"";
+	previousArtistName = @"";
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl endRefreshing];
 		[albumRefreshControl endRefreshing];
@@ -784,6 +802,7 @@
 	[photoGridView addSubview:pagingButton];
 	//photoGridView.contentSize = CGSizeZero;
 	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
+	// do not fill out the change dictionary... this will cause the refreshing control vanishing problem to recur
 	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:nil context:nil];
 }
 
@@ -836,11 +855,22 @@
 				artistImages = [LFMArtistImages new];
 			}
 			
-			// move this to an iVar?
-			
-			
 			// request all the info
 			if (![[_track musicBrainzID] isEqualToString:@""]) {
+				// bail if the music brainz ID didn't change
+				if ([[_track musicBrainzID] isEqualToString:previousArtistMusicBrainzID])
+				{
+					dispatch_async(dispatch_get_main_queue(), ^{
+						[refreshControl endRefreshing];
+						[albumRefreshControl endRefreshing];
+						[trackRefreshControl endRefreshing];
+						[photosRefreshControl endRefreshing];
+					});
+					return;
+				}
+				// otherwise let the refresher know we're going to continue loading the artist
+				previousArtistMusicBrainzID = [_track musicBrainzID];
+				
 				dispatch_async(queue,^{
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
 				});
@@ -896,6 +926,20 @@
 				}];
 			}
 			else {
+				// bail if the artist didn't change
+				if ([[_track artist] isEqualToString:previousArtistName])
+				{
+					dispatch_async(dispatch_get_main_queue(), ^{
+						[refreshControl endRefreshing];
+						[albumRefreshControl endRefreshing];
+						[trackRefreshControl endRefreshing];
+						[photosRefreshControl endRefreshing];
+					});
+					return;
+				}
+				// otherwise let the refresher know we're going to continue loading the artist
+				previousArtistName = [_track artist];
+				
 				dispatch_async(queue,^{
 				[artistInfo requestInfoWithArtist:[_track artist]];
 				});

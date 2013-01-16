@@ -56,7 +56,7 @@
 	MPMusicPlaybackState lastPlaybackState;
 	UIButton *pagingButton;
 	NSString *previousArtistName;
-	NSString *previousArtistMBID;
+	NSString *previousArtistMusicBrainzID;
 }
 
 @end
