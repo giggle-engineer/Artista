@@ -645,8 +645,9 @@
 			[trackRefreshControl endRefreshing];
 			[photosRefreshControl endRefreshing];
 		});
-		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+		isFinishedLoadingArtistInfo = NO;
+		isFinishedLoadingTopAlbums = NO;
+		isFinishedLoadingTopTracks = NO;
 		#endif
 	}
 	if (isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
