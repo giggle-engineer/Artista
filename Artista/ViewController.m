@@ -681,15 +681,15 @@
 	
 	float height = textSize.height;
 	float width = textSize.width;
-	float padding = 57;
+	float bottomBarHeight = 49;
 	float y;
 	
 	if (bioTextView.contentSize.height > bioTextView.frame.size.height) {
-		y = bioTextView.contentSize.height + padding;
+		y = bioTextView.contentSize.height+bottomBarHeight;
 	}
 	// if the text doesn't fill up the entire view then append the text at the bottom of the view
 	else {
-		y = bioTextView.frame.size.height + padding;
+		y = bioTextView.frame.size.height;
 	}
 	
 	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
