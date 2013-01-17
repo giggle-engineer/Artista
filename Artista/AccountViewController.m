@@ -54,12 +54,12 @@
 	// if an account is already linked show it
 	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
 		// show appropriate UI stuff on the screen
-		//[verifiedImageView setImage:[UIImage imageNamed:@"submit"]];
 		[shortButtonView setHidden:YES];
 		[longButtonsView setHidden:YES];
 		[notConnectedView setHidden:YES];
 		[connectedView setHidden:NO];
-		[userNameLabel setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+		// setup the attributed label
+		[self setAttributedUserName:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 		[closeButton setHidden:NO];
 	}
 }
@@ -157,6 +157,15 @@
 	[self dismissViewControllerAnimated:YES completion:^{}];
 }
 
+- (void)setAttributedUserName:(NSString*)userName
+{
+	NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithString:@"Connected as " attributes:@{NSForegroundColorAttributeName:[UIColor lightGrayColor]}];
+	[attributedString appendAttributedString:
+	 [[NSAttributedString alloc] initWithString:
+	  userName attributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor]}]];
+	[userNameLabel setAttributedText:attributedString];
+}
+
 - (void)saveAndDismiss {
 	// save user name and dissmiss
 	[userNameTextField resignFirstResponder];
@@ -164,9 +173,8 @@
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
 	[[self delegate] didReceiveReceiveUsername];
 	
-	//[verifiedImageView setImage:[UIImage imageNamed:@"submit"]];
 	// set username in the connected view and hide button views
-	[userNameLabel setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
+	[self setAttributedUserName:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 	[notConnectedView setHidden:YES];
 	[shortButtonView setHidden:YES];
 	[longButtonsView setHidden:YES];

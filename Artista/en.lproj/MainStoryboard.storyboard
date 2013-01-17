@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -313,6 +313,7 @@ Text, images, and information provided by Last.fm</string>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="2YB-Xg-iyG" firstAttribute="top" secondItem="49j-7A-Tsn" secondAttribute="bottom" constant="-73" type="user" id="9Pp-60-Y1B"/>
+                                    <constraint firstItem="2YB-Xg-iyG" firstAttribute="centerX" secondItem="49j-7A-Tsn" secondAttribute="centerX" type="default" id="Gzp-lm-9ay"/>
                                     <constraint firstItem="df0-ag-R8L" firstAttribute="top" secondItem="2YB-Xg-iyG" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="cGD-oR-dDa"/>
                                     <constraint firstItem="49j-7A-Tsn" firstAttribute="leading" secondItem="tJT-TW-mi3" secondAttribute="leading" type="user" id="e5u-za-XOj"/>
                                     <constraint firstItem="df0-ag-R8L" firstAttribute="top" secondItem="49j-7A-Tsn" secondAttribute="bottom" constant="-35" type="user" id="iUP-zm-Hdh"/>
@@ -323,7 +324,6 @@ Text, images, and information provided by Last.fm</string>
                                     <constraint firstItem="xq7-OW-z8g" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="top" type="user" id="sf5-ZF-ZIb"/>
                                     <constraint firstItem="49j-7A-Tsn" firstAttribute="bottom" secondItem="tJT-TW-mi3" secondAttribute="bottom" type="user" id="tDc-KL-Bq9"/>
                                     <constraint firstItem="2YB-Xg-iyG" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="top" constant="49" type="user" id="v50-uP-Abh"/>
-                                    <constraint firstItem="49j-7A-Tsn" firstAttribute="centerX" secondItem="df0-ag-R8L" secondAttribute="centerX" type="default" id="vlp-JK-5dc"/>
                                     <constraint firstItem="df0-ag-R8L" firstAttribute="top" secondItem="3xn-Ey-9zo" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="wU2-QT-IJ3"/>
                                     <constraint firstItem="2YB-Xg-iyG" firstAttribute="trailing" secondItem="3xn-Ey-9zo" secondAttribute="trailing" type="default" id="xqI-hF-YTT"/>
                                     <constraint firstItem="49j-7A-Tsn" firstAttribute="trailing" secondItem="tJT-TW-mi3" secondAttribute="trailing" type="user" id="zzD-YL-JwE"/>
@@ -331,12 +331,7 @@ Text, images, and information provided by Last.fm</string>
                             </view>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fyP-l1-57K" userLabel="Connected View">
                                 <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connected as " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tpm-gI-jGx">
-                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
-                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="username." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwC-k8-4Wy">
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Connected as username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZwC-k8-4Wy">
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" type="user" id="5z8-hX-sas"/>
                                         </constraints>
@@ -359,14 +354,11 @@ Text, images, and information provided by Last.fm</string>
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="Tpm-gI-jGx" firstAttribute="top" secondItem="fyP-l1-57K" secondAttribute="top" constant="20" symbolic="YES" type="user" id="5VU-mz-gzw"/>
                                     <constraint firstItem="ZwC-k8-4Wy" firstAttribute="top" secondItem="fyP-l1-57K" secondAttribute="top" constant="20" symbolic="YES" type="user" id="Dsd-js-NLG"/>
                                     <constraint firstAttribute="height" constant="113" type="user" id="EEv-KM-an5"/>
-                                    <constraint firstItem="ZwC-k8-4Wy" firstAttribute="leading" secondItem="Tpm-gI-jGx" secondAttribute="trailing" constant="-1" type="user" id="ELf-cQ-6cE"/>
-                                    <constraint firstItem="Tpm-gI-jGx" firstAttribute="leading" secondItem="fyP-l1-57K" secondAttribute="leading" constant="54" type="user" id="Hys-gf-hcv"/>
-                                    <constraint firstItem="ltE-Ui-Uz7" firstAttribute="top" secondItem="Tpm-gI-jGx" secondAttribute="bottom" constant="8" type="user" id="ST6-2f-Ytq"/>
                                     <constraint firstItem="ltE-Ui-Uz7" firstAttribute="top" secondItem="ZwC-k8-4Wy" secondAttribute="bottom" constant="8" type="user" id="Zfa-Rv-kOc"/>
-                                    <constraint firstItem="ltE-Ui-Uz7" firstAttribute="centerX" secondItem="fyP-l1-57K" secondAttribute="centerX" type="default" id="cpe-an-6kf"/>
+                                    <constraint firstItem="ZwC-k8-4Wy" firstAttribute="centerX" secondItem="fyP-l1-57K" secondAttribute="centerX" type="default" id="dha-J5-4FN"/>
+                                    <constraint firstItem="ZwC-k8-4Wy" firstAttribute="centerX" secondItem="ltE-Ui-Uz7" secondAttribute="centerX" type="default" id="y9H-5j-qeU"/>
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wao-Et-YX4" userLabel="Close Button">
@@ -387,6 +379,7 @@ Text, images, and information provided by Last.fm</string>
                         <constraints>
                             <constraint firstItem="tJT-TW-mi3" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="70" type="user" id="0UQ-te-PkN"/>
                             <constraint firstItem="OpP-jL-hys" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="2iV-Vw-aRP"/>
+                            <constraint firstItem="fyP-l1-57K" firstAttribute="centerX" secondItem="i0O-tn-3u9" secondAttribute="centerX" type="default" id="4Rg-Vt-1e5"/>
                             <constraint firstItem="ZXX-4V-Eqp" firstAttribute="centerX" secondItem="fyP-l1-57K" secondAttribute="centerX" type="default" id="71Q-wk-7MG"/>
                             <constraint firstItem="wao-Et-YX4" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="10" id="B1h-9R-fov"/>
                             <constraint firstItem="0mV-15-M9H" firstAttribute="centerX" secondItem="Gpk-xb-6Ea" secondAttribute="centerX" type="default" id="Hlf-5Z-ImF"/>
@@ -395,7 +388,6 @@ Text, images, and information provided by Last.fm</string>
                             <constraint firstItem="fyP-l1-57K" firstAttribute="top" secondItem="i0O-tn-3u9" secondAttribute="top" constant="70" type="user" id="Tpi-K5-OEk"/>
                             <constraint firstItem="0mV-15-M9H" firstAttribute="top" secondItem="tJT-TW-mi3" secondAttribute="bottom" constant="8" symbolic="YES" type="user" id="bK5-g5-bZw"/>
                             <constraint firstItem="tJT-TW-mi3" firstAttribute="leading" secondItem="fyP-l1-57K" secondAttribute="leading" type="user" id="jYr-LB-RQ7"/>
-                            <constraint firstItem="fyP-l1-57K" firstAttribute="centerX" secondItem="i0O-tn-3u9" secondAttribute="centerX" type="default" id="jvo-ar-F7u"/>
                             <constraint firstItem="tJT-TW-mi3" firstAttribute="trailing" secondItem="fyP-l1-57K" secondAttribute="trailing" type="user" id="keA-7l-ioQ"/>
                             <constraint firstAttribute="bottom" secondItem="OpP-jL-hys" secondAttribute="bottom" constant="234" id="lsI-IX-aXl"/>
                             <constraint firstItem="0mV-15-M9H" firstAttribute="trailing" secondItem="OpP-jL-hys" secondAttribute="trailing" type="user" id="oAc-h4-AR4"/>
@@ -557,19 +549,14 @@ Text, images, and information provided by Last.fm</string>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="album" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="albumArtView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
-                <relationship kind="outlet" name="bottomBarView" candidateClass="UIView"/>
                 <relationship kind="outlet" name="photoGridView" candidateClass="UICollectionView"/>
-                <relationship kind="outlet" name="playTimeProgressView" candidateClass="UIProgressView"/>
                 <relationship kind="outlet" name="tabBar" candidateClass="UITabBar"/>
                 <relationship kind="outlet" name="tagView" candidateClass="PSCTagView"/>
                 <relationship kind="outlet" name="topTracksTableView" candidateClass="UITableView"/>
-                <relationship kind="outlet" name="track" candidateClass="UILabel"/>
             </relationships>
         </class>
     </classes>
