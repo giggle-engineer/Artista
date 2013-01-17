@@ -680,7 +680,7 @@
 // called from each delegate that downloads data after it finishes
 // this way no matter what order they finish in the final conditions the refreshing ends
 - (void)finishLoadingAction {
-	// TODO: Implement network timeout detection
+	// TODO: Implement network timeout detection. Maybe?
 	// this will go through only if we're playing from the iPod
 	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		#if !(TARGET_IPHONE_SIMULATOR)
@@ -799,6 +799,19 @@
 	[pagingButton setImage:[UIImage imageNamed:@"dots-pressed.png"] forState:UIControlStateHighlighted];
 	pagingButton.center = CGPointMake(photoGridView.center.x, pagingButton.center.y);
 	[photoGridView addSubview:pagingButton];
+	
+	// grey out the button and disable it if there are no more pages to load
+	if ([artistImages page_index]<[artistImages page_count])
+	{
+		[pagingButton setAlpha:1.0];
+		[pagingButton setEnabled:YES];
+	}
+	else
+	{
+		[pagingButton setAlpha:0.3];
+		[pagingButton setEnabled:NO];
+	}
+	
 	//photoGridView.contentSize = CGSizeZero;
 	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
 	// do not fill out the change dictionary... this will cause the refreshing control vanishing problem to recur

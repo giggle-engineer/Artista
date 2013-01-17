@@ -17,6 +17,8 @@
 @implementation LFMArtistImages
 @synthesize images;
 @synthesize delegate;
+@synthesize page_count;
+@synthesize page_index;
 
 // http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=cher&api_key=b25b959554ed76058ac220b7b2e0a026
 

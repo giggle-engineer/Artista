@@ -35,6 +35,8 @@ typedef void (^LFMArtistImagesCompletion)(NSArray * images, NSError * error, BOO
 
 @property (strong) id delegate;
 @property NSMutableArray *images;
+@property int page_index;
+@property int page_count;
 
 - (void)requestImagesWithArtist:(NSString*)artist completion:(LFMArtistImagesCompletion)completion;
 - (void)requestImagesWithMusicBrainzID:(NSString*)mbid completion:(LFMArtistImagesCompletion)completion;
