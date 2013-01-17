@@ -20,7 +20,10 @@
     NSLog(@"LastFMArtistInfo artist requested: %@", artist);
     NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
-	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
+	NSError *connectionError;
+	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&connectionError];
+	RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 	
 	if ([rootXML isValid]) {
 		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
@@ -75,7 +78,10 @@
     NSLog(@"LastFMArtistInfo mbid requested: %@", mbid);
     NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
-	RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:urlRequestString]];
+	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
+	NSError *connectionError;
+	NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&connectionError];
+	RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 	
 	if ([rootXML isValid]) {
 		if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {

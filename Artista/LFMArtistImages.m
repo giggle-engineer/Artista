@@ -29,7 +29,10 @@
 	parse_page = ^(int page)
 	{
 		NSString *pageString = [[NSString alloc] initWithFormat:@"%@&page=%i", urlRequestString,page];
-		RXMLElement *rootXML = [RXMLElement elementFromURL:[NSURL URLWithString:pageString]];
+		NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:pageString]];
+		NSError *connectionError;
+		NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:nil error:&connectionError];
+		RXMLElement *rootXML = [RXMLElement elementFromXMLData:data];
 		
 		if ([rootXML isValid]) {
 			if ([[rootXML attribute:@"status"] isEqualToString:@"failed"]) {
@@ -91,7 +94,7 @@
 			}
 			//if (acceptable)
 			artistImage.qualities = sizeDictionary;
-			[images addObject:artistImage];
+			[self.images addObject:artistImage];
 		}];
 		return pages;
 	};

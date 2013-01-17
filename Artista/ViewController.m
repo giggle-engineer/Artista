@@ -612,7 +612,7 @@
 		// simulate switch back to biography to show the message
 		[self tabBar:tabBar didSelectItem:[[tabBar items] objectAtIndex:0]];
 		// Internet isn't working display message.
-		#warning Fix issue #3
+		// TODO: Change empty-ness to some sort of image
 		if (isInternetWorking==NO) {
 			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
 		}
@@ -680,7 +680,7 @@
 // called from each delegate that downloads data after it finishes
 // this way no matter what order they finish in the final conditions the refreshing ends
 - (void)finishLoadingAction {
-	#warning No timeout detection
+	// TODO: Implement network timeout detection
 	// this will go through only if we're playing from the iPod
 	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		#if !(TARGET_IPHONE_SIMULATOR)
@@ -787,8 +787,7 @@
 		return;
 	}*/
 	
-	photoGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+height+bottomBarHeight, 0);
-	
+	photoGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+height+bottomBarHeight, 0);	
 		
 	pagingButton = [UIButton buttonWithType:UIButtonTypeCustom];
 	[pagingButton addTarget:self
@@ -803,7 +802,7 @@
 	//photoGridView.contentSize = CGSizeZero;
 	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
 	// do not fill out the change dictionary... this will cause the refreshing control vanishing problem to recur
-	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:nil context:nil];
+	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:@{@"new":[NSValue valueWithUIEdgeInsets:photoGridView.contentInset]} context:nil];
 }
 
 - (void)page:(id)sender
@@ -885,7 +884,6 @@
 				});
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
 					[[SDImageCache sharedImageCache] cleanDisk];
-					//[self setupPhotoGridPagingButton];
 					if (images.count==0 || paging)
 					{
 						if (images.count==0)

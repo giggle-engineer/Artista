@@ -28,6 +28,5 @@
 
 - (void)requestInfoWithArtist:(NSString*)artist;
 - (void)requestInfoWithMusicBrainzID:(NSString*)mbid;
--(NSError *)parseData:(NSData *)info;
 
 @end
