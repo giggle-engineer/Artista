@@ -110,15 +110,7 @@
 }
 
 - (IBAction)verifyUser:(id)sender
-{
-	// don't be that jerk who makes the button stay highlighted until the loading is done
-	/*dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0);
-	dispatch_async(queue,^{
-		LFMRecentTracks *recentTracks = [[LFMRecentTracks alloc] init];
-		[recentTracks setDelegate:self];
-		[recentTracks requestInfo:userNameTextField.text];
-	});*/
-	
+{	
 	// UIKit isn't threading safe, save them in memory for the dispatch
 	NSString *password = passwordTextField.text;
 	NSString *userName = userNameTextField.text;
@@ -128,7 +120,6 @@
 		LFMMobileAuth *mobileAuth = [[LFMMobileAuth alloc] init];
 		NSString *apiSignature = [mobileAuth createSignatureWithPassword:password username:userName];
 		NSString *sessionKey = [mobileAuth getSesssionKeyWithUsername:userName password:password signature:apiSignature];
-		//NSLog(@"Acquired session key, %@", sessionKey);
 		// if authenticated then save the details
 		if (![sessionKey isEqualToString:@""])
 		{
@@ -194,8 +185,6 @@
 }
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
-	/*UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Invalid username or Last.fm is down." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
-	 [alert show];*/
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[verifiedImageView setImage:[UIImage imageNamed:@"warning.png"]];
 	});
