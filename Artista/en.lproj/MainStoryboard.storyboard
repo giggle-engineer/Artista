@@ -194,7 +194,7 @@
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="uyn-JU-jyh"/>
                                 </constraints>
-                                <string key="text">Artista © 2012 Phantom Sun Creative, Ltd.
+                                <string key="text">Artista © 2013 Phantom Sun Creative, Ltd.
 Text, images, and information provided by Last.fm</string>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="12"/>
                                 <color key="textColor" red="0.41176474094390869" green="0.41176474094390869" blue="0.41176474094390869" alpha="1" colorSpace="deviceRGB"/>
@@ -549,6 +549,7 @@ Text, images, and information provided by Last.fm</string>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
+                <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
