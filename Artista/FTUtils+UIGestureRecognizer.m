@@ -49,11 +49,14 @@ static char * kFTGestureDisabledKey = "ft_gestureDisabled";
   return me;
 }
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wobjc-protocol-method-implementation"
 - (void)handleAction:(UIGestureRecognizer *)recognizer {
   if(self.actionBlock && !self.disabled) {
     self.actionBlock(recognizer);
   }
 }
+#pragma clang diagnostic pop
 
 - (FTGestureActionBlock)actionBlock {
   return objc_getAssociatedObject(self, kFTGestureActionKey);
