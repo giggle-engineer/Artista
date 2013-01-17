@@ -22,6 +22,5 @@
 @interface TMPhotoQuiltViewCell : UICollectionViewCell
 
 @property (nonatomic, retain) UIImageView *photoView;
-@property (nonatomic, retain) UILabel *titleLabel;
 
 @end

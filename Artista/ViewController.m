@@ -46,8 +46,6 @@
     [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"tab-highlight.png"]];
 	// select middle item, biography
 	[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
-	//[[UITabBar appearance] setTintColor:[UIColor clearColor]];
-	//[[UITabBar appearance] setSelectedImageTintColor:[UIColor colorWithRed:0.0 green:0.2 blue:1.0 alpha:1.0]];
 	// set the images for the tab bar items
 	UITabBarItem *topAlbumsItem = [[tabBar items] objectAtIndex:1];
 	[topAlbumsItem setFinishedSelectedImage:[UIImage imageNamed:@"albums-selected.png"] withFinishedUnselectedImage:[UIImage imageNamed:@"albums.png"]];
@@ -63,16 +61,9 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ UITextAttributeTextColor : [UIColor darkGrayColor] }
                                              forState:UIControlStateHighlighted];
 	
-	// subtly dim the tag view
-	//tagView.alpha = 0.5;
-	
 	// setup quilt view
 	photoGridView.delegate = self;
 	photoGridView.dataSource = self;
-	
-	// round the corners of the album art view
-	albumArtView.layer.cornerRadius = 3.0;
-	albumArtView.layer.masksToBounds = YES;
 	
 	// disable scroll to top on tag view
 	tagView.scrollsToTop = NO;
@@ -81,12 +72,6 @@
 	albumGridView.scrollsToTop = NO;
 	topTracksTableView.scrollsToTop = NO;
 	photoGridView.scrollsToTop = NO;
-	
-	// give shadow to bio text
-    /*bioTextView.layer.shadowColor = [[UIColor whiteColor] CGColor];
-    bioTextView.layer.shadowOffset = CGSizeMake(0.0f, 1.0f);
-    bioTextView.layer.shadowOpacity = 1.0f;
-    bioTextView.layer.shadowRadius = 0.5f;*/
 	
 	// set track table separator to semi transparent
 	topTracksTableView.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
@@ -115,11 +100,6 @@
 	topTracksTableView.scrollIndicatorInsets = contentInsets;
 	photoGridView.contentInset = contentInsets;
 	photoGridView.scrollIndicatorInsets = contentInsets;
-	
-	// set fonts
-	//[bioTextView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
-	//[albumGridView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
-	//[topTracksTableView setFont:[UIFont fontWithName:@"Grandesign Neue Serif" size:14]];
 	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
 	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 8.0);
@@ -166,14 +146,6 @@
         AccountViewController *accountViewController = segue.destinationViewController;
         [accountViewController setDelegate:self];
     }
-	if ([segue.identifier isEqual:@"PhotoViewer"])
-	{
-		//PhotoViewController *photoViewController = segue.destinationViewController;
-		//[[photoViewController photoView] setImage:[UIImage imageNamed:@"placeholder.png"] photoSize:NIPhotoScrollViewPhotoSizeOriginal];
-		//[[photoViewController view] setBackgroundColor:[UIColor purpleColor]];
-		//NIToolbarPhotoViewController *photoViewController = segue.destinationViewController;
-		//[photoViewController setChromeCanBeHidden:YES];
-	}
 }
 
 #pragma mark - Tab Control Target
@@ -285,7 +257,6 @@
 		float offset = scrollView.contentOffset.y;
 		if (offset<=0) {
 			// remove fade mask
-			//NSLog(@"bioTextView scroll at top");
 			bioTextView.layer.mask = nil;
 		}
 		else {
@@ -328,7 +299,6 @@
 		float offset = scrollView.contentOffset.y;
 		if (offset<=0) {
 			// remove fade mask
-			//NSLog(@"bioTextView scroll at top");
 			albumGridView.layer.mask = nil;
 		}
 		else {
@@ -371,7 +341,6 @@
 		float offset = scrollView.contentOffset.y;
 		if (offset<=0) {
 			// remove fade mask
-			//NSLog(@"bioTextView scroll at top");
 			topTracksTableView.layer.mask = nil;
 		}
 		else {
@@ -414,7 +383,6 @@
 		float offset = scrollView.contentOffset.y;
 		if (offset<=0) {
 			// remove fade mask
-			//NSLog(@"bioTextView scroll at top");
 			photoGridView.layer.mask = nil;
 		}
 		else {
@@ -489,9 +457,6 @@
 	[iPodController beginGeneratingPlaybackNotifications];
 	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
 	NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
-	NSString *albumName = [mediaItem valueForKey:MPMediaItemPropertyAlbumTitle];
-	NSString *trackName = [mediaItem valueForKey:MPMediaItemPropertyTitle];
-	MPMediaItemArtwork *artwork = [mediaItem valueForKey:MPMediaItemPropertyArtwork];
 	
 	// bail if the artist didn't change
 	if ([artistName isEqualToString:previousArtistName])
@@ -516,14 +481,7 @@
 	});
 	// immediately setup ipod info
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[albumArtView setImage:[artwork imageWithSize:CGSizeMake(30, 30)]];
 		[artist setText:artistName];
-		[album setText:albumName];
-		[track setText:trackName];
-		
-		// setup playback progress bar timer
-		/*if (playbackTimer == nil)
-			playbackTimer = [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(updatePlaybackProgress) userInfo:nil repeats:YES];*/
 	});
 	// only use one instance of artistInfo
 	if (artistInfo==nil) {
@@ -626,14 +584,11 @@
 		[tagView setTags:nil];
 		[topTracksTableView reloadData];
 		[albumGridView reloadData];
-		[albumArtView setImage:nil];
 		// reset photo grid and top image
 		[artistImageView setImage:[UIImage imageNamed:@"top-default.png"]];
 		[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 		[photoGridView reloadData];
 		[artist setText:nil];
-		[album setText:nil];
-		[track setText:nil];
 	});
 }
 
@@ -694,15 +649,16 @@
 		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
 		#endif
 	}
-	if (isFinishedLoadingArtistInfo && isFinishedLoadingTrackInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
+	if (isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[refreshControl endRefreshing];
 			[albumRefreshControl endRefreshing];
 			[trackRefreshControl endRefreshing];
 			[photosRefreshControl endRefreshing];
 		});
-		isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-		isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+		isFinishedLoadingArtistInfo = NO;
+		isFinishedLoadingTopAlbums = NO;
+		isFinishedLoadingTopTracks = NO;
 	}
 }
 
@@ -775,19 +731,8 @@
 	float height = buttonImage.size.height; //31;
 	float width = buttonImage.size.width; //85;
 	float padding = 10;
-	float y;
-	
+	float y = photoGridView.contentSize.height;
 	float bottomBarHeight = 49;
-	//float distanceToBottomBarPadding = 10;
-	
-	//if (photoGridView.contentSize.height > photoGridView.frame.size.height) {
-	y = photoGridView.contentSize.height;// + padding;
-	//}
-	// if the text doesn't fill up the entire view then append the text at the bottom of the view
-	/*else {
-		y = photoGridView.frame.size.height - padding;
-		return;
-	}*/
 	
 	photoGridView.contentInset = UIEdgeInsetsMake(0, 0, padding+height+bottomBarHeight, 0);	
 		
@@ -796,7 +741,6 @@
 					 action:@selector(page:)
 	 forControlEvents:UIControlEventTouchDown];
 	pagingButton.frame = CGRectMake(0, y, width, height);
-	//[pagingButton sizeToFit];
 	[pagingButton setImage:buttonImage forState:UIControlStateNormal];
 	[pagingButton setImage:[UIImage imageNamed:@"dots-pressed.png"] forState:UIControlStateHighlighted];
 	pagingButton.center = CGPointMake(photoGridView.center.x, pagingButton.center.y);
@@ -814,9 +758,6 @@
 		[pagingButton setEnabled:NO];
 	}
 	
-	//photoGridView.contentSize = CGSizeZero;
-	//photoGridView.contentSize = CGSizeMake(photoGridView.contentSize.width, photoGridView.contentSize.height + padding + pagingButton.frame.size.height);
-	// do not fill out the change dictionary... this will cause the refreshing control vanishing problem to recur
 	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:@{@"new":[NSValue valueWithUIEdgeInsets:photoGridView.contentInset]} context:nil];
 }
 
@@ -842,7 +783,6 @@
 		dispatch_async(queue,^{
 			dispatch_async(dispatch_get_main_queue(), ^{
 				[artist setText:[_track artist]];
-				[track setText:[_track name]];
 			});
 			
 			// setup artist info
@@ -854,11 +794,6 @@
 			if (topAlbums==nil) {
 				topAlbums = [[LFMArtistTopAlbums alloc] init];
 				[topAlbums setDelegate:self];
-			}
-			// setup get track info
-			if (trackInfo==nil) {
-				trackInfo = [[LFMTrackInfo alloc] init];
-				[trackInfo setDelegate:self];
 			}
 			if (topTracks==nil) {
 				topTracks = [[LFMArtistTopTracks alloc] init];
@@ -889,9 +824,6 @@
 				[artistInfo requestInfoWithMusicBrainzID:[_track musicBrainzID]];
 				});
 				dispatch_async(queue,^{
-				[trackInfo requestInfo:[_track artist] withTrack:[_track name]];
-				});
-				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithMusicBrainzID:[_track musicBrainzID]];
 				});
 				dispatch_async(queue,^{
@@ -916,11 +848,9 @@
 								[photoGridView reloadData];
 								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
-							//[self setupPhotoGridPagingButton];
 						}
 						return;
 					}
-					//NSLog(@"IMGES:%i",artistImages.images.count);
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
@@ -933,7 +863,6 @@
 							[artistImageView setImage:image];
 							[photoGridView reloadData];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
-							//[self setupPhotoGridPagingButton];
 						});
 					});
 				}];
@@ -955,9 +884,6 @@
 				
 				dispatch_async(queue,^{
 				[artistInfo requestInfoWithArtist:[_track artist]];
-				});
-				dispatch_async(queue,^{
-				[trackInfo requestInfo:[_track artist] withTrack:[_track name]];
 				});
 				dispatch_async(queue,^{
 				[topAlbums requestTopAlbumsWithArtist:[_track artist]];
@@ -999,7 +925,6 @@
 						dispatch_async(dispatch_get_main_queue(), ^{
 							[artistImageView setImage:image];
 							[photoGridView reloadData];
-							//[self setupPhotoGridPagingButton];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
 					});
@@ -1021,26 +946,22 @@
 
 - (void)didFailToReceiveRecentTracks:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
-	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistInfo = NO;
+	isFinishedLoadingTopAlbums = NO;
+	isFinishedLoadingTopTracks = NO;
 	[self reset:NO];
 }
 
 #pragma mark - LFMArtistInfo Delegate
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
-	//NSLog(@"tags:%u", [[_artist tags] count]);
-	//NSString *tagString = [[_artist tags] stringWithDelimeter:@", "];
 	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
 	// remove the stupid space at the beginning of paragraphs
 	while ([stripped rangeOfString:@"\n "].location != NSNotFound) {
 		stripped = [stripped stringByReplacingOccurrencesOfString:@"\n " withString:@"\n"];
 	}
     dispatch_async(dispatch_get_main_queue(), ^{
-        //UIImage *blurredImage = [[_artist image] imageByApplyingGaussianBlur5x5];
         [bioTextView setText:stripped];
-		//NSLog(@"bio:%@", [[_artist bio] stringByDecodingHTMLEntities]);
-        //[artistImageView setImage:blurredImage];
 		NSMutableArray *array = [NSMutableArray arrayWithArray:[_artist tags]];
 		NSMutableArray *tagArray = [NSMutableArray new];
 		int i = 0;
@@ -1055,8 +976,6 @@
             // Define tag text colour below
 			PSCTag *tag = [[PSCTag alloc] initWithString:newTagString withFont:[UIFont fontWithName:@"HelveticaNeue-Bold" size:12] withTextColor:[UIColor whiteColor] withBackgroundColor:[UIColor clearColor]];
 			[tagArray addObject:tag];
-            //tag.shadowColor = [UIColor colorWithRed:0 green:0 blue: alpha:.35];
-            //tag.shadowOffset = CGSizeMake(0, -1.0);
             
             // tag view text shadow
             tagView.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -1074,46 +993,17 @@
 
 - (void)didFailToReceiveArtistDetails:(NSError *)error {
     NSLog(@"Failed to receive track with error:%@", [error description]);
-	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
-	[self reset:NO];
-}
-
-#pragma mark - LFMTrackInfo Delegate
-
-- (void)didReceiveTrackInfo:(LFMTrack *)_track {
-	dispatch_async(dispatch_get_main_queue(), ^{
-		[album setText:[_track album]];
-		[albumArtView setImage:[_track artwork]];
-	});
-	isFinishedLoadingTrackInfo = YES;
-	[self finishLoadingAction];
-}
-
-- (void)didFailToReceiveTrackInfo:(NSError *)error {
-	NSLog(@"Failed to receive track info with error:%@", [error description]);
-	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistInfo = NO;
+	isFinishedLoadingTopAlbums = NO;
+	isFinishedLoadingTopTracks = NO;
 	[self reset:NO];
 }
 
 #pragma mark - LFMArtistTopAlbums Delegate
 
 - (void)didReceiveTopAlbums:(NSArray *)albums {
-	/*if (albums.count==1 && topAlbumsArray.count != 0) {
-		topAlbumsArray = albums;
-		// remove current rows if present
-		NSMutableArray *indexPaths = [NSMutableArray new];
-		for (int i = 0; i==albums.count-1; i++)
-		{
-			[indexPaths addObject:[NSIndexPath indexPathForRow:i inSection:0]];
-		}
-		[albumGridView deleteItemsAtIndexPaths:indexPaths];
-	}*/
 	topAlbumsArray = albums;
 	dispatch_async(dispatch_get_main_queue(), ^{
-		//NSLog(@"albums.count:%i",albums.count);
-		//[albumGridView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:albums.count-1 inSection:0]]];
 		[albumGridView reloadData];
 	});
 }
@@ -1129,8 +1019,9 @@
 
 - (void)didFailToReceiveTopAlbums:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
-	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistInfo = NO;
+	isFinishedLoadingTopAlbums = NO;
+	isFinishedLoadingTopTracks = NO;
 	[self reset:NO];
 }
 
@@ -1147,8 +1038,9 @@
 
 - (void)didFailToReceiveTopTracks:(NSError *)error {
 	NSLog(@"Failed to receive track info with error:%@", [error description]);
-	isFinishedLoadingArtistInfo = NO, isFinishedLoadingTrackInfo = NO;
-	isFinishedLoadingTopAlbums = NO, isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistInfo = NO;
+	isFinishedLoadingTopAlbums = NO;
+	isFinishedLoadingTopTracks = NO;
 	[self reset:NO];
 }
 
@@ -1164,7 +1056,6 @@
 	TrackViewCell *cell = (TrackViewCell*)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
 	
 	if (!cell) {
-		//NSCParameterAssert([cell isKindOfClass:[TrackViewCell class]]);
 		cell = [TrackViewCell cellFromNib];
 		cell.reuseIdentifier = reuseIdentifier;
 		cell.backgroundColor = [UIColor clearColor];
@@ -1172,10 +1063,6 @@
 		cell.trackName.text = [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] name];
 		cell.listeningAndCount.text = [[NSString alloc] initWithFormat:@"%@ listeners · %@ plays", [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] listeners], [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] playCount]];
 		cell.duration.text =  [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] duration];
-		//cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
-		//cell.textLabel.textColor = [UIColor blackColor];
-		//cell.textLabel.shadowColor = [UIColor whiteColor];
-		//cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	} else {
@@ -1184,10 +1071,6 @@
 		cell.trackName.text = [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] name];
 		cell.listeningAndCount.text = [[NSString alloc] initWithFormat:@"%@ listeners · %@ plays", [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] listeners], [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] playCount]];
 		cell.duration.text =  [(LFMTrack*)[topTracksArray objectAtIndex:indexPath.row] duration];
-		//cell.textLabel.text = [topTracksArray objectAtIndex:indexPath.row];
-		//cell.textLabel.textColor = [UIColor blackColor];
-		//cell.textLabel.shadowColor = [UIColor whiteColor];
-		//cell.textLabel.shadowOffset = CGSizeMake(0, 1);
 		
 		return cell;
 	}
@@ -1218,9 +1101,6 @@
 		PhotoViewerView *photoViewerView = [PhotoViewerView viewFromNib];
 		[photoViewerView.currentPhoto setText:[[NSString alloc] initWithFormat:@"%i of %i", indexPath.row+1, [artistImages.images count]]];
 		NIPhotoScrollView *photoViewer = [[NIPhotoScrollView alloc] initWithFrame:CGRectMake([UIScreen mainScreen].bounds.origin.x, [UIScreen mainScreen].bounds.origin.y-20, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height+20)];
-		//[photoViewer setContentMode:UIViewContentModeScaleAspectFill];
-		//[photoViewer setClipsToBounds:YES];
-		//[photoViewer setBackgroundColor:[UIColor purpleColor]];
 		[photoViewer setDoubleTapToZoomIsEnabled:YES];
 		[photoViewer setZoomingIsEnabled:YES];
 		LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
@@ -1239,7 +1119,6 @@
 								 animations:^{
 									 // it's probably best to take a photo of the view and shrink it.. maybe?
 									 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
-									 //self.view.frame = CGRectInset(self.view.frame, -5.0, -5.0);
 									 self.view.backgroundColor = [UIColor whiteColor];
 									 for (UIView *view in [[self view] subviews])
 									 {
@@ -1297,9 +1176,6 @@
 		} forControlEvent:UIControlEventTouchUpInside];
 		[self.view addSubview:popOutImageView];
 		[self.view addSubview:photoViewerView];
-		//[self.view addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|-[photoViewerView]" options:NSLayoutFormatAlignAllLeading metrics:nil views:NSDictionaryOfVariableBindings(photoViewerView)]];
-		//NSLayoutConstraint *constraint = [NSLayoutConstraint constraintWithItem:photoViewerView attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationLessThanOrEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0f constant:568.0f];
-		//[photoViewer addConstraint:constraint];
 		[photoViewerView addSubview:photoViewer];
 		[photoViewerView sendSubviewToBack:photoViewer];
 		[photoViewerView setHidden:YES];
@@ -1394,7 +1270,6 @@
 		// handle index of 0 exception that seems to happen on instant reload
 		@try {
 			LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-			//[cell.photoView loadImageAtURL:[artistImage.qualities objectForKey:@"original"]];
 			[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
 						   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
 		}
@@ -1402,9 +1277,6 @@
 			NSLog(@"Index of 0... ignoring.");
 		}
 		
-		cell.titleLabel.hidden = YES;
-		//cell.titleLabel.text = [NSString stringWithFormat:@"%d", indexPath.row + 1];
-		//cell.titleLabel.text = artistImage.title;
 		return cell;
 	}
 }

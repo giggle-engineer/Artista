@@ -14,26 +14,20 @@
 #import "ODRefreshControl.h"
 #import "PSCTagView.h"
 
-@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMTrackInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
+@interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
     IBOutlet UILabel *artist;
     IBOutlet UIImageView *artistImageView;
-	IBOutlet UIProgressView *playTimeProgressView;
-	IBOutlet UILabel *album;
-	IBOutlet UILabel *track;
-	IBOutlet UIImageView *albumArtView;
-	IBOutlet UIView *bottomBarView;
 	IBOutlet PSCTagView *tagView;
 	IBOutlet UITextView *bioTextView;
 	IBOutlet UICollectionView *albumGridView;
 	IBOutlet UITableView *topTracksTableView;
 	IBOutlet UICollectionView *photoGridView;
 	IBOutlet UITabBar *tabBar;
-	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTrackInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
+	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;
     LFMArtistInfo *artistInfo;
 	LFMArtistImages *artistImages;
-	LFMTrackInfo *trackInfo;
 	LFMArtistTopAlbums *topAlbums;
 	LFMArtistTopTracks *topTracks;
 	MPMusicPlayerController *iPodController;
