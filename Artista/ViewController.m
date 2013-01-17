@@ -726,14 +726,16 @@
 	float height = textSize.height;
 	float width = textSize.width;
 	float padding = 30;
+	float otherPadding = 27;
 	float y;
 	
+	// don't ask me what's going on with the +27/otherPadding, I just know it properly adjusts the hidden view all the way out to the pixel
 	if (bioTextView.contentSize.height > bioTextView.frame.size.height) {
-		y = bioTextView.contentSize.height + padding;
+		y = bioTextView.contentSize.height + padding + otherPadding;
 	}
 	// if the text doesn't fill up the entire view then append the text at the bottom of the view
 	else {
-		y = bioTextView.frame.size.height - padding;
+		y = bioTextView.frame.size.height - padding + otherPadding;
 	}
 	
 	versionLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, y, width, height)];
