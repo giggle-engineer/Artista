@@ -555,6 +555,9 @@
 
 - (void)undoResetChanges
 {
+	[[[tabBar items] objectAtIndex:1] setEnabled:YES];
+	[[[tabBar items] objectAtIndex:2] setEnabled:YES];
+	[[[tabBar items] objectAtIndex:3] setEnabled:YES];
 	[UIView animateWithDuration:0.50
 						  delay:0
 						options:UIViewAnimationCurveEaseIn
@@ -564,7 +567,7 @@
 						 [artistGradientView setAlpha:1.0];
 					 }
 					 completion:^(BOOL finished){
-						 [errorImageView removeFromSuperview];
+						 //[errorImageView removeFromSuperview];
 					 }];
 }
 
@@ -585,12 +588,15 @@
 		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
 		// simulate switch back to biography to show the message
 		[self tabBar:tabBar didSelectItem:[[tabBar items] objectAtIndex:0]];
-		// TODO: fade out image view
+		// disable other tabs
+		[[[tabBar items] objectAtIndex:1] setEnabled:NO];
+		[[[tabBar items] objectAtIndex:2] setEnabled:NO];
+		[[[tabBar items] objectAtIndex:3] setEnabled:NO];
 		// Internet isn't working display message.
 		if (errorImageView==nil)
 			errorImageView = [[UIImageView alloc] init];
 		else
-			//[errorImageView removeFromSuperview];
+			[errorImageView removeFromSuperview];
 		[bioTextView setText:@""];
 		UIImage *errorImage;
 		if (isInternetWorking==NO) {
@@ -632,10 +638,10 @@
 }
 
 - (void)load {
-	// only undo reset changes
-	if (errorImageView.alpha==1.0)
-		[self undoResetChanges];
 	dispatch_async(dispatch_get_main_queue(), ^{
+		// only undo reset changes
+		if (errorImageView.alpha==1.0)
+			[self undoResetChanges];
 		[refreshControl beginRefreshing];
 		[albumRefreshControl beginRefreshing];
 		[trackRefreshControl beginRefreshing];

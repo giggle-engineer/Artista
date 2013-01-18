@@ -79,9 +79,9 @@
 		}
 		
 		[track setArtist:artist.text];
-		NSLog(@"artist:%@", [track artist]);
+		//NSLog(@"artist:%@", [track artist]);
 		[track setMusicBrainzID:[artist attribute:@"mbid"]];
-		NSLog(@"music brainz:%@", [track musicBrainzID]);
+		//NSLog(@"music brainz:%@", [track musicBrainzID]);
 		[track setName:[e child:@"name"].text];
 
 		[tracks addObject:track];
