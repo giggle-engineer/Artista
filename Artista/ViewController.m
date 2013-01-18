@@ -448,13 +448,14 @@
 #pragma mark - Main Loading Methods
 
 - (void)loadInfoFromiPod {
+	if (errorImageView.alpha==1.0)
+		[self undoResetChanges];
 	if ([iPodController playbackState]==MPMusicPlaybackStateStopped) {
 		[self reset:YES];
 		return;
 	}
 	// let the refresher know we're using the iPod info
 	isUsingiPod = YES;
-	[iPodController beginGeneratingPlaybackNotifications];
 	MPMediaItem *mediaItem = [iPodController nowPlayingItem];
 	NSString *artistName = [mediaItem valueForKey:MPMediaItemPropertyArtist];
 	
@@ -552,6 +553,21 @@
 	}];
 }
 
+- (void)undoResetChanges
+{
+	[UIView animateWithDuration:0.50
+						  delay:0
+						options:UIViewAnimationCurveEaseIn
+					 animations:^{
+						 [errorImageView setAlpha:0.0];
+						 [artistImageView setAlpha:1.0];
+						 [artistGradientView setAlpha:1.0];
+					 }
+					 completion:^(BOOL finished){
+						 [errorImageView removeFromSuperview];
+					 }];
+}
+
 - (void)reset:(BOOL)isInternetWorking {
 	// clear out tables
 	topAlbumsArray = nil;
@@ -569,15 +585,38 @@
 		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
 		// simulate switch back to biography to show the message
 		[self tabBar:tabBar didSelectItem:[[tabBar items] objectAtIndex:0]];
+		// TODO: fade out image view
 		// Internet isn't working display message.
-		// TODO: Change empty-ness to some sort of image
+		if (errorImageView==nil)
+			errorImageView = [[UIImageView alloc] init];
+		else
+			//[errorImageView removeFromSuperview];
+		[bioTextView setText:@""];
+		UIImage *errorImage;
 		if (isInternetWorking==NO) {
-			[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
+			errorImage = [UIImage imageNamed:@"no-connection.png"];
+			//[bioTextView setText:@"Artista requires an active internet connection. It is also possible that Last.fm is either down or having issues and is unable to display information at this time. Sorry for any inconvenience, but if this is the case please try again later."];
 		}
 		// Internet is working but absolutely nothing is playing. Display message.
 		else {
-			[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully or try pulling to refresh again."];
+			errorImage = [UIImage imageNamed:@"no-music.png"];
+			//[bioTextView setText:@"Nothing is playing at the moment. Viewing information about the artist requires a song to be currently playing. If your Last.fm account is linked please ensure that your audio application is scrobbling successfully or try pulling to refresh again."];
 		}
+		[errorImageView setFrame:CGRectMake(0, (bioTextView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+		[errorImageView setCenter:CGPointMake(bioTextView.center.x, errorImageView.center.y)];
+		[errorImageView setImage:errorImage];
+		[errorImageView setAlpha:0.0];
+		[bioTextView addSubview:errorImageView];
+		[UIView animateWithDuration:0.50
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 [errorImageView setAlpha:1.0];
+							 [artistImageView setAlpha:0.5];
+							 [artistGradientView setAlpha:0.5];
+						 }
+						 completion:^(BOOL finished){
+						 }];
 		// make sure the hidden view still works
 		[self setupHiddenVersionView];
 		[artistImageView setImage:nil];
@@ -593,6 +632,9 @@
 }
 
 - (void)load {
+	// only undo reset changes
+	if (errorImageView.alpha==1.0)
+		[self undoResetChanges];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[refreshControl beginRefreshing];
 		[albumRefreshControl beginRefreshing];
@@ -600,6 +642,8 @@
 		[photosRefreshControl beginRefreshing];
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
+	// begin generating notifications now because even if we aren't playing then at some point we will be and we want to be ready for it
+	[iPodController beginGeneratingPlaybackNotifications];
 	if ([iPodController playbackState]==MPMusicPlaybackStatePlaying) {
 		#if !(TARGET_IPHONE_SIMULATOR)
 		// only one copy of this thread should ever be running

@@ -168,6 +168,7 @@
                     <connections>
                         <outlet property="albumGridView" destination="Cmv-5n-oHZ" id="GBh-fH-hkK"/>
                         <outlet property="artist" destination="1Mx-zF-z7R" id="qXJ-aU-Bnk"/>
+                        <outlet property="artistGradientView" destination="zsj-gw-2x3" id="S1a-pI-9M1"/>
                         <outlet property="artistImageView" destination="Sy4-GE-vdG" id="uNT-oq-eXa"/>
                         <outlet property="bioTextView" destination="ToQ-pP-Rnd" id="Wgk-g5-9QC"/>
                         <outlet property="photoGridView" destination="n4F-Zn-Gj6" id="LZ7-pk-qVP"/>
@@ -552,6 +553,7 @@ Text, images, and information provided by Last.fm</string>
                 <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="artistGradientView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="artistImageView" candidateClass="UIImageView"/>
                 <relationship kind="outlet" name="bioTextView" candidateClass="UITextView"/>
                 <relationship kind="outlet" name="photoGridView" candidateClass="UICollectionView"/>

@@ -51,6 +51,8 @@
 	UIButton *pagingButton;
 	NSString *previousArtistName;
 	NSString *previousArtistMusicBrainzID;
+	UIImageView *errorImageView;
+	IBOutlet UIImageView *artistGradientView;
 }
 
 @end
