@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -48,7 +48,7 @@
                             </tableView>
                             <collectionView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.0" contentMode="scaleToFill" alwaysBounceVertical="YES" minimumZoomScale="0.0" maximumZoomScale="0.0" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Cmv-5n-oHZ" userLabel="Top Albums Collection View">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="310" id="oVM-4V-haU"/>
+                                    <constraint firstAttribute="width" constant="310" id="fIK-2S-zJJ"/>
                                 </constraints>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="zRM-F3-T84">
                                     <size key="itemSize" width="100" height="120"/>
@@ -80,9 +80,14 @@
                                 </constraints>
                             </imageView>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" image="top-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="zsj-gw-2x3"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" image="top2-gradient.png" translatesAutoresizingMaskIntoConstraints="NO" id="dcY-tl-7lc">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="fZp-bs-Nk6"/>
+                                </constraints>
+                            </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="1Mx-zF-z7R" userLabel="Artist Label">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="304" type="user" id="NJ6-Bt-2oW"/>
+                                    <constraint firstAttribute="width" constant="304" id="KMZ-um-dxg"/>
                                     <constraint firstAttribute="height" constant="39" id="nqr-21-fCw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="30"/>
@@ -100,8 +105,11 @@
                                 </connections>
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd" userLabel="Configure Button">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="16" id="7xb-18-ON6"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" image="gears.png">
+                                <state key="normal" image="settings.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -112,12 +120,22 @@
                                     <action selector="showAccountView:" destination="2" eventType="touchUpInside" id="eXq-QS-OGr"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wz-9S-TOI">
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" image="refresh.png">
+                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                            </button>
                             <tabBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lSh-Tb-iud">
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <items>
-                                    <tabBarItem title="Biography" image="warning.png" id="pV5-Jc-xB2"/>
-                                    <tabBarItem title="Top Albums" image="close.png" id="BA6-Zw-8ar"/>
-                                    <tabBarItem title="Top Tracks" image="submit.png" id="NVe-KK-LuD"/>
+                                    <tabBarItem title="Biography" image="biography.png" id="pV5-Jc-xB2"/>
+                                    <tabBarItem title="Top Albums" image="albums.png" id="BA6-Zw-8ar"/>
+                                    <tabBarItem title="Top Tracks" image="tracks.png" id="NVe-KK-LuD"/>
                                     <tabBarItem title="Photos" image="photos.png" id="Akg-Vn-DCm"/>
                                 </items>
                                 <connections>
@@ -128,40 +146,40 @@
                         <color key="backgroundColor" red="0.97751783290000005" green="0.97751783290000005" blue="0.97751783290000005" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="top" secondItem="Wh6-CI-hfQ" secondAttribute="top" type="user" id="1fn-uA-349"/>
+                            <constraint firstItem="3Wz-9S-TOI" firstAttribute="top" secondItem="L7d-F7-eyd" secondAttribute="top" type="default" id="45U-ZK-SBl"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="top" secondItem="3" secondAttribute="top" type="user" id="4gI-hT-arT"/>
-                            <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" type="user" id="4vs-tG-qp9"/>
-                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="70" id="52z-Yk-ywn"/>
-                            <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="5RW-n4-eJO"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="105" id="63f-MC-VS8"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="6oj-21-ngB"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="9U8-9l-s0k"/>
-                            <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="Axh-fd-Qpd"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="BqQ-d3-Zoi"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CJu-4R-eXc"/>
+                            <constraint firstItem="3Wz-9S-TOI" firstAttribute="top" secondItem="3" secondAttribute="top" constant="10" id="GvP-r3-Dey"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="HnT-Ye-lRm"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="IFj-mM-Cs1"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="IWY-5U-zrI"/>
-                            <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" constant="5" id="OoK-Wo-kr1"/>
+                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="centerX" secondItem="wNH-X9-WFv" secondAttribute="centerX" type="default" id="Ig5-ta-mFQ"/>
+                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="top" secondItem="3" secondAttribute="top" constant="73" id="Oks-kh-9dY"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="top" secondItem="Cmv-5n-oHZ" secondAttribute="top" type="user" id="Pc2-cE-Grq"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Pod-0O-v8P"/>
-                            <constraint firstAttribute="trailing" secondItem="L7d-F7-eyd" secondAttribute="trailing" constant="8" type="user" id="VbY-fF-jQ2"/>
+                            <constraint firstAttribute="trailing" secondItem="L7d-F7-eyd" secondAttribute="trailing" constant="10" id="Qgd-oF-91r"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="a6e-Gb-ZQ3"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
-                            <constraint firstAttribute="trailing" secondItem="1Mx-zF-z7R" secondAttribute="trailing" constant="8" type="user" id="fQv-AN-FI7"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
+                            <constraint firstItem="n4F-Zn-Gj6" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="gSP-1J-USM"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
+                            <constraint firstItem="3Wz-9S-TOI" firstAttribute="leading" secondItem="1Mx-zF-z7R" secondAttribute="leading" type="default" id="iTn-qv-cua"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
-                            <constraint firstItem="n4F-Zn-Gj6" firstAttribute="top" secondItem="ToQ-pP-Rnd" secondAttribute="top" type="default" id="kXt-Be-ygf"/>
-                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="8" type="user" id="l6P-hV-Nz1"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lgB-Ro-uj0"/>
-                            <constraint firstItem="wNH-X9-WFv" firstAttribute="top" secondItem="3" secondAttribute="top" constant="105" id="nqh-jz-CVs"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qS0-pC-REd"/>
-                            <constraint firstItem="Sy4-GE-vdG" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="user" id="sym-Wn-iA2"/>
-                            <constraint firstItem="1Mx-zF-z7R" firstAttribute="centerX" secondItem="wNH-X9-WFv" secondAttribute="centerX" type="user" id="vBU-Os-Hc1"/>
+                            <constraint firstItem="dcY-tl-7lc" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sXf-zn-qF4"/>
+                            <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sZp-Nn-Pqm"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="x8K-sU-Uni"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" relation="greaterThanOrEqual" secondItem="3" secondAttribute="top" constant="5" type="user" id="xyr-KY-yp3"/>
+                            <constraint firstItem="dcY-tl-7lc" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="zKa-dv-OtI"/>
                         </constraints>
                     </view>
                     <nil key="simulatedStatusBarMetrics"/>
@@ -480,6 +498,8 @@ Text, images, and information provided by Last.fm</string>
         </scene>
     </scenes>
     <resources>
+        <image name="albums.png" width="31" height="31"/>
+        <image name="biography.png" width="28" height="31"/>
         <image name="close.png" width="24" height="25"/>
         <image name="connect-pressed.png" width="289" height="38"/>
         <image name="connect-small-pressed.png" width="139" height="38"/>
@@ -489,7 +509,6 @@ Text, images, and information provided by Last.fm</string>
         <image name="disconnect.png" width="107" height="38"/>
         <image name="divide.png" width="300" height="1"/>
         <image name="done.png" width="55" height="31"/>
-        <image name="gears.png" width="15" height="15"/>
         <image name="input.png" width="290" height="76"/>
         <image name="lastfm.png" width="150" height="39"/>
         <image name="notnow-pressed.png" width="289" height="38"/>
@@ -498,11 +517,13 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow.png" width="289" height="38"/>
         <image name="photos-gradient.png" width="320" height="135"/>
         <image name="photos.png" width="27" height="29"/>
+        <image name="refresh.png" width="15" height="16"/>
+        <image name="settings.png" width="15" height="16"/>
         <image name="share.png" width="26" height="21"/>
-        <image name="submit.png" width="24" height="25"/>
         <image name="top-default.png" width="320" height="125"/>
         <image name="top-gradient.png" width="320" height="125"/>
-        <image name="warning.png" width="27" height="25"/>
+        <image name="top2-gradient.png" width="320" height="125"/>
+        <image name="tracks.png" width="22" height="31"/>
     </resources>
     <classes>
         <class className="AccountViewController" superclassName="UIViewController">
@@ -550,7 +571,6 @@ Text, images, and information provided by Last.fm</string>
         <class className="ViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ViewController.h"/>
             <relationships>
-                <relationship kind="action" name="showAccountView:"/>
                 <relationship kind="outlet" name="albumGridView" candidateClass="UICollectionView"/>
                 <relationship kind="outlet" name="artist" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="artistGradientView" candidateClass="UIImageView"/>

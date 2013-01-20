@@ -82,6 +82,8 @@
     }
 	// adjust the content size for the tags
 	self.contentSize = CGSizeMake(pushedX, self.frame.size.height);
+    
+    
 }
 
 @end

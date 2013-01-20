@@ -102,7 +102,7 @@
 	photoGridView.scrollIndicatorInsets = contentInsets;
 	
 	// adjust tag view so that it doesn't default to being on the edges when overflowing
-	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 10.0, 0.0, 8.0);
+	UIEdgeInsets moreContentInsets = UIEdgeInsetsMake(0.0, 8.0, 0.0, 8.0);
 	tagView.contentInset = moreContentInsets;
 	tagView.scrollIndicatorInsets = moreContentInsets;
     
@@ -617,9 +617,9 @@
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
-							 [errorImageView setAlpha:1.0];
-							 [artistImageView setAlpha:0.5];
-							 [artistGradientView setAlpha:0.5];
+							 [errorImageView setAlpha:0.5];
+							 [artistImageView setAlpha:1.0];
+							 [artistGradientView setAlpha:1.0];
 						 }
 						 completion:^(BOOL finished){
 						 }];
@@ -640,7 +640,7 @@
 - (void)load {
 	dispatch_async(dispatch_get_main_queue(), ^{
 		// only undo reset changes
-		if (errorImageView.alpha==1.0)
+		if (errorImageView.alpha==0.5)
 			[self undoResetChanges];
 		[refreshControl beginRefreshing];
 		[albumRefreshControl beginRefreshing];
