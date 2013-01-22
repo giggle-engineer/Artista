@@ -98,7 +98,6 @@
                             </scrollView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd" userLabel="Configure Button">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="48" id="Mlr-wu-4Py"/>
                                     <constraint firstAttribute="width" constant="48" id="cwr-ub-WTX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -116,7 +115,8 @@
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wz-9S-TOI">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="azM-b5-mTx"/>
+                                    <constraint firstAttribute="height" constant="48" id="MJN-jo-y2R"/>
+                                    <constraint firstAttribute="width" constant="48" id="lw7-K2-hgS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
@@ -168,16 +168,17 @@
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="n4F-Zn-Gj6" secondAttribute="top" type="default" id="ZTM-TN-7It"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="a6e-Gb-ZQ3"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
-                            <constraint firstItem="L7d-F7-eyd" firstAttribute="centerY" secondItem="3Wz-9S-TOI" secondAttribute="centerY" type="default" id="bfT-lB-64M"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="ch1-ED-dS5"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="baseline" secondItem="3Wz-9S-TOI" secondAttribute="baseline" type="default" id="k3b-WJ-8GG"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lgB-Ro-uj0"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qS0-pC-REd"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="bottom" secondItem="3Wz-9S-TOI" secondAttribute="bottom" type="default" id="rnt-92-E2y"/>
                             <constraint firstItem="dcY-tl-7lc" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sXf-zn-qF4"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sZp-Nn-Pqm"/>
                             <constraint firstItem="zsj-gw-2x3" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="x8K-sU-Uni"/>
@@ -520,8 +521,8 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow.png" width="289" height="38"/>
         <image name="photos-gradient.png" width="320" height="135"/>
         <image name="photos.png" width="27" height="29"/>
-        <image name="refresh-0.png" width="17" height="17"/>
-        <image name="settings.png" width="17" height="17"/>
+        <image name="refresh-0.png" width="22" height="22"/>
+        <image name="settings.png" width="22" height="22"/>
         <image name="share.png" width="26" height="21"/>
         <image name="top-default.png" width="320" height="125"/>
         <image name="top-gradient.png" width="320" height="125"/>
