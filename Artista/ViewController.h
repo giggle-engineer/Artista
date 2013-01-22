@@ -26,6 +26,7 @@
 	IBOutlet UIButton *refreshButton;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
+	BOOL isInPhotoviewer;
     LFMRecentTracks *recentTracks;
     LFMArtistInfo *artistInfo;
 	LFMArtistImages *artistImages;

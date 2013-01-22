@@ -104,7 +104,9 @@
 	//int pages = parse_page(1);
 	// set the number of pages
 	page_count = parse_page(1);
-	completion(images, nil, NO);
+	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT,0), ^{
+		completion(images, nil, NO);
+	});
 	//for (int i=2; i<pages; ++i)
 	//{
 		//parse_page(i);

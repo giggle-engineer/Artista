@@ -118,6 +118,9 @@
 						   selector:@selector(handlePlaybackChanged:)
 							   name:MPMusicPlayerControllerPlaybackStateDidChangeNotification object:nil];
 	
+	// make sure the photo gallery view is never really "blank" while loading in the beginning
+	[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+	
 }
 
 - (void)viewDidUnload
@@ -135,9 +138,17 @@
     }
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+- (BOOL)shouldAutorotate
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
+}
+
+- (NSUInteger)supportedInterfaceOrientations
+{
+	/*if (isInPhotoviewer)
+		return UIInterfaceOrientationMaskAll;
+	else*/
+	return UIInterfaceOrientationMaskPortrait;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -1204,6 +1215,8 @@
 		UITapGestureRecognizer *tapGesture = [UITapGestureRecognizer recognizerWithActionBlock:^(id recognizer) {
 			void (^exit_animation)(void) =
 			^{
+				isInPhotoviewer = NO;
+				
 				// prepare view by unhiding the popOutImage and removing the photo viewer
 				[popOutImageView setHidden:NO];
 				[photoViewerView removeFromSuperview];
@@ -1308,6 +1321,7 @@
 							 }
 						 }
 						 completion:^(BOOL finished){
+							 isInPhotoviewer = YES;
 							 // subtract staus bar offset
 							 [photoViewerView setFrame:CGRectOffset([UIScreen mainScreen].bounds, 0, -20)];
 							 [popOutImageView setHidden:YES];
