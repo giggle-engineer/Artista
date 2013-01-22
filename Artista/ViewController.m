@@ -544,6 +544,7 @@
 					[artistImageView setImage:image];
 					//[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 				});
+				[pagingButton removeFromSuperview];
 				// show the empty image view for the albums
 				if (emptyPhotosImageView==nil)
 					emptyPhotosImageView = [[UIImageView alloc] init];
@@ -595,7 +596,18 @@
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
-			image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
+			NSMutableURLRequest *request = [NSMutableURLRequest
+											requestWithURL:[artistImage.qualities objectForKey:@"original"]
+											cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+			NSError *connectionError;
+			NSData *data = [NSURLConnection sendSynchronousRequest:request
+												 returningResponse:nil error:&connectionError];
+			if (connectionError!=nil)
+			{
+				NSLog(@"there was an error loading the image");
+			}
+			
+			image = [UIImage imageWithData:data];
 			if ([UIScreen mainScreen].scale==2.0f)
 				image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 			else
@@ -994,14 +1006,14 @@
 								[emptyPhotosImageView setAlpha:0.0];
 							[photoGridView addSubview:emptyPhotosImageView];
 							dispatch_async(dispatch_get_main_queue(), ^{
-							[UIView animateWithDuration:0.25
-												  delay:0
-												options:UIViewAnimationCurveEaseIn
-											 animations:^{
-												 [emptyPhotosImageView setAlpha:1.0];
-											 }
-											 completion:^(BOOL finished){
-											 }];
+								[UIView animateWithDuration:0.25
+													  delay:0
+													options:UIViewAnimationCurveEaseIn
+												 animations:^{
+													 [emptyPhotosImageView setAlpha:1.0];
+												 }
+												 completion:^(BOOL finished){
+												 }];
 							});
 
 							isFinishedLoadingArtistImages = YES;
@@ -1019,21 +1031,32 @@
 					if (emptyPhotosImageView.alpha==1.0)
 					{
 						dispatch_async(dispatch_get_main_queue(), ^{
-						[UIView animateWithDuration:0.25
-											  delay:0
-											options:UIViewAnimationCurveEaseIn
-										 animations:^{
-											 [emptyPhotosImageView setAlpha:0.0];
-										 }
-										 completion:^(BOOL finished){
-											 [emptyPhotosImageView removeFromSuperview];
-										 }];
+							[UIView animateWithDuration:0.25
+												  delay:0
+												options:UIViewAnimationCurveEaseIn
+											 animations:^{
+												 [emptyPhotosImageView setAlpha:0.0];
+											 }
+											 completion:^(BOOL finished){
+												 [emptyPhotosImageView removeFromSuperview];
+											 }];
 						});
 					}
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
-						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
+						NSMutableURLRequest *request = [NSMutableURLRequest
+														 requestWithURL:[artistImage.qualities objectForKey:@"original"]
+														 cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+						NSError *connectionError;
+						NSData *data = [NSURLConnection sendSynchronousRequest:request
+														   returningResponse:nil error:&connectionError];
+						if (connectionError!=nil)
+						{
+							NSLog(@"there was an error loading the image");
+						}
+						
+						image = [UIImage imageWithData:data];
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
@@ -1143,7 +1166,18 @@
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
-						image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[artistImage.qualities objectForKey:@"original"]]];
+						NSMutableURLRequest *request = [NSMutableURLRequest
+														requestWithURL:[artistImage.qualities objectForKey:@"original"]
+														cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
+						NSError *connectionError;
+						NSData *data = [NSURLConnection sendSynchronousRequest:request
+															 returningResponse:nil error:&connectionError];
+						if (connectionError!=nil)
+						{
+							NSLog(@"there was an error loading the image");
+						}
+						
+						image = [UIImage imageWithData:data];
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
