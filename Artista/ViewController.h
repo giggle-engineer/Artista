@@ -50,6 +50,9 @@
 	NSString *previousArtistName;
 	NSString *previousArtistMusicBrainzID;
 	UIImageView *errorImageView;
+	UIImageView *emptyBioImageView;
+	UIImageView *emptyAlbumsImageView;
+	UIImageView *emptyPhotosImageView;
 }
 
 @end

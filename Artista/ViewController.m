@@ -170,7 +170,7 @@
 			switch (i) {
 				case 0:
 				{
-					[UIView animateWithDuration:0.50
+					[UIView animateWithDuration:0.25
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
@@ -189,7 +189,7 @@
 				}
 				case 1:
 				{
-					[UIView animateWithDuration:0.50
+					[UIView animateWithDuration:0.25
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
@@ -208,7 +208,7 @@
 				}
 				case 2:
 				{
-					[UIView animateWithDuration:0.50
+					[UIView animateWithDuration:0.25
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
@@ -227,7 +227,7 @@
 				}
 				case 3:
 				{
-					[UIView animateWithDuration:0.50
+					[UIView animateWithDuration:0.25
 										  delay:0
 										options:UIViewAnimationCurveEaseIn
 									 animations:^{
@@ -462,7 +462,7 @@
 #pragma mark - Main Loading Methods
 
 - (void)loadInfoFromiPod {
-	if (errorImageView.alpha==1.0)
+	if (artistImageView.alpha==1.0)
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self undoResetChanges];
 		});
@@ -542,8 +542,30 @@
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[photoGridView reloadData];
 					[artistImageView setImage:image];
-					[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+					//[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 				});
+				// show the empty image view for the albums
+				if (emptyPhotosImageView==nil)
+					emptyPhotosImageView = [[UIImageView alloc] init];
+				else
+					[emptyPhotosImageView removeFromSuperview];
+				UIImage *errorImage = [UIImage imageNamed:@"no-photos.png"];
+				[emptyPhotosImageView setFrame:CGRectMake(0, (photoGridView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+				[emptyPhotosImageView setCenter:CGPointMake(photoGridView.center.x, emptyPhotosImageView.center.y)];
+				[emptyPhotosImageView setImage:errorImage];
+				// only undo reset changes
+				if (emptyPhotosImageView.alpha!=1.0)
+					[emptyPhotosImageView setAlpha:0.0];
+				[photoGridView addSubview:emptyPhotosImageView];
+				[UIView animateWithDuration:0.25
+									  delay:0
+									options:UIViewAnimationCurveEaseIn
+								 animations:^{
+									 [emptyPhotosImageView setAlpha:1.0];
+								 }
+								 completion:^(BOOL finished){
+								 }];
+				
 				isFinishedLoadingArtistImages = YES;
 				[self finishLoadingAction];
 			}
@@ -556,7 +578,18 @@
 			}
 			return;
 		}
-		
+		if (emptyPhotosImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyPhotosImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyPhotosImageView removeFromSuperview];
+							 }];
+		}		
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
@@ -581,7 +614,7 @@
 	[[[tabBar items] objectAtIndex:1] setEnabled:YES];
 	[[[tabBar items] objectAtIndex:2] setEnabled:YES];
 	[[[tabBar items] objectAtIndex:3] setEnabled:YES];
-	[UIView animateWithDuration:0.50
+	[UIView animateWithDuration:0.25
 						  delay:0
 						options:UIViewAnimationCurveEaseIn
 					 animations:^{
@@ -612,6 +645,43 @@
 		[[[tabBar items] objectAtIndex:1] setEnabled:NO];
 		[[[tabBar items] objectAtIndex:2] setEnabled:NO];
 		[[[tabBar items] objectAtIndex:3] setEnabled:NO];
+		// remove all possible empty image views
+		if (emptyBioImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyBioImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyBioImageView removeFromSuperview];
+							 }];
+		}
+		if (emptyAlbumsImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyAlbumsImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyAlbumsImageView removeFromSuperview];
+							 }];
+		}
+		if (emptyPhotosImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyPhotosImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyPhotosImageView removeFromSuperview];
+							 }];
+		}
 		// Internet isn't working display message.
 		if (errorImageView==nil)
 			errorImageView = [[UIImageView alloc] init];
@@ -632,16 +702,18 @@
 		[errorImageView setCenter:CGPointMake(bioTextView.center.x, errorImageView.center.y)];
 		[errorImageView setImage:errorImage];
 		// only undo reset changes
-		if (errorImageView.alpha!=0.5)
+		if (artistImageView.alpha!=0.5) {
+			[artistImageView setAlpha:0.5];
 			[errorImageView setAlpha:0.0];
+		}
 		[bioTextView addSubview:errorImageView];
-		[UIView animateWithDuration:0.50
+		[UIView animateWithDuration:0.25
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
-							 [errorImageView setAlpha:0.5];
-							 [artistImageView setAlpha:1.0];
-							 [artistGradientView setAlpha:1.0];
+							 [errorImageView setAlpha:1.0];
+							 [artistImageView setAlpha:0.5];
+							 [artistGradientView setAlpha:0.5];
 						 }
 						 completion:^(BOOL finished){
 						 }];
@@ -904,8 +976,30 @@
 							dispatch_async(dispatch_get_main_queue(), ^{
 								[photoGridView reloadData];
 								[artistImageView setImage:image];
-								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+								//[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
+							// show the empty image view for the albums
+							if (emptyPhotosImageView==nil)
+								emptyPhotosImageView = [[UIImageView alloc] init];
+							else
+								[emptyPhotosImageView removeFromSuperview];
+							UIImage *errorImage = [UIImage imageNamed:@"no-photos.png"];
+							[emptyPhotosImageView setFrame:CGRectMake(0, (photoGridView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+							[emptyPhotosImageView setCenter:CGPointMake(photoGridView.center.x, emptyPhotosImageView.center.y)];
+							[emptyPhotosImageView setImage:errorImage];
+							// only undo reset changes
+							if (emptyPhotosImageView.alpha!=1.0)
+								[emptyPhotosImageView setAlpha:0.0];
+							[photoGridView addSubview:emptyPhotosImageView];
+							[UIView animateWithDuration:0.25
+												  delay:0
+												options:UIViewAnimationCurveEaseIn
+											 animations:^{
+												 [emptyPhotosImageView setAlpha:1.0];
+											 }
+											 completion:^(BOOL finished){
+											 }];
+
 							isFinishedLoadingArtistImages = YES;
 							[self finishLoadingAction];
 						}
@@ -917,6 +1011,18 @@
 							});
 						}
 						return;
+					}
+					if (emptyPhotosImageView.alpha==1.0)
+					{
+						[UIView animateWithDuration:0.25
+											  delay:0
+											options:UIViewAnimationCurveEaseIn
+										 animations:^{
+											 [emptyPhotosImageView setAlpha:0.0];
+										 }
+										 completion:^(BOOL finished){
+											 [emptyPhotosImageView removeFromSuperview];
+										 }];
 					}
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
@@ -976,8 +1082,30 @@
 							dispatch_async(dispatch_get_main_queue(), ^{
 								[photoGridView reloadData];
 								[artistImageView setImage:image];
-								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
+								//[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
+							// show the empty image view for the albums
+							if (emptyPhotosImageView==nil)
+								emptyPhotosImageView = [[UIImageView alloc] init];
+							else
+								[emptyPhotosImageView removeFromSuperview];
+							UIImage *errorImage = [UIImage imageNamed:@"no-photos.png"];
+							[emptyPhotosImageView setFrame:CGRectMake(0, (photoGridView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+							[emptyPhotosImageView setCenter:CGPointMake(photoGridView.center.x, emptyPhotosImageView.center.y)];
+							[emptyPhotosImageView setImage:errorImage];
+							// only undo reset changes
+							if (emptyPhotosImageView.alpha!=1.0)
+								[emptyPhotosImageView setAlpha:0.0];
+							[photoGridView addSubview:emptyPhotosImageView];
+							[UIView animateWithDuration:0.25
+												  delay:0
+												options:UIViewAnimationCurveEaseIn
+											 animations:^{
+												 [emptyPhotosImageView setAlpha:1.0];
+											 }
+											 completion:^(BOOL finished){
+											 }];
+							
 							isFinishedLoadingArtistImages = YES;
 							[self finishLoadingAction];
 						}
@@ -990,7 +1118,18 @@
 						}
 						return;
 					}
-
+					if (emptyPhotosImageView.alpha==1.0)
+					{
+						[UIView animateWithDuration:0.25
+											  delay:0
+											options:UIViewAnimationCurveEaseIn
+										 animations:^{
+											 [emptyPhotosImageView setAlpha:0.0];
+										 }
+										 completion:^(BOOL finished){
+											 [emptyPhotosImageView removeFromSuperview];
+										 }];
+					}
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
@@ -1036,10 +1175,50 @@
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
 	// only undo reset changes
-	if (errorImageView.alpha==0.5)
+	if (artistImageView.alpha==0.5)
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self undoResetChanges];
 		});
+	NSLog(@"%@", [_artist bio]);
+	if ([[_artist bio] isEqualToString:@""])
+	{
+		// show the empty image view for the bio
+		if (emptyBioImageView==nil)
+			emptyBioImageView = [[UIImageView alloc] init];
+		else
+			[emptyBioImageView removeFromSuperview];
+		UIImage *errorImage = [UIImage imageNamed:@"no-biography.png"];
+		[emptyBioImageView setFrame:CGRectMake(0, (bioTextView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+		[emptyBioImageView setCenter:CGPointMake(bioTextView.center.x, emptyBioImageView.center.y)];
+		[emptyBioImageView setImage:errorImage];
+		// only undo reset changes
+		if (emptyBioImageView.alpha!=1.0)
+			[emptyBioImageView setAlpha:0.0];
+		[bioTextView addSubview:emptyBioImageView];
+		[UIView animateWithDuration:0.25
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 [emptyBioImageView setAlpha:1.0];
+						 }
+						 completion:^(BOOL finished){
+						 }];
+	}
+	else
+	{
+		if (emptyBioImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyBioImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyBioImageView removeFromSuperview];
+							 }];
+		}
+	}
 	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
 	// remove the stupid space at the beginning of paragraphs
 	while ([stripped rangeOfString:@"\n "].location != NSNotFound) {
@@ -1096,6 +1275,45 @@
 
 - (void)didFinishReceivingTopAlbums:(NSArray *)albums {
 	topAlbumsArray = albums;
+	if ([topAlbumsArray count]==0) {
+		// show the empty image view for the albums
+		if (emptyAlbumsImageView==nil)
+			emptyAlbumsImageView = [[UIImageView alloc] init];
+		else
+			[emptyAlbumsImageView removeFromSuperview];
+		UIImage *errorImage = [UIImage imageNamed:@"no-albums.png"];
+		[emptyAlbumsImageView setFrame:CGRectMake(0, (albumGridView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
+		[emptyAlbumsImageView setCenter:CGPointMake(albumGridView.center.x, emptyAlbumsImageView.center.y)];
+		[emptyAlbumsImageView setImage:errorImage];
+		// only undo reset changes
+		if (emptyAlbumsImageView.alpha!=1.0)
+			[emptyAlbumsImageView setAlpha:0.0];
+		[albumGridView addSubview:emptyAlbumsImageView];
+		[UIView animateWithDuration:0.25
+							  delay:0
+							options:UIViewAnimationCurveEaseIn
+						 animations:^{
+							 [emptyAlbumsImageView setAlpha:1.0];
+						 }
+						 completion:^(BOOL finished){
+						 }];
+	}
+	else
+	{
+		if (emptyAlbumsImageView.alpha==1.0)
+		{
+			[UIView animateWithDuration:0.25
+								  delay:0
+								options:UIViewAnimationCurveEaseIn
+							 animations:^{
+								 [emptyAlbumsImageView setAlpha:0.0];
+							 }
+							 completion:^(BOOL finished){
+								 [emptyAlbumsImageView removeFromSuperview];
+							 }];
+		}
+	}
+	
 	dispatch_async(dispatch_get_main_queue(), ^{
 		[albumGridView reloadData];
 	});
@@ -1265,7 +1483,7 @@
 				[popOutImageView setHidden:NO];
 				[photoViewerView removeFromSuperview];
 				// main photo viewer exit animation
-				[UIView animateWithDuration:0.50
+				[UIView animateWithDuration:0.25
 									  delay:0
 									options:UIViewAnimationCurveEaseIn
 								 animations:^{
@@ -1294,7 +1512,7 @@
 				if ([view isKindOfClass:[UIScrollView class]]) {
 					if ([(UIScrollView*)view zoomScale]!=0.0f)
 					{
-						[UIView animateWithDuration:0.50
+						[UIView animateWithDuration:0.25
 											  delay:0
 											options:UIViewAnimationCurveEaseIn
 										 animations:^{
@@ -1332,7 +1550,7 @@
 		[photoViewerView sendSubviewToBack:photoViewer];
 		[photoViewerView setHidden:YES];
 		// animations leading up to the photoviewer
-		[UIView animateWithDuration:0.50
+		[UIView animateWithDuration:0.25
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
