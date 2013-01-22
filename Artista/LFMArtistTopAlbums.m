@@ -64,7 +64,7 @@
 		//[[self delegate] didReceiveTopAlbums:(NSArray*)[albums copy]];
 	}];
 	
-	NSLog(@"albums count:%d", [albums count]);
+	//NSLog(@"albums count:%d", [albums count]);
     [[self delegate] didFinishReceivingTopAlbums:(NSArray*)[albums copy]];
 	//[albums removeAllObjects];
 }
@@ -73,8 +73,8 @@
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&artist=%@&api_key=%@",
                                   [artist URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistTopAlbums artist requested: %@", artist);
-    NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistTopAlbums artist requested: %@", artist);
+    //NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
 	[self requestTopAlbumsWithURL:urlRequestString];
 }
 
@@ -82,8 +82,8 @@
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettopalbums&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistTopAlbums artist requested: %@", mbid);
-    NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistTopAlbums artist requested: %@", mbid);
+    //NSLog(@"LFMArtistTopAlbums Requesting from url: %@", urlRequestString);
 	[self requestTopAlbumsWithURL:urlRequestString];
 }
 

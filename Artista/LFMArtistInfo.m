@@ -17,8 +17,8 @@
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&artist=%@&api_key=%@", 
                                   [artist URLEncodedString], kAPIKey];
-    NSLog(@"LastFMArtistInfo artist requested: %@", artist);
-    NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
+    //NSLog(@"LastFMArtistInfo artist requested: %@", artist);
+    //NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
 	NSError *connectionError;
@@ -59,7 +59,7 @@
 			[tagsArray addObject:[tag child:@"name"].text];
 		}
 		[artist setTags:(NSArray*)tagsArray];
-		NSLog(@"tagging:%u", [tagsArray count]);
+		//NSLog(@"tagging:%u", [tagsArray count]);
 
 		for (RXMLElement *image in [e children:@"image"]) {
 			if ([[image attribute:@"size"] isEqualToString:@"mega"]) {
@@ -75,8 +75,8 @@
 - (void)requestInfoWithMusicBrainzID:(NSString*)mbid {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
-    NSLog(@"LastFMArtistInfo mbid requested: %@", mbid);
-    NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
+    //NSLog(@"LastFMArtistInfo mbid requested: %@", mbid);
+    //NSLog(@"LastFMArtistInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
 	NSError *connectionError;
@@ -117,7 +117,7 @@
 			[tagsArray addObject:[tag child:@"name"].text];
 		}
 		[artist setTags:(NSArray*)tagsArray];
-		NSLog(@"tagging:%u", [tagsArray count]);
+		//NSLog(@"tagging:%u", [tagsArray count]);
 		
 		for (RXMLElement *image in [e children:@"image"]) {
 			if ([[image attribute:@"size"] isEqualToString:@"mega"]) {

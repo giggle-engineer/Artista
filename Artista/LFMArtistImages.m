@@ -66,7 +66,7 @@
 		}
 		
 		int pages = [[[rootXML child:@"images"] attribute:@"totalPages"] intValue];
-		NSLog(@"pages: %i", pages);
+		//NSLog(@"pages: %i", pages);
 		
 		[rootXML iterate:@"images.image" usingBlock: ^(RXMLElement *e) {
 			NSMutableDictionary *sizeDictionary = [NSMutableDictionary new];
@@ -119,7 +119,7 @@
 		//completion([images copy], nil, YES);
 	//}
 	
-	NSLog(@"images count:%d", [images count]);
+	//NSLog(@"images count:%d", [images count]);
     //[[self delegate] didReceiveImages:(NSArray*)[images copy]];
 	//completion([images copy], nil);
 }
@@ -128,8 +128,8 @@
 {
 	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getimages&artist=%@&api_key=%@",
                                   [artist URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistImages artist requested: %@", artist);
-    NSLog(@"LFMArtistImages Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistImages artist requested: %@", artist);
+    //NSLog(@"LFMArtistImages Requesting from url: %@", urlRequestString);
 	[self requestImagesWithURL:urlRequestString completion:completion];
 }
 
@@ -137,8 +137,8 @@
 {
 	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.getimages&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistImages mbid requested: %@", mbid);
-    NSLog(@"LFMArtistImages Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistImages mbid requested: %@", mbid);
+    //NSLog(@"LFMArtistImages Requesting from url: %@", urlRequestString);
 	[self requestImagesWithURL:urlRequestString completion:completion];
 }
 

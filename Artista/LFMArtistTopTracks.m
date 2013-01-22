@@ -19,8 +19,8 @@
 - (void)requestTopTracksWithArtist:(NSString*)artist {
 	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&artist=%@&api_key=%@",
                                   [artist URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistTopTracks artist requested: %@", artist);
-    NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistTopTracks artist requested: %@", artist);
+    //NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
 	
 	tracks = [NSMutableArray new];
@@ -107,7 +107,7 @@
 		
 		[tracks addObject:track];
 	}];
-	NSLog(@"tracks count:%d", [tracks count]);
+	//NSLog(@"tracks count:%d", [tracks count]);
     [[self delegate] didReceiveTopTracks:(NSArray*)[tracks copy]];
 	[tracks removeAllObjects];
 }
@@ -115,8 +115,8 @@
 - (void)requestTopTracksWithMusicBrainzID:(NSString*)mbid {
 	NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=artist.gettoptracks&mbid=%@&api_key=%@",
                                   [mbid URLEncodedString], kAPIKey];
-    NSLog(@"LFMArtistTopTracks artist requested: %@", mbid);
-    NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMArtistTopTracks artist requested: %@", mbid);
+    //NSLog(@"LFMArtistTopTracks Requesting from url: %@", urlRequestString);
     // Initialization code here.
 	
 	tracks = [NSMutableArray new];
@@ -203,7 +203,7 @@
 		
 		[tracks addObject:track];
 	}];
-	NSLog(@"tracks count:%d", [tracks count]);
+	//NSLog(@"tracks count:%d", [tracks count]);
     [[self delegate] didReceiveTopTracks:(NSArray*)[tracks copy]];
 	[tracks removeAllObjects];
 }

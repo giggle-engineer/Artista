@@ -12,7 +12,7 @@
 
 - (NSString*)stringWithDelimeter:(NSString*)delimeter {
 	NSMutableString *stringWithDelimeter = [NSMutableString new];
-	NSLog(@"array count:%u", [self count]);
+	//NSLog(@"array count:%u", [self count]);
 	if ([self count]!=0) {
 		for (int i = 0; i<[self count]; i++) {
 			if (i!=[self count]) {

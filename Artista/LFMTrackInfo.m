@@ -19,8 +19,8 @@
 {
     NSString *urlRequestString = [[NSString alloc] initWithFormat:@"http://ws.audioscrobbler.com/2.0/?method=track.getInfo&artist=%@&track=%@&api_key=%@",
                                   [artist URLEncodedString], [track URLEncodedString], kAPIKey];
-    NSLog(@"LFMTrackInfo artist requested: %@ with track:%@", artist, track);
-    NSLog(@"LFMTrackInfo Requesting from url: %@", urlRequestString);
+    //NSLog(@"LFMTrackInfo artist requested: %@ with track:%@", artist, track);
+    //NSLog(@"LFMTrackInfo Requesting from url: %@", urlRequestString);
     // Initialization code here.
 	NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequestString]];
 	NSError *connectionError;

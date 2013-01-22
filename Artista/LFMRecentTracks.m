@@ -19,7 +19,7 @@
 {
     NSString *urlRequestString = @"https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks";
 	
-    NSLog(@"LFMRecentTracks user requested: %@", user);
+    //NSLog(@"LFMRecentTracks user requested: %@", user);
     //NSLog(@"LFMRecentTracks Requesting from url: %@", urlRequestString);
 	
 	NSString *sessionKey = [FDKeychain itemForKey: @"sessionKey"
