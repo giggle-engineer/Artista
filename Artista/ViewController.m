@@ -246,7 +246,9 @@
 
 - (IBAction)didPressReload:(id)sender
 {
-	[self load];
+	// only allow reloading if we aren't already loading
+	if (!refreshButton.imageView.isAnimating)
+		[self load];
 }
 
 #pragma mark - Scrolling
