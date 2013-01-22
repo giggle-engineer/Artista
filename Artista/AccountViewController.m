@@ -120,6 +120,7 @@
 		LFMMobileAuth *mobileAuth = [[LFMMobileAuth alloc] init];
 		NSString *apiSignature = [mobileAuth createSignatureWithPassword:password username:userName];
 		NSString *sessionKey = [mobileAuth getSesssionKeyWithUsername:userName password:password signature:apiSignature];
+		
 		// if authenticated then save the details
 		if (![sessionKey isEqualToString:@""])
 		{

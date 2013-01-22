@@ -451,7 +451,9 @@
 
 - (void)loadInfoFromiPod {
 	if (errorImageView.alpha==1.0)
-		[self undoResetChanges];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self undoResetChanges];
+		});
 	if ([iPodController playbackState]==MPMusicPlaybackStateStopped) {
 		[self reset:YES];
 		return;
@@ -604,7 +606,9 @@
 		[errorImageView setFrame:CGRectMake(0, (bioTextView.frame.size.height/2)-49-(errorImage.size.height/3), errorImage.size.width, errorImage.size.height)];
 		[errorImageView setCenter:CGPointMake(bioTextView.center.x, errorImageView.center.y)];
 		[errorImageView setImage:errorImage];
-		[errorImageView setAlpha:0.0];
+		// only undo reset changes
+		if (errorImageView.alpha!=0.5)
+			[errorImageView setAlpha:0.0];
 		[bioTextView addSubview:errorImageView];
 		[UIView animateWithDuration:0.50
 							  delay:0
@@ -632,9 +636,6 @@
 
 - (void)load {
 	dispatch_async(dispatch_get_main_queue(), ^{
-		// only undo reset changes
-		if (errorImageView.alpha==0.5)
-			[self undoResetChanges];
 		[refreshButton.imageView startAnimating];
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
@@ -980,6 +981,11 @@
 #pragma mark - LFMArtistInfo Delegate
 
 - (void)didReceiveArtistInfo: (LFMArtist *)_artist; {
+	// only undo reset changes
+	if (errorImageView.alpha==0.5)
+		dispatch_async(dispatch_get_main_queue(), ^{
+			[self undoResetChanges];
+		});
 	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
 	// remove the stupid space at the beginning of paragraphs
 	while ([stripped rangeOfString:@"\n "].location != NSNotFound) {
@@ -1106,6 +1112,68 @@
 {	
     return nil;
 }
+
+#pragma mark - UICollectionView Data Source
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
+{
+	if ([collectionView isEqual:albumGridView])
+		return [topAlbumsArray count];
+	else
+		return [artistImages.images count];
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
+{
+	if ([collectionView isEqual:albumGridView]) {
+		static NSString * const identifier = @"Cell";
+		AlbumViewCell *cell = (AlbumViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
+		
+		if (!cell) {
+			// setup cells
+			NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
+			cell.backgroundColor = [UIColor clearColor];
+			cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
+			cell.contentView.backgroundColor = [UIColor clearColor];
+		}
+		
+		NSURL *imageURL = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL];
+		// detect Last.fm's ugly default album image and replace it with the placeholder
+		if (![[imageURL absoluteString] isEqualToString:@"http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png"])
+		{
+			[cell.artworkView setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
+		}
+		else
+		{
+			[cell.artworkView setImage:[UIImage imageNamed:@"album-placeholder.png"]];
+		}
+		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
+		
+		
+		return cell;
+	}
+	else
+	{
+		TMPhotoQuiltViewCell *cell = (TMPhotoQuiltViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
+		if (!cell) {
+			cell = [[TMPhotoQuiltViewCell alloc] init];
+		}
+
+		// handle index of 0 exception that seems to happen on instant reload
+		@try {
+			LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
+			[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
+						   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
+		}
+		@catch (NSException *exception) {
+			NSLog(@"Index of 0... ignoring.");
+		}
+		
+		return cell;
+	}
+}
+
+#pragma mark UICollectionView delegate
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -1243,66 +1311,6 @@
 							 [popOutImageView setHidden:YES];
 							 [photoViewerView setHidden:NO];
 						 }];
-	}
-}
-
-#pragma mark - UICollectionView Data Source
-
--(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
-{
-	if ([collectionView isEqual:albumGridView])
-		return [topAlbumsArray count];
-	else
-		return [artistImages.images count];
-}
-
--(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
-{
-	if ([collectionView isEqual:albumGridView]) {
-		static NSString * const identifier = @"Cell";
-		AlbumViewCell *cell = (AlbumViewCell *)[collectionView dequeueReusableCellWithReuseIdentifier:identifier forIndexPath:indexPath];
-		
-		if (!cell) {
-			// setup cells
-			NSCParameterAssert([cell isKindOfClass:[AlbumViewCell class]]);
-			cell.backgroundColor = [UIColor clearColor];
-			cell.selectedBackgroundView.backgroundColor = [UIColor clearColor];
-			cell.contentView.backgroundColor = [UIColor clearColor];
-		}
-		
-		NSURL *imageURL = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] URL];
-		// detect Last.fm's ugly default album image and replace it with the placeholder
-		if (![[imageURL absoluteString] isEqualToString:@"http://cdn.last.fm/flatness/catalogue/noimage/2/default_album_medium.png"])
-		{
-			[cell.artworkView setImageWithURL:imageURL placeholderImage:[UIImage imageNamed:@"album-placeholder.png"]];
-		}
-		else
-		{
-			[cell.artworkView setImage:[UIImage imageNamed:@"album-placeholder.png"]];
-		}
-		cell.nameLabel.text = [(LFMAlbum*)[topAlbumsArray objectAtIndex:indexPath.row] name];
-		
-		
-		return cell;
-	}
-	else
-	{
-		TMPhotoQuiltViewCell *cell = (TMPhotoQuiltViewCell*)[collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoCell" forIndexPath:indexPath];
-		if (!cell) {
-			cell = [[TMPhotoQuiltViewCell alloc] init];
-		}
-
-		// handle index of 0 exception that seems to happen on instant reload
-		@try {
-			LFMArtistImage *artistImage = [artistImages.images objectAtIndex:indexPath.row];
-			[cell.photoView setImageWithURL:[artistImage.qualities objectForKey:@"original"]
-						   placeholderImage:[UIImage imageNamed:@"placeholder.png"]];
-		}
-		@catch (NSException *exception) {
-			NSLog(@"Index of 0... ignoring.");
-		}
-		
-		return cell;
 	}
 }
 
