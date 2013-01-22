@@ -1568,7 +1568,7 @@
 									options:UIViewAnimationCurveEaseIn
 								 animations:^{
 									 // it's probably best to take a photo of the view and shrink it.. maybe?
-									 [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
+									 //[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 									 self.view.backgroundColor = [UIColor whiteColor];
 									 for (UIView *view in [[self view] subviews])
 									 {
@@ -1619,9 +1619,9 @@
 				if (completed) {
 					[self dismissViewControllerAnimated:YES completion:nil];
 				}
-				[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
+				//[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 			};
-			[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
+			//[[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:YES];
 			[self presentViewController:activityViewController animated:YES completion:nil];
 		} forControlEvent:UIControlEventTouchUpInside];
 		[self.view addSubview:popOutImageView];
@@ -1635,7 +1635,7 @@
 							options:UIViewAnimationCurveEaseIn
 						 animations:^{
 							 // hide staus bar
-							 [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
+							 //[[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:YES];
 							 // view dance to get the photoviewer location extraction to work
 							 self.view.frame = CGRectInset(self.view.frame, 0.01, 0);
 							 self.view.frame = CGRectInset(self.view.frame, -0.01, 0);
