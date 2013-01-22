@@ -11,7 +11,6 @@
 #import "AccountViewController.h"
 #import "PhotoViewController.h"
 #import "LFM.h"
-#import "ODRefreshControl.h"
 #import "PSCTagView.h"
 
 @interface ViewController : UIViewController <AccountViewControllerDelegate, LFMRecentTracksDelegate, LFMArtistInfoDelegate, LFMArtistTopAlbumsDelegate, LFMArtistTopTracksDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UITableViewDataSource, UITableViewDelegate, UITabBarDelegate> {
@@ -23,6 +22,8 @@
 	IBOutlet UITableView *topTracksTableView;
 	IBOutlet UICollectionView *photoGridView;
 	IBOutlet UITabBar *tabBar;
+	IBOutlet UIImageView *artistGradientView;
+	IBOutlet UIButton *refreshButton;
 	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
 	BOOL isUsingiPod;
     LFMRecentTracks *recentTracks;
@@ -31,10 +32,6 @@
 	LFMArtistTopAlbums *topAlbums;
 	LFMArtistTopTracks *topTracks;
 	MPMusicPlayerController *iPodController;
-	ODRefreshControl *refreshControl;
-	ODRefreshControl *albumRefreshControl;
-	ODRefreshControl *trackRefreshControl;
-	ODRefreshControl *photosRefreshControl;
 	CALayer *bioMask;
 	CALayer *albumsMask;
 	CALayer *tracksMask;
@@ -52,7 +49,6 @@
 	NSString *previousArtistName;
 	NSString *previousArtistMusicBrainzID;
 	UIImageView *errorImageView;
-	IBOutlet UIImageView *artistGradientView;
 }
 
 @end

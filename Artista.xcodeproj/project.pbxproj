@@ -52,7 +52,6 @@
 		374FCCC815FED0840098CC30 /* TrackViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 374FCCC715FED0840098CC30 /* TrackViewCell.m */; };
 		3752349B167AC1AE004A6061 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3752349A167AC1AE004A6061 /* ImageIO.framework */; };
 		375234A9167AC46C004A6061 /* libSDWebImage.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 375234A6167AC45F004A6061 /* libSDWebImage.a */; };
-		375234B1167AC7A2004A6061 /* ODRefreshControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 375234B0167AC7A2004A6061 /* ODRefreshControl.m */; };
 		375234B4167AE951004A6061 /* placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 375234B2167AE951004A6061 /* placeholder.png */; };
 		375234B5167AE951004A6061 /* placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 375234B3167AE951004A6061 /* placeholder@2x.png */; };
 		37607AB5166581320008CB5A /* libRaptureXML.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3720DED115EE211A006C6B61 /* libRaptureXML.a */; };
@@ -163,8 +162,8 @@
 		700C273F16AC6D7000B0852F /* refresh-10@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272716AC6D6E00B0852F /* refresh-10@2x.png */; };
 		700C274016AC6D7000B0852F /* refresh-11.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272816AC6D6F00B0852F /* refresh-11.png */; };
 		700C274116AC6D7000B0852F /* refresh-11@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272916AC6D6F00B0852F /* refresh-11@2x.png */; };
-		700C274216AC6D7000B0852F /* refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272A16AC6D6F00B0852F /* refresh.png */; };
-		700C274316AC6D7000B0852F /* refresh@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272B16AC6D7000B0852F /* refresh@2x.png */; };
+		700C274216AC6D7000B0852F /* refresh-0.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272A16AC6D6F00B0852F /* refresh-0.png */; };
+		700C274316AC6D7000B0852F /* refresh-0@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 700C272B16AC6D7000B0852F /* refresh-0@2x.png */; };
 		70381C411676F41B0087E3CB /* photos@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70381C3D1676F41B0087E3CB /* photos@2x.png */; };
 		70381C421676F41B0087E3CB /* photos.png in Resources */ = {isa = PBXBuildFile; fileRef = 70381C3E1676F41B0087E3CB /* photos.png */; };
 		70381C431676F41B0087E3CB /* photos-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 70381C3F1676F41B0087E3CB /* photos-selected@2x.png */; };
@@ -462,8 +461,6 @@
 		374FCCC715FED0840098CC30 /* TrackViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrackViewCell.m; sourceTree = "<group>"; };
 		3752349A167AC1AE004A6061 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		3752349C167AC45E004A6061 /* SDWebImage.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SDWebImage.xcodeproj; path = Artista/SDWebImage/SDWebImage.xcodeproj; sourceTree = "<group>"; };
-		375234AF167AC7A2004A6061 /* ODRefreshControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ODRefreshControl.h; sourceTree = "<group>"; };
-		375234B0167AC7A2004A6061 /* ODRefreshControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ODRefreshControl.m; sourceTree = "<group>"; };
 		375234B2167AE951004A6061 /* placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = placeholder.png; sourceTree = "<group>"; };
 		375234B3167AE951004A6061 /* placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "placeholder@2x.png"; sourceTree = "<group>"; };
 		37607ACE1665F05A0008CB5A /* UIImage+H568.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+H568.h"; sourceTree = "<group>"; };
@@ -606,8 +603,8 @@
 		700C272716AC6D6E00B0852F /* refresh-10@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-10@2x.png"; sourceTree = "<group>"; };
 		700C272816AC6D6F00B0852F /* refresh-11.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-11.png"; sourceTree = "<group>"; };
 		700C272916AC6D6F00B0852F /* refresh-11@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-11@2x.png"; sourceTree = "<group>"; };
-		700C272A16AC6D6F00B0852F /* refresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = refresh.png; sourceTree = "<group>"; };
-		700C272B16AC6D7000B0852F /* refresh@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh@2x.png"; sourceTree = "<group>"; };
+		700C272A16AC6D6F00B0852F /* refresh-0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-0.png"; sourceTree = "<group>"; };
+		700C272B16AC6D7000B0852F /* refresh-0@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refresh-0@2x.png"; sourceTree = "<group>"; };
 		70381C3D1676F41B0087E3CB /* photos@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos@2x.png"; sourceTree = "<group>"; };
 		70381C3E1676F41B0087E3CB /* photos.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = photos.png; sourceTree = "<group>"; };
 		70381C3F1676F41B0087E3CB /* photos-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "photos-selected@2x.png"; sourceTree = "<group>"; };
@@ -796,16 +793,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		375234AE167AC7A2004A6061 /* ODRefreshControl */ = {
-			isa = PBXGroup;
-			children = (
-				375234AF167AC7A2004A6061 /* ODRefreshControl.h */,
-				375234B0167AC7A2004A6061 /* ODRefreshControl.m */,
-			);
-			name = ODRefreshControl;
-			path = ODRefreshControl/ODRefreshControl;
-			sourceTree = "<group>";
-		};
 		37607AE5166600640008CB5A /* Account Images */ = {
 			isa = PBXGroup;
 			children = (
@@ -893,7 +880,6 @@
 				3741CE7715E49E710086294E /* PSCTagView */,
 				3795C81415DC246B0058023F /* Last.fm */,
 				3795C81315DC245D0058023F /* View Controllers */,
-				375234AE167AC7A2004A6061 /* ODRefreshControl */,
 				378DEDF0169C0EF800792043 /* FDKeychain */,
 				3795C81015DC23700058023F /* Categories */,
 				3795C7CA15DB5DD70058023F /* Supporting Files */,
@@ -904,6 +890,8 @@
 		3795C7CA15DB5DD70058023F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				700C272A16AC6D6F00B0852F /* refresh-0.png */,
+				700C272B16AC6D7000B0852F /* refresh-0@2x.png */,
 				700C271416AC6D6C00B0852F /* refresh-1.png */,
 				700C271516AC6D6C00B0852F /* refresh-1@2x.png */,
 				700C271616AC6D6C00B0852F /* refresh-2.png */,
@@ -926,8 +914,6 @@
 				700C272716AC6D6E00B0852F /* refresh-10@2x.png */,
 				700C272816AC6D6F00B0852F /* refresh-11.png */,
 				700C272916AC6D6F00B0852F /* refresh-11@2x.png */,
-				700C272A16AC6D6F00B0852F /* refresh.png */,
-				700C272B16AC6D7000B0852F /* refresh@2x.png */,
 				700C270816AA84ED00B0852F /* tag-mask@2x.png */,
 				700C270916AA84ED00B0852F /* tag-mask.png */,
 				700C270416AA826F00B0852F /* settings@2x.png */,
@@ -1503,8 +1489,8 @@
 				700C273F16AC6D7000B0852F /* refresh-10@2x.png in Resources */,
 				700C274016AC6D7000B0852F /* refresh-11.png in Resources */,
 				700C274116AC6D7000B0852F /* refresh-11@2x.png in Resources */,
-				700C274216AC6D7000B0852F /* refresh.png in Resources */,
-				700C274316AC6D7000B0852F /* refresh@2x.png in Resources */,
+				700C274216AC6D7000B0852F /* refresh-0.png in Resources */,
+				700C274316AC6D7000B0852F /* refresh-0@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1566,7 +1552,6 @@
 				37FB3249166EC4AE00C6BCB9 /* LFMArtistImages.m in Sources */,
 				37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */,
 				37F2A17D16771F4F00D7779D /* TMPhotoQuiltViewCell.m in Sources */,
-				375234B1167AC7A2004A6061 /* ODRefreshControl.m in Sources */,
 				378FE1DE167FE92A0055F8E4 /* PhotoViewController.m in Sources */,
 				378C869716841FE60064E6D6 /* PhotoViewerView.m in Sources */,
 				378C873A16844DA20064E6D6 /* UIControl+JTTargetActionBlock.m in Sources */,

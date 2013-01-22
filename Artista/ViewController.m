@@ -32,7 +32,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
 
 	// setup grid view
 	albumGridView.backgroundColor = [UIColor clearColor];
@@ -77,17 +76,19 @@
 	topTracksTableView.separatorColor = [[UIColor blackColor] colorWithAlphaComponent:0.2];
 	
 	// setup refreshing
-	refreshControl = [[ODRefreshControl alloc] initInScrollView:bioTextView];
-	[refreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-
-	albumRefreshControl = [[ODRefreshControl alloc] initInScrollView:albumGridView];
-	[albumRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-	
-	trackRefreshControl = [[ODRefreshControl alloc] initInScrollView:topTracksTableView];
-	[trackRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
-	
-	photosRefreshControl = [[ODRefreshControl alloc] initInScrollView:photoGridView];
-	[photosRefreshControl addTarget:self action:@selector(dropViewDidBeginRefreshing:) forControlEvents:UIControlEventValueChanged];
+	refreshButton.imageView.animationImages = @[[UIImage imageNamed:@"refresh-0.png"],
+	[UIImage imageNamed:@"refresh-1.png"],
+	[UIImage imageNamed:@"refresh-2.png"],
+	[UIImage imageNamed:@"refresh-3.png"],
+	[UIImage imageNamed:@"refresh-4.png"],
+	[UIImage imageNamed:@"refresh-5.png"],
+	[UIImage imageNamed:@"refresh-6.png"],
+	[UIImage imageNamed:@"refresh-7.png"],
+	[UIImage imageNamed:@"refresh-8.png"],
+	[UIImage imageNamed:@"refresh-9.png"],
+	[UIImage imageNamed:@"refresh-10.png"],
+	[UIImage imageNamed:@"refresh-11.png"]];
+	refreshButton.imageView.animationDuration = 0.5;
 	
 	// push scroll views content up past the bottom bar...
 	// was bottomBarView.frame.size.height now 49 because of unaccounted for transparency height
@@ -241,9 +242,10 @@
 	}
 }
 
-#pragma mark - Pull to refresh
+#pragma mark - Refresh
 
-- (void)dropViewDidBeginRefreshing:(id)sender {
+- (IBAction)didPressReload:(id)sender
+{
 	[self load];
 }
 
@@ -463,10 +465,7 @@
 	if ([artistName isEqualToString:previousArtistName])
 	{
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[refreshControl endRefreshing];
-			[albumRefreshControl endRefreshing];
-			[trackRefreshControl endRefreshing];
-			[photosRefreshControl endRefreshing];
+			[refreshButton.imageView stopAnimating];
 		});
 		return;
 	}
@@ -475,10 +474,7 @@
 	
 	// used if the player notification is called
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[refreshControl beginRefreshing];
-		[albumRefreshControl beginRefreshing];
-		[trackRefreshControl beginRefreshing];
-		[photosRefreshControl beginRefreshing];
+		[refreshButton.imageView startAnimating];
 	});
 	// immediately setup ipod info
 	dispatch_async(dispatch_get_main_queue(), ^{
@@ -580,10 +576,7 @@
 	previousArtistMusicBrainzID = @"";
 	previousArtistName = @"";
 	dispatch_async(dispatch_get_main_queue(), ^{
-		[refreshControl endRefreshing];
-		[albumRefreshControl endRefreshing];
-		[trackRefreshControl endRefreshing];
-		[photosRefreshControl endRefreshing];
+		[refreshButton.imageView stopAnimating];
 		// select middle item, biography
 		[tabBar setSelectedItem:[[tabBar items] objectAtIndex:0]];
 		// simulate switch back to biography to show the message
@@ -642,10 +635,7 @@
 		// only undo reset changes
 		if (errorImageView.alpha==0.5)
 			[self undoResetChanges];
-		[refreshControl beginRefreshing];
-		[albumRefreshControl beginRefreshing];
-		[trackRefreshControl beginRefreshing];
-		[photosRefreshControl beginRefreshing];
+		[refreshButton.imageView startAnimating];
 	});
 	iPodController = [MPMusicPlayerController iPodMusicPlayer];
 	// begin generating notifications now because even if we aren't playing then at some point we will be and we want to be ready for it
@@ -690,10 +680,7 @@
 	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		#if !(TARGET_IPHONE_SIMULATOR)
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[refreshControl endRefreshing];
-			[albumRefreshControl endRefreshing];
-			[trackRefreshControl endRefreshing];
-			[photosRefreshControl endRefreshing];
+			[refreshButton.imageView stopAnimating];
 		});
 		isFinishedLoadingArtistInfo = NO;
 		isFinishedLoadingTopAlbums = NO;
@@ -702,10 +689,7 @@
 	}
 	if (isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
 		dispatch_async(dispatch_get_main_queue(), ^{
-			[refreshControl endRefreshing];
-			[albumRefreshControl endRefreshing];
-			[trackRefreshControl endRefreshing];
-			[photosRefreshControl endRefreshing];
+			[refreshButton.imageView stopAnimating];
 		});
 		isFinishedLoadingArtistInfo = NO;
 		isFinishedLoadingTopAlbums = NO;
@@ -806,8 +790,6 @@
 		[pagingButton setAlpha:0.3];
 		[pagingButton setEnabled:NO];
 	}
-	
-	[photosRefreshControl observeValueForKeyPath:@"contentInset" ofObject:nil change:@{@"new":[NSValue valueWithUIEdgeInsets:photoGridView.contentInset]} context:nil];
 }
 
 - (void)page:(id)sender
@@ -859,10 +841,7 @@
 				if ([[_track musicBrainzID] isEqualToString:previousArtistMusicBrainzID])
 				{
 					dispatch_async(dispatch_get_main_queue(), ^{
-						[refreshControl endRefreshing];
-						[albumRefreshControl endRefreshing];
-						[trackRefreshControl endRefreshing];
-						[photosRefreshControl endRefreshing];
+						[refreshButton.imageView stopAnimating];
 					});
 					return;
 				}
@@ -921,10 +900,7 @@
 				if ([[_track artist] isEqualToString:previousArtistName])
 				{
 					dispatch_async(dispatch_get_main_queue(), ^{
-						[refreshControl endRefreshing];
-						[albumRefreshControl endRefreshing];
-						[trackRefreshControl endRefreshing];
-						[photosRefreshControl endRefreshing];
+						[refreshButton.imageView stopAnimating];
 					});
 					return;
 				}
