@@ -125,6 +125,7 @@
 		37A70BDF16AE3E6C0088529F /* no-tracks.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A70BD716AE3E6C0088529F /* no-tracks.png */; };
 		37A70BE016AE3E6C0088529F /* no-tracks@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37A70BD816AE3E6C0088529F /* no-tracks@2x.png */; };
 		37A70BE316AE5A510088529F /* AlbumViewCellFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 37A70BE216AE5A510088529F /* AlbumViewCellFlowLayout.m */; };
+		37A70C2B16AE70890088529F /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 37A70C2A16AE70880088529F /* Settings.bundle */; };
 		37BF2DE315DE0BD3007EB3A7 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE215DE0BD3007EB3A7 /* Icon.png */; };
 		37BF2DE515DE0BD6007EB3A7 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */; };
 		37C93423167476B200AE8BD6 /* UIImage+ProportionalFill.m in Sources */ = {isa = PBXBuildFile; fileRef = 37C93422167476B200AE8BD6 /* UIImage+ProportionalFill.m */; };
@@ -567,6 +568,7 @@
 		37A70BD816AE3E6C0088529F /* no-tracks@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "no-tracks@2x.png"; sourceTree = "<group>"; };
 		37A70BE116AE5A510088529F /* AlbumViewCellFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AlbumViewCellFlowLayout.h; sourceTree = "<group>"; };
 		37A70BE216AE5A510088529F /* AlbumViewCellFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AlbumViewCellFlowLayout.m; sourceTree = "<group>"; };
+		37A70C2A16AE70880088529F /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		37BF2DE215DE0BD3007EB3A7 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = ../Icon.png; sourceTree = "<group>"; };
 		37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon@2x.png"; path = "../Icon@2x.png"; sourceTree = "<group>"; };
 		37C93421167476B200AE8BD6 /* UIImage+ProportionalFill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ProportionalFill.h"; path = "MGImageUtilities/Classes/UIImage+ProportionalFill.h"; sourceTree = "<group>"; };
@@ -984,6 +986,7 @@
 				37A70BD816AE3E6C0088529F /* no-tracks@2x.png */,
 				37BF2DE415DE0BD6007EB3A7 /* Icon@2x.png */,
 				37BF2DE215DE0BD3007EB3A7 /* Icon.png */,
+				37A70C2A16AE70880088529F /* Settings.bundle */,
 				371D6A06167DD295008C72FF /* Photo Viewer */,
 				37607AE5166600640008CB5A /* Account Images */,
 				3795C7D515DB5DD70058023F /* MainStoryboard.storyboard */,
@@ -1512,6 +1515,7 @@
 				706DF12616AE5FBC00DC96C7 /* refresh-11@2x.png in Resources */,
 				706DF12716AE5FBC00DC96C7 /* settings.png in Resources */,
 				706DF12816AE5FBC00DC96C7 /* settings@2x.png in Resources */,
+				37A70C2B16AE70890088529F /* Settings.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

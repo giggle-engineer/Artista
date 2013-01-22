@@ -596,18 +596,29 @@
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
+			isFinishedLoadingArtistImages = YES;
+			[self finishLoadingAction];
+			
 			NSMutableURLRequest *request = [NSMutableURLRequest
 											requestWithURL:[artistImage.qualities objectForKey:@"original"]
 											cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
 			NSError *connectionError;
 			NSData *data = [NSURLConnection sendSynchronousRequest:request
 												 returningResponse:nil error:&connectionError];
-			if (connectionError!=nil)
+			
+			if (connectionError==nil)
 			{
-				NSLog(@"there was an error loading the image");
+				image = [UIImage imageWithData:data];
+			}
+			else
+			{
+				image = [UIImage imageNamed:@"top-default.png"];
+				dispatch_async(dispatch_get_main_queue(), ^{
+					[artistImageView setImage:image];
+				});
+				return;
 			}
 			
-			image = [UIImage imageWithData:data];
 			if ([UIScreen mainScreen].scale==2.0f)
 				image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 			else
@@ -617,8 +628,6 @@
 				[photoGridView reloadData];
 				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 			});
-			isFinishedLoadingArtistImages = YES;
-			[self finishLoadingAction];
 		});
 	}];
 }
@@ -1045,18 +1054,31 @@
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
+						isFinishedLoadingArtistImages = YES;
+						[self finishLoadingAction];
+						
 						NSMutableURLRequest *request = [NSMutableURLRequest
 														 requestWithURL:[artistImage.qualities objectForKey:@"original"]
 														 cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
 						NSError *connectionError;
 						NSData *data = [NSURLConnection sendSynchronousRequest:request
 														   returningResponse:nil error:&connectionError];
-						if (connectionError!=nil)
+						
+						
+						if (connectionError==nil)
 						{
-							NSLog(@"there was an error loading the image");
+							image = [UIImage imageWithData:data];
+						}
+						else
+						{
+							image = [UIImage imageNamed:@"top-default.png"];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[artistImageView setImage:image];
+							});
+							return;
 						}
 						
-						image = [UIImage imageWithData:data];
+						
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
@@ -1066,8 +1088,6 @@
 							[photoGridView reloadData];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
-						isFinishedLoadingArtistImages = YES;
-						[self finishLoadingAction];
 					});
 				}];
 			}
@@ -1166,18 +1186,29 @@
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
 					dispatch_async(queue,^{
+						isFinishedLoadingArtistImages = YES;
+						[self finishLoadingAction];
+						
 						NSMutableURLRequest *request = [NSMutableURLRequest
 														requestWithURL:[artistImage.qualities objectForKey:@"original"]
 														cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:10.0];
 						NSError *connectionError;
 						NSData *data = [NSURLConnection sendSynchronousRequest:request
 															 returningResponse:nil error:&connectionError];
-						if (connectionError!=nil)
+						
+						if (connectionError==nil)
 						{
-							NSLog(@"there was an error loading the image");
+							image = [UIImage imageWithData:data];
+						}
+						else
+						{
+							image = [UIImage imageNamed:@"top-default.png"];
+							dispatch_async(dispatch_get_main_queue(), ^{
+								[artistImageView setImage:image];
+							});
+							return;
 						}
 						
-						image = [UIImage imageWithData:data];
 						if ([UIScreen mainScreen].scale==2.0f)
 							image = [image imageToFitSize:(CGSize){640, 250} method:MGImageResizeCropStart];
 						else
@@ -1187,8 +1218,6 @@
 							[photoGridView reloadData];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
-						isFinishedLoadingArtistImages = YES;
-						[self finishLoadingAction];
 					});
 				}];
 			}
