@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C3006" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C54" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="2">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -96,11 +96,13 @@
                                     <outlet property="delegate" destination="2" id="PNs-kj-18x"/>
                                 </connections>
                             </scrollView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd" userLabel="Configure Button">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7d-F7-eyd" userLabel="Configure Button">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="icz-5s-UrC"/>
+                                    <constraint firstAttribute="height" constant="48" id="Mlr-wu-4Py"/>
+                                    <constraint firstAttribute="width" constant="48" id="cwr-ub-WTX"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="10" maxX="10" maxY="0.0"/>
                                 <state key="normal" image="settings.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -112,12 +114,12 @@
                                     <action selector="showAccountView:" destination="2" eventType="touchUpInside" id="eXq-QS-OGr"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wz-9S-TOI">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Wz-9S-TOI">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="HMo-wq-ZyD"/>
-                                    <constraint firstAttribute="height" constant="30" id="hS8-aW-icO"/>
+                                    <constraint firstAttribute="width" constant="48" id="azM-b5-mTx"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <inset key="contentEdgeInsets" minX="10" minY="10" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" image="refresh-0.png">
                                     <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -154,6 +156,7 @@
                             <constraint firstItem="3Wz-9S-TOI" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="AwW-BZ-Iht"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="BqQ-d3-Zoi"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="CJu-4R-eXc"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="CY1-iv-ch5"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="HnT-Ye-lRm"/>
                             <constraint firstItem="wNH-X9-WFv" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="IFj-mM-Cs1"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="IWY-5U-zrI"/>
@@ -162,18 +165,17 @@
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="P5Y-7v-4PB"/>
                             <constraint firstItem="n4F-Zn-Gj6" firstAttribute="top" secondItem="Cmv-5n-oHZ" secondAttribute="top" type="user" id="Pc2-cE-Grq"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="Pod-0O-v8P"/>
-                            <constraint firstItem="L7d-F7-eyd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="RCz-F4-lms"/>
+                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="n4F-Zn-Gj6" secondAttribute="top" type="default" id="ZTM-TN-7It"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="user" id="a6e-Gb-ZQ3"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="bEU-2O-vBh"/>
+                            <constraint firstItem="L7d-F7-eyd" firstAttribute="centerY" secondItem="3Wz-9S-TOI" secondAttribute="centerY" type="default" id="bfT-lB-64M"/>
                             <constraint firstItem="L7d-F7-eyd" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="ch1-ED-dS5"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="eOX-wA-2PR"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="fX9-3p-5KH"/>
-                            <constraint firstItem="ToQ-pP-Rnd" firstAttribute="top" secondItem="Cmv-5n-oHZ" secondAttribute="top" type="default" id="hJV-pd-TvC"/>
                             <constraint firstItem="lSh-Tb-iud" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="hL9-XU-A4s"/>
                             <constraint firstItem="Sy4-GE-vdG" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="user" id="kKV-vg-QOJ"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lFc-Ze-E55"/>
                             <constraint firstItem="Cmv-5n-oHZ" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="lgB-Ro-uj0"/>
-                            <constraint firstItem="L7d-F7-eyd" firstAttribute="bottom" secondItem="3Wz-9S-TOI" secondAttribute="bottom" type="default" id="oYc-pO-rya"/>
                             <constraint firstItem="ToQ-pP-Rnd" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="qDK-TJ-nNc"/>
                             <constraint firstItem="Wh6-CI-hfQ" firstAttribute="top" secondItem="Sy4-GE-vdG" secondAttribute="bottom" constant="-1" type="user" id="qS0-pC-REd"/>
                             <constraint firstItem="dcY-tl-7lc" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="sXf-zn-qF4"/>
@@ -518,8 +520,8 @@ Text, images, and information provided by Last.fm</string>
         <image name="notnow.png" width="289" height="38"/>
         <image name="photos-gradient.png" width="320" height="135"/>
         <image name="photos.png" width="27" height="29"/>
-        <image name="refresh-0.png" width="15" height="16"/>
-        <image name="settings.png" width="15" height="16"/>
+        <image name="refresh-0.png" width="17" height="17"/>
+        <image name="settings.png" width="17" height="17"/>
         <image name="share.png" width="26" height="21"/>
         <image name="top-default.png" width="320" height="125"/>
         <image name="top-gradient.png" width="320" height="125"/>
@@ -568,9 +570,6 @@ Text, images, and information provided by Last.fm</string>
         </class>
         <class className="UICollectionViewFlowLayout" superclassName="UICollectionViewLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewFlowLayout.h"/>
-        </class>
-        <class className="UICollectionViewLayout" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/UICollectionViewLayout.h"/>
         </class>
         <class className="VanishingCellFixLayout" superclassName="UICollectionViewFlowLayout">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/VanishingCellFixLayout.h"/>
