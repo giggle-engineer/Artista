@@ -557,6 +557,7 @@
 				if (emptyPhotosImageView.alpha!=1.0)
 					[emptyPhotosImageView setAlpha:0.0];
 				[photoGridView addSubview:emptyPhotosImageView];
+				dispatch_async(dispatch_get_main_queue(), ^{
 				[UIView animateWithDuration:0.25
 									  delay:0
 									options:UIViewAnimationCurveEaseIn
@@ -565,6 +566,7 @@
 								 }
 								 completion:^(BOOL finished){
 								 }];
+				});
 				
 				isFinishedLoadingArtistImages = YES;
 				[self finishLoadingAction];
@@ -589,7 +591,7 @@
 							 completion:^(BOOL finished){
 								 [emptyPhotosImageView removeFromSuperview];
 							 }];
-		}		
+		}
 		LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 		__block UIImage *image;
 		dispatch_async(queue,^{
@@ -991,6 +993,7 @@
 							if (emptyPhotosImageView.alpha!=1.0)
 								[emptyPhotosImageView setAlpha:0.0];
 							[photoGridView addSubview:emptyPhotosImageView];
+							dispatch_async(dispatch_get_main_queue(), ^{
 							[UIView animateWithDuration:0.25
 												  delay:0
 												options:UIViewAnimationCurveEaseIn
@@ -999,6 +1002,7 @@
 											 }
 											 completion:^(BOOL finished){
 											 }];
+							});
 
 							isFinishedLoadingArtistImages = YES;
 							[self finishLoadingAction];
@@ -1014,6 +1018,7 @@
 					}
 					if (emptyPhotosImageView.alpha==1.0)
 					{
+						dispatch_async(dispatch_get_main_queue(), ^{
 						[UIView animateWithDuration:0.25
 											  delay:0
 											options:UIViewAnimationCurveEaseIn
@@ -1023,6 +1028,7 @@
 										 completion:^(BOOL finished){
 											 [emptyPhotosImageView removeFromSuperview];
 										 }];
+						});
 					}
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
@@ -1097,6 +1103,7 @@
 							if (emptyPhotosImageView.alpha!=1.0)
 								[emptyPhotosImageView setAlpha:0.0];
 							[photoGridView addSubview:emptyPhotosImageView];
+							dispatch_async(dispatch_get_main_queue(), ^{
 							[UIView animateWithDuration:0.25
 												  delay:0
 												options:UIViewAnimationCurveEaseIn
@@ -1105,6 +1112,7 @@
 											 }
 											 completion:^(BOOL finished){
 											 }];
+							});
 							
 							isFinishedLoadingArtistImages = YES;
 							[self finishLoadingAction];
@@ -1120,6 +1128,7 @@
 					}
 					if (emptyPhotosImageView.alpha==1.0)
 					{
+						dispatch_async(dispatch_get_main_queue(), ^{
 						[UIView animateWithDuration:0.25
 											  delay:0
 											options:UIViewAnimationCurveEaseIn
@@ -1129,6 +1138,7 @@
 										 completion:^(BOOL finished){
 											 [emptyPhotosImageView removeFromSuperview];
 										 }];
+						});
 					}
 					LFMArtistImage *artistImage = [images objectAtIndex:arc4random() % images.count];
 					__block UIImage *image;
@@ -1179,7 +1189,6 @@
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[self undoResetChanges];
 		});
-	NSLog(@"%@", [_artist bio]);
 	if ([[_artist bio] isEqualToString:@""])
 	{
 		// show the empty image view for the bio
@@ -1195,6 +1204,7 @@
 		if (emptyBioImageView.alpha!=1.0)
 			[emptyBioImageView setAlpha:0.0];
 		[bioTextView addSubview:emptyBioImageView];
+		dispatch_async(dispatch_get_main_queue(), ^{
 		[UIView animateWithDuration:0.25
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
@@ -1203,11 +1213,13 @@
 						 }
 						 completion:^(BOOL finished){
 						 }];
+		});
 	}
 	else
 	{
 		if (emptyBioImageView.alpha==1.0)
 		{
+			dispatch_async(dispatch_get_main_queue(), ^{
 			[UIView animateWithDuration:0.25
 								  delay:0
 								options:UIViewAnimationCurveEaseIn
@@ -1217,6 +1229,7 @@
 							 completion:^(BOOL finished){
 								 [emptyBioImageView removeFromSuperview];
 							 }];
+			});
 		}
 	}
 	NSString *stripped = [[[_artist bio] stringByDecodingHTMLEntities] stringByStrippingHTML];
@@ -1289,6 +1302,7 @@
 		if (emptyAlbumsImageView.alpha!=1.0)
 			[emptyAlbumsImageView setAlpha:0.0];
 		[albumGridView addSubview:emptyAlbumsImageView];
+		dispatch_async(dispatch_get_main_queue(), ^{
 		[UIView animateWithDuration:0.25
 							  delay:0
 							options:UIViewAnimationCurveEaseIn
@@ -1297,11 +1311,13 @@
 						 }
 						 completion:^(BOOL finished){
 						 }];
+		});
 	}
 	else
 	{
 		if (emptyAlbumsImageView.alpha==1.0)
 		{
+			dispatch_async(dispatch_get_main_queue(), ^{
 			[UIView animateWithDuration:0.25
 								  delay:0
 								options:UIViewAnimationCurveEaseIn
@@ -1311,6 +1327,7 @@
 							 completion:^(BOOL finished){
 								 [emptyAlbumsImageView removeFromSuperview];
 							 }];
+			});
 		}
 	}
 	
