@@ -15,7 +15,7 @@
 - (void) didFailToReceiveUsername: (NSError *)error;
 @end
 
-@interface AccountViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UITextFieldDelegate, LFMRecentTracksDelegate> {
+@interface AccountViewController : UIViewController <UITextFieldDelegate, LFMRecentTracksDelegate> {
     id <AccountViewControllerDelegate> delegate;
     
     IBOutlet UITextField *userNameTextField;

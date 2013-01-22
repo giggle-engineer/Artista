@@ -62,6 +62,11 @@
 		[self setAttributedUserName:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
 		[closeButton setHidden:NO];
 	}
+	else
+	{
+		if ([[NSUserDefaults standardUserDefaults] boolForKey:@"isFirstRun"])
+			[closeButton setHidden:NO];
+	}
 }
 
 - (void)viewDidUnload
@@ -82,6 +87,8 @@
 
 - (IBAction)skipOrUnlink:(id)sender
 {
+	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil)
 	{
 		[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
@@ -163,6 +170,7 @@
 	[userNameTextField resignFirstResponder];
 	[[NSUserDefaults standardUserDefaults] setObject:userNameTextField.text forKey:@"user"];
 	[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
+	[[NSUserDefaults standardUserDefaults] synchronize];
 	[[self delegate] didReceiveReceiveUsername];
 	
 	// set username in the connected view and hide button views
@@ -208,123 +216,5 @@
 	
 }
 
-#pragma mark - Data Source Delegate
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    if (section==0) {
-        return 3;
-    }
-    else {
-        return 0;
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (indexPath.section==0) {
-        if (indexPath.row==0) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-            userNameTextField = [[UITextField alloc] initWithFrame:CGRectMake(19, 12, tableView.bounds.size.width-80, 30)];
-			[userNameTextField setDelegate:self];
-            [userNameTextField setAdjustsFontSizeToFitWidth:YES];
-            [userNameTextField setReturnKeyType:UIReturnKeyDone];
-            [userNameTextField setKeyboardType:UIKeyboardTypeURL];
-            [userNameTextField setAutocapitalizationType:UITextAutocapitalizationTypeNone];
-            [userNameTextField setAutocorrectionType:UITextAutocorrectionTypeNo];
-            [userNameTextField setPlaceholder:@"Username"];
-			// if an account is already linked show it
-			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]!=nil) {
-				[userNameTextField setText:[[NSUserDefaults standardUserDefaults] objectForKey:@"user"]];
-			}
-            [cell addSubview:userNameTextField];
-            return cell;
-        }
-        if (indexPath.row==1) {
-            UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-            cell.textLabel.text = @"Done";
-            return cell;
-        }
-		if (indexPath.row==2) {
-			UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-			// if no username is set show the skip button
-			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
-				cell.textLabel.text = @"Skip";
-			}
-			// other wise the button will unlink a currently linked account
-			else {
-				cell.textLabel.text = @"Unlink Account";
-			}
-			return cell;
-		}
-    }
-    // shuts up the warning about reaching end of void function
-    return nil;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    if (indexPath.section==1) {
-        return YES;
-    }
-    else {
-        return NO;
-    }
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    if (indexPath.section==0) {
-        if (indexPath.row==1) {
-            [self verifyUser:nil];
-        }
-		if (indexPath.row==2) {
-			// decided not to link an account
-			if ([[NSUserDefaults standardUserDefaults] objectForKey:@"user"]==nil) {
-				[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"isFirstRun"];
-				[[self delegate] didFailToReceiveUsername:nil];
-				[self dismissViewControllerAnimated:YES completion:^{}];
-			}
-			// removing existing link to Last.fm
-			else {
-				[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"user"];
-				[[self delegate] didFailToReceiveUsername:nil];
-				[self dismissViewControllerAnimated:YES completion:^{}];
-			}
-		}
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-	switch (section) {
-        case 0:
-            return @"Last.fm Account";
-            break;
-		case 1:
-			return @"Linking with Last.fm allows you to use Artista with the currently scrobbled track.";
-			break;
-        default:
-            return @"";
-            break;
-    }
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // disable editing of the cells. can no longer swipe to delete
-    if (indexPath.section==1) {
-        return UITableViewCellEditingStyleDelete;
-    }
-    else {
-        return UITableViewCellEditingStyleNone;
-    }
-}
 
 @end
