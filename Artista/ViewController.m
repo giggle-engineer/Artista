@@ -120,7 +120,6 @@
 	
 	// make sure the photo gallery view is never really "blank" while loading in the beginning
 	[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
-	
 }
 
 - (void)viewDidUnload
@@ -525,6 +524,15 @@
 	[topTracks requestTopTracksWithArtist:artistName];
 	});
 	[artistImages requestImagesWithArtist:artistName completion:^(NSArray *images, NSError *error, BOOL paging) {
+		// if there's an error bail and reset
+		if (error!=nil)
+		{
+			isFinishedLoadingArtistInfo = NO;
+			isFinishedLoadingTopAlbums = NO;
+			isFinishedLoadingTopTracks = NO;
+			isFinishedLoadingArtistImages = NO;
+			[self reset:NO];
+		}
 		[[SDImageCache sharedImageCache] cleanDisk];
 		if (images.count==0 || paging)
 		{
@@ -536,6 +544,8 @@
 					[artistImageView setImage:image];
 					[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 				});
+				isFinishedLoadingArtistImages = YES;
+				[self finishLoadingAction];
 			}
 			if (paging)
 			{
@@ -560,6 +570,8 @@
 				[photoGridView reloadData];
 				[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 			});
+			isFinishedLoadingArtistImages = YES;
+			[self finishLoadingAction];
 		});
 	}];
 }
@@ -691,7 +703,7 @@
 - (void)finishLoadingAction {
 	// TODO: Implement network timeout detection. Maybe?
 	// this will go through only if we're playing from the iPod
-	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
+	if (isUsingiPod && isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks && isFinishedLoadingArtistImages) {
 		#if !(TARGET_IPHONE_SIMULATOR)
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[refreshButton.imageView stopAnimating];
@@ -699,15 +711,17 @@
 		isFinishedLoadingArtistInfo = NO;
 		isFinishedLoadingTopAlbums = NO;
 		isFinishedLoadingTopTracks = NO;
+		isFinishedLoadingArtistImages = NO;
 		#endif
 	}
-	if (isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks) {
+	if (isFinishedLoadingArtistInfo && isFinishedLoadingTopAlbums && isFinishedLoadingTopTracks && isFinishedLoadingArtistImages) {
 		dispatch_async(dispatch_get_main_queue(), ^{
 			[refreshButton.imageView stopAnimating];
 		});
 		isFinishedLoadingArtistInfo = NO;
 		isFinishedLoadingTopAlbums = NO;
 		isFinishedLoadingTopTracks = NO;
+		isFinishedLoadingArtistImages = NO;
 	}
 }
 
@@ -872,6 +886,15 @@
 				[topTracks requestTopTracksWithMusicBrainzID:[_track musicBrainzID]];
 				});
 				[artistImages requestImagesWithMusicBrainzID:[_track musicBrainzID] completion:^(NSArray *images, NSError *error, BOOL paging) {
+					// if there's an error bail and reset
+					if (error!=nil)
+					{
+						isFinishedLoadingArtistInfo = NO;
+						isFinishedLoadingTopAlbums = NO;
+						isFinishedLoadingTopTracks = NO;
+						isFinishedLoadingArtistImages = NO;
+						[self reset:NO];
+					}
 					[[SDImageCache sharedImageCache] cleanDisk];
 					if (images.count==0 || paging)
 					{
@@ -883,6 +906,8 @@
 								[artistImageView setImage:image];
 								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
+							isFinishedLoadingArtistImages = YES;
+							[self finishLoadingAction];
 						}
 						if (paging)
 						{
@@ -906,6 +931,8 @@
 							[photoGridView reloadData];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
+						isFinishedLoadingArtistImages = YES;
+						[self finishLoadingAction];
 					});
 				}];
 			}
@@ -931,6 +958,15 @@
 				[topTracks requestTopTracksWithArtist:[_track artist]];
 				});
 				[artistImages requestImagesWithArtist:[_track artist] completion:^(NSArray *images, NSError *error, BOOL paging) {
+					// if there's an error bail and reset
+					if (error!=nil)
+					{
+						isFinishedLoadingArtistInfo = NO;
+						isFinishedLoadingTopAlbums = NO;
+						isFinishedLoadingTopTracks = NO;
+						isFinishedLoadingArtistImages = NO;
+						[self reset:NO];
+					}
 					[[SDImageCache sharedImageCache] cleanDisk];
 					if (images.count==0 || paging)
 					{
@@ -942,6 +978,8 @@
 								[artistImageView setImage:image];
 								[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 							});
+							isFinishedLoadingArtistImages = YES;
+							[self finishLoadingAction];
 						}
 						if (paging)
 						{
@@ -966,6 +1004,8 @@
 							[photoGridView reloadData];
 							[self performSelector:@selector(setupPhotoGridPagingButton) withObject:nil afterDelay:0.0];
 						});
+						isFinishedLoadingArtistImages = YES;
+						[self finishLoadingAction];
 					});
 				}];
 			}
@@ -988,6 +1028,7 @@
 	isFinishedLoadingArtistInfo = NO;
 	isFinishedLoadingTopAlbums = NO;
 	isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistImages = NO;
 	[self reset:NO];
 }
 
@@ -1040,6 +1081,7 @@
 	isFinishedLoadingArtistInfo = NO;
 	isFinishedLoadingTopAlbums = NO;
 	isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistImages = NO;
 	[self reset:NO];
 }
 
@@ -1066,6 +1108,7 @@
 	isFinishedLoadingArtistInfo = NO;
 	isFinishedLoadingTopAlbums = NO;
 	isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistImages = NO;
 	[self reset:NO];
 }
 
@@ -1085,6 +1128,7 @@
 	isFinishedLoadingArtistInfo = NO;
 	isFinishedLoadingTopAlbums = NO;
 	isFinishedLoadingTopTracks = NO;
+	isFinishedLoadingArtistImages = NO;
 	[self reset:NO];
 }
 

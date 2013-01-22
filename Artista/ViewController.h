@@ -24,7 +24,7 @@
 	IBOutlet UITabBar *tabBar;
 	IBOutlet UIImageView *artistGradientView;
 	IBOutlet UIButton *refreshButton;
-	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks;
+	BOOL isFinishedLoadingArtistInfo, isFinishedLoadingTopAlbums, isFinishedLoadingTopTracks, isFinishedLoadingArtistImages;
 	BOOL isUsingiPod;
 	BOOL isInPhotoviewer;
     LFMRecentTracks *recentTracks;
