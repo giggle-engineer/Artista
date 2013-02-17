@@ -1649,7 +1649,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1669,7 +1669,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -1680,7 +1680,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chloe Stars (TD2M3LXY35)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chloe Stars (TD2M3LXY35)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1697,7 +1698,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "4D136F42-0964-4988-B2F6-837EAF957784";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D136F42-0964-4988-B2F6-837EAF957784";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1706,7 +1708,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Chloe Stars (TD2M3LXY35)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Chloe Stars (TD2M3LXY35)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Artista/Artista-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1723,7 +1726,8 @@
 					"-ObjC",
 				);
 				PRODUCT_NAME = Artista;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "4D136F42-0964-4988-B2F6-837EAF957784";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4D136F42-0964-4988-B2F6-837EAF957784";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
